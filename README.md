@@ -30,6 +30,7 @@ How to Use this Project?
           -  Calendar_Container1 --> SelectedDate  :: This Event will present to you the user's selected date as a 'date'
 
 4. Supported Time Formats?
+          
           - 12 hour time support
 
 5. Remove the "StartWindow" as this is just part of this packaged Demo
