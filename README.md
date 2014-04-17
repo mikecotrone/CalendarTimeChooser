@@ -11,6 +11,9 @@ Version:        1.0
 What is this Project?
 
   - This project came out of a need for a professional calendar and time chooser for scheduling
+  
+  - What are the Supported Time Formats for the time chooser picklist?
+        - 12 hour time support only
 
 How to Use this Project?
 
@@ -29,8 +32,4 @@ How to Use this Project?
 
           -  Calendar_Container1 --> SelectedDate  :: This Event will present to you the user's selected date as a 'date'
 
-4. Supported Time Formats?
-          
-          - 12 hour time support
-
-5. Remove the "StartWindow" as this is just part of this packaged Demo
+4. Remove the "StartWindow" as this is just part of this packaged Demo
