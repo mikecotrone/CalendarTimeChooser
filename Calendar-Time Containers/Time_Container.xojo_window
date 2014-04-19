@@ -42,7 +42,7 @@ Begin ContainerControl Time_Container
       Index           =   -2147483648
       InitialParent   =   ""
       KeyBuffer       =   ""
-      Left            =   34
+      Left            =   37
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -66,7 +66,7 @@ Begin ContainerControl Time_Container
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   120
+      Left            =   123
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True

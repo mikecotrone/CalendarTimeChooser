@@ -35,7 +35,7 @@ Begin ContainerControl Calendar_Container
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      InitialValue    =   "January\rFebruary\rMarch\rApril\rMay\rJune\rJuly\rAugust\rSeptember\rOctober\rNovember\rDecember"
+      InitialValue    =   ""
       Italic          =   False
       Left            =   11
       ListIndex       =   0
@@ -66,7 +66,7 @@ Begin ContainerControl Calendar_Container
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      InitialValue    =   "2014"
+      InitialValue    =   ""
       Italic          =   False
       Left            =   104
       ListIndex       =   0
@@ -209,6 +209,7 @@ Begin ContainerControl Calendar_Container
       UseFocusRing    =   True
       Visible         =   True
       Width           =   211
+      YearNumber      =   0
       Begin Separator Separator1
          AutoDeactivate  =   True
          Enabled         =   True
@@ -316,6 +317,12 @@ End
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
 		  Me.SetFocus
 		End Function
+	#tag EndEvent
+	#tag Event
+		Sub Open()
+		  
+		  
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events PreviousMonthButton
