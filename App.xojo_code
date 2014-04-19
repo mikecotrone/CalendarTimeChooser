@@ -3,7 +3,9 @@ Protected Class App
 Inherits Application
 	#tag Event
 		Sub Open()
-		  StartWindow.Show
+		  app.UseGDIPlus=true
+		  DemoLaunchWindow.Show
+		  
 		End Sub
 	#tag EndEvent
 

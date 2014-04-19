@@ -5,20 +5,20 @@ Begin Window CalendarWindow
    CloseButton     =   True
    Compatibility   =   ""
    Composite       =   True
-   Frame           =   3
+   Frame           =   0
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   True
-   Height          =   195
+   Height          =   227
    ImplicitInstance=   True
    LiveResize      =   False
    MacProcID       =   0
-   MaxHeight       =   195
+   MaxHeight       =   300
    MaximizeButton  =   False
    MaxWidth        =   394
    MenuBar         =   0
    MenuBarVisible  =   True
-   MinHeight       =   195
+   MinHeight       =   227
    MinimizeButton  =   True
    MinWidth        =   394
    Placement       =   2
@@ -42,11 +42,11 @@ Begin Window CalendarWindow
    Begin Separator Separator1
       AutoDeactivate  =   True
       Enabled         =   True
-      Height          =   198
+      Height          =   255
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   226
+      Left            =   232
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -67,10 +67,9 @@ Begin Window CalendarWindow
       BackColor       =   &cFFFFFF00
       Backdrop        =   0
       Enabled         =   True
-      EndYear         =   0
       EraseBackground =   False
       HasBackColor    =   False
-      Height          =   186
+      Height          =   213
       HelpTag         =   ""
       InitialParent   =   ""
       Left            =   0
@@ -80,8 +79,6 @@ Begin Window CalendarWindow
       LockRight       =   False
       LockTop         =   True
       Scope           =   0
-      SelectedDayOfWeek=   0
-      StartYear       =   0
       TabIndex        =   100
       TabPanelIndex   =   0
       TabStop         =   True
@@ -155,7 +152,7 @@ End
 	#tag Method, Flags = &h0
 		Sub mSetupForBothPickers()
 		  CalendarWindow.Width = 394
-		  CalendarWindow.Height = 195
+		  CalendarWindow.Height = 227
 		  
 		  CalendarWindow.Title = "Choose Date and Time"
 		  CalendarWindow.Calendar_Container1.Enabled = True
@@ -170,7 +167,7 @@ End
 	#tag Method, Flags = &h0
 		Sub mSetupForCalendarPickerOnly()
 		  CalendarWindow.Width = 230
-		  CalendarWindow.Height = 195
+		  CalendarWindow.Height = 227
 		  
 		  CalendarWindow.Title = "Choose Date"
 		  CalendarWindow.Calendar_Container1.Enabled = True
@@ -196,6 +193,7 @@ End
 		  CalendarWindow.Calendar_Container1.Enabled = False
 		  CalendarWindow.Calendar_Container1.Visible = False
 		  
+		  CalendarWindow.BackColor = RGB(228,228,228)
 		  
 		  
 		End Sub
@@ -208,6 +206,10 @@ End
 
 	#tag Property, Flags = &h0
 		CalendarPicker_Only As Boolean = False
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		SelectClockFaceType As Integer = 0
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -243,6 +245,7 @@ End
 		  // Use this Event to push the user's "Selected Date" to anywhere in your code.
 		  // IE.   FutureScheduleAssessment_Class.FutureScheduleAssessmentDate = inSelectedDate
 		  
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -275,11 +278,13 @@ End
 	#tag ViewProperty
 		Name="BothPickers"
 		Group="Behavior"
+		InitialValue="True"
 		Type="Boolean"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="CalendarPicker_Only"
 		Group="Behavior"
+		InitialValue="False"
 		Type="Boolean"
 	#tag EndViewProperty
 	#tag ViewProperty
@@ -467,6 +472,12 @@ End
 		EditorType="Boolean"
 	#tag EndViewProperty
 	#tag ViewProperty
+		Name="SelectClockFaceType"
+		Group="Behavior"
+		InitialValue="0"
+		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
 		Name="Super"
 		Visible=true
 		Group="ID"
@@ -475,6 +486,7 @@ End
 	#tag ViewProperty
 		Name="TimePicker_Only"
 		Group="Behavior"
+		InitialValue="False"
 		Type="Boolean"
 	#tag EndViewProperty
 	#tag ViewProperty

@@ -13,7 +13,18 @@ Inherits Canvas
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
 		  // Draw Clock Image
-		  g.DrawPicture(ClockFace_Chrome130x130,0,0)
+		  Select Case CalendarWindow.SelectClockFaceType
+		  Case 0
+		    g.DrawPicture(ClockFace_Chrome130x130,0,0)
+		  Case 1
+		    g.DrawPicture(ClockFace_Roman130x130,0,0)
+		  Case 2
+		    g.DrawPicture(clock_dial130x130,0,0)
+		  Case 3
+		    g.DrawPicture(ClockFaceGoogle130x130,0,0)
+		  Case 4
+		    g.DrawPicture(Clock_Retro130x130,0,0)
+		  End Select
 		  
 		  // Hour Hand
 		  mDrawClockHourHand (g)
@@ -75,7 +86,6 @@ Inherits Canvas
 	#tag Method, Flags = &h0
 		Sub mDrawClockMinuteHand(g as Graphics)
 		  Dim MinHand as New CurveShape
-		  //MinHand.AddLine 0, 0, 5, 50
 		  MinHand.Border = 100
 		  MinHand.BorderWidth = 1.5
 		  MinHand.X = 0
@@ -90,6 +100,17 @@ Inherits Canvas
 		  End if
 		  MinHand.BorderColor = &c0000ff  // blue
 		  g.DrawObject MinHand,me.Width/2+1, me.Height/2
+		  
+		  //Dim p as Picture
+		  //Dim px as PixmapShape
+		  //p=New Picture(11,141)
+		  //px=New PixmapShape(p)
+		  //px.X = 0
+		  //px.Y = 0
+		  //px.Image = clock_minute
+		  //px.rotation = ClockMinuteValue
+		  //Graphics.drawObject px,me.Width/2, me.Height/2-2
+		  
 		End Sub
 	#tag EndMethod
 
@@ -345,7 +366,7 @@ Inherits Canvas
 		  Case "32"
 		    ClockSecondValue = 6.5888
 		  Case "33"
-		    ClockSecondValue = 6.8888
+		    ClockSecondValue = 6.6888
 		  Case "34"
 		    ClockSecondValue = 6.8088
 		  Case "35"

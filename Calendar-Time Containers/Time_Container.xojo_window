@@ -42,7 +42,7 @@ Begin ContainerControl Time_Container
       Index           =   -2147483648
       InitialParent   =   ""
       KeyBuffer       =   ""
-      Left            =   35
+      Left            =   34
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -105,7 +105,7 @@ Begin ContainerControl Time_Container
       TabIndex        =   2
       TabPanelIndex   =   0
       TabStop         =   True
-      Top             =   44
+      Top             =   37
       Transparent     =   True
       UseFocusRing    =   True
       Visible         =   True

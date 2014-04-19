@@ -32,8 +32,14 @@ Inherits Canvas
 		      // If the user is on the AM/PM Then Don't allow Number Entry
 		      Return True
 		    End if
-		    
+		    // Need to only allow 2 digits
 		    KeyBuffer = KeyBuffer + Key
+		    
+		    Dim KeyBufferLen as Integer = KeyBuffer.Len
+		    if KeyBufferLen > 2 Then
+		      Return True
+		    end if
+		    
 		    mManualTimeEntry(KeyBuffer)
 		    mFormatSingleDigits(KeyBuffer)
 		    
@@ -189,14 +195,25 @@ Inherits Canvas
 	#tag Method, Flags = &h21
 		Private Sub mFormatSingleDigits(inKeyValue as String)
 		  if Draw_Hour_Selected = True Then
-		    
-		    if CDbl(inKeyValue) <= 9 Then
+		    if inKeyValue = "01" or inKeyValue = "02" or inKeyValue = "03" or inKeyValue = "04" or inKeyValue = "05"or inKeyValue ="06" or inKeyValue ="07" or inKeyValue ="08" or inKeyValue ="09" Then
+		      CalendarWindow.Time_Container1.Time_Hour = inKeyValue
+		    elseif CDbl(inKeyValue) >=1 AND CDbl(inKeyValue) <= 9 Then
 		      CalendarWindow.Time_Container1.Time_Hour = "0"+CalendarWindow.Time_Container1.Time_Hour
+		    Elseif inKeyValue = "0" Then
+		      CalendarWindow.Time_Container1.Time_Hour = "0"
+		    Elseif inKeyValue = "00" Then
+		      CalendarWindow.Time_Container1.Time_Hour = "12"
 		    end if
 		    
 		  Elseif Draw_Minute_Selected = True Then
-		    if CDbl(inKeyValue) <= 9 Then
+		    if inKeyValue = "01" or inKeyValue = "02" or inKeyValue = "03" or inKeyValue = "04" or inKeyValue = "05"or inKeyValue ="06" or inKeyValue ="07" or inKeyValue ="08" or inKeyValue ="09" Then
+		      CalendarWindow.Time_Container1.Time_Minute = inKeyValue
+		    Elseif CDbl(inKeyValue) >=1 AND CDbl(inKeyValue) <= 9 Then
 		      CalendarWindow.Time_Container1.Time_Minute = "0"+CalendarWindow.Time_Container1.Time_Minute
+		    Elseif inKeyValue = "0" Then
+		      CalendarWindow.Time_Container1.Time_Minute = "0"
+		    Elseif inKeyValue = "00" Then
+		      CalendarWindow.Time_Container1.Time_Minute = "00"
 		    end if
 		    
 		  End if
@@ -211,6 +228,9 @@ Inherits Canvas
 		    if CDbl(inKeyBuffer) >= 1 AND CDbl(inKeyBuffer) <= 12 Then
 		      CalendarWindow.Time_Container1.Time_Hour = inKeyBuffer
 		      CalendarWindow.Time_Container1.Clock1.mMoveClockHourHand(CalendarWindow.Time_Container1.Time_Hour)
+		    Elseif inKeyBuffer = "00" Then
+		      CalendarWindow.Time_Container1.Time_Hour = "00"
+		      CalendarWindow.Time_Container1.Clock1.mMoveClockHourHand(CalendarWindow.Time_Container1.Time_Hour)
 		    elseif inKeyBuffer = Chr(8) Then
 		      CalendarWindow.Time_Container1.Time_Hour = " "
 		      KeyBuffer = ""
@@ -222,6 +242,9 @@ Inherits Canvas
 		    if CDbl(inKeyBuffer) >= 1 AND CDbl(inKeyBuffer) <= 59 Then
 		      CalendarWindow.Time_Container1.Time_Minute = inKeyBuffer
 		      CalendarWindow.Time_Container1.Clock1.mMoveClockMinHand(CalendarWindow.Time_Container1.Time_Minute)
+		    Elseif inKeyBuffer = "00" Then
+		      CalendarWindow.Time_Container1.Time_Minute = "00"
+		      CalendarWindow.Time_Container1.Clock1.mMoveClockHourHand(CalendarWindow.Time_Container1.Time_Minute)
 		    elseif inKeyBuffer = Chr(8) Then
 		      CalendarWindow.Time_Container1.Time_Minute = " "
 		      KeyBuffer = ""
