@@ -208,6 +208,7 @@ Begin ContainerControl Calendar_Container
       Transparent     =   True
       UseFocusRing    =   True
       Visible         =   True
+      WeekDay         =   ""
       Width           =   211
       YearNumber      =   0
       Begin Separator Separator1
@@ -236,57 +237,6 @@ End
 #tag EndWindow
 
 #tag WindowCode
-	#tag Method, Flags = &h21
-		Private Function fCalculateLeapYear() As Integer
-		  //// Calculate Leap year
-		  //
-		  //Dim RetMonthDays as Integer
-		  //
-		  //If (mSelectedDate.Year / 4.0) = Floor(mSelectedDate.Year / 4.0) Then
-		  //RetMonthDays = 29 // Leap year
-		  //Else
-		  //RetMonthDays = 28
-		  //End If
-		  //
-		  //Return RetMonthDays
-		  //
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Function fConvertMonthToInt(inMonth as String) As Integer
-		  Select Case inMonth
-		    
-		  Case "January"
-		    Return 1
-		  Case "February"
-		    Return 2
-		  Case "March"
-		    Return 3
-		  Case "April"
-		    Return 4
-		  Case "May"
-		    Return 5
-		  Case "June"
-		    Return 6
-		  Case "July"
-		    Return 7
-		  Case "August"
-		    Return 8
-		  Case "September"
-		    Return 9
-		  Case "October"
-		    Return 10
-		  Case "November"
-		    Return 11
-		  Case "December"
-		    Return 12
-		  End Select
-		End Function
-	#tag EndMethod
-
-
 	#tag Hook, Flags = &h0
 		Event SelectedDate(inSelectedDate as Date)
 	#tag EndHook
@@ -297,7 +247,10 @@ End
 #tag Events MonthPopup
 	#tag Event
 		Sub Change()
-		  
+		  Calendar1.SelectedMonth = Me.Text
+		  Calendar1.mCalculateMonth(Me.Text)
+		  Calendar1.UPDATE_MonthDays
+		  Calendar1.UPDATE_MapDaysToCalSlots
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -309,7 +262,10 @@ End
 #tag Events YearPopup
 	#tag Event
 		Sub Change()
-		  //mSelectedDate.Year = Val(Me.Text)
+		  Calendar1.SelectedYear = Me.Text
+		  Calendar1.mCalculateYear(Me.Text)
+		  Calendar1.UPDATE_MonthDays
+		  Calendar1.UPDATE_MapDaysToCalSlots
 		  
 		End Sub
 	#tag EndEvent
