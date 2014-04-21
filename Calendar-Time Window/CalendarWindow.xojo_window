@@ -27,7 +27,8 @@ Begin Window CalendarWindow
    Visible         =   True
    Width           =   394
    Begin Timer ClockSecondHandTimer
-      Height          =   32
+      Enabled         =   True
+      Height          =   "32"
       Index           =   -2147483648
       InitialParent   =   ""
       Left            =   0
@@ -37,7 +38,8 @@ Begin Window CalendarWindow
       Scope           =   0
       TabPanelIndex   =   0
       Top             =   0
-      Width           =   32
+      Visible         =   True
+      Width           =   "32"
    End
    Begin Separator Separator1
       AutoDeactivate  =   True
@@ -71,6 +73,7 @@ Begin Window CalendarWindow
       HasBackColor    =   False
       Height          =   213
       HelpTag         =   ""
+      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   0
       LockBottom      =   False
@@ -100,6 +103,7 @@ Begin Window CalendarWindow
       HasBackColor    =   False
       Height          =   213
       HelpTag         =   ""
+      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   235
       LockBottom      =   False

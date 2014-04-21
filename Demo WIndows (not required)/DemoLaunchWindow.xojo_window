@@ -9,7 +9,7 @@ Begin Window DemoLaunchWindow
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   340
+   Height          =   349
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
@@ -78,7 +78,7 @@ Begin Window DemoLaunchWindow
       Bold            =   False
       Caption         =   ""
       Enabled         =   True
-      Height          =   146
+      Height          =   163
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -360,6 +360,38 @@ Begin Window DemoLaunchWindow
          Visible         =   True
          Width           =   188
       End
+      Begin CheckBox UseGraphicClockHandsCheckBox
+         AutoDeactivate  =   True
+         Bold            =   False
+         Caption         =   "Use Graphic Clock Hands"
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         Italic          =   False
+         Left            =   34
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         State           =   0
+         TabIndex        =   11
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   291
+         Underline       =   False
+         Value           =   False
+         Visible         =   True
+         Width           =   186
+      End
    End
 End
 #tag EndWindow
@@ -500,6 +532,14 @@ End
 		  CalendarWindow.Calendar_Container1.Calendar1.Invalidate(False)
 		  CalendarWindow.Calendar_Container1.Calendar1.UPDATE_MonthDays
 		  CalendarWindow.Calendar_Container1.Calendar1.UPDATE_MapDaysToCalSlots
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events UseGraphicClockHandsCheckBox
+	#tag Event
+		Sub Action()
+		  CalendarWindow.Time_Container1.Clock1.UseGraphicalClockHands=me.Value
+		  CalendarWindow.Time_Container1.Clock1.Invalidate(False)
 		End Sub
 	#tag EndEvent
 #tag EndEvents

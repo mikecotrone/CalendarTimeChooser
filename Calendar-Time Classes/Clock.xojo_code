@@ -26,14 +26,22 @@ Inherits Canvas
 		    g.DrawPicture(Clock_Retro130x130,0,0)
 		  End Select
 		  
-		  // Hour Hand
-		  mDrawClockHourHand (g)
+		  if UseGraphicalClockHands then
+		    // Minute Hand
+		    mDrawClockMinuteHandImage (g)
+		    // Hour Hand
+		    mDrawClockHourHandImage (g)
+		    // Draw Second hand
+		    mDrawClockSecondHandImage (g)
+		  else
+		    //Hour Hand
+		    mDrawClockHourHand(g)
+		    //Minute Hand
+		    mDrawClockMinuteHand(g)
+		    //Second Hand
+		    mDrawClockSecondHand(g)
+		  end if
 		  
-		  // Minute Hand
-		  mDrawClockMinuteHand (g)
-		  
-		  // Draw Second hand
-		  mDrawClockSecondHand (g)
 		  
 		  // Draw String AM/PM
 		  If CalendarWindow.Time_Container1.Time_AMPM = "AM" Then
@@ -44,7 +52,7 @@ Inherits Canvas
 		  
 		  // Draw Center Dot on the Clock Image
 		  g.ForeColor = RGB(0,0,0)
-		  g.FillOval(me.Width/2-2,me.Height/2-2,5,5)
+		  'g.FillOval(me.Width/2-2,me.Height/2-2,5,5)
 		  
 		  
 		  
@@ -84,6 +92,15 @@ Inherits Canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub mDrawClockHourHandImage(g as Graphics)
+		  Dim HourHand as New PixmapShape(HourHandImg)
+		  HourHand.Scale=( me.Height-30 )/HourHandImg.Height
+		  HourHand.Rotation=pi*2/12*(val(CalendarWindow.Time_Container1.Time_Hour)+val(CalendarWindow.Time_Container1.Time_Minute)/60)
+		  g.DrawObject HourHand,me.Width/2+1, me.Height/2
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub mDrawClockMinuteHand(g as Graphics)
 		  Dim MinHand as New CurveShape
 		  MinHand.Border = 100
@@ -115,6 +132,15 @@ Inherits Canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub mDrawClockMinuteHandImage(g as Graphics)
+		  Dim MinHand as New PixmapShape(MinuteHandImg)
+		  MinHand.Scale=( me.Height-30 )/MinuteHandImg.Height
+		  MinHand.Rotation=(pi*2/60*val(CalendarWindow.Time_Container1.Time_Minute))
+		  g.DrawObject MinHand,me.Width/2, me.Height/2
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub mDrawClockSecondHand(g as Graphics)
 		  Dim SecondHand as New CurveShape
 		  SecondHand.Border = 100
@@ -126,6 +152,15 @@ Inherits Canvas
 		  SecondHand.Rotation =  ClockSecondValue
 		  SecondHand.BorderColor = &cFF0000
 		  g.DrawObject SecondHand,me.Width/2+1,me.Height/2
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub mDrawClockSecondHandImage(g as Graphics)
+		  Dim SecondHand as New PixmapShape(SecondHandImg)
+		  SecondHand.Rotation=(pi*2/60*CalendarWindow.Time_Container1.ClockSecondsCounter)
+		  SecondHand.Scale=( me.Height-30 )/SecondHandImg.Height
+		  g.DrawObject SecondHand,me.Width/2,me.Height/2
 		End Sub
 	#tag EndMethod
 
@@ -439,6 +474,14 @@ Inherits Canvas
 		ClockSecondValue As Double
 	#tag EndProperty
 
+	#tag Property, Flags = &h0
+		UseGraphicalClockHands As Boolean
+	#tag EndProperty
+
+
+	#tag Constant, Name = pi, Type = Double, Dynamic = False, Default = \"3.14159265", Scope = Public
+	#tag EndConstant
+
 
 	#tag ViewBehavior
 		#tag ViewProperty
@@ -608,6 +651,11 @@ Inherits Canvas
 			Visible=true
 			Group="Appearance"
 			InitialValue="True"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="UseGraphicalClockHands"
+			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
