@@ -120,13 +120,19 @@ Inherits Canvas
 		    next i
 		  End if
 		  
-		  
+		  Dim SelectMonthInt as Integer = fConvertMonthStringToMonthNumber(SelectedMonth)
 		  // Draw Day Values in Calendar Spaces
 		  for i as integer = 7 to UBound(CalendarButtonClassArray)
 		    if CalendarButtonClassArray(i).Selected = True Then
-		      g.ForeColor = RGB(255,255,255)
+		      if CDbl(SelectedYear) = CurrentDate.Year AND SelectMonthInt = CurrentDate.Month AND CalendarButtonClassArray(i).Day = CurrentDate.Day Then
+		        g.ForeColor = TodaysDate_Selected
+		      Else
+		        g.ForeColor = RGB(255,255,255)
+		      End if
 		    elseif CalendarButtonClassArray(i).NextMonthMark = True OR  CalendarButtonClassArray(i).PrevMonthMark = True Then
 		      g.ForeColor= RGB(170,170,170)
+		    elseif CDbl(SelectedYear) = CurrentDate.Year AND SelectMonthInt = CurrentDate.Month AND CalendarButtonClassArray(i).Day = CurrentDate.Day Then // If Today's Date Not Selected
+		      g.ForeColor = TodaysDate_NotSelected
 		    Else
 		      g.ForeColor = RGB(0,0,0)
 		    End if
@@ -821,6 +827,14 @@ Inherits Canvas
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		TodaysDate_NotSelected As Color = &c0000FF
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		TodaysDate_Selected As Color = &cFFFF00
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		YearNumber As Integer
 	#tag EndProperty
 
@@ -853,6 +867,12 @@ Inherits Canvas
 			EditorType="Picture"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="CalMonFirstDayOfWeekBool"
+			Group="Behavior"
+			InitialValue="False"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="DoubleBuffer"
 			Visible=true
 			Group="Behavior"
@@ -872,6 +892,11 @@ Inherits Canvas
 			Group="Behavior"
 			InitialValue="True"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="FirstWeekDay"
+			Group="Behavior"
+			Type="String"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Height"
@@ -934,6 +959,21 @@ Inherits Canvas
 			Type="String"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="NextMonth"
+			Group="Behavior"
+			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="PreviousMonth"
+			Group="Behavior"
+			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="SelectedMonth"
+			Group="Behavior"
+			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="SelectedX"
 			Group="Behavior"
 			Type="Integer"
@@ -942,6 +982,11 @@ Inherits Canvas
 			Name="SelectedY"
 			Group="Behavior"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="SelectedYear"
+			Group="Behavior"
+			Type="String"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
@@ -996,12 +1041,6 @@ Inherits Canvas
 			Group="Appearance"
 			InitialValue="True"
 			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="WeekDay"
-			Group="Behavior"
-			Type="String"
-			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Width"
