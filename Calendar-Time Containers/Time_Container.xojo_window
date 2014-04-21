@@ -52,7 +52,7 @@ Begin ContainerControl Time_Container
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   False
-      Top             =   0
+      Top             =   3
       Transparent     =   True
       UseFocusRing    =   False
       Visible         =   True
@@ -76,7 +76,7 @@ Begin ContainerControl Time_Container
       TabIndex        =   1
       TabPanelIndex   =   0
       TabStop         =   False
-      Top             =   -4
+      Top             =   -1
       Visible         =   True
       Width           =   16
    End
@@ -88,9 +88,9 @@ Begin ContainerControl Time_Container
       ClockHourValue  =   0.0
       ClockMinuteValue=   0.0
       ClockSecondValue=   0.0
-      DoubleBuffer    =   False
+      DoubleBuffer    =   True
       Enabled         =   True
-      EraseBackground =   True
+      EraseBackground =   False
       Height          =   130
       HelpTag         =   ""
       Index           =   -2147483648

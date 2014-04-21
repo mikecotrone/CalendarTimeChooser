@@ -421,7 +421,6 @@ Inherits Canvas
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Draw_AMPM_Selected"
-			Visible=true
 			Group="Behavior"
 			InitialValue="False"
 			Type="Boolean"

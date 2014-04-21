@@ -160,10 +160,10 @@ Begin Window DemoLaunchWindow
          TextSize        =   12.0
          TextUnit        =   0
          Top             =   170
-         Transparent     =   False
+         Transparent     =   True
          Underline       =   False
          Visible         =   True
-         Width           =   127
+         Width           =   153
       End
       Begin Label SelectChooserTypeLabel
          AutoDeactivate  =   True
@@ -194,7 +194,7 @@ Begin Window DemoLaunchWindow
          TextSize        =   12.0
          TextUnit        =   0
          Top             =   170
-         Transparent     =   False
+         Transparent     =   True
          Underline       =   False
          Visible         =   True
          Width           =   228
@@ -259,7 +259,7 @@ Begin Window DemoLaunchWindow
          TextSize        =   12.0
          TextUnit        =   0
          Top             =   227
-         Transparent     =   False
+         Transparent     =   True
          Underline       =   False
          Visible         =   True
          Width           =   127
@@ -324,7 +324,7 @@ Begin Window DemoLaunchWindow
          TextSize        =   12.0
          TextUnit        =   0
          Top             =   227
-         Transparent     =   False
+         Transparent     =   True
          Underline       =   False
          Visible         =   True
          Width           =   127
