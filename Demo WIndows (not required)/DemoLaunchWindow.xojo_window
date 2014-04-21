@@ -211,7 +211,7 @@ Begin Window DemoLaunchWindow
          InitialParent   =   "GroupBox1"
          InitialValue    =   ""
          Italic          =   False
-         Left            =   29
+         Left            =   34
          ListIndex       =   0
          LockBottom      =   False
          LockedInPosition=   False
@@ -394,7 +394,7 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub Change()
-		  Select Case Me.Text
+		  SeleSelect Case Me.Text
 		  Case "0 - Chrome (12hr)"
 		    // Default Clock Face
 		    CalendarWindow.SelectClockFaceType = 0
@@ -424,7 +424,7 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub Change()
-		  Select Case Me.Text
+		  CaSelect Case Me.Text
 		  Case "Calendar and Time"
 		    CalendarWindow.BothPickers = True
 		    CalendarWindow.CalendarPicker_Only = False
