@@ -192,7 +192,7 @@ Begin ContainerControl Calendar_Container
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   11
+      Left            =   10
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -221,7 +221,7 @@ Begin ContainerControl Calendar_Container
          HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "Calendar1"
-         Left            =   15
+         Left            =   14
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True

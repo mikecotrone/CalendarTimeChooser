@@ -98,10 +98,10 @@ Begin Window CalendarWindow
       Enabled         =   True
       EraseBackground =   True
       HasBackColor    =   False
-      Height          =   186
+      Height          =   213
       HelpTag         =   ""
       InitialParent   =   ""
-      Left            =   231
+      Left            =   235
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True

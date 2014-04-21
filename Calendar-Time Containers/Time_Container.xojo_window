@@ -9,7 +9,7 @@ Begin ContainerControl Time_Container
    Enabled         =   True
    EraseBackground =   True
    HasBackColor    =   False
-   Height          =   186
+   Height          =   213
    HelpTag         =   ""
    InitialParent   =   ""
    Left            =   0
@@ -105,7 +105,7 @@ Begin ContainerControl Time_Container
       TabIndex        =   2
       TabPanelIndex   =   0
       TabStop         =   True
-      Top             =   37
+      Top             =   49
       Transparent     =   True
       UseFocusRing    =   True
       Visible         =   True
