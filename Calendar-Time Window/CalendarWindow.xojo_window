@@ -246,7 +246,7 @@ End
 		  // IE.   FutureScheduleAssessment_Class.FutureScheduleAssessmentDate = inSelectedDate
 		  
 		  // Demo Purposes
-		  MsgBox "Selected Date: " + inSelectedDate.ShortDate
+		  //MsgBox "Selected Date: " + inSelectedDate.ShortDate
 		  
 		End Sub
 	#tag EndEvent

@@ -153,7 +153,7 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   1
          TabPanelIndex   =   0
-         Text            =   "Change Clock Face"
+         Text            =   "Change Clock Face:"
          TextAlign       =   0
          TextColor       =   &c00000000
          TextFont        =   "Helvetica"
@@ -295,6 +295,71 @@ Begin Window DemoLaunchWindow
          Visible         =   True
          Width           =   188
       End
+      Begin Label WeekStartTypeLabel
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         Italic          =   False
+         Left            =   240
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Multiline       =   False
+         Scope           =   0
+         Selectable      =   False
+         TabIndex        =   9
+         TabPanelIndex   =   0
+         Text            =   "Week Start Type:"
+         TextAlign       =   0
+         TextColor       =   &c00000000
+         TextFont        =   "Helvetica"
+         TextSize        =   12.0
+         TextUnit        =   0
+         Top             =   227
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   True
+         Width           =   127
+      End
+      Begin PopupMenu WeekStartType
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         InitialValue    =   ""
+         Italic          =   False
+         Left            =   240
+         ListIndex       =   0
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   10
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   252
+         Underline       =   False
+         Visible         =   True
+         Width           =   188
+      End
    End
 End
 #tag EndWindow
@@ -410,6 +475,31 @@ End
 		  End Select
 		  
 		  CalendarWindow.Invalidate(True)
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events WeekStartType
+	#tag Event
+		Sub Open()
+		  // Load Popup Menu
+		  me.AddRow("Week Starts on Sunday")
+		  me.AddRow("Week Starts on Monday")
+		  me.ListIndex = 0
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Change()
+		  Select Case Me.Text
+		  Case "Week Starts on Sunday"
+		    CalendarWindow.Calendar_Container1.Calendar1.CalMonFirstDayOfWeekBool = False
+		  Case "Week Starts on Monday"
+		    CalendarWindow.Calendar_Container1.Calendar1.CalMonFirstDayOfWeekBool = True
+		  End Select
+		  
+		  CalendarWindow.Calendar_Container1.Calendar1.Invalidate(False)
+		  CalendarWindow.Calendar_Container1.Calendar1.UPDATE_MonthDays
+		  CalendarWindow.Calendar_Container1.Calendar1.UPDATE_MapDaysToCalSlots
 		End Sub
 	#tag EndEvent
 #tag EndEvents
