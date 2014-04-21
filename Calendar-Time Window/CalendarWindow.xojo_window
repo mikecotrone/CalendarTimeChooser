@@ -259,8 +259,8 @@ End
 		  // My example Format shows a format (without quotes):     "hh:MM AM/PM"
 		  
 		  // Demo Purposes
-		  Dim TmpDateFormatString as String = inHours+":"+inMinutes+" "+inAMPM
-		  MsgBox "Selected Time: " + TmpDateFormatString
+		  //Dim TmpDateFormatString as String = inHours+":"+inMinutes+" "+inAMPM
+		  //MsgBox "Selected Time: " + TmpDateFormatString
 		End Sub
 	#tag EndEvent
 #tag EndEvents
