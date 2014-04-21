@@ -84,7 +84,7 @@ Inherits Canvas
 		  // Parms for the Highlighting Below
 		  dim OffSet as Integer = 3
 		  dim TwoOffset as Integer = (OffSet*2)
-		  dim CurveSize as Integer = 8
+		  dim CurveSize as Integer = 6
 		  
 		  // Draw Highlight If Selected
 		  for i as integer = 0 to UBound(CalendarButtonClassArray)
@@ -148,12 +148,21 @@ Inherits Canvas
 		      g.ForeColor = RGB(0,0,0)
 		    End if
 		    
-		    // Draw Days Centered 
-		    if CalendarButtonClassArray(i).Day > 0 AND CalendarButtonClassArray(i).Day < 10 Then
-		      g.DrawString(Str(CalendarButtonClassArray(i).day),CalendarButtonClassArray(i).LeftX+11,CalendarButtonClassArray(i).TopY+17)
-		    Else
-		      g.DrawString(Str(CalendarButtonClassArray(i).day),CalendarButtonClassArray(i).LeftX+8,CalendarButtonClassArray(i).TopY+17)
-		    End if
+		    // Draw Days Centered -- Windows GDI+ Is different that MacOS for centering the Calendar Day Text FYI.
+		    #IF TargetWin32 Then
+		      if CalendarButtonClassArray(i).Day > 0 AND CalendarButtonClassArray(i).Day < 10 Then
+		        g.DrawString(Str(CalendarButtonClassArray(i).day),CalendarButtonClassArray(i).LeftX+13,CalendarButtonClassArray(i).TopY+17)
+		      Else
+		        g.DrawString(Str(CalendarButtonClassArray(i).day),CalendarButtonClassArray(i).LeftX+10,CalendarButtonClassArray(i).TopY+17)
+		      End if
+		    #ELSEIF TargetMacOS Then
+		      if CalendarButtonClassArray(i).Day > 0 AND CalendarButtonClassArray(i).Day < 10 Then
+		        g.DrawString(Str(CalendarButtonClassArray(i).day),CalendarButtonClassArray(i).LeftX+12,CalendarButtonClassArray(i).TopY+17)
+		      Else
+		        g.DrawString(Str(CalendarButtonClassArray(i).day),CalendarButtonClassArray(i).LeftX+8,CalendarButtonClassArray(i).TopY+17)
+		      End if
+		    #ENDIF
+		    
 		    
 		  next i
 		  
@@ -257,7 +266,7 @@ Inherits Canvas
 		  CalcYearNum  = Year + Year / 4
 		  
 		  Dim CalcYearFinal as integer
-		   CalcYearFinal = CalcYearNum mod 7
+		  CalcYearFinal = CalcYearNum mod 7
 		  
 		  Return CalcYearFinal
 		End Function
@@ -269,7 +278,7 @@ Inherits Canvas
 		    
 		  Case 1
 		    Return "January"
-		  Case 2 
+		  Case 2
 		    Return "February"
 		  Case 3
 		    Return "March"
@@ -412,7 +421,7 @@ Inherits Canvas
 		    Return  "May"
 		    
 		  Case "May"
-		    Return  "June" 
+		    Return  "June"
 		    
 		  Case "June"
 		    Return "July"
@@ -451,11 +460,11 @@ Inherits Canvas
 		  Case "April"
 		    Return "March"
 		    
-		  Case "May" 
+		  Case "May"
 		    Return  "April"
 		    
 		  Case "June"
-		    Return "May" 
+		    Return "May"
 		    
 		  Case "July"
 		    Return "June"
@@ -483,7 +492,7 @@ Inherits Canvas
 		  // Jan - 31
 		  // Feb (non leap year = 28, leap year = 29)
 		  // Mar - 31
-		  // Apr - 30 
+		  // Apr - 30
 		  // May - 31
 		  // Jun - 30
 		  // Jul - 31
@@ -507,13 +516,13 @@ Inherits Canvas
 		  Case "March"
 		    Return 31
 		    
-		  Case "April" 
+		  Case "April"
 		    Return 30
 		    
 		  Case "May"
 		    Return 31
 		    
-		  Case "June" 
+		  Case "June"
 		    Return 30
 		    
 		  Case "July"
@@ -685,7 +694,7 @@ Inherits Canvas
 		  CalendarWindow.Calendar_Container1.MonthPopup.AddRow "November"
 		  CalendarWindow.Calendar_Container1.MonthPopup.AddRow "December"
 		  
-		  // Load Today's Month 
+		  // Load Today's Month
 		  CalendarWindow.Calendar_Container1.MonthPopup.ListIndex = 0
 		End Sub
 	#tag EndMethod
