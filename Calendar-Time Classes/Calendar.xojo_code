@@ -131,7 +131,7 @@ Inherits Canvas
 		  for i as integer = 7 to UBound(CalendarButtonClassArray)
 		    if CalendarButtonClassArray(i).Selected = True Then
 		      if CDbl(SelectedYear) = CurrentDate.Year AND SelectMonthInt = CurrentDate.Month AND CalendarButtonClassArray(i).Day = CurrentDate.Day Then
-		        g.bold = true
+		        g.bold = false
 		        g.ForeColor = TodaysDate_Selected
 		      Else
 		        g.bold = false
@@ -141,7 +141,7 @@ Inherits Canvas
 		      g.bold = false
 		      g.ForeColor= RGB(170,170,170)
 		    elseif CDbl(SelectedYear) = CurrentDate.Year AND SelectMonthInt = CurrentDate.Month AND CalendarButtonClassArray(i).Day = CurrentDate.Day Then // If Today's Date Not Selected
-		      g.bold = true
+		      g.bold = True
 		      g.ForeColor = TodaysDate_NotSelected
 		    Else
 		      g.bold = false
