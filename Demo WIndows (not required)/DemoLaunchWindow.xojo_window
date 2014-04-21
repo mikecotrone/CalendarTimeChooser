@@ -394,7 +394,7 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub Change()
-		  SeleSelect Case Me.Text
+		  Select Case Me.Text
 		  Case "0 - Chrome (12hr)"
 		    // Default Clock Face
 		    CalendarWindow.SelectClockFaceType = 0
@@ -424,7 +424,7 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub Change()
-		  CaSelect Case Me.Text
+		  Select Case Me.Text
 		  Case "Calendar and Time"
 		    CalendarWindow.BothPickers = True
 		    CalendarWindow.CalendarPicker_Only = False
