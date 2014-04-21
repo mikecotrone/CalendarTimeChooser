@@ -27,8 +27,7 @@ Begin Window CalendarWindow
    Visible         =   True
    Width           =   394
    Begin Timer ClockSecondHandTimer
-      Enabled         =   True
-      Height          =   "32"
+      Height          =   32
       Index           =   -2147483648
       InitialParent   =   ""
       Left            =   0
@@ -38,8 +37,7 @@ Begin Window CalendarWindow
       Scope           =   0
       TabPanelIndex   =   0
       Top             =   0
-      Visible         =   True
-      Width           =   "32"
+      Width           =   32
    End
    Begin Separator Separator1
       AutoDeactivate  =   True
@@ -73,7 +71,6 @@ Begin Window CalendarWindow
       HasBackColor    =   False
       Height          =   213
       HelpTag         =   ""
-      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   0
       LockBottom      =   False
@@ -103,7 +100,6 @@ Begin Window CalendarWindow
       HasBackColor    =   False
       Height          =   186
       HelpTag         =   ""
-      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   231
       LockBottom      =   False
@@ -249,6 +245,8 @@ End
 		  // Use this Event to push the user's "Selected Date" to anywhere in your code.
 		  // IE.   FutureScheduleAssessment_Class.FutureScheduleAssessmentDate = inSelectedDate
 		  
+		  // Demo Purposes
+		  MsgBox "Selected Date: " + inSelectedDate.ShortDate
 		  
 		End Sub
 	#tag EndEvent
@@ -259,8 +257,10 @@ End
 		  // I decided to send the selected Time in separate string parts to allow for maximum control on formating.
 		  
 		  // My example Format shows a format (without quotes):     "hh:MM AM/PM"
-		  //Dim TmpDateFormatString as String = inHours+":"+inMinutes+" "+inAMPM
 		  
+		  // Demo Purposes
+		  Dim TmpDateFormatString as String = inHours+":"+inMinutes+" "+inAMPM
+		  MsgBox "Selected Time: " + TmpDateFormatString
 		End Sub
 	#tag EndEvent
 #tag EndEvents

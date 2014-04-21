@@ -58,6 +58,10 @@ Protected Class CalendarButtonClass
 		Selected As boolean
 	#tag EndProperty
 
+	#tag Property, Flags = &h0
+		SelectedDate As Date
+	#tag EndProperty
+
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get

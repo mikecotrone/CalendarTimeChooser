@@ -3,16 +3,6 @@ Protected Class Calendar
 Inherits Canvas
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  Dim i as integer
-		  for i = 0 to UBound(CalendarButtonClassArray)
-		    if X >= CalendarButtonClassArray(i).LeftX AND X <= CalendarButtonClassArray(i).RightX AND Y >= CalendarButtonClassArray(i).TopY AND Y <= CalendarButtonClassArray(i).BottomY Then
-		      mDeselectAll
-		      CalendarButtonClassArray(i).Selected = True
-		      Me.Invalidate(False)
-		    end if
-		  next i
-		  
-		  
 		  Return True
 		  
 		End Function
@@ -20,6 +10,19 @@ Inherits Canvas
 
 	#tag Event
 		Sub MouseUp(X As Integer, Y As Integer)
+		  Dim i as integer
+		  for i = 0 to UBound(CalendarButtonClassArray)
+		    if X >= CalendarButtonClassArray(i).LeftX AND X <= CalendarButtonClassArray(i).RightX AND Y >= CalendarButtonClassArray(i).TopY AND Y <= CalendarButtonClassArray(i).BottomY Then
+		      mDeselectAll
+		      CalendarButtonClassArray(i).Selected = True
+		      SelectedDate = New Date
+		      SelectedDate.Day = CalendarButtonClassArray(i).Day
+		      SelectedDate.Year = CDbl(SelectedYear)
+		      CalendarButtonClassArray(i).SelectedDate = SelectedDate
+		      CalendarWindow.Calendar_Container1.mRaiseEvent
+		      Me.Invalidate(False)
+		    end if
+		  next i
 		  
 		End Sub
 	#tag EndEvent
@@ -31,7 +34,7 @@ Inherits Canvas
 		  
 		  // Date Instantiations
 		  CurrentDate = new Date
-		  StartYear = CurrentDate.Year
+		  //StartYear = CurrentDate.Year
 		  
 		  // Build Year Popup Menu on Calendar Container
 		  mLoad_YearList(StartYear,2050)
@@ -48,6 +51,9 @@ Inherits Canvas
 		  
 		  // Figure out Century Number
 		  CenturyNumber = fCalcCenturyNumber(2015)
+		  
+		  // Choose Today's Date When we Open
+		  CalendarWindow.Calendar_Container1.mTakeMeToTodaysDate
 		  
 		  
 		  
@@ -67,14 +73,13 @@ Inherits Canvas
 		  g.PenWidth = 2
 		  g.DrawroundRect(0,0,me.Width,me.Height,3,3)
 		  
-		  // Draw Horizontal Lines
-		  for i as integer = 0 to me.Width Step 24
-		    g.DrawLine (0,i,me.Width,i)
-		  next i
-		  // Draw Vertical Lines
-		  for i as integer = 0 to me.Width Step 30
-		    g.DrawLine (i,0,i,me.Height)
-		  next i
+		  // Draw Test Grid
+		  //for i as integer = 0 to me.Width Step 24
+		  //g.DrawLine (0,i,me.Width,i)
+		  //next i
+		  //for i as integer = 0 to me.Width Step 30
+		  //g.DrawLine (i,0,i,me.Height)
+		  //next i
 		  
 		  // Parms for the Highlighting Below
 		  dim OffSet as Integer = 3
@@ -84,6 +89,7 @@ Inherits Canvas
 		  // Draw Highlight If Selected
 		  for i as integer = 0 to UBound(CalendarButtonClassArray)
 		    if CalendarButtonClassArray(i).Selected = True Then
+		      // Capture Selected Date in Date format for Custom Event
 		      g.ForeColor = RGB(0,127,230)
 		      g.FillRoundRect(CalendarButtonClassArray(i).LeftX+OffSet+1, CalendarButtonClassArray(i).TopY+OffSet,CalendarButtonClassArray(i).Width-TwoOffset,CalendarButtonClassArray(i).Height-TwoOffset,CurveSize,CurveSize)
 		    End if
@@ -125,15 +131,20 @@ Inherits Canvas
 		  for i as integer = 7 to UBound(CalendarButtonClassArray)
 		    if CalendarButtonClassArray(i).Selected = True Then
 		      if CDbl(SelectedYear) = CurrentDate.Year AND SelectMonthInt = CurrentDate.Month AND CalendarButtonClassArray(i).Day = CurrentDate.Day Then
+		        g.bold = true
 		        g.ForeColor = TodaysDate_Selected
 		      Else
+		        g.bold = false
 		        g.ForeColor = RGB(255,255,255)
 		      End if
 		    elseif CalendarButtonClassArray(i).NextMonthMark = True OR  CalendarButtonClassArray(i).PrevMonthMark = True Then
+		      g.bold = false
 		      g.ForeColor= RGB(170,170,170)
 		    elseif CDbl(SelectedYear) = CurrentDate.Year AND SelectMonthInt = CurrentDate.Month AND CalendarButtonClassArray(i).Day = CurrentDate.Day Then // If Today's Date Not Selected
+		      g.bold = true
 		      g.ForeColor = TodaysDate_NotSelected
 		    Else
+		      g.bold = false
 		      g.ForeColor = RGB(0,0,0)
 		    End if
 		    
@@ -143,7 +154,6 @@ Inherits Canvas
 		    Else
 		      g.DrawString(Str(CalendarButtonClassArray(i).day),CalendarButtonClassArray(i).LeftX+8,CalendarButtonClassArray(i).TopY+17)
 		    End if
-		    
 		    
 		  next i
 		  
@@ -250,6 +260,38 @@ Inherits Canvas
 		   CalcYearFinal = CalcYearNum mod 7
 		  
 		  Return CalcYearFinal
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function fConvertMonthIntToMonthString(inMonthInt as Integer) As String
+		  Select Case inMonthInt
+		    
+		  Case 1
+		    Return "January"
+		  Case 2 
+		    Return "February"
+		  Case 3
+		    Return "March"
+		  Case 4
+		    Return "April"
+		  Case 5
+		    Return "May"
+		  Case 6
+		    Return "June"
+		  Case 7
+		    Return "July"
+		  Case 8
+		    Return "August"
+		  Case 9
+		    Return "September"
+		  Case 10
+		    Return "October"
+		  Case 11
+		    Return "November"
+		  Case 12
+		    Return "December"
+		  End Select
 		End Function
 	#tag EndMethod
 
@@ -552,8 +594,8 @@ Inherits Canvas
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h21
-		Private Sub mDeselectAll()
+	#tag Method, Flags = &h0
+		Sub mDeselectAll()
 		  for i as integer = 0 to UBound(CalendarButtonClassArray)
 		    CalendarButtonClassArray(i).Selected = False
 		  next i
@@ -642,6 +684,8 @@ Inherits Canvas
 		  CalendarWindow.Calendar_Container1.MonthPopup.AddRow "October"
 		  CalendarWindow.Calendar_Container1.MonthPopup.AddRow "November"
 		  CalendarWindow.Calendar_Container1.MonthPopup.AddRow "December"
+		  
+		  // Load Today's Month 
 		  CalendarWindow.Calendar_Container1.MonthPopup.ListIndex = 0
 		End Sub
 	#tag EndMethod
@@ -734,10 +778,7 @@ Inherits Canvas
 		    Invalidate(False)
 		  Next xx
 		  
-		  
 		  Dim a as string
-		  
-		  
 		  
 		End Sub
 	#tag EndMethod
@@ -799,7 +840,19 @@ Inherits Canvas
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		NextYear As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		PreviousMonth As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		PrevYear As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		SelectedDate As Date
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -823,7 +876,7 @@ Inherits Canvas
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private StartYear As Integer
+		Private StartYear As Integer = 1900
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -897,6 +950,7 @@ Inherits Canvas
 			Name="FirstWeekDay"
 			Group="Behavior"
 			Type="String"
+			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Height"
@@ -962,16 +1016,29 @@ Inherits Canvas
 			Name="NextMonth"
 			Group="Behavior"
 			Type="String"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="NextYear"
+			Group="Behavior"
+			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="PreviousMonth"
 			Group="Behavior"
 			Type="String"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="PrevYear"
+			Group="Behavior"
+			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="SelectedMonth"
 			Group="Behavior"
 			Type="String"
+			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="SelectedX"
@@ -987,6 +1054,7 @@ Inherits Canvas
 			Name="SelectedYear"
 			Group="Behavior"
 			Type="String"
+			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
@@ -1013,6 +1081,18 @@ Inherits Canvas
 			Group="Position"
 			InitialValue="True"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="TodaysDate_NotSelected"
+			Group="Behavior"
+			InitialValue="&c0000FF"
+			Type="Color"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="TodaysDate_Selected"
+			Group="Behavior"
+			InitialValue="&cFFFF00"
+			Type="Color"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"

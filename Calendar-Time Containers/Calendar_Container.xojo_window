@@ -198,17 +198,20 @@ Begin ContainerControl Calendar_Container
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
+      NextYear        =   0
+      PrevYear        =   0
       Scope           =   0
       SelectedX       =   0
       SelectedY       =   0
       TabIndex        =   52
       TabPanelIndex   =   0
       TabStop         =   True
+      TodaysDate_NotSelected=   &c0000FF00
+      TodaysDate_Selected=   &cFFFF0000
       Top             =   33
       Transparent     =   True
       UseFocusRing    =   True
       Visible         =   True
-      WeekDay         =   ""
       Width           =   211
       YearNumber      =   0
       Begin Separator Separator1
@@ -237,6 +240,91 @@ End
 #tag EndWindow
 
 #tag WindowCode
+	#tag Event
+		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		  //RaiseEvent SelectedDate(
+		End Function
+	#tag EndEvent
+
+
+	#tag Method, Flags = &h21
+		Private Sub mNextMonth()
+		  // Need a Check to See about Incrementing Year or not
+		  Calendar1.mDeselectAll
+		  if Calendar1.NextMonth = "January" then
+		    // Need to increment Year
+		    Calendar1.NextYear = CDbl(YearPopup.Text)+1
+		    for i as integer = 0 to YearPopup.ListCount-1
+		      if Str(Calendar1.NextYear) = YearPopup.List(i) Then
+		        YearPopup.ListIndex = i
+		        exit
+		      End if
+		    next i
+		  End if
+		  
+		  for i as integer = 0 to MonthPopup.ListCount-1
+		    if Calendar1.NextMonth = MonthPopup.List(i) Then
+		      MonthPopup.ListIndex = i
+		      exit
+		    End if
+		  next i
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub mPrevMonth()
+		  // Need a Check to See about Decrementing Year or not
+		  Calendar1.mDeselectAll
+		  if Calendar1.PreviousMonth = "December" then
+		    // Need to increment Year
+		    Calendar1.PrevYear = CDbl(YearPopup.Text)-1
+		    for i as integer = 0 to YearPopup.ListCount-1
+		      if Str(Calendar1.PrevYear) = YearPopup.List(i) Then
+		        YearPopup.ListIndex = i
+		        exit
+		      End if
+		    next i
+		  End if
+		  
+		  for i as integer = 0 to MonthPopup.ListCount-1
+		    if Calendar1.PreviousMonth = MonthPopup.List(i) Then
+		      MonthPopup.ListIndex = i
+		      exit
+		    End if
+		  next i
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub mRaiseEvent()
+		  RaiseEvent SelectedDate(Calendar1.SelectedDate)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub mTakeMeToTodaysDate()
+		  // Bring Us Back to Today's Month
+		  Dim CurrentDateMonthString as String = Calendar1.fConvertMonthIntToMonthString(Calendar1.CurrentDate.Month)
+		  for i as integer = 0 to MonthPopup.ListCount-1
+		    if CurrentDateMonthString = MonthPopup.List(i) Then
+		      MonthPopup.ListIndex = i
+		    End if
+		  next i
+		  
+		  // Bring Us Back to Today's Year
+		  Dim CurrentDateYearString as String = Str(Calendar1.CurrentDate.Year)
+		  for i as integer = 0 to YearPopup.ListCount - 1
+		    if CurrentDateYearString = YearPopup.List(i) Then
+		      YearPopup.ListIndex = i
+		    End if
+		  next i
+		End Sub
+	#tag EndMethod
+
+
 	#tag Hook, Flags = &h0
 		Event SelectedDate(inSelectedDate as Date)
 	#tag EndHook
@@ -252,11 +340,6 @@ End
 		  Calendar1.UPDATE_MonthDays
 		  Calendar1.UPDATE_MapDaysToCalSlots
 		End Sub
-	#tag EndEvent
-	#tag Event
-		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  Me.SetFocus
-		End Function
 	#tag EndEvent
 #tag EndEvents
 #tag Events YearPopup
@@ -284,31 +367,15 @@ End
 #tag Events PreviousMonthButton
 	#tag Event
 		Sub Action()
-		  //User wants to back up a month
-		  //If not at limits of dates(Jan,1904) then do it
-		  
-		  //Dim m,y As Integer
-		  //
-		  //m = MonthPopup.ListIndex + 1
-		  //y = Val(YearPopup.Text)
-		  //
-		  //If m = 1 And y > StartYear Then
-		  //YearPopup.ListIndex = YearPopup.ListIndex - 1
-		  //MonthPopup.ListIndex = 11
-		  //Elseif m > 1 Then
-		  //MonthPopup.ListIndex = MonthPopup.ListIndex - 1
-		  //End If
+		  mPrevMonth
 		End Sub
-	#tag EndEvent
-	#tag Event
-		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  Me.SetFocus
-		End Function
 	#tag EndEvent
 #tag EndEvents
 #tag Events CurrentMonthButton
 	#tag Event
 		Sub Action()
+		  mTakeMeToTodaysDate
+		  
 		  
 		End Sub
 	#tag EndEvent
@@ -327,20 +394,7 @@ End
 #tag Events NextMonthButton
 	#tag Event
 		Sub Action()
-		  //User wants to advance a month
-		  //If not at limits of dates(dec,2039) then do it
-		  
-		  //Dim m, y As Integer
-		  //
-		  //m = MonthPopup.ListIndex + 1
-		  //y = Val(YearPopup.Text)
-		  //
-		  //If m = 12 And y < EndYear Then
-		  //YearPopup.ListIndex = YearPopup.ListIndex + 1
-		  //MonthPopup.ListIndex = 0
-		  //ElseIf m < 12 Then
-		  //MonthPopup.ListIndex = MonthPopup.ListIndex + 1
-		  //End If
+		  mNextMonth
 		End Sub
 	#tag EndEvent
 	#tag Event
