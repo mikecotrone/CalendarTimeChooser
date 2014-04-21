@@ -3,10 +3,10 @@ CalendarTimeChooser
 
 Xojo Calendar and Time Chooser Picklist
 
-Date:           April 17, 2014
+Date:           April 21, 2014
 Language:       Xojo
 Written by:     Mike Cotrone (mikec@intelligentvisibility.com)
-Version:        1.0
+Version:        1.3
 
 What is this Project?
 
