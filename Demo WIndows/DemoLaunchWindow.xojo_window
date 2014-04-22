@@ -13,7 +13,7 @@ Begin Window DemoLaunchWindow
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
-   MaxHeight       =   364
+   MaxHeight       =   500
    MaximizeButton  =   False
    MaxWidth        =   489
    MenuBar         =   0
@@ -122,7 +122,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   5
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Select Chooser Type:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -188,7 +187,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   7
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Change Back Color:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -254,7 +252,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   11
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Include Previous/Next Month Days:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -320,7 +317,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   14
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Use Graphical Clock Hands:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -459,7 +455,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   19
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Week Start Type:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -525,7 +520,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   21
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Change Clock Face:"
          TextAlign       =   0
          TextColor       =   &c00000000

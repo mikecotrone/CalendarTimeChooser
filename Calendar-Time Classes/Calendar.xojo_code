@@ -89,11 +89,14 @@ Inherits Canvas
 		  // Draw Highlight If Selected
 		  for i as integer = 0 to UBound(CalendarButtonClassArray)
 		    if CalendarButtonClassArray(i).Selected = True Then
-		      // Capture Selected Date in Date format for Custom Event
-		      g.ForeColor = RGB(0,127,230)
-		      g.FillRoundRect(CalendarButtonClassArray(i).LeftX+OffSet+1, CalendarButtonClassArray(i).TopY+OffSet,CalendarButtonClassArray(i).Width-TwoOffset,CalendarButtonClassArray(i).Height-TwoOffset,CurveSize,CurveSize)
+		      if CalendarButtonClassArray(i).Day = 0 Then // We don't want a user to be able to Select a Day that is hidden
+		      Else
+		        // Capture Selected Date in Date format for Custom Event
+		        g.ForeColor = RGB(0,127,230)
+		        g.FillRoundRect(CalendarButtonClassArray(i).LeftX+OffSet+1, CalendarButtonClassArray(i).TopY+OffSet,CalendarButtonClassArray(i).Width-TwoOffset,CalendarButtonClassArray(i).Height-TwoOffset,CurveSize,CurveSize)
+		      End if
 		    End if
-		  next i
+		  Next i
 		  
 		  // Draw the Day of Week Labels using the Boolean to know if we are Sat - Sun or Mon - Sun
 		  if CalMonFirstDayOfWeekBool = False Then

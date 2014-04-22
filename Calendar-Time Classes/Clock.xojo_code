@@ -26,21 +26,12 @@ Inherits Canvas
 		    g.DrawPicture(Clock_Retro130x130,0,0)
 		  End Select
 		  
-		  if UseGraphicalClockHands then
-		    // Minute Hand
-		    mDrawClockMinuteHandImage (g)
-		    // Hour Hand
-		    mDrawClockHourHandImage (g)
-		    // Draw Second hand
-		    mDrawClockSecondHandImage (g)
-		  else
-		    //Hour Hand
-		    mDrawClockHourHand(g)
-		    //Minute Hand
-		    mDrawClockMinuteHand(g)
-		    //Second Hand
-		    mDrawClockSecondHand(g)
-		  end if
+		  // Minute Hand
+		  mDrawClockMinuteHand (g)
+		  // Hour Hand
+		  mDrawClockHourHand (g)
+		  // Draw Second hand
+		  mDrawClockSecondHand (g)
 		  
 		  // Draw String AM/PM
 		  If CalendarWindow.Time_Container1.Time_AMPM = "AM" Then
@@ -50,10 +41,10 @@ Inherits Canvas
 		  End if
 		  
 		  // Draw Center Dot on the Clock Image
-		  g.ForeColor = RGB(0,0,0)
-		  g.FillOval(me.Width/2-2,me.Height/2-2,5,5)
-		  
-		  
+		  if not UseGraphicalClockHands then
+		    g.ForeColor = RGB(0,0,0)
+		    g.FillOval(me.Width/2-2,me.Height/2-2,5,5)
+		  end if
 		  
 		End Sub
 	#tag EndEvent
@@ -70,85 +61,70 @@ Inherits Canvas
 
 	#tag Method, Flags = &h0
 		Sub mDrawClockHourHand(g as Graphics)
-		  Dim HourHand as New CurveShape
-		  HourHand.Border = 100
-		  HourHand.BorderColor = &c0000ff  // blue
-		  HourHand.BorderWidth = 1.5
-		  HourHand.X = 0
-		  HourHand.Y = 0
-		  HourHand.X2  = 5
-		  HourHand.Y2 = 30
-		  if CalendarWindow.Time_Container1.Time_Hour = "12" then
-		    ClockHourValue = 3.308
-		    HourHand.Rotation = ClockHourValue
-		  Else
-		    HourHand.Rotation =  ClockHourValue
-		  End if
-		  g.DrawObject HourHand,me.Width/2+1,me.Height/2
+		  Dim HourHand as Object2D
 		  
+		  if UseGraphicalClockHands then
+		    HourHand = New PixmapShape(HourHandImg)
+		    HourHand.Scale=( me.Height-30 )/HourHandImg.Height
+		  else
+		    HourHand = New CurveShape
+		    CurveShape(HourHand).Border = 100
+		    CurveShape(HourHand).BorderWidth = 2
+		    CurveShape(HourHand).BorderColor = &c0000FF
+		    CurveShape(HourHand).X = 1
+		    CurveShape(HourHand).Y  = 1
+		    CurveShape(HourHand).X2 = 0
+		    CurveShape(HourHand).Y2 = -30
+		  end if
 		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub mDrawClockHourHandImage(g as Graphics)
-		  Dim HourHand as New PixmapShape(HourHandImg)
-		  HourHand.Scale=( me.Height-30 )/HourHandImg.Height
-		  HourHand.Rotation=pi*2/12*(val(CalendarWindow.Time_Container1.Time_Hour)+val(CalendarWindow.Time_Container1.Time_Minute)/60)
-		  g.DrawObject HourHand,me.Width/2+1, me.Height/2
+		  HourHand.Rotation=pi*2/12*(val(CalendarWindow.Time_Container1.Time_Hour)+val(CalendarWindow.Time_Container1.Time_Minute)/60)+.01
+		  g.DrawObject HourHand,me.Width/2, me.Height/2
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub mDrawClockMinuteHand(g as Graphics)
-		  Dim MinHand as New CurveShape
-		  MinHand.Border = 100
-		  MinHand.BorderWidth = 1.5
-		  MinHand.X = 0
-		  MinHand.Y  = 0
-		  MinHand.X2 = 5
-		  MinHand.Y2 = 50
-		  if CalendarWindow.Time_Container1.Time_Minute = "00" Then
-		    ClockMinuteValue = 3.248
-		    MinHand.Rotation =  ClockMinuteValue
-		  Else
-		    MinHand.Rotation =  ClockMinuteValue
-		  End if
-		  MinHand.BorderColor = &c0000ff  // blue
-		  g.DrawObject MinHand,me.Width/2+1, me.Height/2
+		  Dim MinHand as Object2D
 		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub mDrawClockMinuteHandImage(g as Graphics)
-		  Dim MinHand as New PixmapShape(MinuteHandImg)
-		  MinHand.Scale=( me.Height-30 )/MinuteHandImg.Height
-		  MinHand.Rotation=(pi*2/60*val(CalendarWindow.Time_Container1.Time_Minute))
+		  if UseGraphicalClockHands then
+		    MinHand=New PixmapShape(MinuteHandImg)
+		    MinHand.Scale=( me.Height-30 )/MinuteHandImg.Height
+		  else
+		    MinHand = New CurveShape
+		    CurveShape(MinHand).Border = 100
+		    CurveShape(MinHand).BorderWidth = .75
+		    CurveShape(MinHand).BorderColor = &c0000FF
+		    CurveShape(MinHand).X = 0
+		    CurveShape(MinHand).Y  = 0
+		    CurveShape(MinHand).X2 = 0
+		    CurveShape(MinHand).Y2 = -45
+		  end if
+		  
+		  MinHand.Rotation=(pi*2/60*val(CalendarWindow.Time_Container1.Time_Minute))+.01
 		  g.DrawObject MinHand,me.Width/2, me.Height/2
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub mDrawClockSecondHand(g as Graphics)
-		  Dim SecondHand as New CurveShape
-		  SecondHand.Border = 100
-		  SecondHand.BorderWidth = .75
-		  SecondHand.X = 0
-		  SecondHand.Y  = 0
-		  SecondHand.X2 = 5
-		  SecondHand.Y2 = 50
-		  SecondHand.Rotation =  ClockSecondValue
-		  SecondHand.BorderColor = &cFF0000
-		  g.DrawObject SecondHand,me.Width/2+1,me.Height/2
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub mDrawClockSecondHandImage(g as Graphics)
-		  Dim SecondHand as New PixmapShape(SecondHandImg)
-		  SecondHand.Rotation=(pi*2/60*CalendarWindow.Time_Container1.ClockSecondsCounter)
-		  SecondHand.Scale=( me.Height-30 )/SecondHandImg.Height
+		  Dim SecondHand as Object2D
+		  
+		  if UseGraphicalClockHands then  //use graphical version
+		    SecondHand=New PixmapShape(SecondHandImg)
+		    SecondHand.Scale=( me.Height-30 )/SecondHandImg.Height
+		  else //build a curveshape
+		    SecondHand = New CurveShape
+		    CurveShape(SecondHand).Border = 100
+		    CurveShape(SecondHand).BorderWidth = .75
+		    CurveShape(SecondHand).BorderColor = &cFF0000
+		    CurveShape(SecondHand).X = 0
+		    CurveShape(SecondHand).Y  = 0
+		    CurveShape(SecondHand).X2 = 0
+		    CurveShape(SecondHand).Y2 = -50
+		  end if
+		  
+		  //rotation is based on radians/seconds per minute * current second.
+		  SecondHand.Rotation=(pi*2/60*CalendarWindow.Time_Container1.ClockSecondsCounter)+.01
 		  g.DrawObject SecondHand,me.Width/2,me.Height/2
 		End Sub
 	#tag EndMethod

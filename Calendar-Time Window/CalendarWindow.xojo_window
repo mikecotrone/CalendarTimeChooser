@@ -196,8 +196,6 @@ End
 		  CalendarWindow.Calendar_Container1.Enabled = False
 		  CalendarWindow.Calendar_Container1.Visible = False
 		  
-		  CalendarWindow.BackColor = RGB(228,228,228)
-		  
 		  
 		End Sub
 	#tag EndMethod
