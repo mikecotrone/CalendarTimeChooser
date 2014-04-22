@@ -33,10 +33,12 @@ How to Use this Project?
         
           
 3 - Time/Clock Options for your convenience
-          1. CalendarWindow.SelectClockFaceType = [0,1,2,3,4]       :: This will allow you to use different clock faces
+          
+          a. CalendarWindow.SelectClockFaceType = [0,1,2,3,4]       :: This will allow you to use different clock faces
 
 4 - How can I EASILY get the "Results" from the user "Choosing" a date and/or a time?
-          -  I have two custom Event Definitions that will present the "chosen data" to you
+         
+          -  There are two custom Event Definitions that will present the selected Date and Selected Time easily
 
           -  Time_Container1 -> SelectedTime  ::This Event will present to you the user's selected time as string parts 
                      ie. time String parts -> (hourString, MinString, AmPmString) this will allow you maximum control on your desired final format
