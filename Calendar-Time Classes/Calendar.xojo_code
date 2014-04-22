@@ -63,7 +63,7 @@ Inherits Canvas
 
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
-		  g.AntiAlias = true
+		  g.AntiAlias = True
 		  // Fill White Background
 		  g.ForeColor = RGB(255,255,255)
 		  g.FillRect (1,1,me.Width-2,me.Height-2)
@@ -106,8 +106,8 @@ Inherits Canvas
 		      dim pos as integer = 11
 		      Dim TmpLen as Integer = DayOfWeekArray_SS(i).len
 		      if LocalizationInt <> 0 Then
-		        xPos = 6
-		      Else
+		        xPos = 8
+		      Elseif  LocalizationInt = 0 Then
 		        xPos = 11
 		      End if
 		      for x as integer = 0 to UBound(DayOfWeekArray_SS)
@@ -127,8 +127,8 @@ Inherits Canvas
 		      dim pos as integer = 11
 		      Dim TmpLen as Integer = DayOfWeek_MS(i).len
 		      if LocalizationInt <> 0 Then
-		        xPos = 6
-		      Else
+		        xPos = 7
+		      Elseif  LocalizationInt = 0 Then
 		        xPos = 11
 		      End if
 		      for x as integer = 0 to UBound(DayOfWeek_MS)
@@ -1211,6 +1211,12 @@ Inherits Canvas
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Localized_Friday"
+			Group="Behavior"
+			Type="String"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Localized_January"
 			Group="Behavior"
 			Type="String"
@@ -1241,6 +1247,12 @@ Inherits Canvas
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Localized_Monday"
+			Group="Behavior"
+			Type="String"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Localized_November"
 			Group="Behavior"
 			Type="String"
@@ -1253,7 +1265,37 @@ Inherits Canvas
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Localized_Saturday"
+			Group="Behavior"
+			Type="String"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Localized_September"
+			Group="Behavior"
+			Type="String"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Localized_Sunday"
+			Group="Behavior"
+			Type="String"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Localized_Thursday"
+			Group="Behavior"
+			Type="String"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Localized_Tuesday"
+			Group="Behavior"
+			Type="String"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Localized_Wednesday"
 			Group="Behavior"
 			Type="String"
 			EditorType="MultiLineEditor"

@@ -120,7 +120,6 @@ Inherits Canvas
 		      next
 		      
 		    else //24 hour clock
-		      
 		      // calc the numeral location
 		      x = Cos(angle)*(radius-24)
 		      y= Sin(angle)*(radius-24)
@@ -403,6 +402,12 @@ Inherits Canvas
 			EditorType="Picture"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="BorderColor"
+			Group="Behavior"
+			InitialValue="&c444444"
+			Type="Color"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="ClockHourValue"
 			Group="Behavior"
 			Type="Double"
@@ -439,6 +444,19 @@ Inherits Canvas
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="FaceColor"
+			Group="Behavior"
+			InitialValue="&cdddddd"
+			Type="Color"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Font"
+			Group="Behavior"
+			InitialValue="""""Helvetica"""""
+			Type="String"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Height"
 			Visible=true
 			Group="Position"
@@ -451,6 +469,12 @@ Inherits Canvas
 			Group="Appearance"
 			Type="String"
 			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="HourCount"
+			Group="Behavior"
+			InitialValue="12"
+			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -523,6 +547,12 @@ Inherits Canvas
 			Group="Position"
 			InitialValue="True"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="TextColor"
+			Group="Behavior"
+			InitialValue="&c000000"
+			Type="Color"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"

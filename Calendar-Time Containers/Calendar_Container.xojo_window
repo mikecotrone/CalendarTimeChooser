@@ -195,7 +195,7 @@ Begin ContainerControl Calendar_Container
       IncludePrevNextMonthDaysBool=   True
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   10
+      Left            =   11
       LocalizationInt =   0
       Localized_January=   ""
       LockBottom      =   False
@@ -231,7 +231,7 @@ Begin ContainerControl Calendar_Container
          HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "Calendar1"
-         Left            =   14
+         Left            =   15
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
