@@ -272,6 +272,10 @@ Inherits Canvas
 		Sub mMoveHourDown()
 		  // Hour is Selected so lets Move it down
 		  Dim TmpHour as Integer = CDbl(CalendarWindow.Time_Container1.Time_Hour)
+		  // If the hour rolls past the AM/PM bounds we'll flip it
+		  if TmpHour = 12 then
+		    AMPM_Flip
+		  end if
 		  TmpHour = TmpHour - 1
 		  // Keep within the Time Constaints (12 HourTime)
 		  if TmpHour = 0 Then
@@ -289,6 +293,9 @@ Inherits Canvas
 		Sub mMoveHourUp()
 		  // Hour is Selected so lets Move it down
 		  Dim TmpHour as Integer = CDbl(CalendarWindow.Time_Container1.Time_Hour)
+		  if TmpHour = 11 then
+		    AMPM_Flip
+		  end if
 		  TmpHour = TmpHour +1
 		  // Keep within the Time Constaints (12 HourTime)
 		  if TmpHour = 13 Then
@@ -311,6 +318,7 @@ Inherits Canvas
 		  if TmpMin = -1 Then
 		    TmpMin = 59
 		    TmpZeroPad = ""
+		    mMoveHourDown
 		  End if
 		  if TmpMin <=59 AND TmpMin >=10 Then
 		    TmpZeroPad = ""
@@ -336,6 +344,7 @@ Inherits Canvas
 		  if TmpMin = 60 Then
 		    TmpMin = 00
 		    TmpZeroPad = ""
+		    mMoveHourUp
 		  End if
 		  if TmpMin <=59 AND TmpMin >=10 Then
 		    TmpZeroPad = ""

@@ -122,7 +122,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   5
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Select Chooser Type:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -188,7 +187,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   7
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Change Back Color:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -254,7 +252,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   11
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Include Previous/Next Month Days:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -320,7 +317,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   14
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Use Graphical Clock Hands:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -459,7 +455,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   19
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Week Start Type:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -525,7 +520,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   21
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Change Clock Face:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -790,6 +784,8 @@ End
 		  me.AddRow("2 - Standard (12hr)")
 		  me.AddRow("3 - Google Style (12hr)")
 		  me.AddRow("4 - Modern (12hr)")
+		  me.AddRow("5 - Dynamic (12hr)")
+		  me.AddRow("5 - Dynamic (24hr)")
 		  me.ListIndex = 0
 		  
 		End Sub
@@ -808,6 +804,12 @@ End
 		    CalendarWindow.SelectClockFaceType = 3
 		  Case "4 - Modern (12hr)"
 		    CalendarWindow.SelectClockFaceType = 4
+		  Case "5 - Dynamic (12hr)"
+		    CalendarWindow.SelectClockFaceType = 5
+		    CalendarWindow.Time_Container1.Clock1.HourCount=12
+		  Case "5 - Dynamic (24hr)"
+		    CalendarWindow.SelectClockFaceType = 5
+		    CalendarWindow.Time_Container1.Clock1.HourCount=24
 		  End Select
 		  CalendarWindow.Time_Container1.Clock1.Invalidate(False)
 		End Sub

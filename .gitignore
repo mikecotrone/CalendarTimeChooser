@@ -1,5 +1,3 @@
-.xojo_uistate
-.debug.app
+*.debug.app*
 *.xojo_uistate
-
 *.dylib
