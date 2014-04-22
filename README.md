@@ -23,10 +23,12 @@ How to Use this Project?
           1. CalendarWindow.BothPickers = [True/False]          :: This will show the both Choosers (pickers)
           2. CalendarWindow.CalendarPicker_Only = [True/False]  :: This will show the Calendar Chooser (picker) Only
           3. CalendarWindow.TimePicker = [True/False]           :: This will show the Time Chooser (picker)Only
+          4. CalendarWindow.Calendar_Container1.Calendar1.CalMonFirstDayOfWeekBool = [True/False] :: Choose Start of Week
+          5. CalendarWindow.Calendar_Container1.Calendar1.IncludePrevNextMonthDaysBool  = [True/False] :: Toggle Showing the Next/Previous Month Days
+        
           
 3 - Time/Clock Options for your convenience
           1. CalendarWindow.SelectClockFaceType = [0,1,2,3,4]       :: This will allow you to use different clock faces
-          2. CalendarWindow.Calendar_Container1.Calendar1.CalMonFirstDayOfWeekBool :: Choose Start of Week
 
 3 - How can I EASILY get the "Results" from the user "Choosing" a date and/or a time?
           -  I have two custom Event Definitions that will present the "chosen data" to you
