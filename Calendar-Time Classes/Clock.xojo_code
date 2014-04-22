@@ -24,6 +24,8 @@ Inherits Canvas
 		    g.DrawPicture(ClockFaceGoogle130x130,0,0)
 		  Case 4
 		    g.DrawPicture(Clock_Retro130x130,0,0)
+		  Case 5
+		    mDrawClockFace (g)
 		  End Select
 		  
 		  // Minute Hand
@@ -34,17 +36,21 @@ Inherits Canvas
 		  mDrawClockSecondHand (g)
 		  
 		  // Draw String AM/PM
-		  If CalendarWindow.Time_Container1.Time_AMPM = "AM" Then
-		    mDrawAMPM_OnClock(g,12,"Helvetica",RGB(120,120,120),"AM")
-		  Elseif  CalendarWindow.Time_Container1.Time_AMPM = "PM" Then
-		    mDrawAMPM_OnClock(g,12,"Helvetica",RGB(120,120,120),"PM")
-		  End if
+		  dim AMPM As new StringShape
+		  AMPM.FillColor=TextColor
+		  AMPM.TextFont=Font
+		  AMPM.TextSize=12
+		  AMPM.VerticalAlignment=StringShape.Alignment.Bottom
+		  AMPM.HorizontalAlignment=StringShape.Alignment.Center
+		  AMPM.Text=CalendarWindow.Time_Container1.Time_AMPM
+		  g.DrawObject AMPM,Width/2,Height/2+20
 		  
 		  // Draw Center Dot on the Clock Image
 		  if not UseGraphicalClockHands then
 		    g.ForeColor = RGB(0,0,0)
 		    g.FillOval(me.Width/2-2,me.Height/2-2,5,5)
 		  end if
+		  
 		  
 		End Sub
 	#tag EndEvent
@@ -56,6 +62,73 @@ Inherits Canvas
 		  g.TextFont = inTextFont
 		  g.ForeColor = inForecolor
 		  g.DrawString(inString,Me.Width/2-8,Me.Height/2+16,me.Width)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub mDrawClockFace(g As Graphics)
+		  dim buffer As new Picture(g.Width*2,g.Height*2)
+		  dim hr,sec,x,y,radius As integer
+		  dim angle As Double
+		  dim hourTick As new CurveShape
+		  hourTick.x=-2
+		  hourTick.y=0
+		  hourTick.x2=-14
+		  hourTick.y2=0
+		  dim secondTick as new CurveShape
+		  secondTick.x=-2
+		  secondTick.y=0
+		  secondTick.x2=-8
+		  secondTick.y2=0
+		  dim numeral As new StringShape //for drawing the numbers
+		  if HourCount=12 then
+		    numeral.TextSize=26
+		  else
+		    numeral.TextSize=20
+		  end if
+		  numeral.TextFont=me.font
+		  numeral.VerticalAlignment=StringShape.Alignment.Center
+		  numeral.HorizontalAlignment=StringShape.Alignment.Center
+		  buffer.Graphics.ForeColor=BorderColor
+		  buffer.Graphics.FillOval 0,0,buffer.Width,buffer.Height //draw outline
+		  buffer.Graphics.ForeColor=FaceColor
+		  buffer.Graphics.FillOval 8,8,buffer.Width-16,buffer.Height-16 //draw background
+		  radius=buffer.Width/2
+		  buffer.Graphics.ForeColor=TextColor
+		  
+		  for hr=1 to HourCount
+		    numeral.Text=str(hr)
+		    angle=pi*2*(hr/HourCount)-pi/2 //hour angle as radians
+		    //calc the hour hashmark
+		    if HourCount=12 then
+		      x = Cos(angle)*(radius-10)
+		      y= Sin(angle)*(radius-10)
+		      hourTick.Rotation=angle
+		      buffer.Graphics.DrawObject hourTick,x+radius,y+radius //draw hour ticks
+		      // calc the numeral location
+		      x = Cos(angle)*(radius-40)
+		      y= Sin(angle)*(radius-40)
+		      buffer.Graphics.DrawObject numeral,x+radius,y+radius //draw numeral
+		      
+		      // draw the second ticks
+		      for sec = 1 to 4
+		        angle=pi*2*((hr+sec/5)/HourCount)-pi/2 //hour angle as radians + fifth of an hour
+		        x = Cos(angle)*(radius-10)
+		        y= Sin(angle)*(radius-10)
+		        secondTick.Rotation=angle
+		        buffer.Graphics.DrawObject secondTick,x+radius,y+radius //draw second ticks
+		      next
+		      
+		    else //24 hour clock
+		      
+		      // calc the numeral location
+		      x = Cos(angle)*(radius-24)
+		      y= Sin(angle)*(radius-24)
+		      buffer.Graphics.DrawObject numeral,x+radius,y+radius //draw numeral
+		    end if
+		  next
+		  
+		  g.drawpicture buffer,0,0,g.width,g.height,0,0,buffer.Width,buffer.Height
 		End Sub
 	#tag EndMethod
 
@@ -262,6 +335,10 @@ Inherits Canvas
 
 
 	#tag Property, Flags = &h0
+		BorderColor As Color = &c444444
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		ClockHourValue As Double
 	#tag EndProperty
 
@@ -271,6 +348,22 @@ Inherits Canvas
 
 	#tag Property, Flags = &h0
 		ClockSecondValue As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		FaceColor As Color = &cdddddd
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		Font As String = """Helvetica"""
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		HourCount As Integer = 12
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		TextColor As Color = &c000000
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
