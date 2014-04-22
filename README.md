@@ -3,10 +3,11 @@ CalendarTimeChooser
 
 Xojo Calendar and Time Chooser Picklist
 
-Date:           April 21, 2014
+Date:           April 22, 2014
 Language:       Xojo
 Written by:     Mike Cotrone (mikec@intelligentvisibility.com)
-Version:        1.3
+Contributors:   Jim McKay
+Version:        1.4
 
 What is this Project?
 
@@ -14,6 +15,8 @@ What is this Project?
   
   - What are the Supported Time Formats for the time chooser picklist?
         - 12 hour time support only
+        
+  - Awesome Clock hand animation
 
 How to Use this Project?
 
