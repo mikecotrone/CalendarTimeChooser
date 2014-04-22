@@ -849,6 +849,8 @@ End
 		  me.AddRow("2 - Standard (12hr)")
 		  me.AddRow("3 - Google Style (12hr)")
 		  me.AddRow("4 - Modern (12hr)")
+		  me.AddRow("5 - Dynamic (12hr)")
+		  me.AddRow("6 - Dynamic (24hr)")
 		  me.ListIndex = 0
 		  
 		End Sub
@@ -867,6 +869,12 @@ End
 		    CalendarWindow.SelectClockFaceType = 3
 		  Case "4 - Modern (12hr)"
 		    CalendarWindow.SelectClockFaceType = 4
+		  Case "5 - Dynamic (12hr)"
+		    CalendarWindow.SelectClockFaceType = 5
+		    CalendarWindow.Time_Container1.Clock1.HourCount=12
+		  Case "6 - Dynamic (24hr)"
+		    CalendarWindow.SelectClockFaceType = 5
+		    CalendarWindow.Time_Container1.Clock1.HourCount=24
 		  End Select
 		  CalendarWindow.Time_Container1.Clock1.Invalidate(False)
 		End Sub
