@@ -9,7 +9,7 @@ Inherits Canvas
 		  'ClockSecondValue = 3.248
 		  
 		  dim d As new date
-		  Time_Container(window).Time_Minute=str(d.Minute)
+		  Time_Container(window).Time_Minute=Format(d.Minute,"00")
 		  if d.Hour<12 then
 		    Time_Container(window).Time_AMPM="AM"
 		    if d.Hour=0 then

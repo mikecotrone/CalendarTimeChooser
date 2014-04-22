@@ -92,6 +92,20 @@ End
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
+			  return Date_Time_Container1.SelectedDate
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Date_Time_Container1.SelectedDate=value
+			End Set
+		#tag EndSetter
+		SelectedDate As Date
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
 			  Return Date_Time_Container1.UseGraphicalClockHands
 			End Get
 		#tag EndGetter

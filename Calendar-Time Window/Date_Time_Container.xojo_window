@@ -239,6 +239,51 @@ End
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
+			  dim d as new date(Calendar_Container1.Calendar1.SelectedDate)
+			  
+			  if Time_Container1.Time_AMPM="AM" then
+			    if Time_Container1.Time_Hour="12" then
+			      d.Hour=0
+			    else
+			      d.Hour=val(Time_Container1.Time_Hour)
+			    end if
+			  else
+			    if Time_Container1.Time_Hour="12" Then
+			      d.Hour=val(Time_Container1.Time_Hour)
+			    else
+			      d.Hour=val(Time_Container1.Time_Hour)+12
+			    end if
+			  end if
+			  d.Minute=val(Time_Container1.Time_Minute)
+			  Return d
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Calendar_Container1.Calendar1.SelectedDate=value
+			  
+			  if value.Hour<12 then
+			    Time_Container1.Time_AMPM="AM"
+			  else
+			    Time_Container1.Time_AMPM="PM"
+			  end if
+			  Time_Container1.Time_Minute=format(value.Minute,"00")
+			  
+			  if value.Hour=0 then 
+			    Time_Container1.Time_Hour="12"
+			  elseif value.Hour>12 then
+			    Time_Container1.Time_Hour=str(value.Hour-12)
+			  else
+			    Time_Container1.Time_Hour=str(value.Hour)
+			  end if
+			End Set
+		#tag EndSetter
+		SelectedDate As Date
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
 			  Return Time_Container1.Clock1.UseGraphicalClockHands
 			End Get
 		#tag EndGetter
