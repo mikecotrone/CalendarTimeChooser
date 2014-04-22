@@ -85,14 +85,18 @@ Begin ContainerControl Time_Container
       AcceptTabs      =   False
       AutoDeactivate  =   True
       Backdrop        =   0
+      BorderColor     =   &c44444400
       ClockHourValue  =   0.0
       ClockMinuteValue=   0.0
       ClockSecondValue=   0.0
       DoubleBuffer    =   True
       Enabled         =   True
       EraseBackground =   False
+      FaceColor       =   &cDDDDDD00
+      Font            =   """""Helvetica"""""
       Height          =   130
       HelpTag         =   ""
+      HourCount       =   12
       Index           =   -2147483648
       InitialParent   =   ""
       Left            =   13
@@ -105,6 +109,7 @@ Begin ContainerControl Time_Container
       TabIndex        =   2
       TabPanelIndex   =   0
       TabStop         =   True
+      TextColor       =   &c00000000
       Top             =   49
       Transparent     =   True
       UseFocusRing    =   True
@@ -204,6 +209,16 @@ End
 		  End Select
 		  
 		  CalendarWindow.Time_Container1.mRaiseEvent_SelectedTime
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Open()
+		  // For some reason this control doesn't look right as set in the IDE for Left/Top
+		  #IF TargetWin32 Then
+		    Me.Left = 123
+		    Me.Top =  3
+		    
+		  #ENDIF
 		End Sub
 	#tag EndEvent
 #tag EndEvents
