@@ -68,7 +68,6 @@ Inherits Canvas
 		  
 		  if UseGraphicalClockHands then
 		    HourHand = New PixmapShape(HourHandImg)
-		    HourHand.Scale=( me.Height-30 )/HourHandImg.Height
 		  else
 		    HourHand = New CurveShape
 		    CurveShape(HourHand).Border = 100
@@ -91,7 +90,6 @@ Inherits Canvas
 		  
 		  if UseGraphicalClockHands then
 		    MinHand=New PixmapShape(MinuteHandImg)
-		    MinHand.Scale=( me.Height-30 )/MinuteHandImg.Height
 		  else
 		    MinHand = New CurveShape
 		    CurveShape(MinHand).Border = 100
@@ -114,7 +112,6 @@ Inherits Canvas
 		  
 		  if UseGraphicalClockHands then  //use graphical version
 		    SecondHand=New PixmapShape(SecondHandImg)
-		    SecondHand.Scale=( me.Height-30 )/SecondHandImg.Height
 		  else //build a curveshape
 		    SecondHand = New CurveShape
 		    CurveShape(SecondHand).Border = 100
