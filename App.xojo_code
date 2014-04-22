@@ -6,6 +6,7 @@ Inherits Application
 		  app.UseGDIPlus=true
 		  DemoLaunchWindow.Show
 		  
+		  
 		End Sub
 	#tag EndEvent
 

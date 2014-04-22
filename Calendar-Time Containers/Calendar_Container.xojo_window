@@ -24,7 +24,7 @@ Begin ContainerControl Calendar_Container
    Transparent     =   True
    UseFocusRing    =   False
    Visible         =   True
-   Width           =   230
+   Width           =   235
    Begin PopupMenu MonthPopup
       AutoDeactivate  =   True
       Bold            =   False
@@ -196,11 +196,14 @@ Begin ContainerControl Calendar_Container
       Index           =   -2147483648
       InitialParent   =   ""
       Left            =   10
+      LocalizationInt =   0
+      Localized_January=   ""
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
+      MonthNumber     =   0
       NextMonth       =   ""
       NextYear        =   0
       PreviousMonth   =   ""
@@ -219,7 +222,7 @@ Begin ContainerControl Calendar_Container
       Transparent     =   True
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   211
+      Width           =   213
       YearNumber      =   0
       Begin Separator Separator1
          AutoDeactivate  =   True
@@ -240,7 +243,7 @@ Begin ContainerControl Calendar_Container
          TabStop         =   True
          Top             =   56
          Visible         =   True
-         Width           =   201
+         Width           =   204
       End
    End
 End
@@ -258,7 +261,7 @@ End
 		Private Sub mNextMonth()
 		  // Need a Check to See about Incrementing Year or not
 		  Calendar1.mDeselectAll
-		  if Calendar1.NextMonth = "January" then
+		  if Calendar1.NextMonth = Calendar1.Localized_January then
 		    // Need to increment Year
 		    Calendar1.NextYear = CDbl(YearPopup.Text)+1
 		    for i as integer = 0 to YearPopup.ListCount-1
@@ -284,7 +287,7 @@ End
 		Private Sub mPrevMonth()
 		  // Need a Check to See about Decrementing Year or not
 		  Calendar1.mDeselectAll
-		  if Calendar1.PreviousMonth = "December" then
+		  if Calendar1.PreviousMonth = Calendar1.Localized_December then
 		    // Need to increment Year
 		    Calendar1.PrevYear = CDbl(YearPopup.Text)-1
 		    for i as integer = 0 to YearPopup.ListCount-1
@@ -346,6 +349,7 @@ End
 		  Calendar1.mCalculateMonth(Me.Text)
 		  Calendar1.UPDATE_MonthDays
 		  Calendar1.UPDATE_MapDaysToCalSlots
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
