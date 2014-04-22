@@ -13,7 +13,7 @@ Inherits Canvas
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
 		  // Draw Clock Image
-		  Select Case CalendarWindow.SelectClockFaceType
+		  Select Case Date_Time_Container(Time_Container(window).window).SelectClockFaceType
 		  Case 0
 		    g.DrawPicture(ClockFace_Chrome130x130,0,0)
 		  Case 1
@@ -49,7 +49,7 @@ Inherits Canvas
 		  AMPM.TextSize=12
 		  AMPM.VerticalAlignment=StringShape.Alignment.Bottom
 		  AMPM.HorizontalAlignment=StringShape.Alignment.Center
-		  AMPM.Text=CalendarWindow.Time_Container1.Time_AMPM
+		  AMPM.Text=Time_Container(window).Time_AMPM
 		  g.DrawObject AMPM,Width/2,Height/2+20
 		  
 		  
@@ -137,10 +137,10 @@ Inherits Canvas
 		Sub mDrawClockHourHand(g as Graphics)
 		  Dim HourHand as Object2D
 		  
-		  Dim CurrentHour as integer=val(CalendarWindow.Time_Container1.Time_Hour)
-		  If  CalendarWindow.Time_Container1.Time_AMPM = "PM" and CurrentHour<>12 then
+		  Dim CurrentHour as integer=val(Time_Container(window).Time_Hour)
+		  If Time_Container(window).Time_AMPM = "PM" and CurrentHour<>12 then
 		    CurrentHour=CurrentHour+12
-		  elseIf  CalendarWindow.Time_Container1.Time_AMPM = "AM" and CurrentHour=12 then
+		  elseIf  Time_Container(window).Time_AMPM = "AM" and CurrentHour=12 then
 		    CurrentHour=CurrentHour+12
 		  end if
 		  if UseGraphicalClockHands then
@@ -156,7 +156,7 @@ Inherits Canvas
 		    CurveShape(HourHand).Y2 = -30
 		  end if
 		  
-		  HourHand.Rotation=pi*2/HourCount*(CurrentHour+val(CalendarWindow.Time_Container1.Time_Minute)/60)+.01
+		  HourHand.Rotation=pi*2/HourCount*(CurrentHour+val(Time_Container(window).Time_Minute)/60)+.01
 		  g.DrawObject HourHand,me.Width/2, me.Height/2
 		End Sub
 	#tag EndMethod
@@ -178,7 +178,7 @@ Inherits Canvas
 		    CurveShape(MinHand).Y2 = -45
 		  end if
 		  
-		  MinHand.Rotation=(pi*2/60*val(CalendarWindow.Time_Container1.Time_Minute))+.01
+		  MinHand.Rotation=(pi*2/60*val(Time_Container(window).Time_Minute))+.01
 		  g.DrawObject MinHand,me.Width/2, me.Height/2
 		End Sub
 	#tag EndMethod
@@ -201,7 +201,7 @@ Inherits Canvas
 		  end if
 		  
 		  //rotation is based on radians/seconds per minute * current second.
-		  SecondHand.Rotation=(pi*2/60*CalendarWindow.Time_Container1.ClockSecondsCounter)+.01 
+		  SecondHand.Rotation=(pi*2/60*Time_Container(window).ClockSecondsCounter)+.01
 		  g.DrawObject SecondHand,me.Width/2,me.Height/2
 		End Sub
 	#tag EndMethod
@@ -276,6 +276,12 @@ Inherits Canvas
 			EditorType="Picture"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="BorderColor"
+			Group="Behavior"
+			InitialValue="&c444444"
+			Type="Color"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="ClockHourValue"
 			Group="Behavior"
 			Type="Double"
@@ -312,6 +318,19 @@ Inherits Canvas
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="FaceColor"
+			Group="Behavior"
+			InitialValue="&cdddddd"
+			Type="Color"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Font"
+			Group="Behavior"
+			InitialValue="Helvetica"
+			Type="String"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Height"
 			Visible=true
 			Group="Position"
@@ -324,6 +343,12 @@ Inherits Canvas
 			Group="Appearance"
 			Type="String"
 			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="HourCount"
+			Group="Behavior"
+			InitialValue="12"
+			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -396,6 +421,12 @@ Inherits Canvas
 			Group="Position"
 			InitialValue="True"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="TextColor"
+			Group="Behavior"
+			InitialValue="&c000000"
+			Type="Color"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"

@@ -1,22 +1,22 @@
 #tag Window
-Begin ContainerControl Time_Container
+Begin ContainerControl Date_Time_Container
    AcceptFocus     =   False
    AcceptTabs      =   True
    AutoDeactivate  =   True
-   BackColor       =   &cFFFFFF00
+   BackColor       =   &c9D9D9D00
    Backdrop        =   0
    Compatibility   =   ""
    Enabled         =   True
    EraseBackground =   True
-   HasBackColor    =   False
-   Height          =   213
+   HasBackColor    =   True
+   Height          =   227
    HelpTag         =   ""
    InitialParent   =   ""
    Left            =   0
    LockBottom      =   False
    LockLeft        =   False
-   LockRight       =   True
-   LockTop         =   True
+   LockRight       =   False
+   LockTop         =   False
    TabIndex        =   0
    TabPanelIndex   =   0
    TabStop         =   True
@@ -24,191 +24,238 @@ Begin ContainerControl Time_Container
    Transparent     =   True
    UseFocusRing    =   False
    Visible         =   True
-   Width           =   156
-   Begin TimePicker TimePicker1
+   Width           =   394
+   Begin Timer ClockSecondHandTimer
+      Height          =   32
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   0
+      LockedInPosition=   False
+      Mode            =   2
+      Period          =   1000
+      Scope           =   0
+      TabPanelIndex   =   0
+      Top             =   0
+      Width           =   32
+   End
+   Begin Separator Separator1
+      AutoDeactivate  =   True
+      Enabled         =   True
+      Height          =   255
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   232
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   97
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   -1
+      Visible         =   True
+      Width           =   4
+   End
+   Begin Calendar_Container Calendar_Container1
       AcceptFocus     =   True
       AcceptTabs      =   True
       AutoDeactivate  =   True
+      BackColor       =   &cFFFFFF00
       Backdrop        =   0
-      DoubleBuffer    =   False
-      Draw_AMPM_Selected=   False
-      Draw_Hour_Selected=   False
-      Draw_Minute_Selected=   False
       Enabled         =   True
       EraseBackground =   False
-      Height          =   22
+      HasBackColor    =   False
+      Height          =   213
       HelpTag         =   ""
-      Indent          =   9
-      Index           =   -2147483648
       InitialParent   =   ""
-      KeyBuffer       =   ""
-      Left            =   37
+      Left            =   0
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
       Scope           =   0
-      TabIndex        =   0
+      TabIndex        =   100
       TabPanelIndex   =   0
-      TabStop         =   False
-      Top             =   3
+      TabStop         =   True
+      Top             =   5
       Transparent     =   True
       UseFocusRing    =   False
       Visible         =   True
-      Width           =   81
+      Width           =   230
    End
-   Begin UpDownArrows Time_Nav
+   Begin Time_Container Time_Container1
       AcceptFocus     =   False
+      AcceptTabs      =   True
       AutoDeactivate  =   True
-      Enabled         =   True
-      Height          =   30
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   123
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   1
-      TabPanelIndex   =   0
-      TabStop         =   False
-      Top             =   -1
-      Visible         =   True
-      Width           =   16
-   End
-   Begin Clock Clock1
-      AcceptFocus     =   False
-      AcceptTabs      =   False
-      AutoDeactivate  =   True
+      BackColor       =   &cFFFFFF00
       Backdrop        =   0
-      BorderColor     =   &c44444400
-      ClockHourValue  =   0.0
-      ClockMinuteValue=   0.0
-      ClockSecondValue=   0.0
-      DoubleBuffer    =   False
+      ClockSecondsCounter=   0
       Enabled         =   True
-      EraseBackground =   False
-      FaceColor       =   &cDDDDDD00
-      Font            =   "Helvetica"
-      Height          =   130
+      EraseBackground =   True
+      HasBackColor    =   False
+      Height          =   213
       HelpTag         =   ""
-      HourCount       =   12
-      Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   13
+      Left            =   235
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
       Scope           =   0
-      TabIndex        =   2
+      TabIndex        =   101
       TabPanelIndex   =   0
       TabStop         =   True
-      TextColor       =   &c00000000
-      Top             =   49
+      Time_AMPM       =   "AM"
+      Time_AMPM_Len   =   0
+      Time_Hour       =   "12"
+      Time_Hour_Len   =   0
+      Time_Minute     =   "00"
+      Time_Minute_Len =   0
+      Top             =   5
       Transparent     =   True
-      UseFocusRing    =   True
-      UseGraphicalClockHands=   False
+      UseFocusRing    =   False
       Visible         =   True
-      Width           =   130
+      Width           =   156
    End
 End
 #tag EndWindow
 
 #tag WindowCode
+	#tag Event
+		Function KeyDown(Key As String) As Boolean
+		  if asc(key)=27 then
+		    me.close
+		    Return True
+		  end
+		End Function
+	#tag EndEvent
+
+	#tag Event
+		Sub Open()
+		  If BothPickers = True Then
+		    mSetupForBothPickers
+		  Elseif CalendarPicker_Only = True Then
+		    mSetupForCalendarPickerOnly
+		  Elseif TimePicker_Only = True Then
+		    mSetupForTimePickerOnly
+		  End if
+		End Sub
+	#tag EndEvent
+
+
 	#tag Method, Flags = &h0
-		Sub mRaiseEvent_SelectedTime()
-		  RaiseEvent SelectedTime(Time_Hour, Time_Minute, Time_AMPM)
+		Sub mSetupForBothPickers()
+		  window.Width = 394
+		  window.Height = 227
+		  
+		  TrueWindow.Title = "Choose Date and Time"
+		  Calendar_Container1.Enabled = True
+		  Calendar_Container1.Visible = True
+		  Time_Container1.Left = 235
+		  Time_Container1.Enabled = True
+		  Time_Container1.Visible = True
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub mSetupForCalendarPickerOnly()
+		  window.Width = 230
+		  window.Height = 227
+		  
+		  TrueWindow.Title = "Choose Date"
+		  Calendar_Container1.Enabled = True
+		  Calendar_Container1.Visible = True
+		  Time_Container1.Enabled = False
+		  Time_Container1.Visible = False
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub mSetupForTimePickerOnly()
+		  window.Width = 156
+		  window.Height = 195
+		  
+		  TrueWindow.Title = "Choose Time"
+		  Time_Container1.Enabled = True
+		  Time_Container1.Visible = True
+		  Time_Container1.Left = 0
+		  //
+		  Calendar_Container1.Enabled = False
+		  Calendar_Container1.Visible = False
+		  
+		  'BackColor = RGB(228,228,228)
+		  
+		  
 		End Sub
 	#tag EndMethod
 
 
-	#tag Hook, Flags = &h0
-		Event SelectedTime(inHours as String, inMinutes as String, inAMPM as String)
-	#tag EndHook
-
-
 	#tag Property, Flags = &h0
-		ClockSecondsCounter As Integer
+		BothPickers As Boolean = True
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		Time_AMPM As String = "AM"
+		CalendarPicker_Only As Boolean = False
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		Time_AMPM_Len As Integer
+		SelectClockFaceType As Integer = 0
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		Time_Hour As String = "12"
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		Time_Hour_Len As Integer
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		Time_Minute As String = "00"
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		Time_Minute_Len As Integer
+		TimePicker_Only As Boolean = False
 	#tag EndProperty
 
 
 #tag EndWindowCode
 
-#tag Events Time_Nav
+#tag Events ClockSecondHandTimer
 	#tag Event
-		Sub Down()
-		  // Change Hours Down
-		  Select Case TimePicker1.Draw_Hour_Selected
-		  Case True
-		    TimePicker1.mMoveHourDown
-		  End Select
+		Sub Action()
+		  // This controls the Clock's Second Hand
 		  
-		  // Change Minutes Down
-		  Select Case TimePicker1.Draw_Minute_Selected
-		  Case True
-		    TimePicker1.mMoveMinDown
-		  End Select
+		  Time_Container1.ClockSecondsCounter = Time_Container1.ClockSecondsCounter + 1
+		  if Time_Container1.ClockSecondsCounter = 0 Then
+		    Time_Container1.ClockSecondsCounter = -1
+		  Elseif Time_Container1.ClockSecondsCounter = 60 Then
+		    Time_Container1.ClockSecondsCounter = 0
+		  End if
 		  
-		  // Change AM / PM
-		  Select Case TimePicker1.Draw_AMPM_Selected
-		  Case True
-		    TimePicker1.mMoveAMPM
-		  End Select
-		  
-		  mRaiseEvent_SelectedTime
+		  Time_Container1.Clock1.Invalidate
 		End Sub
 	#tag EndEvent
+#tag EndEvents
+#tag Events Calendar_Container1
 	#tag Event
-		Sub Up()
-		  // Change Hours Up
-		  Select Case TimePicker1.Draw_Hour_Selected
-		  Case True
-		    TimePicker1.mMoveHourUp
-		  End Select
+		Sub SelectedDate(inSelectedDate as Date)
+		  // Use this Event to push the user's "Selected Date" to anywhere in your code.
+		  // IE.   FutureScheduleAssessment_Class.FutureScheduleAssessmentDate = inSelectedDate
 		  
-		  // Change Minutes Up
-		  Select Case TimePicker1.Draw_Minute_Selected
-		  Case True
-		    TimePicker1.mMoveMinUp
-		  End Select
+		  // Demo Purposes
+		  //MsgBox "Selected Date: " + inSelectedDate.ShortDate
 		  
-		  // Change AM / PM
-		  Select Case TimePicker1.Draw_AMPM_Selected
-		  Case True
-		    TimePicker1.mMoveAMPM
-		  End Select
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events Time_Container1
+	#tag Event
+		Sub SelectedTime(inHours as String, inMinutes as String, inAMPM as String)
+		  // I decided to send the selected Time in separate string parts to allow for maximum control on formating.
 		  
-		  mRaiseEvent_SelectedTime
+		  // My example Format shows a format (without quotes):     "hh:MM AM/PM"
+		  
+		  // Demo Purposes
+		  //Dim TmpDateFormatString as String = inHours+":"+inMinutes+" "+inAMPM
+		  //MsgBox "Selected Time: " + TmpDateFormatString
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -251,9 +298,16 @@ End
 		EditorType="Picture"
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="ClockSecondsCounter"
+		Name="BothPickers"
 		Group="Behavior"
-		Type="Integer"
+		InitialValue="True"
+		Type="Boolean"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="CalendarPicker_Only"
+		Group="Behavior"
+		InitialValue="False"
+		Type="Boolean"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Enabled"
@@ -282,7 +336,7 @@ End
 		Name="Height"
 		Visible=true
 		Group="Position"
-		InitialValue="300"
+		InitialValue="400"
 		Type="Integer"
 	#tag EndViewProperty
 	#tag ViewProperty
@@ -333,6 +387,12 @@ End
 		Type="String"
 	#tag EndViewProperty
 	#tag ViewProperty
+		Name="SelectClockFaceType"
+		Group="Behavior"
+		InitialValue="0"
+		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
 		Name="Super"
 		Visible=true
 		Group="ID"
@@ -360,40 +420,10 @@ End
 		EditorType="Boolean"
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="Time_AMPM"
+		Name="TimePicker_Only"
 		Group="Behavior"
-		InitialValue="AM"
-		Type="String"
-		EditorType="MultiLineEditor"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Time_AMPM_Len"
-		Group="Behavior"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Time_Hour"
-		Group="Appearance"
-		InitialValue="12"
-		Type="String"
-		EditorType="MultiLineEditor"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Time_Hour_Len"
-		Group="Behavior"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Time_Minute"
-		Group="Behavior"
-		InitialValue="00"
-		Type="String"
-		EditorType="MultiLineEditor"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Time_Minute_Len"
-		Group="Behavior"
-		Type="Integer"
+		InitialValue="False"
+		Type="Boolean"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Top"
@@ -429,7 +459,7 @@ End
 		Name="Width"
 		Visible=true
 		Group="Position"
-		InitialValue="300"
+		InitialValue="600"
 		Type="Integer"
 	#tag EndViewProperty
 #tag EndViewBehavior

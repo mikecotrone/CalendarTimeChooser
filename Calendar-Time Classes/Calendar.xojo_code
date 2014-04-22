@@ -19,7 +19,7 @@ Inherits Canvas
 		      SelectedDate.Day = CalendarButtonClassArray(i).Day
 		      SelectedDate.Year = CDbl(SelectedYear)
 		      CalendarButtonClassArray(i).SelectedDate = SelectedDate
-		      CalendarWindow.Calendar_Container1.mRaiseEvent
+		      Calendar_Container(window).mRaiseEvent
 		      Me.Invalidate(False)
 		    end if
 		  next i
@@ -53,7 +53,7 @@ Inherits Canvas
 		  CenturyNumber = fCalcCenturyNumber(2015)
 		  
 		  // Choose Today's Date When we Open
-		  CalendarWindow.Calendar_Container1.mTakeMeToTodaysDate
+		  Calendar_Container(window).mTakeMeToTodaysDate
 		  
 		  
 		  
@@ -690,21 +690,21 @@ Inherits Canvas
 
 	#tag Method, Flags = &h21
 		Private Sub mLoad_MonthList()
-		  CalendarWindow.Calendar_Container1.MonthPopup.AddRow "January"
-		  CalendarWindow.Calendar_Container1.MonthPopup.AddRow "February"
-		  CalendarWindow.Calendar_Container1.MonthPopup.AddRow "March"
-		  CalendarWindow.Calendar_Container1.MonthPopup.AddRow "April"
-		  CalendarWindow.Calendar_Container1.MonthPopup.AddRow "May"
-		  CalendarWindow.Calendar_Container1.MonthPopup.AddRow "June"
-		  CalendarWindow.Calendar_Container1.MonthPopup.AddRow "July"
-		  CalendarWindow.Calendar_Container1.MonthPopup.AddRow "August"
-		  CalendarWindow.Calendar_Container1.MonthPopup.AddRow "September"
-		  CalendarWindow.Calendar_Container1.MonthPopup.AddRow "October"
-		  CalendarWindow.Calendar_Container1.MonthPopup.AddRow "November"
-		  CalendarWindow.Calendar_Container1.MonthPopup.AddRow "December"
+		  Calendar_Container(window).MonthPopup.AddRow "January"
+		  Calendar_Container(window).MonthPopup.AddRow "February"
+		  Calendar_Container(window).MonthPopup.AddRow "March"
+		  Calendar_Container(window).MonthPopup.AddRow "April"
+		  Calendar_Container(window).MonthPopup.AddRow "May"
+		  Calendar_Container(window).MonthPopup.AddRow "June"
+		  Calendar_Container(window).MonthPopup.AddRow "July"
+		  Calendar_Container(window).MonthPopup.AddRow "August"
+		  Calendar_Container(window).MonthPopup.AddRow "September"
+		  Calendar_Container(window).MonthPopup.AddRow "October"
+		  Calendar_Container(window).MonthPopup.AddRow "November"
+		  Calendar_Container(window).MonthPopup.AddRow "December"
 		  
 		  // Load Today's Month
-		  CalendarWindow.Calendar_Container1.MonthPopup.ListIndex = 0
+		  Calendar_Container(window).MonthPopup.ListIndex = 0
 		End Sub
 	#tag EndMethod
 
@@ -712,9 +712,9 @@ Inherits Canvas
 		Private Sub mLoad_YearList(inStartYear as integer, inEndYear as Integer)
 		  // Load the Year Pop Up Menu on the Calendar Container
 		  for i as integer = inStartYear to inEndYear
-		    CalendarWindow.Calendar_Container1.YearPopup.AddRow Str(i)
+		    Calendar_Container(window).YearPopup.AddRow Str(i)
 		  next i
-		  CalendarWindow.Calendar_Container1.YearPopup.ListIndex = 0
+		  Calendar_Container(window).YearPopup.ListIndex = 0
 		End Sub
 	#tag EndMethod
 
@@ -775,7 +775,7 @@ Inherits Canvas
 		  Dim PrevMonthNumOfDays as Integer = fNumOfDaysInMonth(PreviousMonth)
 		  Dim NextMonthNumOfDays as Integer = fNumOfDaysInMonth(NextMonth)
 		  
-		  if CalendarWindow.Calendar_Container1.Calendar1.IncludePrevNextMonthDaysBool = True Then
+		  if Calendar_Container(window).Calendar1.IncludePrevNextMonthDaysBool = True Then
 		    // Now Map the Previous Available Slots with the appropriate Previous Month's Ending Calendar Days
 		    Dim PrevDayCounter as Integer  = PrevMonthNumOfDays
 		    Dim ii as integer
