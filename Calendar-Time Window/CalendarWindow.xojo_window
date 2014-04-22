@@ -105,7 +105,7 @@ Begin Window CalendarWindow
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   True
+      LockRight       =   False
       LockTop         =   True
       Scope           =   0
       TabIndex        =   101
