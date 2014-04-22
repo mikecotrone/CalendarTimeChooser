@@ -227,10 +227,8 @@ Inherits Canvas
 		  if Draw_Hour_Selected = True then
 		    if CDbl(inKeyBuffer) >= 1 AND CDbl(inKeyBuffer) <= 12 Then
 		      CalendarWindow.Time_Container1.Time_Hour = inKeyBuffer
-		      CalendarWindow.Time_Container1.Clock1.mMoveClockHourHand(CalendarWindow.Time_Container1.Time_Hour)
 		    Elseif inKeyBuffer = "00" Then
 		      CalendarWindow.Time_Container1.Time_Hour = "00"
-		      CalendarWindow.Time_Container1.Clock1.mMoveClockHourHand(CalendarWindow.Time_Container1.Time_Hour)
 		    elseif inKeyBuffer = Chr(8) Then
 		      CalendarWindow.Time_Container1.Time_Hour = " "
 		      KeyBuffer = ""
@@ -241,10 +239,8 @@ Inherits Canvas
 		  Elseif Draw_Minute_Selected = True Then
 		    if CDbl(inKeyBuffer) >= 1 AND CDbl(inKeyBuffer) <= 59 Then
 		      CalendarWindow.Time_Container1.Time_Minute = inKeyBuffer
-		      CalendarWindow.Time_Container1.Clock1.mMoveClockMinHand(CalendarWindow.Time_Container1.Time_Minute)
 		    Elseif inKeyBuffer = "00" Then
 		      CalendarWindow.Time_Container1.Time_Minute = "00"
-		      CalendarWindow.Time_Container1.Clock1.mMoveClockHourHand(CalendarWindow.Time_Container1.Time_Minute)
 		    elseif inKeyBuffer = Chr(8) Then
 		      CalendarWindow.Time_Container1.Time_Minute = " "
 		      KeyBuffer = ""
@@ -253,7 +249,7 @@ Inherits Canvas
 		    End if
 		    
 		  End if
-		  
+		  CalendarWindow.Time_Container1.Clock1.Invalidate
 		  Me.Invalidate(False)
 		End Sub
 	#tag EndMethod

@@ -129,6 +129,16 @@ Protected Class CalendarButtonClass
 			Type="String"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="NextMonthMark"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="PrevMonthMark"
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="RightX"
 			Group="Behavior"
 			Type="Integer"

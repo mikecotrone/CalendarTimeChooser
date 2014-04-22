@@ -226,16 +226,12 @@ End
 		  
 		  CalendarWindow.Time_Container1.ClockSecondsCounter = CalendarWindow.Time_Container1.ClockSecondsCounter + 1
 		  if CalendarWindow.Time_Container1.ClockSecondsCounter = 0 Then
-		    CalendarWindow.Time_Container1.Clock1.mMoveClockSecondHand("00")
 		    CalendarWindow.Time_Container1.ClockSecondsCounter = -1
 		  Elseif CalendarWindow.Time_Container1.ClockSecondsCounter = 60 Then
-		    CalendarWindow.Time_Container1.Clock1.mMoveClockSecondHand("00")
 		    CalendarWindow.Time_Container1.ClockSecondsCounter = 0
-		  Else
-		    CalendarWindow.Time_Container1.Clock1.mMoveClockSecondHand(Str(CalendarWindow.Time_Container1.ClockSecondsCounter))
 		  End if
 		  
-		  
+		  CalendarWindow.Time_Container1.Clock1.Invalidate
 		End Sub
 	#tag EndEvent
 #tag EndEvents
