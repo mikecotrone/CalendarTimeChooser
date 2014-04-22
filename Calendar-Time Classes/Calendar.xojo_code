@@ -43,8 +43,8 @@ Inherits Canvas
 		  //// Build Month Popup Menu on Calendar Container
 		  mLoad_MonthList
 		  
-		  // Build Day Of Week Arrays for Calendar Canvas Day of Week Titles
-		  mBuild_DayOfWeek_Arrays
+		  // Load the Localized Day of the Week Abbreviation List to the Calendar
+		  CalendarWindow.Calendar_Container1.Calendar1.mBuild_LocalizedDayOfWeek_Arrays(0)
 		  
 		  /// /// /// /// /// /// /// /// ///
 		  /// Gregorian Math ///
@@ -101,32 +101,42 @@ Inherits Canvas
 		  
 		  // Draw the Day of Week Labels using the Boolean to know if we are Sat - Sun or Mon - Sun
 		  if CalMonFirstDayOfWeekBool = False Then
+		    Dim xPos as Integer
 		    for i as integer = 1 to 6
 		      dim pos as integer = 11
-		      Dim TmpLen as Integer = DayOfWeekArray_SS_EN(i).len
-		      Dim xPos as Integer = 11
-		      for x as integer = 0 to UBound(DayOfWeekArray_SS_EN)
+		      Dim TmpLen as Integer = DayOfWeekArray_SS(i).len
+		      if LocalizationInt <> 0 Then
+		        xPos = 6
+		      Else
+		        xPos = 11
+		      End if
+		      for x as integer = 0 to UBound(DayOfWeekArray_SS)
 		        g.ForeColor = RGB(116,116,116)
 		        g.TextFont = "System"
 		        g.Bold = false
 		        g.TextSize = 12
-		        g.DrawString(DayOfWeekArray_SS_EN(x),xPos-3,17)
+		        g.DrawString(DayOfWeekArray_SS(x),xPos-3,17)
 		        xpos = xPos + 30
 		      next x
 		    next i
 		    
 		    
 		  Elseif CalMonFirstDayOfWeekBool = True Then
+		    Dim xPos as Integer
 		    for i as integer = 1 to 6
 		      dim pos as integer = 11
-		      Dim TmpLen as Integer = DayOfWeek_MS_EN(i).len
-		      Dim xPos as Integer = 11
-		      for x as integer = 0 to UBound(DayOfWeek_MS_EN)
+		      Dim TmpLen as Integer = DayOfWeek_MS(i).len
+		      if LocalizationInt <> 0 Then
+		        xPos = 6
+		      Else
+		        xPos = 11
+		      End if
+		      for x as integer = 0 to UBound(DayOfWeek_MS)
 		        g.ForeColor = RGB(116,116,116)
 		        g.TextFont = "System"
 		        g.Bold = false
 		        g.TextSize = 12
-		        g.DrawString(DayOfWeek_MS_EN(x),xPos-3,17)
+		        g.DrawString(DayOfWeek_MS(x),xPos-3,17)
 		        xpos = xPos + 30
 		      next x
 		    next i
@@ -347,19 +357,19 @@ Inherits Canvas
 		Private Function fGetDayOfWeekString(inDayOfWeekNum as Integer) As String
 		  Select Case inDayOfWeekNum
 		  Case 0
-		    Return "Sunday"
+		    Return Localized_Sunday
 		  Case 1
-		    Return "Monday"
+		    Return Localized_Monday
 		  Case 2
-		    Return "Tuesday"
+		    Return Localized_Tuesday
 		  Case 3
-		    Return "Wednesday"
+		    Return Localized_Wednesday
 		  Case 4
-		    Return "Thursday"
+		    Return Localized_Thursday
 		  Case 5
-		    Return "Friday"
+		    Return Localized_Friday
 		  Case 6
-		    Return "Saturday"
+		    Return Localized_Saturday
 		  End Select
 		End Function
 	#tag EndMethod
@@ -369,38 +379,38 @@ Inherits Canvas
 		  if inCalMonFirstDayOfWeekBool = False Then
 		    // Sunday is the First Day of the Week Calendar Labeling Wise
 		    Select Case FirstWeekDay
-		    Case "Sunday"
+		    Case Localized_Sunday
 		      Return 7 // 0 Based
-		    Case "Monday"
+		    Case Localized_Monday
 		      Return 8
-		    Case "Tuesday"
+		    Case Localized_Tuesday
 		      Return 9
-		    Case "Wednesday"
+		    Case Localized_Wednesday
 		      Return 10
-		    Case "Thursday"
+		    Case Localized_Thursday
 		      Return 11
-		    Case "Friday"
+		    Case Localized_Friday
 		      Return 12
-		    Case "Saturday"
+		    Case Localized_Saturday
 		      Return 13
 		    End Select
 		    
 		  Elseif inCalMonFirstDayOfWeekBool = True Then
 		    // Monday is the First Day of the Week Calendar Labeling Wise
 		    Select Case FirstWeekDay
-		    Case "Monday"
+		    Case Localized_Monday
 		      Return 7 // 0 Based
-		    Case "Tuesday"
+		    Case Localized_Tuesday
 		      Return 8
-		    Case "Wednesday"
+		    Case Localized_Wednesday
 		      Return 9
-		    Case "Thursday"
+		    Case Localized_Thursday
 		      Return 10
-		    Case "Friday"
+		    Case Localized_Friday
 		      Return 11
-		    Case "Saturday"
+		    Case Localized_Saturday
 		      Return 12
-		    Case "Sunday"
+		    Case Localized_Sunday
 		      Return 13
 		    End Select
 		  End if
@@ -561,6 +571,33 @@ Inherits Canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub mBuildLocalizedDayOfWeekList(inLocalizationInt as Integer)
+		  Select Case inLocalizationInt
+		    
+		  Case 0
+		    Localized_Monday = "Monday"
+		    Localized_Tuesday = "Tuesday"
+		    Localized_Wednesday = "Wednesday"
+		    Localized_Thursday = "Thursday"
+		    Localized_Friday = "Friday"
+		    Localized_Saturday = "Saturday"
+		    Localized_Sunday = "Sunday"
+		    
+		  Case 1  // French
+		    Localized_Monday = "Lundi"
+		    Localized_Tuesday = "Mardi"
+		    Localized_Wednesday = "Mercredi"
+		    Localized_Thursday = "Jeudi"
+		    Localized_Friday = "Vendredi"
+		    Localized_Saturday = "Samedi"
+		    Localized_Sunday = "Dimanche"
+		  End Select
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub mBuildLocalizedMonthList(inLocalizationInt as Integer)
 		  Select Case inLocalizationInt
 		    
@@ -598,47 +635,55 @@ Inherits Canvas
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h21
-		Private Sub mBuild_DayOfWeek_Arrays()
-		  ////////////////////////////
-		  /////// English ///////
-		  ///////////////////////////
-		  //Sat - Sun
-		  DayOfWeekArray_SS_EN.Append "Su"
-		  DayOfWeekArray_SS_EN.Append "Mo"
-		  DayOfWeekArray_SS_EN.Append "Tu"
-		  DayOfWeekArray_SS_EN.Append "We"
-		  DayOfWeekArray_SS_EN.Append "Th"
-		  DayOfWeekArray_SS_EN.Append "Fr"
-		  DayOfWeekArray_SS_EN.Append "Sa"
-		  // Mon - Sun
-		  DayOfWeek_MS_EN.Append "Mo"
-		  DayOfWeek_MS_EN.Append "Tu"
-		  DayOfWeek_MS_EN.Append "We"
-		  DayOfWeek_MS_EN.Append "Th"
-		  DayOfWeek_MS_EN.Append "Fr"
-		  DayOfWeek_MS_EN.Append "Sa"
-		  DayOfWeek_MS_EN.Append "Su"
+	#tag Method, Flags = &h0
+		Sub mBuild_LocalizedDayOfWeek_Arrays(inLocalizationInt as Integer)
+		  Select Case inLocalizationInt
+		    
+		  Case 0 
+		    ////////////////////////////
+		    /////// English ///////
+		    ///////////////////////////
+		    //Sat - Sun
+		    Redim DayOfWeekArray_SS(-1)
+		    DayOfWeekArray_SS.Append "Su"
+		    DayOfWeekArray_SS.Append "Mo"
+		    DayOfWeekArray_SS.Append "Tu"
+		    DayOfWeekArray_SS.Append "We"
+		    DayOfWeekArray_SS.Append "Th"
+		    DayOfWeekArray_SS.Append "Fr"
+		    DayOfWeekArray_SS.Append "Sa"
+		    // Mon - Sun
+		    Redim DayOfWeek_MS(-1)
+		    DayOfWeek_MS.Append "Mo"
+		    DayOfWeek_MS.Append "Tu"
+		    DayOfWeek_MS.Append "We"
+		    DayOfWeek_MS.Append "Th"
+		    DayOfWeek_MS.Append "Fr"
+		    DayOfWeek_MS.Append "Sa"
+		    DayOfWeek_MS.Append "Su"
+		    
+		  Case 1 // French
+		    //Sat - Sun
+		    Redim DayOfWeekArray_SS(-1)
+		    DayOfWeekArray_SS.Append "Dim"
+		    DayOfWeekArray_SS.Append "Lun"
+		    DayOfWeekArray_SS.Append "Mar"
+		    DayOfWeekArray_SS.Append "Mer"
+		    DayOfWeekArray_SS.Append "Jeu"
+		    DayOfWeekArray_SS.Append "Ven"
+		    DayOfWeekArray_SS.Append "Sam"
+		    // Mon - Sun
+		    Redim DayOfWeek_MS(-1)
+		    DayOfWeek_MS.Append "Lun"
+		    DayOfWeek_MS.Append "Mar"
+		    DayOfWeek_MS.Append "Mer"
+		    DayOfWeek_MS.Append "Jeu"
+		    DayOfWeek_MS.Append "Fr"
+		    DayOfWeek_MS.Append "Ven"
+		    DayOfWeek_MS.Append "Dim"
+		  End Select
 		  
-		  ////////////////////////////
-		  /////// French ///////
-		  //////////////////////////
-		  // Sat - Sun
-		  DayOfWeekArray_SS_FR.Append "Dim"
-		  DayOfWeekArray_SS_FR.Append "Lun"
-		  DayOfWeekArray_SS_FR.Append "Mar"
-		  DayOfWeekArray_SS_FR.Append "Mer"
-		  DayOfWeekArray_SS_FR.Append "Jeu"
-		  DayOfWeekArray_SS_FR.Append "Ven"
-		  DayOfWeekArray_SS_FR.Append "Sam"
-		  // Mon - Sun
-		  DayOfWeek_MS_FR.Append "Lun"
-		  DayOfWeek_MS_FR.Append "Mar"
-		  DayOfWeek_MS_FR.Append "Mer"
-		  DayOfWeek_MS_FR.Append "Jeu"
-		  DayOfWeek_MS_FR.Append "Ven"
-		  DayOfWeek_MS_FR.Append "Sam"
-		  DayOfWeek_MS_FR.Append "Dim"
+		  
 		End Sub
 	#tag EndMethod
 
@@ -764,25 +809,6 @@ Inherits Canvas
 		  CalendarWindow.Calendar_Container1.MonthPopup.AddRow Localized_November
 		  CalendarWindow.Calendar_Container1.MonthPopup.AddRow Localized_December
 		  
-		  
-		  //Case 1  // French
-		  //CalendarWindow.Calendar_Container1.MonthPopup.DeleteAllRows
-		  //CalendarWindow.Calendar_Container1.MonthPopup.AddRow "Janvier"
-		  //CalendarWindow.Calendar_Container1.Calendar1.Localized_January = "Janvier"
-		  //CalendarWindow.Calendar_Container1.MonthPopup.AddRow "Février"
-		  //CalendarWindow.Calendar_Container1.MonthPopup.AddRow "Mars"
-		  //CalendarWindow.Calendar_Container1.MonthPopup.AddRow "Avril"
-		  //CalendarWindow.Calendar_Container1.MonthPopup.AddRow "Mai"
-		  //CalendarWindow.Calendar_Container1.MonthPopup.AddRow "Juin"
-		  //CalendarWindow.Calendar_Container1.MonthPopup.AddRow "Juillet"
-		  //CalendarWindow.Calendar_Container1.MonthPopup.AddRow "Août"
-		  //CalendarWindow.Calendar_Container1.MonthPopup.AddRow "Septembre"
-		  //CalendarWindow.Calendar_Container1.MonthPopup.AddRow "Octobre"
-		  //CalendarWindow.Calendar_Container1.MonthPopup.AddRow "Novembre"
-		  //CalendarWindow.Calendar_Container1.MonthPopup.AddRow "Décembre"
-		  //
-		  //End Select
-		  //// Load Today's Month
 		  CalendarWindow.Calendar_Container1.MonthPopup.ListIndex = 0
 		  
 		End Sub
@@ -795,28 +821,6 @@ Inherits Canvas
 		    CalendarWindow.Calendar_Container1.YearPopup.AddRow Str(i)
 		  next i
 		  CalendarWindow.Calendar_Container1.YearPopup.ListIndex = 0
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Sub TMP_MATH()
-		  // Is This a Leap Year?
-		  LeapYearBool = fCalcLeapYear(2015)
-		  
-		  // Year Number
-		  YearNumber = fCalcYearNumber(Str(2015))
-		  
-		  // Month Number
-		  MonthNumber = fCalcMonthNumber(Localized_May,LeapYearBool)
-		  
-		  // Day
-		  DayNumber = 30
-		  
-		  // Calculate to get Weekday Number
-		  Dim WeekdayNum as Integer = (CenturyNumber + YearNumber + MonthNumber + DayNumber) Mod 7
-		  
-		  // Map Weekday Number to Weekday String
-		  FirstWeekday = fGetDayOfWeekString(WeekdayNum)
 		End Sub
 	#tag EndMethod
 
@@ -914,19 +918,11 @@ Inherits Canvas
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private DayOfWeekArray_SS_EN() As String
+		Private DayOfWeekArray_SS() As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private DayOfWeekArray_SS_FR() As String
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private DayOfWeek_MS_EN() As String
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private DayOfWeek_MS_FR() As String
+		Private DayOfWeek_MS() As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -972,6 +968,10 @@ Inherits Canvas
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		Localized_Friday As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		Localized_January As String
 	#tag EndProperty
 
@@ -992,6 +992,10 @@ Inherits Canvas
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		Localized_Monday As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		Localized_November As String
 	#tag EndProperty
 
@@ -1000,7 +1004,27 @@ Inherits Canvas
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		Localized_Saturday As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		Localized_September As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		Localized_Sunday As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		Localized_Thursday As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		Localized_Tuesday As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		Localized_Wednesday As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h0

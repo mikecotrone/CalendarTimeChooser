@@ -932,9 +932,18 @@ End
 		    LocalInt = 3
 		  End Select
 		  
+		  // Create the Localized Month List
 		  CalendarWindow.Calendar_Container1.Calendar1.mBuildLocalizedMonthList(LocalInt)
+		  // Create the Localized Day of the Week List
+		  CalendarWindow.Calendar_Container1.Calendar1.mBuildLocalizedDayOfWeekList(LocalInt)
 		  
+		  
+		  // Load the Localized Month List to the PopUp Menu
 		  CalendarWindow.Calendar_Container1.Calendar1.mLoad_MonthList
+		  
+		  // Load the Localized Day of the Week Abbreviation List to the Calendar
+		  CalendarWindow.Calendar_Container1.Calendar1.mBuild_LocalizedDayOfWeek_Arrays(LocalInt)
+		  
 		  
 		End Sub
 	#tag EndEvent
