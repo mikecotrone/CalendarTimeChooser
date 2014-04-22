@@ -192,6 +192,7 @@ Begin ContainerControl Calendar_Container
       FirstWeekDay    =   ""
       Height          =   169
       HelpTag         =   ""
+      IncludePrevNextMonthDaysBool=   True
       Index           =   -2147483648
       InitialParent   =   ""
       Left            =   10

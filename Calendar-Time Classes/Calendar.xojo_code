@@ -150,16 +150,25 @@ Inherits Canvas
 		    
 		    // Draw Days Centered -- Windows GDI+ Is different that MacOS for centering the Calendar Day Text FYI.
 		    #IF TargetWin32 Then
-		      if CalendarButtonClassArray(i).Day > 0 AND CalendarButtonClassArray(i).Day < 10 Then
-		        g.DrawString(Str(CalendarButtonClassArray(i).day),CalendarButtonClassArray(i).LeftX+13,CalendarButtonClassArray(i).TopY+17)
+		      if CalendarButtonClassArray(i).Day = 0 Then
+		        g.DrawString("",CalendarButtonClassArray(i).LeftX+13,CalendarButtonClassArray(i).TopY+17)
 		      Else
-		        g.DrawString(Str(CalendarButtonClassArray(i).day),CalendarButtonClassArray(i).LeftX+10,CalendarButtonClassArray(i).TopY+17)
+		        if CalendarButtonClassArray(i).Day > 0 AND CalendarButtonClassArray(i).Day < 10 Then
+		          g.DrawString(Str(CalendarButtonClassArray(i).day),CalendarButtonClassArray(i).LeftX+13,CalendarButtonClassArray(i).TopY+17)
+		        Else
+		          g.DrawString(Str(CalendarButtonClassArray(i).day),CalendarButtonClassArray(i).LeftX+10,CalendarButtonClassArray(i).TopY+17)
+		        End if
+		        
 		      End if
 		    #ELSEIF TargetMacOS Then
-		      if CalendarButtonClassArray(i).Day > 0 AND CalendarButtonClassArray(i).Day < 10 Then
-		        g.DrawString(Str(CalendarButtonClassArray(i).day),CalendarButtonClassArray(i).LeftX+12,CalendarButtonClassArray(i).TopY+17)
+		      if CalendarButtonClassArray(i).Day = 0 Then
+		        g.DrawString("",CalendarButtonClassArray(i).LeftX+13,CalendarButtonClassArray(i).TopY+17)
 		      Else
-		        g.DrawString(Str(CalendarButtonClassArray(i).day),CalendarButtonClassArray(i).LeftX+8,CalendarButtonClassArray(i).TopY+17)
+		        if CalendarButtonClassArray(i).Day > 0 AND CalendarButtonClassArray(i).Day < 10 Then
+		          g.DrawString(Str(CalendarButtonClassArray(i).day),CalendarButtonClassArray(i).LeftX+12,CalendarButtonClassArray(i).TopY+17)
+		        Else
+		          g.DrawString(Str(CalendarButtonClassArray(i).day),CalendarButtonClassArray(i).LeftX+8,CalendarButtonClassArray(i).TopY+17)
+		        End if
 		      End if
 		    #ENDIF
 		    
@@ -766,28 +775,28 @@ Inherits Canvas
 		  Dim PrevMonthNumOfDays as Integer = fNumOfDaysInMonth(PreviousMonth)
 		  Dim NextMonthNumOfDays as Integer = fNumOfDaysInMonth(NextMonth)
 		  
-		  // Now Map the Previous Available Slots with the appropriate Previous Month's Ending Calendar Days
-		  Dim PrevDayCounter as Integer  = PrevMonthNumOfDays
-		  Dim ii as integer
-		  for ii = FirstCalSlot-1 DownTo CalPrevMonthSpacesAvailable
-		    CalendarButtonClassArray(ii).Day = PrevDayCounter
-		    CalendarButtonClassArray(ii).PrevMonthMark = True
-		    PrevDayCounter = PrevDayCounter - 1
-		    Invalidate(False)
-		  Next ii
-		  
-		  // Now Map the Next Available Slots with the appropriate Next Month's Beginning Calendar Days
-		  Dim NextDayCounter as Integer  = 1
-		  Dim xx as integer
-		  Dim LastCalSlot as Integer = FirstCalSlot + NumOfDaysInMonth
-		  for xx = LastCalSlot to 48 // 48 is the Last Calendar Slot
-		    CalendarButtonClassArray(xx).Day = NextDayCounter
-		    CalendarButtonClassArray(xx).NextMonthMark = True
-		    NextDayCounter = NextDayCounter + 1
-		    Invalidate(False)
-		  Next xx
-		  
-		  Dim a as string
+		  if CalendarWindow.Calendar_Container1.Calendar1.IncludePrevNextMonthDaysBool = True Then
+		    // Now Map the Previous Available Slots with the appropriate Previous Month's Ending Calendar Days
+		    Dim PrevDayCounter as Integer  = PrevMonthNumOfDays
+		    Dim ii as integer
+		    for ii = FirstCalSlot-1 DownTo CalPrevMonthSpacesAvailable
+		      CalendarButtonClassArray(ii).Day = PrevDayCounter
+		      CalendarButtonClassArray(ii).PrevMonthMark = True
+		      PrevDayCounter = PrevDayCounter - 1
+		      Invalidate(False)
+		    Next ii
+		    
+		    // Now Map the Next Available Slots with the appropriate Next Month's Beginning Calendar Days
+		    Dim NextDayCounter as Integer  = 1
+		    Dim xx as integer
+		    Dim LastCalSlot as Integer = FirstCalSlot + NumOfDaysInMonth
+		    for xx = LastCalSlot to 48 // 48 is the Last Calendar Slot
+		      CalendarButtonClassArray(xx).Day = NextDayCounter
+		      CalendarButtonClassArray(xx).NextMonthMark = True
+		      NextDayCounter = NextDayCounter + 1
+		      Invalidate(False)
+		    Next xx
+		  End if
 		  
 		End Sub
 	#tag EndMethod
@@ -830,6 +839,10 @@ Inherits Canvas
 
 	#tag Property, Flags = &h0
 		FirstWeekDay As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		IncludePrevNextMonthDaysBool As Boolean = True
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -974,6 +987,12 @@ Inherits Canvas
 			Group="Appearance"
 			Type="String"
 			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="IncludePrevNextMonthDaysBool"
+			Group="Behavior"
+			InitialValue="True"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"

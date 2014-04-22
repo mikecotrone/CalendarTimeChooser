@@ -78,7 +78,7 @@ Begin Window DemoLaunchWindow
       Bold            =   False
       Caption         =   ""
       Enabled         =   True
-      Height          =   146
+      Height          =   165
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -112,7 +112,7 @@ Begin Window DemoLaunchWindow
          InitialParent   =   "GroupBox1"
          InitialValue    =   ""
          Italic          =   False
-         Left            =   240
+         Left            =   270
          ListIndex       =   0
          LockBottom      =   False
          LockedInPosition=   False
@@ -142,7 +142,7 @@ Begin Window DemoLaunchWindow
          Index           =   -2147483648
          InitialParent   =   "GroupBox1"
          Italic          =   False
-         Left            =   240
+         Left            =   270
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -176,7 +176,7 @@ Begin Window DemoLaunchWindow
          Index           =   -2147483648
          InitialParent   =   "GroupBox1"
          Italic          =   False
-         Left            =   34
+         Left            =   64
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -211,7 +211,7 @@ Begin Window DemoLaunchWindow
          InitialParent   =   "GroupBox1"
          InitialValue    =   ""
          Italic          =   False
-         Left            =   34
+         Left            =   64
          ListIndex       =   0
          LockBottom      =   False
          LockedInPosition=   False
@@ -241,7 +241,7 @@ Begin Window DemoLaunchWindow
          Index           =   -2147483648
          InitialParent   =   "GroupBox1"
          Italic          =   False
-         Left            =   34
+         Left            =   64
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -258,7 +258,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "Helvetica"
          TextSize        =   12.0
          TextUnit        =   0
-         Top             =   227
+         Top             =   221
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -276,7 +276,7 @@ Begin Window DemoLaunchWindow
          InitialParent   =   "GroupBox1"
          InitialValue    =   ""
          Italic          =   False
-         Left            =   29
+         Left            =   63
          ListIndex       =   0
          LockBottom      =   False
          LockedInPosition=   False
@@ -290,7 +290,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "System"
          TextSize        =   0.0
          TextUnit        =   0
-         Top             =   252
+         Top             =   246
          Underline       =   False
          Visible         =   True
          Width           =   188
@@ -306,7 +306,7 @@ Begin Window DemoLaunchWindow
          Index           =   -2147483648
          InitialParent   =   "GroupBox1"
          Italic          =   False
-         Left            =   240
+         Left            =   270
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -323,7 +323,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "Helvetica"
          TextSize        =   12.0
          TextUnit        =   0
-         Top             =   227
+         Top             =   221
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -341,7 +341,7 @@ Begin Window DemoLaunchWindow
          InitialParent   =   "GroupBox1"
          InitialValue    =   ""
          Italic          =   False
-         Left            =   240
+         Left            =   270
          ListIndex       =   0
          LockBottom      =   False
          LockedInPosition=   False
@@ -355,7 +355,72 @@ Begin Window DemoLaunchWindow
          TextFont        =   "System"
          TextSize        =   0.0
          TextUnit        =   0
-         Top             =   252
+         Top             =   246
+         Underline       =   False
+         Visible         =   True
+         Width           =   188
+      End
+      Begin Label IncludeNextPrevMonDaysLabel
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         Italic          =   False
+         Left            =   64
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Multiline       =   False
+         Scope           =   0
+         Selectable      =   False
+         TabIndex        =   11
+         TabPanelIndex   =   0
+         Text            =   "Include Previous/Next Month Days:"
+         TextAlign       =   0
+         TextColor       =   &c00000000
+         TextFont        =   "Helvetica"
+         TextSize        =   12.0
+         TextUnit        =   0
+         Top             =   278
+         Transparent     =   True
+         Underline       =   False
+         Visible         =   True
+         Width           =   207
+      End
+      Begin PopupMenu IncludePrevNextMonDaysPopUpMenu
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         InitialValue    =   ""
+         Italic          =   False
+         Left            =   64
+         ListIndex       =   0
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   12
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   302
          Underline       =   False
          Visible         =   True
          Width           =   188
@@ -495,6 +560,31 @@ End
 		    CalendarWindow.Calendar_Container1.Calendar1.CalMonFirstDayOfWeekBool = False
 		  Case "Week Starts on Monday"
 		    CalendarWindow.Calendar_Container1.Calendar1.CalMonFirstDayOfWeekBool = True
+		  End Select
+		  
+		  CalendarWindow.Calendar_Container1.Calendar1.Invalidate(False)
+		  CalendarWindow.Calendar_Container1.Calendar1.UPDATE_MonthDays
+		  CalendarWindow.Calendar_Container1.Calendar1.UPDATE_MapDaysToCalSlots
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events IncludePrevNextMonDaysPopUpMenu
+	#tag Event
+		Sub Open()
+		  // Load Popup Menu
+		  me.AddRow("Include")
+		  me.AddRow("Do NOT include")
+		  me.ListIndex = 0
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Change()
+		  Select Case Me.Text
+		  Case "Include"
+		    CalendarWindow.Calendar_Container1.Calendar1.IncludePrevNextMonthDaysBool = True
+		  Case "Do NOT include"
+		    CalendarWindow.Calendar_Container1.Calendar1.IncludePrevNextMonthDaysBool = False
 		  End Select
 		  
 		  CalendarWindow.Calendar_Container1.Calendar1.Invalidate(False)
