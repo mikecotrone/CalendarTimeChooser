@@ -19,7 +19,8 @@ Inherits Application
 		Date:               April 21, 2014
 		Language:       Xojo
 		Written by:     Mike Cotrone (mikec@intelligentvisibility.com)
-		Version:           1.3
+		Contributors:  Jim McKay
+		Version:           1.4
 		
 		What is this Project?
 		
