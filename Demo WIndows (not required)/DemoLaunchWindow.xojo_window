@@ -9,23 +9,23 @@ Begin Window DemoLaunchWindow
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   368
+   Height          =   364
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
-   MaxHeight       =   32000
+   MaxHeight       =   364
    MaximizeButton  =   False
-   MaxWidth        =   32000
+   MaxWidth        =   489
    MenuBar         =   0
    MenuBarVisible  =   True
-   MinHeight       =   64
+   MinHeight       =   364
    MinimizeButton  =   True
-   MinWidth        =   64
+   MinWidth        =   489
    Placement       =   0
    Resizeable      =   False
    Title           =   "[Demo] Calendar / Time Chooser Project"
    Visible         =   True
-   Width           =   521
+   Width           =   489
    Begin TextArea TextArea1
       AcceptTabs      =   False
       Alignment       =   0
@@ -43,7 +43,7 @@ Begin Window DemoLaunchWindow
       HideSelection   =   True
       Index           =   -2147483648
       Italic          =   False
-      Left            =   20
+      Left            =   10
       LimitText       =   0
       LineHeight      =   0.0
       LineSpacing     =   1.0
@@ -71,19 +71,19 @@ Begin Window DemoLaunchWindow
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   481
+      Width           =   468
    End
    Begin GroupBox GroupBox1
       AutoDeactivate  =   True
       Bold            =   False
       Caption         =   ""
       Enabled         =   True
-      Height          =   196
+      Height          =   205
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   20
+      Left            =   10
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -96,10 +96,10 @@ Begin Window DemoLaunchWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   152
+      Top             =   149
       Underline       =   False
       Visible         =   True
-      Width           =   481
+      Width           =   468
       Begin Label SelectChooserTypeLabel
          AutoDeactivate  =   True
          Bold            =   False
@@ -111,7 +111,7 @@ Begin Window DemoLaunchWindow
          Index           =   -2147483648
          InitialParent   =   "GroupBox1"
          Italic          =   False
-         Left            =   75
+         Left            =   78
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -128,7 +128,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "Helvetica"
          TextSize        =   12.0
          TextUnit        =   0
-         Top             =   156
+         Top             =   158
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -146,7 +146,7 @@ Begin Window DemoLaunchWindow
          InitialParent   =   "GroupBox1"
          InitialValue    =   ""
          Italic          =   False
-         Left            =   75
+         Left            =   78
          ListIndex       =   0
          LockBottom      =   False
          LockedInPosition=   False
@@ -160,7 +160,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "System"
          TextSize        =   0.0
          TextUnit        =   0
-         Top             =   181
+         Top             =   183
          Underline       =   False
          Visible         =   True
          Width           =   188
@@ -176,7 +176,7 @@ Begin Window DemoLaunchWindow
          Index           =   -2147483648
          InitialParent   =   "GroupBox1"
          Italic          =   False
-         Left            =   276
+         Left            =   279
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -193,7 +193,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "Helvetica"
          TextSize        =   12.0
          TextUnit        =   0
-         Top             =   156
+         Top             =   158
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -211,7 +211,7 @@ Begin Window DemoLaunchWindow
          InitialParent   =   "GroupBox1"
          InitialValue    =   ""
          Italic          =   False
-         Left            =   275
+         Left            =   278
          ListIndex       =   0
          LockBottom      =   False
          LockedInPosition=   False
@@ -225,7 +225,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "System"
          TextSize        =   0.0
          TextUnit        =   0
-         Top             =   181
+         Top             =   183
          Underline       =   False
          Visible         =   True
          Width           =   188
@@ -241,7 +241,7 @@ Begin Window DemoLaunchWindow
          Index           =   -2147483648
          InitialParent   =   "GroupBox1"
          Italic          =   False
-         Left            =   75
+         Left            =   78
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -258,7 +258,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "Helvetica"
          TextSize        =   12.0
          TextUnit        =   0
-         Top             =   222
+         Top             =   224
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -276,7 +276,7 @@ Begin Window DemoLaunchWindow
          InitialParent   =   "GroupBox1"
          InitialValue    =   ""
          Italic          =   False
-         Left            =   75
+         Left            =   78
          ListIndex       =   0
          LockBottom      =   False
          LockedInPosition=   False
@@ -290,7 +290,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "System"
          TextSize        =   0.0
          TextUnit        =   0
-         Top             =   246
+         Top             =   248
          Underline       =   False
          Visible         =   True
          Width           =   188
@@ -306,7 +306,7 @@ Begin Window DemoLaunchWindow
          Index           =   -2147483648
          InitialParent   =   "GroupBox1"
          Italic          =   False
-         Left            =   276
+         Left            =   279
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -323,7 +323,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "Helvetica"
          TextSize        =   12.0
          TextUnit        =   0
-         Top             =   222
+         Top             =   224
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -341,7 +341,7 @@ Begin Window DemoLaunchWindow
          InitialParent   =   "GroupBox1"
          InitialValue    =   ""
          Italic          =   False
-         Left            =   276
+         Left            =   279
          ListIndex       =   0
          LockBottom      =   False
          LockedInPosition=   False
@@ -355,7 +355,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "System"
          TextSize        =   0.0
          TextUnit        =   0
-         Top             =   246
+         Top             =   248
          Underline       =   False
          Visible         =   True
          Width           =   188
@@ -367,7 +367,7 @@ Begin Window DemoLaunchWindow
          HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "GroupBox1"
-         Left            =   20
+         Left            =   8
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -377,9 +377,9 @@ Begin Window DemoLaunchWindow
          TabIndex        =   16
          TabPanelIndex   =   0
          TabStop         =   True
-         Top             =   213
+         Top             =   215
          Visible         =   True
-         Width           =   481
+         Width           =   469
       End
       Begin Separator Separator2
          AutoDeactivate  =   True
@@ -388,7 +388,7 @@ Begin Window DemoLaunchWindow
          HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "GroupBox1"
-         Left            =   20
+         Left            =   8
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -398,9 +398,9 @@ Begin Window DemoLaunchWindow
          TabIndex        =   17
          TabPanelIndex   =   0
          TabStop         =   True
-         Top             =   280
+         Top             =   282
          Visible         =   True
-         Width           =   481
+         Width           =   469
       End
       Begin PopupMenu WeekStartType
          AutoDeactivate  =   True
@@ -414,7 +414,7 @@ Begin Window DemoLaunchWindow
          InitialParent   =   "GroupBox1"
          InitialValue    =   ""
          Italic          =   False
-         Left            =   75
+         Left            =   78
          ListIndex       =   0
          LockBottom      =   False
          LockedInPosition=   False
@@ -428,7 +428,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "System"
          TextSize        =   0.0
          TextUnit        =   0
-         Top             =   312
+         Top             =   314
          Underline       =   False
          Visible         =   True
          Width           =   188
@@ -444,7 +444,7 @@ Begin Window DemoLaunchWindow
          Index           =   -2147483648
          InitialParent   =   "GroupBox1"
          Italic          =   False
-         Left            =   75
+         Left            =   78
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -461,7 +461,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "Helvetica"
          TextSize        =   12.0
          TextUnit        =   0
-         Top             =   287
+         Top             =   289
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -479,7 +479,7 @@ Begin Window DemoLaunchWindow
          InitialParent   =   "GroupBox1"
          InitialValue    =   ""
          Italic          =   False
-         Left            =   279
+         Left            =   282
          ListIndex       =   0
          LockBottom      =   False
          LockedInPosition=   False
@@ -493,7 +493,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "System"
          TextSize        =   0.0
          TextUnit        =   0
-         Top             =   312
+         Top             =   314
          Underline       =   False
          Visible         =   True
          Width           =   188
@@ -509,7 +509,7 @@ Begin Window DemoLaunchWindow
          Index           =   -2147483648
          InitialParent   =   "GroupBox1"
          Italic          =   False
-         Left            =   279
+         Left            =   282
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -526,11 +526,95 @@ Begin Window DemoLaunchWindow
          TextFont        =   "Helvetica"
          TextSize        =   12.0
          TextUnit        =   0
-         Top             =   287
+         Top             =   289
          Transparent     =   True
          Underline       =   False
          Visible         =   True
          Width           =   153
+      End
+      Begin Canvas ClockIcon
+         AcceptFocus     =   False
+         AcceptTabs      =   False
+         AutoDeactivate  =   True
+         Backdrop        =   0
+         DoubleBuffer    =   False
+         Enabled         =   True
+         EraseBackground =   True
+         Height          =   47
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         Left            =   19
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   22
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Top             =   227
+         Transparent     =   True
+         UseFocusRing    =   True
+         Visible         =   True
+         Width           =   47
+      End
+      Begin Canvas CalendarIcon
+         AcceptFocus     =   False
+         AcceptTabs      =   False
+         AutoDeactivate  =   True
+         Backdrop        =   0
+         DoubleBuffer    =   False
+         Enabled         =   True
+         EraseBackground =   True
+         Height          =   47
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         Left            =   18
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   24
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Top             =   296
+         Transparent     =   True
+         UseFocusRing    =   True
+         Visible         =   True
+         Width           =   47
+      End
+      Begin Canvas GeneralIcon
+         AcceptFocus     =   False
+         AcceptTabs      =   False
+         AutoDeactivate  =   True
+         Backdrop        =   0
+         DoubleBuffer    =   False
+         Enabled         =   True
+         EraseBackground =   True
+         Height          =   47
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         Left            =   17
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   25
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Top             =   159
+         Transparent     =   True
+         UseFocusRing    =   True
+         Visible         =   True
+         Width           =   50
       End
    End
 End
@@ -720,6 +804,27 @@ End
 		    CalendarWindow.SelectClockFaceType = 4
 		  End Select
 		  CalendarWindow.Time_Container1.Clock1.Invalidate(False)
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events ClockIcon
+	#tag Event
+		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		  g.DrawPicture(ClockIcon50x50,0,0)
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events CalendarIcon
+	#tag Event
+		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		  g.DrawPicture(cal46x50,0,0)
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events GeneralIcon
+	#tag Event
+		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		  g.DrawPicture(generaloptions,0,0)
 		End Sub
 	#tag EndEvent
 #tag EndEvents
