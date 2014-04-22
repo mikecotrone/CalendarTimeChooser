@@ -96,34 +96,22 @@ Inherits Canvas
 		  next i
 		  
 		  // Draw the Day of Week Labels using the Boolean to know if we are Sat - Sun or Mon - Sun
+		  g.ForeColor = RGB(116,116,116)
+		  g.TextFont = "System"
+		  g.Bold = false
+		  g.TextSize = 12
 		  if CalMonFirstDayOfWeekBool = False Then
-		    for i as integer = 1 to 6
-		      dim pos as integer = 11
-		      Dim TmpLen as Integer = SS_DayOfWeek(i).len
-		      Dim xPos as Integer = 11
-		      for x as integer = 0 to UBound(SS_DayOfWeek)
-		        g.ForeColor = RGB(116,116,116)
-		        g.TextFont = "System"
-		        g.Bold = false
-		        g.TextSize = 12
-		        g.DrawString(SS_DayOfWeek(x),xPos-3,17)
-		        xpos = xPos + 30
-		      next x
-		    next i
+		    Dim xPos as Integer = 11
+		    for x as integer = 0 to UBound(SS_DayOfWeek)
+		      g.DrawString(SS_DayOfWeek(x),xPos-3,17)
+		      xpos = xPos + 30
+		    next x
 		  Elseif CalMonFirstDayOfWeekBool = True Then
-		    for i as integer = 1 to 6
-		      dim pos as integer = 11
-		      Dim TmpLen as Integer = MS_DayOfWeek(i).len
-		      Dim xPos as Integer = 11
-		      for x as integer = 0 to UBound(MS_DayOfWeek)
-		        g.ForeColor = RGB(116,116,116)
-		        g.TextFont = "System"
-		        g.Bold = false
-		        g.TextSize = 12
-		        g.DrawString(MS_DayOfWeek(x),xPos-3,17)
-		        xpos = xPos + 30
-		      next x
-		    next i
+		    Dim xPos as Integer = 11
+		    for x as integer = 0 to UBound(MS_DayOfWeek)
+		      g.DrawString(MS_DayOfWeek(x),xPos-3,17)
+		      xpos = xPos + 30
+		    next x
 		  End if
 		  
 		  Dim SelectMonthInt as Integer = fConvertMonthStringToMonthNumber(SelectedMonth)

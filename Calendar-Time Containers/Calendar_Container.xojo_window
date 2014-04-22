@@ -186,7 +186,7 @@ Begin ContainerControl Calendar_Container
       AutoDeactivate  =   True
       Backdrop        =   0
       CalMonFirstDayOfWeekBool=   False
-      DoubleBuffer    =   True
+      DoubleBuffer    =   False
       Enabled         =   True
       EraseBackground =   False
       FirstWeekDay    =   ""
@@ -216,7 +216,7 @@ Begin ContainerControl Calendar_Container
       TodaysDate_NotSelected=   &c0000FF00
       TodaysDate_Selected=   &cFFFF0000
       Top             =   33
-      Transparent     =   True
+      Transparent     =   False
       UseFocusRing    =   True
       Visible         =   True
       Width           =   211

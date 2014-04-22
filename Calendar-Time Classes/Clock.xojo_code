@@ -4,9 +4,27 @@ Inherits Canvas
 	#tag Event
 		Sub Open()
 		  //Start all Hands at 12
-		  ClockMinuteValue = 3.248
-		  ClockHourValue = 3.308
-		  ClockSecondValue = 3.248
+		  'ClockMinuteValue = 3.248
+		  'ClockHourValue = 3.308
+		  'ClockSecondValue = 3.248
+		  
+		  dim d As new date
+		  Time_Container(window).Time_Minute=str(d.Minute)
+		  if d.Hour<12 then
+		    Time_Container(window).Time_AMPM="AM"
+		    if d.Hour=0 then
+		      Time_Container(window).Time_Hour="12"
+		    else
+		      Time_Container(window).Time_Hour=str(d.Hour)
+		    end if
+		  else
+		    Time_Container(window).Time_AMPM="PM"
+		    if d.Hour>12 then
+		      Time_Container(window).Time_Hour=str(d.Hour-12)
+		    Else
+		      Time_Container(window).Time_Hour="12"
+		    end if
+		  end if
 		End Sub
 	#tag EndEvent
 
@@ -28,30 +46,32 @@ Inherits Canvas
 		    mDrawClockFace (g)
 		  End Select
 		  
+		  dim buffer As new Picture(g.Width*2,g.Height*2)
 		  // Minute Hand
-		  mDrawClockMinuteHand (g)
+		  mDrawClockMinuteHand (buffer.Graphics)
 		  // Hour Hand
-		  mDrawClockHourHand (g)
+		  mDrawClockHourHand (buffer.Graphics)
 		  // Draw Second hand
-		  mDrawClockSecondHand (g)
+		  mDrawClockSecondHand (buffer.Graphics)
 		  
 		  
 		  // Draw Center Dot on the Clock Image
 		  if not UseGraphicalClockHands then
-		    g.ForeColor = RGB(0,0,0)
-		    g.FillOval(me.Width/2-2,me.Height/2-2,5,5)
+		    buffer.Graphics.ForeColor = RGB(0,0,0)
+		    buffer.Graphics.FillOval(buffer.Width/2-4,buffer.Height/2-4,9,9)
 		  end if
 		  
 		  // Draw String AM/PM
 		  dim AMPM As new StringShape
 		  AMPM.FillColor=TextColor
 		  AMPM.TextFont=Font
-		  AMPM.TextSize=12
+		  AMPM.TextSize=24
 		  AMPM.VerticalAlignment=StringShape.Alignment.Bottom
 		  AMPM.HorizontalAlignment=StringShape.Alignment.Center
 		  AMPM.Text=Time_Container(window).Time_AMPM
-		  g.DrawObject AMPM,Width/2,Height/2+20
+		  buffer.Graphics.DrawObject AMPM,buffer.Width/2,buffer.Height/2+40
 		  
+		  g.drawpicture buffer,0,0,g.width,g.height,0,0,buffer.Width,buffer.Height
 		  
 		End Sub
 	#tag EndEvent
@@ -148,16 +168,16 @@ Inherits Canvas
 		  else
 		    HourHand = New CurveShape
 		    CurveShape(HourHand).Border = 100
-		    CurveShape(HourHand).BorderWidth = 2
+		    CurveShape(HourHand).BorderWidth = 4
 		    CurveShape(HourHand).BorderColor = &c0000FF
 		    CurveShape(HourHand).X = 1
 		    CurveShape(HourHand).Y  = 1
 		    CurveShape(HourHand).X2 = 0
-		    CurveShape(HourHand).Y2 = -30
+		    CurveShape(HourHand).Y2 = -60
 		  end if
 		  
 		  HourHand.Rotation=pi*2/HourCount*(CurrentHour+val(Time_Container(window).Time_Minute)/60)+.01
-		  g.DrawObject HourHand,me.Width/2, me.Height/2
+		  g.DrawObject HourHand,g.Width/2, g.Height/2
 		End Sub
 	#tag EndMethod
 
@@ -170,16 +190,16 @@ Inherits Canvas
 		  else
 		    MinHand = New CurveShape
 		    CurveShape(MinHand).Border = 100
-		    CurveShape(MinHand).BorderWidth = .75
+		    CurveShape(MinHand).BorderWidth = 1.5
 		    CurveShape(MinHand).BorderColor = &c0000FF
 		    CurveShape(MinHand).X = 0
 		    CurveShape(MinHand).Y  = 0
 		    CurveShape(MinHand).X2 = 0
-		    CurveShape(MinHand).Y2 = -45
+		    CurveShape(MinHand).Y2 = -90
 		  end if
 		  
 		  MinHand.Rotation=(pi*2/60*val(Time_Container(window).Time_Minute))+.01
-		  g.DrawObject MinHand,me.Width/2, me.Height/2
+		  g.DrawObject MinHand,g.Width/2, g.Height/2
 		End Sub
 	#tag EndMethod
 
@@ -192,17 +212,17 @@ Inherits Canvas
 		  else //build a curveshape
 		    SecondHand = New CurveShape
 		    CurveShape(SecondHand).Border = 100
-		    CurveShape(SecondHand).BorderWidth = .75
+		    CurveShape(SecondHand).BorderWidth = 1.5
 		    CurveShape(SecondHand).BorderColor = &cFF0000
 		    CurveShape(SecondHand).X = 0
 		    CurveShape(SecondHand).Y  = 0
 		    CurveShape(SecondHand).X2 = 0
-		    CurveShape(SecondHand).Y2 = -50
+		    CurveShape(SecondHand).Y2 = -100
 		  end if
 		  
 		  //rotation is based on radians/seconds per minute * current second.
 		  SecondHand.Rotation=(pi*2/60*Time_Container(window).ClockSecondsCounter)+.01
-		  g.DrawObject SecondHand,me.Width/2,me.Height/2
+		  g.DrawObject SecondHand,g.Width/2,g.Height/2
 		End Sub
 	#tag EndMethod
 
