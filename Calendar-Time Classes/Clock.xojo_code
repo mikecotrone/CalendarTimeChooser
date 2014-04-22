@@ -117,16 +117,6 @@ Inherits Canvas
 		  MinHand.BorderColor = &c0000ff  // blue
 		  g.DrawObject MinHand,me.Width/2+1, me.Height/2
 		  
-		  //Dim p as Picture
-		  //Dim px as PixmapShape
-		  //p=New Picture(11,141)
-		  //px=New PixmapShape(p)
-		  //px.X = 0
-		  //px.Y = 0
-		  //px.Image = clock_minute
-		  //px.rotation = ClockMinuteValue
-		  //Graphics.drawObject px,me.Width/2, me.Height/2-2
-		  
 		End Sub
 	#tag EndMethod
 
@@ -650,6 +640,11 @@ Inherits Canvas
 			Visible=true
 			Group="Appearance"
 			InitialValue="True"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="UseGraphicalClockHands"
+			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
