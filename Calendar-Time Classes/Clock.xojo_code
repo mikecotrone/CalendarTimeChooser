@@ -31,18 +31,20 @@ Inherits Canvas
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
 		  // Draw Clock Image
-		  Select Case Date_Time_Container(Time_Container(window).window).SelectClockFaceType
-		  Case 0
+		  Select Case Date_Time_Container(Time_Container(window).window).ClockFaceType
+		  Case Date_Time_Container.ClockFaceType.Chrome
 		    g.DrawPicture(ClockFace_Chrome130x130,0,0)
-		  Case 1
+		  Case Date_Time_Container.ClockFaceType.Roman
 		    g.DrawPicture(ClockFace_Roman130x130,0,0)
-		  Case 2
+		  Case Date_Time_Container.ClockFaceType.Standard
 		    g.DrawPicture(clock_dial130x130,0,0)
-		  Case 3
+		  Case Date_Time_Container.ClockFaceType.GoogleStyle
 		    g.DrawPicture(ClockFaceGoogle130x130,0,0)
-		  Case 4
+		  Case Date_Time_Container.ClockFaceType.Modern
 		    g.DrawPicture(Clock_Retro130x130,0,0)
-		  Case 5
+		  Case Date_Time_Container.ClockFaceType.Dynamic_12hr
+		    mDrawClockFace (g)
+		  Case Date_Time_Container.ClockFaceType.Dynamic_24hr
 		    mDrawClockFace (g)
 		  End Select
 		  
@@ -229,6 +231,10 @@ Inherits Canvas
 
 	#tag Property, Flags = &h0
 		BorderColor As Color = &c444444
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		ClockFaceType As Date_Time_Container.ClockFaceType
 	#tag EndProperty
 
 	#tag Property, Flags = &h0

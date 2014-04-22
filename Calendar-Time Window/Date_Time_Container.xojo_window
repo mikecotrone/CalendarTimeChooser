@@ -7,7 +7,7 @@ Begin ContainerControl Date_Time_Container
    Backdrop        =   0
    Compatibility   =   ""
    Enabled         =   True
-   EraseBackground =   True
+   EraseBackground =   False
    HasBackColor    =   True
    Height          =   227
    HelpTag         =   ""
@@ -135,25 +135,15 @@ End
 		End Function
 	#tag EndEvent
 
-	#tag Event
-		Sub Open()
-		  If BothPickers = True Then
-		    mSetupForBothPickers
-		  Elseif CalendarPicker_Only = True Then
-		    mSetupForCalendarPickerOnly
-		  Elseif TimePicker_Only = True Then
-		    mSetupForTimePickerOnly
-		  End if
-		End Sub
-	#tag EndEvent
 
-
-	#tag Method, Flags = &h0
-		Sub mSetupForBothPickers()
-		  window.Width = 394
-		  window.Height = 227
+	#tag Method, Flags = &h21
+		Private Sub mSetupForBothPickers()
+		  if Window isa DateTimeWindow then
+		    window.Width = 394
+		    window.Height = 227
+		    TrueWindow.Title = "Choose Date and Time"
+		  end if
 		  
-		  TrueWindow.Title = "Choose Date and Time"
 		  Calendar_Container1.Enabled = True
 		  Calendar_Container1.Visible = True
 		  Time_Container1.Left = 235
@@ -164,12 +154,14 @@ End
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
-		Sub mSetupForCalendarPickerOnly()
-		  window.Width = 230
-		  window.Height = 227
+	#tag Method, Flags = &h21
+		Private Sub mSetupForCalendarPickerOnly()
+		  if window isa DateTimeWindow then
+		    window.Width = 230
+		    window.Height = 227
+		    TrueWindow.Title = "Choose Date"
+		  end if
 		  
-		  TrueWindow.Title = "Choose Date"
 		  Calendar_Container1.Enabled = True
 		  Calendar_Container1.Visible = True
 		  Time_Container1.Enabled = False
@@ -179,12 +171,15 @@ End
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
-		Sub mSetupForTimePickerOnly()
-		  window.Width = 156
-		  window.Height = 195
+	#tag Method, Flags = &h21
+		Private Sub mSetupForTimePickerOnly()
+		  if window isa DateTimeWindow then
+		    window.Width = 156
+		    window.Height = 195
+		    TrueWindow.Title = "Choose Time"
+		  end if
 		  
-		  TrueWindow.Title = "Choose Time"
+		  
 		  Time_Container1.Enabled = True
 		  Time_Container1.Visible = True
 		  Time_Container1.Left = 0
@@ -192,28 +187,131 @@ End
 		  Calendar_Container1.Enabled = False
 		  Calendar_Container1.Visible = False
 		  
-		  'BackColor = RGB(228,228,228)
 		  
 		  
 		End Sub
 	#tag EndMethod
 
 
-	#tag Property, Flags = &h0
-		BothPickers As Boolean = True
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return Time_Container1.Clock1.ClockFaceType
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Time_Container1.Clock1.ClockFaceType = value
+			  if value=Date_Time_Container.ClockFaceType.Dynamic_24hr then
+			    Time_Container1.Clock1.HourCount=24
+			  else
+			    Time_Container1.Clock1.HourCount=12
+			  end if
+			  me.Invalidate(false)
+			End Set
+		#tag EndSetter
+		ClockFaceType As ClockFaceType
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  Return Calendar_Container1.Calendar1.IncludePrevNextMonthDaysBool
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  
+			  Calendar_Container1.Calendar1.IncludePrevNextMonthDaysBool=value
+			  
+			  Calendar_Container1.Calendar1.Invalidate(False)
+			  Calendar_Container1.Calendar1.UPDATE_MonthDays
+			  Calendar_Container1.Calendar1.UPDATE_MapDaysToCalSlots
+			End Set
+		#tag EndSetter
+		IncludePrevNextMonthDays As Boolean
+	#tag EndComputedProperty
+
+	#tag Property, Flags = &h21
+		Private mVisiblePickers As Date_Time_Container.PickerElements
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		CalendarPicker_Only As Boolean = False
-	#tag EndProperty
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  Return Time_Container1.Clock1.UseGraphicalClockHands
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  
+			  Time_Container1.Clock1.UseGraphicalClockHands=value
+			  
+			  Time_Container1.Clock1.Invalidate(false)
+			End Set
+		#tag EndSetter
+		UseGraphicalClockHands As Boolean
+	#tag EndComputedProperty
 
-	#tag Property, Flags = &h0
-		SelectClockFaceType As Integer = 0
-	#tag EndProperty
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return mVisiblePickers
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mVisiblePickers = value
+			  select case value
+			  case PickerElements.CalendarAndClock
+			    mSetupForBothPickers
+			  case PickerElements.CalendarOnly
+			    mSetupForCalendarPickerOnly
+			  case PickerElements.ClockOnly
+			    mSetupForTimePickerOnly
+			  end Select
+			  self.Invalidate(false)
+			End Set
+		#tag EndSetter
+		VisiblePickers As Date_Time_Container.PickerElements
+	#tag EndComputedProperty
 
-	#tag Property, Flags = &h0
-		TimePicker_Only As Boolean = False
-	#tag EndProperty
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  Return Calendar_Container1.Calendar1.CalMonFirstDayOfWeekBool
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  
+			  Calendar_Container1.Calendar1.CalMonFirstDayOfWeekBool=value
+			  
+			  Calendar_Container1.Calendar1.UPDATE_MonthDays
+			  Calendar_Container1.Calendar1.UPDATE_MapDaysToCalSlots
+			  
+			  Calendar_Container1.Calendar1.Invalidate(false)
+			End Set
+		#tag EndSetter
+		WeekStartsOnMonday As Boolean
+	#tag EndComputedProperty
+
+
+	#tag Enum, Name = ClockFaceType, Type = Integer, Flags = &h1
+		Chrome
+		  Roman
+		  Standard
+		  GoogleStyle
+		  Modern
+		  Dynamic_12hr
+		Dynamic_24hr
+	#tag EndEnum
+
+	#tag Enum, Name = PickerElements, Type = Integer, Flags = &h1
+		CalendarOnly
+		  ClockOnly
+		CalendarAndClock
+	#tag EndEnum
 
 
 #tag EndWindowCode
@@ -298,18 +396,6 @@ End
 		EditorType="Picture"
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="BothPickers"
-		Group="Behavior"
-		InitialValue="True"
-		Type="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="CalendarPicker_Only"
-		Group="Behavior"
-		InitialValue="False"
-		Type="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
 		Name="Enabled"
 		Visible=true
 		Group="Appearance"
@@ -344,6 +430,11 @@ End
 		Visible=true
 		Group="Appearance"
 		Type="String"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="IncludePrevNextMonthDays"
+		Group="Behavior"
+		Type="Boolean"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="InitialParent"
@@ -387,12 +478,6 @@ End
 		Type="String"
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="SelectClockFaceType"
-		Group="Behavior"
-		InitialValue="0"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
 		Name="Super"
 		Visible=true
 		Group="ID"
@@ -420,12 +505,6 @@ End
 		EditorType="Boolean"
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="TimePicker_Only"
-		Group="Behavior"
-		InitialValue="False"
-		Type="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
 		Name="Top"
 		Visible=true
 		Group="Position"
@@ -448,12 +527,24 @@ End
 		EditorType="Boolean"
 	#tag EndViewProperty
 	#tag ViewProperty
+		Name="UseGraphicalClockHands"
+		Visible=true
+		Group="Behavior"
+		InitialValue="True"
+		Type="Boolean"
+	#tag EndViewProperty
+	#tag ViewProperty
 		Name="Visible"
 		Visible=true
 		Group="Appearance"
 		InitialValue="True"
 		Type="Boolean"
 		EditorType="Boolean"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="WeekStartsOnMonday"
+		Group="Behavior"
+		Type="Boolean"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Width"

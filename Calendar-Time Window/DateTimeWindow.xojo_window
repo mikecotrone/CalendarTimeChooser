@@ -32,18 +32,17 @@ Begin Window DateTimeWindow
       AutoDeactivate  =   True
       BackColor       =   &c9D9D9D00
       Backdrop        =   0
-      BothPickers     =   True
       Enabled         =   True
-      EraseBackground =   True
+      EraseBackground =   False
       HasBackColor    =   True
       Height          =   227
       HelpTag         =   ""
       InitialParent   =   ""
       Left            =   0
-      LockBottom      =   True
+      LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   True
+      LockRight       =   False
       LockTop         =   True
       Scope           =   0
       TabIndex        =   0
@@ -52,6 +51,7 @@ Begin Window DateTimeWindow
       Top             =   0
       Transparent     =   True
       UseFocusRing    =   False
+      UseGraphicalClockHands=   True
       Visible         =   True
       Width           =   394
    End
@@ -59,6 +59,82 @@ End
 #tag EndWindow
 
 #tag WindowCode
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return Date_Time_Container1.ClockFaceType
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Date_Time_Container1.ClockFaceType=value
+			End Set
+		#tag EndSetter
+		ClockFaceType As ClockFaceType
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  Return Date_Time_Container1.IncludePrevNextMonthDays
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  
+			  Date_Time_Container1.IncludePrevNextMonthDays=value
+			  
+			End Set
+		#tag EndSetter
+		IncludePrevNextMonthDays As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  Return Date_Time_Container1.UseGraphicalClockHands
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  
+			  Date_Time_Container1.UseGraphicalClockHands=value
+			  
+			  
+			End Set
+		#tag EndSetter
+		UseGraphicalClockHands As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return Date_Time_Container1.VisiblePickers
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Date_Time_Container1.VisiblePickers=value
+			End Set
+		#tag EndSetter
+		VisiblePickers As Date_Time_Container.PickerElements
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  Return Date_Time_Container1.WeekStartsOnMonday
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Date_Time_Container1.WeekStartsOnMonday=value
+			End Set
+		#tag EndSetter
+		WeekStartsOnMonday As Boolean
+	#tag EndComputedProperty
+
+
 #tag EndWindowCode
 
 #tag ViewBehavior

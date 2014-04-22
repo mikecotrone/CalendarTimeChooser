@@ -670,20 +670,11 @@ End
 		Sub Change()
 		  Select Case Me.Text
 		  Case "Calendar and Time"
-		    MyPicker.Date_Time_Container1.BothPickers = True
-		    MyPicker.Date_Time_Container1.CalendarPicker_Only = False
-		    MyPicker.Date_Time_Container1.TimePicker_Only = False
-		    MyPicker.Date_Time_Container1.mSetupForBothPickers
+		    MyPicker.VisiblePickers=Date_Time_Container.PickerElements.CalendarAndClock
 		  Case "Calendar Only"
-		    MyPicker.Date_Time_Container1.CalendarPicker_Only = True
-		    MyPicker.Date_Time_Container1.BothPickers = False
-		    MyPicker.Date_Time_Container1.TimePicker_Only = False
-		    MyPicker.Date_Time_Container1.mSetupForCalendarPickerOnly
+		    MyPicker.VisiblePickers=Date_Time_Container.PickerElements.CalendarOnly
 		  Case "Time Only"
-		    MyPicker.Date_Time_Container1.TimePicker_Only =True
-		    MyPicker.Date_Time_Container1.BothPickers = False
-		    MyPicker.Date_Time_Container1.CalendarPicker_Only = False
-		    MyPicker.Date_Time_Container1.mSetupForTimePickerOnly
+		    MyPicker.VisiblePickers=Date_Time_Container.PickerElements.ClockOnly
 		  End Select
 		  
 		  
@@ -736,14 +727,12 @@ End
 		Sub Change()
 		  Select Case Me.Text
 		  Case "Include"
-		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.IncludePrevNextMonthDaysBool = True
+		    MyPicker.IncludePrevNextMonthDays = True
 		  Case "Do NOT include"
-		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.IncludePrevNextMonthDaysBool = False
+		    MyPicker.IncludePrevNextMonthDays = False
 		  End Select
 		  
-		  MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.Invalidate(False)
-		  MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.UPDATE_MonthDays
-		  MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.UPDATE_MapDaysToCalSlots
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -761,11 +750,10 @@ End
 		Sub Change()
 		  Select Case Me.Text
 		  Case "Use Graphical Clock Hands"
-		    MyPicker.Date_Time_Container1.Time_Container1.Clock1.UseGraphicalClockHands=True
+		    MyPicker.UseGraphicalClockHands=True
 		  Case "Use Lines for Clock Hands"
-		    MyPicker.Date_Time_Container1.Time_Container1.Clock1.UseGraphicalClockHands=False
+		    MyPicker.UseGraphicalClockHands=False
 		  End Select
-		  MyPicker.Date_Time_Container1.Time_Container1.Clock1.Invalidate(False)
 		  
 		End Sub
 	#tag EndEvent
@@ -784,14 +772,12 @@ End
 		Sub Change()
 		  Select Case Me.Text
 		  Case "Week Starts on Sunday"
-		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.CalMonFirstDayOfWeekBool = False
+		    MyPicker.WeekStartsOnMonday = False
 		  Case "Week Starts on Monday"
-		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.CalMonFirstDayOfWeekBool = True
+		    MyPicker.WeekStartsOnMonday = True
 		  End Select
 		  
-		  MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.Invalidate(False)
-		  MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.UPDATE_MonthDays
-		  MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.UPDATE_MapDaysToCalSlots
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -815,23 +801,21 @@ End
 		  Select Case Me.Text
 		  Case "0 - Chrome (12hr)"
 		    // Default Clock Face
-		    MyPicker.Date_Time_Container1.SelectClockFaceType = 0
+		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Chrome
 		  Case "1 - Roman (12hr)"
-		    MyPicker.Date_Time_Container1.SelectClockFaceType = 1
+		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Roman
 		  Case "2 - Standard (12hr)"
-		    MyPicker.Date_Time_Container1.SelectClockFaceType =2
+		    MyPicker.ClockFaceType =Date_Time_Container.ClockFaceType.Standard
 		  Case "3 - Google Style (12hr)"
-		    MyPicker.Date_Time_Container1.SelectClockFaceType = 3
+		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.GoogleStyle
 		  Case "4 - Modern (12hr)"
-		    MyPicker.Date_Time_Container1.SelectClockFaceType = 4
+		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Modern
 		  Case "5 - Dynamic (12hr)"
-		    MyPicker.Date_Time_Container1.SelectClockFaceType = 5
-		    MyPicker.Date_Time_Container1.Time_Container1.Clock1.HourCount=12
+		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Dynamic_12hr
 		  Case "5 - Dynamic (24hr)"
-		    MyPicker.Date_Time_Container1.SelectClockFaceType = 5
-		    MyPicker.Date_Time_Container1.Time_Container1.Clock1.HourCount=24
+		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Dynamic_24hr
 		  End Select
-		  MyPicker.Date_Time_Container1.Time_Container1.Clock1.Invalidate(False)
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
