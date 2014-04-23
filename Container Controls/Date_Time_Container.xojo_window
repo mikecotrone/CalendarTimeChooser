@@ -284,6 +284,7 @@ End
 			  else
 			    Time_Container1.Clock1.HourCount=12
 			    Time_Container1.TimeMode = 12
+			    Time_Container1.TimePicker1.mOneTimeConversion24to12
 			  end if
 			  me.Invalidate(false)
 			End Set

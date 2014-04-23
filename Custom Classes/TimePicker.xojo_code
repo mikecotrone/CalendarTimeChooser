@@ -248,8 +248,8 @@ Inherits Canvas
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
-		Function fConvertHour_12to24TimeFormat(inHour12HourTime as Integer, inAMPM as String) As String
+	#tag Method, Flags = &h21
+		Private Function fConvertHour_12to24TimeFormat(inHour12HourTime as Integer, inAMPM as String) As String
 		  Dim Results as String
 		  
 		  if  inHour12HourTime >= 1 AND inHour12HourTime <= 12 AND inAMPM = "AM" Then
@@ -279,6 +279,64 @@ Inherits Canvas
 		    Results = "23"
 		  Elseif  inHour12HourTime = 12 AND inAMPM = "PM" Then
 		    Results = "24"
+		  end if
+		  
+		  Return Results
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Function fConvertHour_24to12TimeFormat(inHour24HourTime as Integer) As String
+		  Dim Results as String
+		  
+		  if  inHour24HourTime = 23 Then
+		    Results = "11"
+		    Time_Container(Window).Time_AMPM = "PM"
+		    
+		  Elseif  inHour24HourTime = 22 Then
+		    Results = "10"
+		    Time_Container(Window).Time_AMPM = "PM"
+		    
+		  Elseif  inHour24HourTime = 21 Then
+		    Results = "9"
+		    Time_Container(Window).Time_AMPM = "PM"
+		    
+		  Elseif  inHour24HourTime = 20 Then
+		    Results = "8"
+		    Time_Container(Window).Time_AMPM = "PM"
+		    
+		  Elseif  inHour24HourTime = 19 Then
+		    Results = "7"
+		    Time_Container(Window).Time_AMPM = "PM"
+		    
+		  Elseif  inHour24HourTime = 18 Then
+		    Results = "6"
+		    Time_Container(Window).Time_AMPM = "PM"
+		    
+		  Elseif  inHour24HourTime = 17 Then
+		    Results = "5"
+		    Time_Container(Window).Time_AMPM = "PM"
+		    
+		  Elseif  inHour24HourTime = 16 Then
+		    Results = "4"
+		    Time_Container(Window).Time_AMPM = "PM"
+		    
+		  Elseif  inHour24HourTime = 15 Then
+		    Results = "3"
+		    Time_Container(Window).Time_AMPM = "PM"
+		    
+		  Elseif  inHour24HourTime = 14 Then
+		    Results = "2"
+		    Time_Container(Window).Time_AMPM = "PM"
+		    
+		  Elseif  inHour24HourTime = 13 Then
+		    Results = "1"
+		    Time_Container(Window).Time_AMPM = "PM"
+		    
+		  Elseif  inHour24HourTime <= 12 AND inHour24HourTime > 0 Then
+		    Results = Str(inHour24HourTime)
+		    Time_Container(Window).Time_AMPM = "AM"
+		    
 		  end if
 		  
 		  Return Results
@@ -557,7 +615,15 @@ Inherits Canvas
 	#tag Method, Flags = &h0
 		Sub mOneTimeConversion12to24()
 		  // Do a one time conversion from 12 hour to 24 hour for the current time
-		  Time_Container(Window).Time_Hour =  Time_Container(Window).TimePicker1.fConvertHour_12to24TimeFormat(2,"PM")
+		  Time_Container(Window).Time_Hour =  fConvertHour_12to24TimeFormat(CDbl(Time_Container(Window).Time_Hour),"PM") ///////******************** UNHARD CODE
+		  Time_Container(Window).TimePicker1.Invalidate(False) 
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub mOneTimeConversion24to12()
+		  // Do a one time conversion from 12 hour to 24 hour for the current time
+		  Time_Container(Window).Time_Hour =  fConvertHour_24to12TimeFormat(CDbl(Time_Container(Window).Time_Hour))
 		  Time_Container(Window).TimePicker1.Invalidate(False)
 		End Sub
 	#tag EndMethod
