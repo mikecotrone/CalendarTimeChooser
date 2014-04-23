@@ -7,6 +7,7 @@ Inherits Application
 		  DemoLaunchWindow.Show
 		  
 		  
+		  
 		End Sub
 	#tag EndEvent
 
