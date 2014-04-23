@@ -665,6 +665,15 @@ Inherits Canvas
 		    Localized_Friday = "Vrydag"
 		    Localized_Saturday = "Saterdag"
 		    Localized_Sunday = "Sondag"
+		    
+		  Case 8 // Polish
+		    Localized_Monday = "Poniedziałek"
+		    Localized_Tuesday = "Wtorek"
+		    Localized_Wednesday = "Środa"
+		    Localized_Thursday = "Czwartek"
+		    Localized_Friday = "Piątek"
+		    Localized_Saturday = "Sobota"
+		    Localized_Sunday = "Niedziela"
 		  End Select
 		  
 		  
@@ -786,6 +795,20 @@ Inherits Canvas
 		    Localized_October = "Oktober"
 		    Localized_November = "November"
 		    Localized_December = "Desember"
+		    
+		  Case 8 // Polish
+		    Localized_January = "Styczeń"
+		    Localized_February = "Luty"
+		    Localized_March = "Marzec"
+		    Localized_April = "Kwiecień"
+		    Localized_May = "Maj"
+		    Localized_June = "Czerwiec"
+		    Localized_July = "Lipiec"
+		    Localized_August = "Sierpień"
+		    Localized_September = "Wrzesień"
+		    Localized_October = "Październik"
+		    Localized_November = "Listopad"
+		    Localized_December = "Grudzień"
 		    
 		  End Select
 		  
@@ -957,6 +980,25 @@ Inherits Canvas
 		    DayOfWeek_MS.Append "Vry"
 		    DayOfWeek_MS.Append "Sat"
 		    DayOfWeek_MS.Append "Son" // Sunday
+		    
+		  Case 8 // Polish
+		    Redim DayOfWeekArray_SS(-1)
+		    DayOfWeekArray_SS.Append "Ni" // Sunday
+		    DayOfWeekArray_SS.Append "Pn"
+		    DayOfWeekArray_SS.Append "Wt"
+		    DayOfWeekArray_SS.Append "Śr"
+		    DayOfWeekArray_SS.Append "Czw"
+		    DayOfWeekArray_SS.Append "Pt"
+		    DayOfWeekArray_SS.Append "Sob" // Saturday
+		    // Mon - Sun
+		    Redim DayOfWeek_MS(-1)
+		    DayOfWeek_MS.Append "Pn" // Monday
+		    DayOfWeek_MS.Append "Wt"
+		    DayOfWeek_MS.Append "Śr"
+		    DayOfWeek_MS.Append "Czw"
+		    DayOfWeek_MS.Append "Pt"
+		    DayOfWeek_MS.Append "Sob"
+		    DayOfWeek_MS.Append "Ni" // Sunday
 		    
 		  End Select
 		  

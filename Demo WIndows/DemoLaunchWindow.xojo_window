@@ -914,6 +914,7 @@ End
 		  me.AddRow("French")
 		  me.AddRow("German")
 		  me.AddRow("Italian")
+		  me.AddRow("Polish")
 		  me.AddRow("Spanish")
 		  me.AddRow("Swedish")
 		  me.ListIndex = 2 // Default to English
@@ -942,11 +943,14 @@ End
 		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 5
 		    LocalInt = 5
 		  Case "German"
-		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 5
-		    LocalInt = 5
-		  Case "Afrikaans"
 		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 6
 		    LocalInt = 6
+		  Case "Afrikaans"
+		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 7
+		    LocalInt = 7
+		  Case "Polish"
+		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 8
+		    LocalInt = 8
 		  End Select
 		  
 		  // Create the Localized Month List
