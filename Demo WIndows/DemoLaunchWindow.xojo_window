@@ -908,13 +908,15 @@ End
 	#tag Event
 		Sub Open()
 		  // Load Popup Menu
+		  me.AddRow("Afrikaans")
+		  me.AddRow("Dutch")
 		  me.AddRow("English")
 		  me.AddRow("French")
 		  me.AddRow("German")
+		  me.AddRow("Italian")
 		  me.AddRow("Spanish")
 		  me.AddRow("Swedish")
-		  me.ListIndex = 0 // Default to English
-		  
+		  me.ListIndex = 2 // Default to English
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -927,19 +929,30 @@ End
 		  Case "French"
 		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 1
 		    LocalInt = 1
-		  Case "Spanish"
+		  Case "Swedish"
 		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 2
 		    LocalInt = 2
-		  Case "Swedish"
+		  Case "Italian"
 		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 3
 		    LocalInt = 3
+		  Case "Spanish"
+		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 4
+		    LocalInt = 4
+		  Case "Dutch"
+		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 5
+		    LocalInt = 5
+		  Case "German"
+		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 5
+		    LocalInt = 5
+		  Case "Afrikaans"
+		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 6
+		    LocalInt = 6
 		  End Select
 		  
 		  // Create the Localized Month List
 		  MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.mBuildLocalizedMonthList(LocalInt)
 		  // Create the Localized Day of the Week List
 		  MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.mBuildLocalizedDayOfWeekList(LocalInt)
-		  
 		  
 		  // Load the Localized Month List to the PopUp Menu
 		  MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.mLoad_MonthList

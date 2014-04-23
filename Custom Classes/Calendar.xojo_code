@@ -10,19 +10,39 @@ Inherits Canvas
 
 	#tag Event
 		Sub MouseUp(X As Integer, Y As Integer)
+		  
 		  Dim i as integer
 		  for i = 0 to UBound(CalendarButtonClassArray)
-		    if X >= CalendarButtonClassArray(i).LeftX AND X <= CalendarButtonClassArray(i).RightX AND Y >= CalendarButtonClassArray(i).TopY AND Y <= CalendarButtonClassArray(i).BottomY Then
-		      mDeselectAll
-		      CalendarButtonClassArray(i).Selected = True
-		      SelectedDate = New Date
-		      SelectedDate.Day = CalendarButtonClassArray(i).Day
-		      SelectedDate.Year = CDbl(SelectedYear)
-		      CalendarButtonClassArray(i).SelectedDate = SelectedDate
-		      Calendar_Container(window).mRaiseEvent
-		      Me.Invalidate(False)
-		    end if
+		    
+		    if Keyboard.ShiftKey = True Then // Multi Selection
+		      if X >= CalendarButtonClassArray(i).LeftX AND X <= CalendarButtonClassArray(i).RightX AND Y >= CalendarButtonClassArray(i).TopY AND Y <= CalendarButtonClassArray(i).BottomY Then
+		        CalendarButtonClassArray(i).Selected = True
+		        SelectedDate = New Date
+		        SelectedDate.Day = CalendarButtonClassArray(i).Day
+		        SelectedDate.Year = CDbl(SelectedYear)
+		        CalendarButtonClassArray(i).SelectedDate = SelectedDate
+		        Calendar_Container(window).mRaiseEvent
+		        Me.Invalidate(False)
+		      end if
+		      
+		      
+		    Elseif Keyboard.ShiftKey = False Then // Single Selection
+		      if X >= CalendarButtonClassArray(i).LeftX AND X <= CalendarButtonClassArray(i).RightX AND Y >= CalendarButtonClassArray(i).TopY AND Y <= CalendarButtonClassArray(i).BottomY Then
+		        mDeselectAll
+		        CalendarButtonClassArray(i).Selected = True
+		        SelectedDate = New Date
+		        SelectedDate.Day = CalendarButtonClassArray(i).Day
+		        SelectedDate.Year = CDbl(SelectedYear)
+		        CalendarButtonClassArray(i).SelectedDate = SelectedDate
+		        Calendar_Container(window).mRaiseEvent
+		        Me.Invalidate(False)
+		      end if
+		      
+		    End if
 		  next i
+		  
+		  
+		  
 		  
 		End Sub
 	#tag EndEvent

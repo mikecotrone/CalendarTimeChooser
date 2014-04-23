@@ -233,6 +233,10 @@ End
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
+		Private MultiSelectionTest As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
 		Private mVisiblePickers As Date_Time_Container.PickerElements
 	#tag EndProperty
 
@@ -381,9 +385,9 @@ End
 		  // Use this Event to push the user's "Selected Date" to anywhere in your code.
 		  // IE.   FutureScheduleAssessment_Class.FutureScheduleAssessmentDate = inSelectedDate
 		  
-		  // Demo Purposes
-		  //MsgBox "Selected Date: " + inSelectedDate.ShortDate
-		  
+		  // Demo Purposes - Testing Multi Day Selection
+		  MultiSelectionTest = MultiSelectionTest + inSelectedDate.ShortDate + EndOfLine
+		  MsgBox "Date(s) Selected: " + EndOfLine + MultiSelectionTest
 		End Sub
 	#tag EndEvent
 #tag EndEvents

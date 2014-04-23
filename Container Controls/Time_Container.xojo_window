@@ -217,7 +217,6 @@ End
 		  #IF TargetWin32 Then
 		    Me.Left = 123
 		    Me.Top =  3
-		    
 		  #ENDIF
 		End Sub
 	#tag EndEvent
