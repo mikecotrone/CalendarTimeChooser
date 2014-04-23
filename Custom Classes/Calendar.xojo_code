@@ -859,10 +859,9 @@ Inherits Canvas
 		    DayOfWeek_MS.Append "Mar"
 		    DayOfWeek_MS.Append "Mer"
 		    DayOfWeek_MS.Append "Jeu"
-		    DayOfWeek_MS.Append "Fr"
 		    DayOfWeek_MS.Append "Ven"
+		    DayOfWeek_MS.Append "Sam"
 		    DayOfWeek_MS.Append "Dim"
-		    
 		    
 		  Case 2 // Swedish
 		    //Sat - Sun

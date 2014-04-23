@@ -138,9 +138,21 @@ End
 
 	#tag Method, Flags = &h21
 		Private Sub mChangeLocalizedWindowTitle()
-		  if Window isa DateTimeWindow then
-		    TrueWindow.Title = Localized_ChooseBothTitle_Str
-		  end if
+		  If Window IsA DateTimeWindow Then
+		    
+		    If DemoLaunchWindow.MyPicker.VisiblePickers = Date_Time_Container.PickerElements.CalendarAndClock Then
+		      TrueWindow.Title = Localized_ChooseBothTitle_Str
+		      
+		    Elseif DemoLaunchWindow.MyPicker.VisiblePickers = Date_Time_Container.PickerElements.CalendarOnly Then
+		      TrueWindow.Title = Localized_CalendarOnlyTitle_Str
+		      
+		    Elseif DemoLaunchWindow.MyPicker.VisiblePickers =Date_Time_Container.PickerElements.ClockOnly Then
+		      TrueWindow.Title = Localized_TimeOnlyTitle_Str
+		      
+		    End If
+		    
+		  End If
+		  
 		End Sub
 	#tag EndMethod
 
@@ -191,7 +203,6 @@ End
 		    Localized_CalendarOnlyTitle_Str = "Wybierz datę"
 		    Localized_ChooseBothTitle_Str = "Wybierz datę i godzinę"
 		    Localized_TimeOnlyTitle_Str = "Wybierz godzinę"
-		    
 		  End Select
 		  
 		  mChangeLocalizedWindowTitle
@@ -375,7 +386,6 @@ End
 			  mVisiblePickers = value
 			  select case value
 			  case PickerElements.CalendarAndClock
-			    mSetLocalization_ContainerTitle(Calendar_Container1.Calendar1.LocalizationInt)
 			    mSetupForBothPickers
 			  case PickerElements.CalendarOnly
 			    mSetupForCalendarPickerOnly
