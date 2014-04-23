@@ -386,8 +386,8 @@ End
 		  // IE.   FutureScheduleAssessment_Class.FutureScheduleAssessmentDate = inSelectedDate
 		  
 		  // Demo Purposes - Testing Multi Day Selection
-		  MultiSelectionTest = MultiSelectionTest + inSelectedDate.ShortDate + EndOfLine
-		  MsgBox "Date(s) Selected: " + EndOfLine + MultiSelectionTest
+		  //MultiSelectionTest = MultiSelectionTest + inSelectedDate.ShortDate + EndOfLine
+		  //MsgBox "Date(s) Selected: " + EndOfLine + MultiSelectionTest
 		End Sub
 	#tag EndEvent
 #tag EndEvents
