@@ -751,6 +751,13 @@ End
 #tag EndWindow
 
 #tag WindowCode
+	#tag Event
+		Sub Close()
+		  quit(0)
+		End Sub
+	#tag EndEvent
+
+
 	#tag Property, Flags = &h21
 		Private mMyPicker As DateTimeWindow
 	#tag EndProperty
