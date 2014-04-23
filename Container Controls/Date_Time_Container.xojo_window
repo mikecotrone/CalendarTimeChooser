@@ -110,6 +110,7 @@ Begin ContainerControl Date_Time_Container
       TabIndex        =   101
       TabPanelIndex   =   0
       TabStop         =   True
+      TimeMode        =   0
       Time_AMPM       =   "AM"
       Time_AMPM_Len   =   0
       Time_Hour       =   "12"
@@ -277,8 +278,10 @@ End
 			  Time_Container1.Clock1.ClockFaceType = value
 			  if value=Date_Time_Container.ClockFaceType.Dynamic_24hr then
 			    Time_Container1.Clock1.HourCount=24
+			    Time_Container1.TimeMode = 24
 			  else
 			    Time_Container1.Clock1.HourCount=12
+			    Time_Container1.TimeMode = 12
 			  end if
 			  me.Invalidate(false)
 			End Set

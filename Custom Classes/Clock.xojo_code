@@ -66,7 +66,7 @@ Inherits Canvas
 		    buffer.Graphics.FillOval(buffer.Width/2-4,buffer.Height/2-4,9,9)
 		  end if
 		  
-		  // Draw String AM/PM
+		  // Draw String AM/PM ONLY for 12 Hour Time Format
 		  dim AMPM As new StringShape
 		  AMPM.FillColor=TextColor
 		  AMPM.TextFont=Font
@@ -74,10 +74,12 @@ Inherits Canvas
 		  AMPM.VerticalAlignment=StringShape.Alignment.Bottom
 		  AMPM.HorizontalAlignment=StringShape.Alignment.Center
 		  AMPM.Text=Time_Container(window).Time_AMPM
-		  buffer.Graphics.DrawObject AMPM,buffer.Width/2,buffer.Height/2+40
-		  
-		  
+		  if Time_Container(window).TimeMode = 12 Then
+		    buffer.Graphics.DrawObject AMPM,buffer.Width/2,buffer.Height/2+40
+		  End if
 		  g.drawpicture buffer,0,0,g.width,g.height,0,0,buffer.Width,buffer.Height
+		  
+		  
 		  
 		End Sub
 	#tag EndEvent

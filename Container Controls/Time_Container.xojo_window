@@ -138,6 +138,10 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		TimeMode As Integer = 12
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		Time_AMPM As String = "AM"
 	#tag EndProperty
 
@@ -367,6 +371,11 @@ End
 		InitialValue="True"
 		Type="Boolean"
 		EditorType="Boolean"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="TimeMode"
+		Group="Behavior"
+		Type="Integer"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Time_AMPM"
