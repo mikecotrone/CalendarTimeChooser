@@ -174,13 +174,21 @@ End
 		  // Change Hours Down
 		  Select Case TimePicker1.Draw_Hour_Selected
 		  Case True
-		    TimePicker1.mMoveHourDown
+		    if TimeMode = 12 Then
+		      TimePicker1.mMove12HourDown
+		    Elseif TimeMode = 24 Then
+		      TimePicker1.mMove24HourDown
+		    end if
 		  End Select
 		  
 		  // Change Minutes Down
 		  Select Case TimePicker1.Draw_Minute_Selected
 		  Case True
-		    TimePicker1.mMoveMinDown
+		    if TimeMode = 12 Then
+		      TimePicker1.mMove12MinDown
+		    Elseif TimeMode = 24 Then
+		      TimePicker1.mMove24MinDown
+		    End If
 		  End Select
 		  
 		  // Change AM / PM
@@ -197,13 +205,21 @@ End
 		  // Change Hours Up
 		  Select Case TimePicker1.Draw_Hour_Selected
 		  Case True
-		    TimePicker1.mMoveHourUp
+		    if TimeMode = 12 Then
+		      TimePicker1.mMove12HourUp
+		    Elseif TimeMode = 24 Then
+		      TimePicker1.mMove24HourUp
+		    end if
 		  End Select
 		  
 		  // Change Minutes Up
 		  Select Case TimePicker1.Draw_Minute_Selected
 		  Case True
-		    TimePicker1.mMoveMinUp
+		    if TimeMode = 12 Then
+		      TimePicker1.mMove12MinUp
+		    Elseif TimeMode = 24 Then
+		      TimePicker1.mMove24MinUp
+		    end if
 		  End Select
 		  
 		  // Change AM / PM
@@ -375,6 +391,7 @@ End
 	#tag ViewProperty
 		Name="TimeMode"
 		Group="Behavior"
+		InitialValue="12"
 		Type="Integer"
 	#tag EndViewProperty
 	#tag ViewProperty
