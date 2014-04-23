@@ -9,7 +9,7 @@ Begin Window DemoLaunchWindow
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   442
+   Height          =   458
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
@@ -78,7 +78,7 @@ Begin Window DemoLaunchWindow
       Bold            =   False
       Caption         =   ""
       Enabled         =   True
-      Height          =   254
+      Height          =   300
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -258,7 +258,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "Helvetica"
          TextSize        =   12.0
          TextUnit        =   0
-         Top             =   224
+         Top             =   273
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -290,7 +290,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "System"
          TextSize        =   0.0
          TextUnit        =   0
-         Top             =   248
+         Top             =   297
          Underline       =   False
          Visible         =   True
          Width           =   188
@@ -323,7 +323,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "Helvetica"
          TextSize        =   12.0
          TextUnit        =   0
-         Top             =   224
+         Top             =   273
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -355,7 +355,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "System"
          TextSize        =   0.0
          TextUnit        =   0
-         Top             =   248
+         Top             =   297
          Underline       =   False
          Visible         =   True
          Width           =   188
@@ -377,7 +377,7 @@ Begin Window DemoLaunchWindow
          TabIndex        =   16
          TabPanelIndex   =   0
          TabStop         =   True
-         Top             =   215
+         Top             =   264
          Visible         =   True
          Width           =   469
       End
@@ -398,7 +398,7 @@ Begin Window DemoLaunchWindow
          TabIndex        =   17
          TabPanelIndex   =   0
          TabStop         =   True
-         Top             =   282
+         Top             =   331
          Visible         =   True
          Width           =   469
       End
@@ -428,7 +428,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "System"
          TextSize        =   0.0
          TextUnit        =   0
-         Top             =   314
+         Top             =   363
          Underline       =   False
          Visible         =   True
          Width           =   188
@@ -461,7 +461,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "Helvetica"
          TextSize        =   12.0
          TextUnit        =   0
-         Top             =   289
+         Top             =   338
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -493,7 +493,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "System"
          TextSize        =   0.0
          TextUnit        =   0
-         Top             =   314
+         Top             =   363
          Underline       =   False
          Visible         =   True
          Width           =   188
@@ -526,7 +526,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "Helvetica"
          TextSize        =   12.0
          TextUnit        =   0
-         Top             =   289
+         Top             =   338
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -554,7 +554,7 @@ Begin Window DemoLaunchWindow
          TabIndex        =   22
          TabPanelIndex   =   0
          TabStop         =   True
-         Top             =   227
+         Top             =   276
          Transparent     =   True
          UseFocusRing    =   True
          Visible         =   True
@@ -582,7 +582,7 @@ Begin Window DemoLaunchWindow
          TabIndex        =   24
          TabPanelIndex   =   0
          TabStop         =   True
-         Top             =   294
+         Top             =   343
          Transparent     =   True
          UseFocusRing    =   True
          Visible         =   True
@@ -644,7 +644,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "Helvetica"
          TextSize        =   12.0
          TextUnit        =   0
-         Top             =   344
+         Top             =   393
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -676,10 +676,75 @@ Begin Window DemoLaunchWindow
          TextFont        =   "System"
          TextSize        =   0.0
          TextUnit        =   0
-         Top             =   368
+         Top             =   417
          Underline       =   False
          Visible         =   True
          Width           =   191
+      End
+      Begin Label ClockModeLabel
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         Italic          =   False
+         Left            =   78
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Multiline       =   False
+         Scope           =   0
+         Selectable      =   False
+         TabIndex        =   28
+         TabPanelIndex   =   0
+         Text            =   "Clock Mode:"
+         TextAlign       =   0
+         TextColor       =   &c00000000
+         TextFont        =   "Helvetica"
+         TextSize        =   12.0
+         TextUnit        =   0
+         Top             =   210
+         Transparent     =   True
+         Underline       =   False
+         Visible         =   True
+         Width           =   154
+      End
+      Begin PopupMenu ClockModePopUpMenu
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         InitialValue    =   ""
+         Italic          =   False
+         Left            =   77
+         ListIndex       =   0
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   29
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   233
+         Underline       =   False
+         Visible         =   True
+         Width           =   188
       End
    End
 End
@@ -968,6 +1033,30 @@ End
 		  // Create the Localized Window/Container Title's
 		  MyPicker.Date_Time_Container1.mSetLocalization_ContainerTitle(LocalInt)
 		  
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events ClockModePopUpMenu
+	#tag Event
+		Sub Open()
+		  // Load Popup Menu
+		  me.AddRow("12 Hour Time")
+		  me.AddRow("24 Hour Time")
+		  me.ListIndex = 0
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Change()
+		  Select Case Me.Text
+		  Case "12 Hour Time"
+		    
+		    
+		  Case "24 Hour Time"
+		    
+		    
+		  End Select
 		  
 		End Sub
 	#tag EndEvent

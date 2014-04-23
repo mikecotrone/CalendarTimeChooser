@@ -133,7 +133,7 @@ Inherits Canvas
 		    if CalendarButtonClassArray(i).Selected = True Then
 		      if CDbl(SelectedYear) = CurrentDate.Year AND SelectMonthInt = CurrentDate.Month AND CalendarButtonClassArray(i).Day = CurrentDate.Day Then
 		        g.bold = false
-		        g.ForeColor = TodaysDate_Selected
+		        g.ForeColor = RGB(255,255,255)
 		      Else
 		        g.bold = false
 		        g.ForeColor = RGB(255,255,255)
