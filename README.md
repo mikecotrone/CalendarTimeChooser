@@ -26,9 +26,10 @@ What is this Project?
 
 Whats New in 1.5?
 -----------------
-- Added Localizations for: Enlish, Afrikaans, Dutch, French, German, Italian, Spanish, and Swedish
+- Added Localizations for: Enlish, Afrikaans, Dutch, French, German, Italian, Polish, Spanish, and Swedish
 - Jim McKay spent alot of time restructuring the containers to clean up alot code flow
 - Jim McKay was able to render the Clock Hands flawlessly in v1.5
+- Jim McKay added the method to Sync the clock on startup with the Current Time
 
 ------------------------
 
