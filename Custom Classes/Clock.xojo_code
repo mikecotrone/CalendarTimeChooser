@@ -66,7 +66,6 @@ Inherits Canvas
 		    buffer.Graphics.FillOval(buffer.Width/2-4,buffer.Height/2-4,9,9)
 		  end if
 		  
-		  // Draw String AM/PM ONLY for 12 Hour Time Format
 		  dim AMPM As new StringShape
 		  AMPM.FillColor=TextColor
 		  AMPM.TextFont=Font
@@ -74,6 +73,7 @@ Inherits Canvas
 		  AMPM.VerticalAlignment=StringShape.Alignment.Bottom
 		  AMPM.HorizontalAlignment=StringShape.Alignment.Center
 		  AMPM.Text=Time_Container(window).Time_AMPM
+		  // Draw String AM/PM ONLY for 12 Hour Time Format
 		  if Time_Container(window).TimeMode = 12 Then
 		    buffer.Graphics.DrawObject AMPM,buffer.Width/2,buffer.Height/2+40
 		  End if
@@ -166,11 +166,16 @@ Inherits Canvas
 		  Dim HourHand as Object2D
 		  
 		  Dim CurrentHour as integer=val(Time_Container(window).Time_Hour)
-		  If Time_Container(window).Time_AMPM = "PM" and CurrentHour<>12 then
-		    CurrentHour=CurrentHour+12
-		  elseIf  Time_Container(window).Time_AMPM = "AM" and CurrentHour=12 then
-		    CurrentHour=CurrentHour+12
-		  end if
+		  
+		  // Only Allow the 12 Hour Control for 12 Hour Mode
+		  if Time_Container(window).TimeMode = 12 Then
+		    If Time_Container(window).Time_AMPM = "PM" and CurrentHour<>12 then
+		      CurrentHour=CurrentHour+12
+		    elseIf  Time_Container(window).Time_AMPM = "AM" and CurrentHour=12 then
+		      CurrentHour=CurrentHour+12
+		    end if
+		  End if
+		  
 		  if UseGraphicalClockHands then
 		    HourHand = New PixmapShape(HourHandImg)
 		  else

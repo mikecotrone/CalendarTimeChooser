@@ -40,7 +40,7 @@ Inherits Canvas
 		      Return True
 		    end if
 		    
-		    mManualTimeEntry(KeyBuffer)
+		    mManual12HourTimeEntry(KeyBuffer)
 		    mFormatSingleDigits(KeyBuffer)
 		    
 		  Case Chr(58) to Chr(127)
@@ -48,25 +48,25 @@ Inherits Canvas
 		  End Select
 		  
 		  If Key = Chr(8) Then // Delete Key Pressed
-		    mManualTimeEntry(Chr(8))
+		    mManual12HourTimeEntry(Chr(8))
 		  End if
 		  
 		  if Key = Chr(30)  Then  // Arrow Key Up Pressed
 		    if Draw_AMPM_Selected = True then
 		      mMoveAMPM
 		    Elseif Draw_Hour_Selected = True Then
-		      mMoveHourUp
+		      mMove12HourUp
 		    Elseif Draw_Minute_Selected = True Then
-		      mMoveMinUp
+		      mMove12MinUp
 		    End if
 		    
 		  Elseif Key = Chr(31) Then // Arrow Key Down Pressed
 		    if Draw_AMPM_Selected = True then
 		      mMoveAMPM
 		    Elseif Draw_Hour_Selected = True Then
-		      mMoveHourDown
+		      mMove12HourDown
 		    Elseif Draw_Minute_Selected = True Then
-		      mMoveMinDown
+		      mMove12MinDown
 		    End if
 		  End if
 		  
@@ -136,17 +136,33 @@ Inherits Canvas
 		    Draw_Select_Minute(g, Time_Container(window).Time_Minute_Len)
 		  end if
 		  
-		  if Draw_AMPM_Selected = True Then
-		    Draw_AMPM(g, Time_Container(window).Time_AMPM_Len)
+		  Dim DrawStringValue as String
+		  if Time_Container(window).TimeMode = 12 Then
+		    if Draw_AMPM_Selected = True Then
+		      Draw_AMPM(g, Time_Container(window).Time_AMPM_Len)
+		    End if
+		    DrawStringValue = Time_Container(window).Time_Hour+":"+Time_Container(window).Time_Minute+" "+Time_Container(window).Time_AMPM
+		  Elseif Time_Container(window).TimeMode = 24 Then
+		    DrawStringValue = Time_Container(window).Time_Hour+":"+Time_Container(window).Time_Minute
 		  End if
 		  
 		  g.Transparency = 0
 		  g.ForeColor = RGB(0,0,0)
 		  g.TextSize = 14
 		  g.TextFont = "Helvetica"
-		  g.DrawString(Time_Container(window).Time_Hour+":"+Time_Container(window).Time_Minute+" "+Time_Container(window).Time_AMPM,10,16)
+		  g.DrawString(DrawStringValue,10,16)
 		  g.PenWidth=1
 		  g.PenHeight=1
+		  ///
+		  if Time_Container(window).TimeMode = 24 Then
+		    g.TextSize=11
+		    g.Transparency = 10
+		    g.ForeColor = &c0000FF
+		    g.TextFont = "Helvetica"
+		    g.DrawString(" 24h",50,15)
+		    g.ForeColor = RGB(0,0,0)
+		  End if
+		  ///
 		  g.Transparency = 50
 		  g.DrawRoundRect(0,0,me.Width,me.Height,6,6)
 		  
@@ -232,6 +248,43 @@ Inherits Canvas
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Function fConvertHour_12to24TimeFormat(inHour12HourTime as Integer, inAMPM as String) As String
+		  Dim Results as String
+		  
+		  if  inHour12HourTime >= 1 AND inHour12HourTime <= 12 AND inAMPM = "AM" Then
+		    // No need to convert
+		    Results = Str(inHour12HourTime)
+		  Elseif  inHour12HourTime = 1 AND inAMPM = "PM" Then
+		    Results = "13"
+		  Elseif  inHour12HourTime = 2 AND inAMPM = "PM" Then
+		    Results = "14"
+		  Elseif  inHour12HourTime = 3 AND inAMPM = "PM" Then
+		    Results = "15"
+		  Elseif  inHour12HourTime = 4 AND inAMPM = "PM" Then
+		    Results = "16"
+		  Elseif  inHour12HourTime = 5 AND inAMPM = "PM" Then
+		    Results = "17"
+		  Elseif  inHour12HourTime = 6 AND inAMPM = "PM" Then
+		    Results = "18"
+		  Elseif  inHour12HourTime = 7 AND inAMPM = "PM" Then
+		    Results = "19"
+		  Elseif  inHour12HourTime = 8 AND inAMPM = "PM" Then
+		    Results = "20"
+		  Elseif  inHour12HourTime = 9 AND inAMPM = "PM" Then
+		    Results = "21"
+		  Elseif  inHour12HourTime = 10 AND inAMPM = "PM" Then
+		    Results = "22"
+		  Elseif  inHour12HourTime = 11 AND inAMPM = "PM" Then
+		    Results = "23"
+		  Elseif  inHour12HourTime = 12 AND inAMPM = "PM" Then
+		    Results = "24"
+		  end if
+		  
+		  Return Results
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h21
 		Private Sub mFormatSingleDigits(inKeyValue as String)
 		  if Draw_Hour_Selected = True Then
@@ -261,7 +314,7 @@ Inherits Canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub mManualTimeEntry(inKeyBuffer as String)
+		Sub mManual12HourTimeEntry(inKeyBuffer as String)
 		  // Figure out Which Field the User is in to change
 		  
 		  if Draw_Hour_Selected = True then
@@ -296,21 +349,7 @@ Inherits Canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub mMoveAMPM()
-		  // Switch AM/PM
-		  if Time_Container(window).Time_AMPM = "AM" Then
-		    Time_Container(window).Time_AMPM = "PM"
-		  Elseif Time_Container(window).Time_AMPM = "PM" Then
-		    Time_Container(window).Time_AMPM = "AM"
-		  End if
-		  
-		  Time_Container(window).TimePicker1.Invalidate(False)
-		  Time_Container(window).Clock1.Invalidate(False)
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub mMoveHourDown()
+		Sub mMove12HourDown()
 		  // Hour is Selected so lets Move it down
 		  Dim TmpHour as Integer = CDbl(Time_Container(window).Time_Hour)
 		  // If the hour rolls past the AM/PM bounds we'll flip it
@@ -331,17 +370,20 @@ Inherits Canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub mMoveHourUp()
+		Sub mMove12HourUp()
 		  // Hour is Selected so lets Move it down
 		  Dim TmpHour as Integer = CDbl(Time_Container(window).Time_Hour)
+		  
 		  if TmpHour = 11 then
 		    AMPM_Flip
 		  end if
+		  
 		  TmpHour = TmpHour +1
 		  // Keep within the Time Constaints (12 HourTime)
 		  if TmpHour = 13 Then
 		    TmpHour = 1
 		  End if
+		  
 		  Time_Container(window).Time_Hour = Str(TmpHour)
 		  Time_Container(window).TimePicker1.Invalidate(False)
 		  
@@ -351,7 +393,7 @@ Inherits Canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub mMoveMinDown()
+		Sub mMove12MinDown()
 		  // Hour is Selected so lets Move it down
 		  Dim TmpMin as Integer = CDbl(Time_Container(window).Time_Minute)
 		  Dim TmpZeroPad as String
@@ -361,7 +403,7 @@ Inherits Canvas
 		    'Dim NewHourHandValue as Integer = fAutoAdvanceHourHand_Backwards(CDbl(Time_Container(window).Time_Hour))
 		    'Time_Container(window).Time_Hour = Str(NewHourHandValue)
 		    TmpZeroPad = ""
-		    mMoveHourDown
+		    mMove12HourDown
 		  End if
 		  if TmpMin <=59 AND TmpMin >=10 Then
 		    TmpZeroPad = ""
@@ -379,7 +421,7 @@ Inherits Canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub mMoveMinUp()
+		Sub mMove12MinUp()
 		  // Hour is Selected so lets Move it Up
 		  Dim TmpMin as Integer = CDbl(Time_Container(window).Time_Minute)
 		  Dim TmpZeroPad as String
@@ -389,7 +431,7 @@ Inherits Canvas
 		    'Dim NewHourHandValue as Integer = fAutoAdvanceHourHand_Forward(CDbl(Time_Container(window).Time_Hour))
 		    'Time_Container(window).Time_Hour = Str(NewHourHandValue)
 		    TmpZeroPad = ""
-		    mMoveHourUp
+		    mMove12HourUp
 		  End if
 		  if TmpMin <=59 AND TmpMin >=10 Then
 		    TmpZeroPad = ""
@@ -402,6 +444,121 @@ Inherits Canvas
 		  
 		  Time_Container(window).Clock1.ClockMinuteValue = Time_Container(window).Clock1.ClockMinuteValue + .1046
 		  Time_Container(window).Clock1.Invalidate(False)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub mMove24HourDown()
+		  // Hour is Selected so lets Move it down
+		  Dim TmpHour as Integer = CDbl(Time_Container(window).Time_Hour)
+		  
+		  TmpHour = TmpHour -1
+		  
+		  // Keep within the 24 hour Time Constaints
+		  if TmpHour = -1 Then
+		    TmpHour = 23
+		    AMPM_Flip
+		  End if
+		  
+		  Time_Container(window).Time_Hour = Str(TmpHour)
+		  Time_Container(window).TimePicker1.Invalidate(False)
+		  
+		  Time_Container(window).Clock1.ClockHourValue = Time_Container(window).Clock1.ClockHourValue + .522
+		  Time_Container(window).Clock1.Invalidate(False)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub mMove24HourUp()
+		  // Hour is Selected so lets Move it down
+		  Dim TmpHour as Integer = CDbl(Time_Container(window).Time_Hour)
+		  
+		  TmpHour = TmpHour +1
+		  
+		  // Keep within the 24 hour Time Constaints
+		  if TmpHour = 24 Then
+		    TmpHour = 0
+		    AMPM_Flip
+		  End if
+		  
+		  Time_Container(window).Time_Hour = Str(TmpHour)
+		  Time_Container(window).TimePicker1.Invalidate(False)
+		  
+		  Time_Container(window).Clock1.ClockHourValue = Time_Container(window).Clock1.ClockHourValue + .522
+		  Time_Container(window).Clock1.Invalidate(False)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub mMove24MinDown()
+		  // Hour is Selected so lets Move it down
+		  Dim TmpMin as Integer = CDbl(Time_Container(window).Time_Minute)
+		  Dim TmpZeroPad as String
+		  TmpMin = TmpMin - 1
+		  if TmpMin = -1 Then
+		    TmpMin = 59
+		    TmpZeroPad = ""
+		    mMove24HourDown
+		  End if
+		  if TmpMin <=59 AND TmpMin >=10 Then
+		    TmpZeroPad = ""
+		  Else
+		    TmpZeroPad = "0"
+		  End if
+		  
+		  // Keep within the Time Constaints (12 HourTime)
+		  Time_Container(window).Time_Minute = TmpZeroPad+Str(TmpMin)
+		  Time_Container(window).TimePicker1.Invalidate(False)
+		  
+		  Time_Container(window).Clock1.ClockMinuteValue =Time_Container(window).Clock1.ClockMinuteValue - .1046
+		  Time_Container(window).Clock1.Invalidate(False)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub mMove24MinUp()
+		  // Hour is Selected so lets Move it Up
+		  Dim TmpMin as Integer = CDbl(Time_Container(window).Time_Minute)
+		  Dim TmpZeroPad as String
+		  TmpMin = TmpMin + 1
+		  if TmpMin = 60 Then
+		    TmpMin = 00
+		    TmpZeroPad = ""
+		    mMove24HourUp
+		  End if
+		  if TmpMin <=59 AND TmpMin >=10 Then
+		    TmpZeroPad = ""
+		  Else
+		    TmpZeroPad = "0"
+		  End if
+		  // Keep within the Time Constaints (12 HourTime)
+		  Time_Container(window).Time_Minute = TmpZeroPad+Str(TmpMin)
+		  Time_Container(window).TimePicker1.Invalidate(False)
+		  
+		  Time_Container(window).Clock1.ClockMinuteValue = Time_Container(window).Clock1.ClockMinuteValue + .1046
+		  Time_Container(window).Clock1.Invalidate(False)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub mMoveAMPM()
+		  // Switch AM/PM
+		  if Time_Container(window).Time_AMPM = "AM" Then
+		    Time_Container(window).Time_AMPM = "PM"
+		  Elseif Time_Container(window).Time_AMPM = "PM" Then
+		    Time_Container(window).Time_AMPM = "AM"
+		  End if
+		  
+		  Time_Container(window).TimePicker1.Invalidate(False)
+		  Time_Container(window).Clock1.Invalidate(False)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub mOneTimeConversion12to24()
+		  // Do a one time conversion from 12 hour to 24 hour for the current time
+		  Time_Container(Window).Time_Hour =  Time_Container(Window).TimePicker1.fConvertHour_12to24TimeFormat(2,"PM")
+		  Time_Container(Window).TimePicker1.Invalidate(False)
 		End Sub
 	#tag EndMethod
 
