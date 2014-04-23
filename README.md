@@ -11,7 +11,7 @@ Written by:     Mike Cotrone (mikec@intelligentvisibility.com)
 
 Contributors:   Jim McKay
 
-Version:        1.4
+Version:        1.5
 
 
 What is this Project?
@@ -22,6 +22,15 @@ What is this Project?
         - 12 hour time support only
         
   - Awesome Clock hand animation
+
+
+Whats New in 1.5?
+-----------------
+- Added Localizations for: Enlish, Afrikaans, Dutch, French, German, Italian, Spanish, and Swedish
+- Jim McKay restructured the containers to clean up alot of the demo code flow
+- Jim McKay was able to render the Clock Hands flawlessly in v1.5
+
+------------------------
 
 How to Use this Project?
 
