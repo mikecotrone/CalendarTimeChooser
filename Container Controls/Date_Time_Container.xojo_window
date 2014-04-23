@@ -166,9 +166,9 @@ End
 		    Localized_TimeOnlyTitle_Str = "Choose Time"
 		    
 		  Case 1 // French
-		    Localized_CalendarOnlyTitle_Str = "Choisir une date"
-		    Localized_ChooseBothTitle_Str = "Choisir la date et l'heure"
-		    Localized_TimeOnlyTitle_Str = "Choisissez temps"
+		    Localized_CalendarOnlyTitle_Str = "Choisissez la date"
+		    Localized_ChooseBothTitle_Str = "Choisissez la date et l'heure"
+		    Localized_TimeOnlyTitle_Str = "Choisissez l'heure"
 		    
 		  Case 2 // Swedish
 		    Localized_CalendarOnlyTitle_Str = "Välj datum"
@@ -191,7 +191,7 @@ End
 		    Localized_TimeOnlyTitle_Str = "Kies Time"
 		    
 		  Case 6 // German
-		    Localized_CalendarOnlyTitle_Str = "Datum wählen"
+		    Localized_CalendarOnlyTitle_Str = "Wählen Sie Datum"
 		    Localized_ChooseBothTitle_Str = "Wählen Sie Datum und Uhrzeit"
 		    Localized_TimeOnlyTitle_Str = "Wählen Sie Zeit"
 		    
