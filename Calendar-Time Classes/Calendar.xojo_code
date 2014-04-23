@@ -19,7 +19,7 @@ Inherits Canvas
 		      SelectedDate.Day = CalendarButtonClassArray(i).Day
 		      SelectedDate.Year = CDbl(SelectedYear)
 		      CalendarButtonClassArray(i).SelectedDate = SelectedDate
-		      CalendarWindow.Calendar_Container1.mRaiseEvent
+		      Calendar_Container(window).mRaiseEvent
 		      Me.Invalidate(False)
 		    end if
 		  next i
@@ -29,33 +29,8 @@ Inherits Canvas
 
 	#tag Event
 		Sub Open()
-		  
-		  // Assign Calendar Spaces
-		  mInitialAssignmentCalendarButtons(36)
-		  
-		  // Date Instantiations
-		  CurrentDate = new Date
-		  //StartYear = CurrentDate.Year
-		  
-		  // Build Year Popup Menu on Calendar Container
-		  mLoad_YearList(StartYear,2050)
-		  
-		  //// Build Month Popup Menu on Calendar Container
-		  mLoad_MonthList
-		  
-		  // Load the Localized Day of the Week Abbreviation List to the Calendar
-		  CalendarWindow.Calendar_Container1.Calendar1.mBuild_LocalizedDayOfWeek_Arrays(0)
-		  
-		  /// /// /// /// /// /// /// /// ///
-		  /// Gregorian Math ///
-		  /// /// /// /// /// /// /// ///
-		  
-		  // Figure out Century Number
-		  CenturyNumber = fCalcCenturyNumber(2015)
-		  
 		  // Choose Today's Date When we Open
-		  CalendarWindow.Calendar_Container1.mTakeMeToTodaysDate
-		  
+		  Calendar_Container(window).mTakeMeToTodaysDate
 		  
 		  
 		End Sub
@@ -100,46 +75,23 @@ Inherits Canvas
 		  Next i
 		  
 		  // Draw the Day of Week Labels using the Boolean to know if we are Sat - Sun or Mon - Sun
+		  g.ForeColor = RGB(116,116,116)
+		  g.TextFont = "System"
+		  g.Bold = false
+		  g.TextSize = 12
 		  if CalMonFirstDayOfWeekBool = False Then
-		    Dim xPos as Integer
-		    for i as integer = 1 to 6
-		      dim pos as integer = 11
-		      Dim TmpLen as Integer = DayOfWeekArray_SS(i).len
-		      if LocalizationInt <> 0 Then
-		        xPos = 8
-		      Elseif  LocalizationInt = 0 Then
-		        xPos = 11
-		      End if
-		      for x as integer = 0 to UBound(DayOfWeekArray_SS)
-		        g.ForeColor = RGB(116,116,116)
-		        g.TextFont = "System"
-		        g.Bold = false
-		        g.TextSize = 12
-		        g.DrawString(DayOfWeekArray_SS(x),xPos-3,17)
-		        xpos = xPos + 30
-		      next x
-		    next i
-		    
-		    
+		    Dim xPos as Integer = 11
+		    for x as integer = 0 to UBound(DayOfWeekArray_SS)
+		      g.DrawString(DayOfWeekArray_SS(x),xPos-3,17)
+		      xpos = xPos + 30
+		    next x
 		  Elseif CalMonFirstDayOfWeekBool = True Then
-		    Dim xPos as Integer
-		    for i as integer = 1 to 6
-		      dim pos as integer = 11
-		      Dim TmpLen as Integer = DayOfWeek_MS(i).len
-		      if LocalizationInt <> 0 Then
-		        xPos = 7
-		      Elseif  LocalizationInt = 0 Then
-		        xPos = 11
-		      End if
-		      for x as integer = 0 to UBound(DayOfWeek_MS)
-		        g.ForeColor = RGB(116,116,116)
-		        g.TextFont = "System"
-		        g.Bold = false
-		        g.TextSize = 12
-		        g.DrawString(DayOfWeek_MS(x),xPos-3,17)
-		        xpos = xPos + 30
-		      next x
-		    next i
+		    Dim xPos as Integer = 11
+		    for x as integer = 0 to UBound(DayOfWeek_MS)
+		      g.DrawString(DayOfWeek_MS(x),xPos-3,17)
+		      xpos = xPos + 30
+		    next x
+		    
 		  End if
 		  
 		  Dim SelectMonthInt as Integer = fConvertMonthStringToMonthNumber(SelectedMonth)
@@ -198,6 +150,41 @@ Inherits Canvas
 		End Sub
 	#tag EndEvent
 
+
+	#tag Method, Flags = &h1000
+		Sub constructor()
+		  // Calling the overridden superclass constructor.
+		  Super.Constructor
+		  
+		  
+		  
+		  // Assign Calendar Spaces
+		  mInitialAssignmentCalendarButtons(36)
+		  
+		  // Date Instantiations
+		  CurrentDate = new Date
+		  //StartYear = CurrentDate.Year
+		  
+		  // Build Year Popup Menu on Calendar Container
+		  mLoad_YearList(StartYear,2050)
+		  
+		  //// Build Month Popup Menu on Calendar Container
+		  mLoad_MonthList
+		  
+		  // Load the Localized Day of the Week Abbreviation List to the Calendar
+		  mBuild_LocalizedDayOfWeek_Arrays(0)
+		  
+		  /// /// /// /// /// /// /// /// ///
+		  /// Gregorian Math ///
+		  /// /// /// /// /// /// /// ///
+		  
+		  // Figure out Century Number
+		  CenturyNumber = fCalcCenturyNumber(2015)
+		  
+		  
+		  
+		End Sub
+	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Function fCalcCenturyNumber(inYear as Integer) As Integer
@@ -639,7 +626,7 @@ Inherits Canvas
 		Sub mBuild_LocalizedDayOfWeek_Arrays(inLocalizationInt as Integer)
 		  Select Case inLocalizationInt
 		    
-		  Case 0 
+		  Case 0
 		    ////////////////////////////
 		    /////// English ///////
 		    ///////////////////////////
@@ -795,21 +782,21 @@ Inherits Canvas
 
 	#tag Method, Flags = &h0
 		Sub mLoad_MonthList()
-		  CalendarWindow.Calendar_Container1.MonthPopup.DeleteAllRows
-		  CalendarWindow.Calendar_Container1.MonthPopup.AddRow Localized_January
-		  CalendarWindow.Calendar_Container1.MonthPopup.AddRow Localized_February
-		  CalendarWindow.Calendar_Container1.MonthPopup.AddRow Localized_March
-		  CalendarWindow.Calendar_Container1.MonthPopup.AddRow Localized_April
-		  CalendarWindow.Calendar_Container1.MonthPopup.AddRow Localized_May
-		  CalendarWindow.Calendar_Container1.MonthPopup.AddRow Localized_June
-		  CalendarWindow.Calendar_Container1.MonthPopup.AddRow Localized_July
-		  CalendarWindow.Calendar_Container1.MonthPopup.AddRow Localized_August
-		  CalendarWindow.Calendar_Container1.MonthPopup.AddRow Localized_September
-		  CalendarWindow.Calendar_Container1.MonthPopup.AddRow Localized_October
-		  CalendarWindow.Calendar_Container1.MonthPopup.AddRow Localized_November
-		  CalendarWindow.Calendar_Container1.MonthPopup.AddRow Localized_December
+		  Calendar_Container(window).MonthPopup.DeleteAllRows
+		  Calendar_Container(window).MonthPopup.AddRow Localized_January
+		  Calendar_Container(window).MonthPopup.AddRow Localized_February
+		  Calendar_Container(window).MonthPopup.AddRow Localized_March
+		  Calendar_Container(window).MonthPopup.AddRow Localized_April
+		  Calendar_Container(window).MonthPopup.AddRow Localized_May
+		  Calendar_Container(window).MonthPopup.AddRow Localized_June
+		  Calendar_Container(window).MonthPopup.AddRow Localized_July
+		  Calendar_Container(window).MonthPopup.AddRow Localized_August
+		  Calendar_Container(window).MonthPopup.AddRow Localized_September
+		  Calendar_Container(window).MonthPopup.AddRow Localized_October
+		  Calendar_Container(window).MonthPopup.AddRow Localized_November
+		  Calendar_Container(window).MonthPopup.AddRow Localized_December
 		  
-		  CalendarWindow.Calendar_Container1.MonthPopup.ListIndex = 0
+		  Calendar_Container(window).MonthPopup.ListIndex = 0
 		  
 		End Sub
 	#tag EndMethod
@@ -818,9 +805,9 @@ Inherits Canvas
 		Private Sub mLoad_YearList(inStartYear as integer, inEndYear as Integer)
 		  // Load the Year Pop Up Menu on the Calendar Container
 		  for i as integer = inStartYear to inEndYear
-		    CalendarWindow.Calendar_Container1.YearPopup.AddRow Str(i)
+		    Calendar_Container(window).YearPopup.AddRow Str(i)
 		  next i
-		  CalendarWindow.Calendar_Container1.YearPopup.ListIndex = 0
+		  Calendar_Container(window).YearPopup.ListIndex = 0
 		End Sub
 	#tag EndMethod
 
@@ -859,7 +846,7 @@ Inherits Canvas
 		  Dim PrevMonthNumOfDays as Integer = fNumOfDaysInMonth(PreviousMonth)
 		  Dim NextMonthNumOfDays as Integer = fNumOfDaysInMonth(NextMonth)
 		  
-		  if CalendarWindow.Calendar_Container1.Calendar1.IncludePrevNextMonthDaysBool = True Then
+		  if Calendar_Container(window).Calendar1.IncludePrevNextMonthDaysBool = True Then
 		    // Now Map the Previous Available Slots with the appropriate Previous Month's Ending Calendar Days
 		    Dim PrevDayCounter as Integer  = PrevMonthNumOfDays
 		    Dim ii as integer

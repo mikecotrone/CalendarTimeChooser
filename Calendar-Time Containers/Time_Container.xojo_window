@@ -15,8 +15,8 @@ Begin ContainerControl Time_Container
    Left            =   0
    LockBottom      =   False
    LockLeft        =   False
-   LockRight       =   False
-   LockTop         =   False
+   LockRight       =   True
+   LockTop         =   True
    TabIndex        =   0
    TabPanelIndex   =   0
    TabStop         =   True
@@ -30,7 +30,7 @@ Begin ContainerControl Time_Container
       AcceptTabs      =   True
       AutoDeactivate  =   True
       Backdrop        =   0
-      DoubleBuffer    =   True
+      DoubleBuffer    =   False
       Draw_AMPM_Selected=   False
       Draw_Hour_Selected=   False
       Draw_Minute_Selected=   False
@@ -93,7 +93,7 @@ Begin ContainerControl Time_Container
       Enabled         =   True
       EraseBackground =   False
       FaceColor       =   &cDDDDDD00
-      Font            =   """""Helvetica"""""
+      Font            =   "Helvetica"
       Height          =   130
       HelpTag         =   ""
       HourCount       =   12
@@ -168,47 +168,47 @@ End
 	#tag Event
 		Sub Down()
 		  // Change Hours Down
-		  Select Case CalendarWindow.Time_Container1.TimePicker1.Draw_Hour_Selected
+		  Select Case TimePicker1.Draw_Hour_Selected
 		  Case True
-		    CalendarWindow.Time_Container1.TimePicker1.mMoveHourDown
+		    TimePicker1.mMoveHourDown
 		  End Select
 		  
 		  // Change Minutes Down
-		  Select Case CalendarWindow.Time_Container1.TimePicker1.Draw_Minute_Selected
+		  Select Case TimePicker1.Draw_Minute_Selected
 		  Case True
-		    CalendarWindow.Time_Container1.TimePicker1.mMoveMinDown
+		    TimePicker1.mMoveMinDown
 		  End Select
 		  
 		  // Change AM / PM
-		  Select Case CalendarWindow.Time_Container1.TimePicker1.Draw_AMPM_Selected
+		  Select Case TimePicker1.Draw_AMPM_Selected
 		  Case True
-		    CalendarWindow.Time_Container1.TimePicker1.mMoveAMPM
+		    TimePicker1.mMoveAMPM
 		  End Select
 		  
-		  CalendarWindow.Time_Container1.mRaiseEvent_SelectedTime
+		  mRaiseEvent_SelectedTime
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub Up()
 		  // Change Hours Up
-		  Select Case CalendarWindow.Time_Container1.TimePicker1.Draw_Hour_Selected
+		  Select Case TimePicker1.Draw_Hour_Selected
 		  Case True
-		    CalendarWindow.Time_Container1.TimePicker1.mMoveHourUp
+		    TimePicker1.mMoveHourUp
 		  End Select
 		  
 		  // Change Minutes Up
-		  Select Case CalendarWindow.Time_Container1.TimePicker1.Draw_Minute_Selected
+		  Select Case TimePicker1.Draw_Minute_Selected
 		  Case True
-		    CalendarWindow.Time_Container1.TimePicker1.mMoveMinUp
+		    TimePicker1.mMoveMinUp
 		  End Select
 		  
 		  // Change AM / PM
-		  Select Case CalendarWindow.Time_Container1.TimePicker1.Draw_AMPM_Selected
+		  Select Case TimePicker1.Draw_AMPM_Selected
 		  Case True
-		    CalendarWindow.Time_Container1.TimePicker1.mMoveAMPM
+		    TimePicker1.mMoveAMPM
 		  End Select
 		  
-		  CalendarWindow.Time_Container1.mRaiseEvent_SelectedTime
+		  mRaiseEvent_SelectedTime
 		End Sub
 	#tag EndEvent
 	#tag Event

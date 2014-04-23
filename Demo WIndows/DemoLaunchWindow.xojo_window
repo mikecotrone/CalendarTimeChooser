@@ -686,6 +686,26 @@ End
 #tag EndWindow
 
 #tag WindowCode
+	#tag Property, Flags = &h21
+		Private mMyPicker As DateTimeWindow
+	#tag EndProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  if mMyPicker=nil then mMyPicker=new DateTimeWindow
+			  return mMyPicker
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mMyPicker = value
+			End Set
+		#tag EndSetter
+		MyPicker As DateTimeWindow
+	#tag EndComputedProperty
+
+
 #tag EndWindowCode
 
 #tag Events TextArea1
@@ -715,20 +735,11 @@ End
 		Sub Change()
 		  Select Case Me.Text
 		  Case "Calendar and Time"
-		    CalendarWindow.BothPickers = True
-		    CalendarWindow.CalendarPicker_Only = False
-		    CalendarWindow.TimePicker_Only = False
-		    CalendarWindow.mSetupForBothPickers
+		    MyPicker.VisiblePickers=Date_Time_Container.PickerElements.CalendarAndClock
 		  Case "Calendar Only"
-		    CalendarWindow.CalendarPicker_Only = True
-		    CalendarWindow.BothPickers = False
-		    CalendarWindow.TimePicker_Only = False
-		    CalendarWindow.mSetupForCalendarPickerOnly
+		    MyPicker.VisiblePickers=Date_Time_Container.PickerElements.CalendarOnly
 		  Case "Time Only"
-		    CalendarWindow.TimePicker_Only =True
-		    CalendarWindow.BothPickers = False
-		    CalendarWindow.CalendarPicker_Only = False
-		    CalendarWindow.mSetupForTimePickerOnly
+		    MyPicker.VisiblePickers=Date_Time_Container.PickerElements.ClockOnly
 		  End Select
 		  
 		  
@@ -752,18 +763,18 @@ End
 		Sub Change()
 		  Select Case Me.Text
 		  Case "Dark Grey"
-		    CalendarWindow.BackColor = RGB(173,173,173)
+		    MyPicker.Date_Time_Container1.BackColor = RGB(173,173,173)
 		  Case "Medium Grey"
-		    CalendarWindow.BackColor = RGB(200,200,200)
+		    MyPicker.Date_Time_Container1.BackColor = RGB(200,200,200)
 		  Case "Light Grey"
-		    CalendarWindow.BackColor = RGB(239,239,239)
+		    MyPicker.Date_Time_Container1.BackColor = RGB(239,239,239)
 		  Case "Light Green"
-		    CalendarWindow.BackColor = &cc5cfc5
+		    MyPicker.Date_Time_Container1.BackColor = &cc5cfc5
 		  Case "Light Cyan"
-		    CalendarWindow.BackColor = RGB(234,244,255)
+		    MyPicker.Date_Time_Container1.BackColor = RGB(234,244,255)
 		  End Select
 		  
-		  CalendarWindow.Invalidate(True)
+		  MyPicker.Invalidate(True)
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -773,22 +784,19 @@ End
 		  // Load Popup Menu
 		  me.AddRow("Include")
 		  me.AddRow("Do NOT include")
-		  me.ListIndex = 0
-		  
+		  me.ListIndex=0
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub Change()
 		  Select Case Me.Text
 		  Case "Include"
-		    CalendarWindow.Calendar_Container1.Calendar1.IncludePrevNextMonthDaysBool = True
+		    MyPicker.IncludePrevNextMonthDays = True
 		  Case "Do NOT include"
-		    CalendarWindow.Calendar_Container1.Calendar1.IncludePrevNextMonthDaysBool = False
+		    MyPicker.IncludePrevNextMonthDays = False
 		  End Select
 		  
-		  CalendarWindow.Calendar_Container1.Calendar1.Invalidate(False)
-		  CalendarWindow.Calendar_Container1.Calendar1.UPDATE_MonthDays
-		  CalendarWindow.Calendar_Container1.Calendar1.UPDATE_MapDaysToCalSlots
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -806,11 +814,10 @@ End
 		Sub Change()
 		  Select Case Me.Text
 		  Case "Use Graphical Clock Hands"
-		    CalendarWindow.Time_Container1.Clock1.UseGraphicalClockHands=True
+		    MyPicker.UseGraphicalClockHands=True
 		  Case "Use Lines for Clock Hands"
-		    CalendarWindow.Time_Container1.Clock1.UseGraphicalClockHands=False
+		    MyPicker.UseGraphicalClockHands=False
 		  End Select
-		  CalendarWindow.Time_Container1.Clock1.Invalidate(False)
 		  
 		End Sub
 	#tag EndEvent
@@ -829,14 +836,12 @@ End
 		Sub Change()
 		  Select Case Me.Text
 		  Case "Week Starts on Sunday"
-		    CalendarWindow.Calendar_Container1.Calendar1.CalMonFirstDayOfWeekBool = False
+		    MyPicker.WeekStartsOnMonday = False
 		  Case "Week Starts on Monday"
-		    CalendarWindow.Calendar_Container1.Calendar1.CalMonFirstDayOfWeekBool = True
+		    MyPicker.WeekStartsOnMonday = True
 		  End Select
 		  
-		  CalendarWindow.Calendar_Container1.Calendar1.Invalidate(False)
-		  CalendarWindow.Calendar_Container1.Calendar1.UPDATE_MonthDays
-		  CalendarWindow.Calendar_Container1.Calendar1.UPDATE_MapDaysToCalSlots
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -850,7 +855,7 @@ End
 		  me.AddRow("3 - Google Style (12hr)")
 		  me.AddRow("4 - Modern (12hr)")
 		  me.AddRow("5 - Dynamic (12hr)")
-		  me.AddRow("6 - Dynamic (24hr)")
+		  me.AddRow("5 - Dynamic (24hr)")
 		  me.ListIndex = 0
 		  
 		End Sub
@@ -860,23 +865,21 @@ End
 		  Select Case Me.Text
 		  Case "0 - Chrome (12hr)"
 		    // Default Clock Face
-		    CalendarWindow.SelectClockFaceType = 0
+		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Chrome
 		  Case "1 - Roman (12hr)"
-		    CalendarWindow.SelectClockFaceType = 1
+		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Roman
 		  Case "2 - Standard (12hr)"
-		    CalendarWindow.SelectClockFaceType =2
+		    MyPicker.ClockFaceType =Date_Time_Container.ClockFaceType.Standard
 		  Case "3 - Google Style (12hr)"
-		    CalendarWindow.SelectClockFaceType = 3
+		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.GoogleStyle
 		  Case "4 - Modern (12hr)"
-		    CalendarWindow.SelectClockFaceType = 4
+		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Modern
 		  Case "5 - Dynamic (12hr)"
-		    CalendarWindow.SelectClockFaceType = 5
-		    CalendarWindow.Time_Container1.Clock1.HourCount=12
-		  Case "6 - Dynamic (24hr)"
-		    CalendarWindow.SelectClockFaceType = 5
-		    CalendarWindow.Time_Container1.Clock1.HourCount=24
+		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Dynamic_12hr
+		  Case "5 - Dynamic (24hr)"
+		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Dynamic_24hr
 		  End Select
-		  CalendarWindow.Time_Container1.Clock1.Invalidate(False)
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -919,30 +922,30 @@ End
 		  Dim LocalInt as Integer
 		  Select Case Me.Text
 		  Case "English"
-		    CalendarWindow.Calendar_Container1.Calendar1.LocalizationInt = 0
+		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 0
 		    LocalInt = 0
 		  Case "French"
-		    CalendarWindow.Calendar_Container1.Calendar1.LocalizationInt = 1
+		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 1
 		    LocalInt = 1
 		  Case "Spanish"
-		    CalendarWindow.Calendar_Container1.Calendar1.LocalizationInt = 2
+		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 2
 		    LocalInt = 2
 		  Case "Swedish"
-		    CalendarWindow.Calendar_Container1.Calendar1.LocalizationInt = 3
+		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 3
 		    LocalInt = 3
 		  End Select
 		  
 		  // Create the Localized Month List
-		  CalendarWindow.Calendar_Container1.Calendar1.mBuildLocalizedMonthList(LocalInt)
+		  MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.mBuildLocalizedMonthList(LocalInt)
 		  // Create the Localized Day of the Week List
-		  CalendarWindow.Calendar_Container1.Calendar1.mBuildLocalizedDayOfWeekList(LocalInt)
+		  MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.mBuildLocalizedDayOfWeekList(LocalInt)
 		  
 		  
 		  // Load the Localized Month List to the PopUp Menu
-		  CalendarWindow.Calendar_Container1.Calendar1.mLoad_MonthList
+		  MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.mLoad_MonthList
 		  
 		  // Load the Localized Day of the Week Abbreviation List to the Calendar
-		  CalendarWindow.Calendar_Container1.Calendar1.mBuild_LocalizedDayOfWeek_Arrays(LocalInt)
+		  MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.mBuild_LocalizedDayOfWeek_Arrays(LocalInt)
 		  
 		  
 		End Sub

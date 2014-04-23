@@ -81,21 +81,21 @@ Inherits Canvas
 		  Me.SetFocus()
 		  KeyBuffer = ""
 		  
-		  if x >= Indent AND x <=Indent+CalendarWindow.Time_Container1.Time_Hour_Len Then
+		  if x >= Indent AND x <=Indent+Time_Container(window).Time_Hour_Len Then
 		    Draw_Hour_Selected = True
 		    Draw_Minute_Selected = False
 		    Draw_AMPM_Selected = False
 		    me.Invalidate(False)
 		  End if
 		  
-		  if x >= Indent+CalendarWindow.Time_Container1.Time_Hour_Len+Colon_Width AND x <= Indent+CalendarWindow.Time_Container1.Time_Hour_Len+Colon_Width+CalendarWindow.Time_Container1.Time_Minute_Len Then
+		  if x >= Indent+Time_Container(window).Time_Hour_Len+Colon_Width AND x <= Indent+Time_Container(window).Time_Hour_Len+Colon_Width+Time_Container(window).Time_Minute_Len Then
 		    Draw_Minute_Selected = True
 		    Draw_Hour_Selected = False
 		    Draw_AMPM_Selected = False
 		    me.Invalidate(False)
 		  End if
 		  
-		  if x >= Indent+CalendarWindow.Time_Container1.Time_Hour_Len+Colon_Width+CalendarWindow.Time_Container1.Time_Minute_Len+SpaceBetweenMinAndAMPM AND x <= Indent+CalendarWindow.Time_Container1.Time_Hour_Len+Colon_Width+CalendarWindow.Time_Container1.Time_Minute_Len+SpaceBetweenMinAndAMPM+CalendarWindow.Time_Container1.Time_AMPM_Len Then
+		  if x >= Indent+Time_Container(window).Time_Hour_Len+Colon_Width+Time_Container(window).Time_Minute_Len+SpaceBetweenMinAndAMPM AND x <= Indent+Time_Container(window).Time_Hour_Len+Colon_Width+Time_Container(window).Time_Minute_Len+SpaceBetweenMinAndAMPM+Time_Container(window).Time_AMPM_Len Then
 		    Draw_AMPM_Selected = True
 		    Draw_Minute_Selected = False
 		    Draw_Hour_Selected = False
@@ -124,27 +124,27 @@ Inherits Canvas
 		  // Draw Shape of Control
 		  g.ForeColor = RGB(255,255,255)
 		  g.FillRoundRect (0,0,me.Width,me.Height,6,6)
-		  CalendarWindow.Time_Container1.Time_Hour_Len = CalendarWindow.Time_Container1.Time_Hour.Len*9
-		  CalendarWindow.Time_Container1.Time_Minute_Len =CalendarWindow.Time_Container1. Time_Minute.Len*9
-		  CalendarWindow.Time_Container1.Time_AMPM_Len = CalendarWindow.Time_Container1.Time_AMPM.Len*11
+		  Time_Container(window).Time_Hour_Len = Time_Container(window).Time_Hour.Len*9
+		  Time_Container(window).Time_Minute_Len =Time_Container(window). Time_Minute.Len*9
+		  Time_Container(window).Time_AMPM_Len = Time_Container(window).Time_AMPM.Len*11
 		  
 		  if Draw_Hour_Selected = True Then
-		    Draw_Select_Hour(g, CalendarWindow.Time_Container1.Time_Hour_Len)
+		    Draw_Select_Hour(g, Time_Container(window).Time_Hour_Len)
 		  end if
 		  
 		  if Draw_Minute_Selected = True Then
-		    Draw_Select_Minute(g, CalendarWindow.Time_Container1.Time_Minute_Len)
+		    Draw_Select_Minute(g, Time_Container(window).Time_Minute_Len)
 		  end if
 		  
 		  if Draw_AMPM_Selected = True Then
-		    Draw_AMPM(g, CalendarWindow.Time_Container1.Time_AMPM_Len)
+		    Draw_AMPM(g, Time_Container(window).Time_AMPM_Len)
 		  End if
 		  
 		  g.Transparency = 0
 		  g.ForeColor = RGB(0,0,0)
 		  g.TextSize = 14
 		  g.TextFont = "Helvetica"
-		  g.DrawString(CalendarWindow.Time_Container1.Time_Hour+":"+CalendarWindow.Time_Container1.Time_Minute+" "+CalendarWindow.Time_Container1.Time_AMPM,10,16)
+		  g.DrawString(Time_Container(window).Time_Hour+":"+Time_Container(window).Time_Minute+" "+Time_Container(window).Time_AMPM,10,16)
 		  g.PenWidth=1
 		  g.PenHeight=1
 		  g.Transparency = 50
@@ -158,10 +158,10 @@ Inherits Canvas
 
 	#tag Method, Flags = &h0
 		Sub AMPM_Flip()
-		  if CalendarWindow.Time_Container1.Time_AMPM = "AM" Then
-		    CalendarWindow.Time_Container1.Time_AMPM = "PM"
-		  Elseif CalendarWindow.Time_Container1.Time_AMPM = "PM" Then
-		    CalendarWindow.Time_Container1.Time_AMPM = "AM"
+		  if Time_Container(window).Time_AMPM = "AM" Then
+		    Time_Container(window).Time_AMPM = "PM"
+		  Elseif Time_Container(window).Time_AMPM = "PM" Then
+		    Time_Container(window).Time_AMPM = "AM"
 		  End if
 		  
 		  me.Invalidate(False)
@@ -172,7 +172,7 @@ Inherits Canvas
 		Private Sub Draw_AMPM(g as Graphics, inTimeAMPMLen as Integer)
 		  g.Transparency = 40
 		  g.ForeColor = &c99ccff
-		  g.FillRect(Indent+CalendarWindow.Time_Container1.Time_Hour_Len+Colon_Width+CalendarWindow.Time_Container1.Time_Minute_Len+SpaceBetweenMinAndAMPM-1,1,inTimeAMPMLen+2,me.Height-2)
+		  g.FillRect(Indent+Time_Container(window).Time_Hour_Len+Colon_Width+Time_Container(window).Time_Minute_Len+SpaceBetweenMinAndAMPM-1,1,inTimeAMPMLen+2,me.Height-2)
 		End Sub
 	#tag EndMethod
 
@@ -188,7 +188,7 @@ Inherits Canvas
 		Private Sub Draw_Select_Minute(g as Graphics, inTimeMinuteLen as Integer)
 		  g.Transparency = 40
 		  g.ForeColor = &c99ccff
-		  g.FillRect(Indent+CalendarWindow.Time_Container1.Time_Hour_Len+Colon_Width,1,inTimeMinuteLen,me.Height-2)
+		  g.FillRect(Indent+Time_Container(window).Time_Hour_Len+Colon_Width,1,inTimeMinuteLen,me.Height-2)
 		End Sub
 	#tag EndMethod
 
@@ -236,24 +236,24 @@ Inherits Canvas
 		Private Sub mFormatSingleDigits(inKeyValue as String)
 		  if Draw_Hour_Selected = True Then
 		    if inKeyValue = "01" or inKeyValue = "02" or inKeyValue = "03" or inKeyValue = "04" or inKeyValue = "05"or inKeyValue ="06" or inKeyValue ="07" or inKeyValue ="08" or inKeyValue ="09" Then
-		      CalendarWindow.Time_Container1.Time_Hour = inKeyValue
+		      Time_Container(window).Time_Hour = inKeyValue
 		    elseif CDbl(inKeyValue) >=1 AND CDbl(inKeyValue) <= 9 Then
-		      CalendarWindow.Time_Container1.Time_Hour = "0"+CalendarWindow.Time_Container1.Time_Hour
+		      Time_Container(window).Time_Hour = "0"+Time_Container(window).Time_Hour
 		    Elseif inKeyValue = "0" Then
-		      CalendarWindow.Time_Container1.Time_Hour = "0"
+		      Time_Container(window).Time_Hour = "0"
 		    Elseif inKeyValue = "00" Then
-		      CalendarWindow.Time_Container1.Time_Hour = "12"
+		      Time_Container(window).Time_Hour = "12"
 		    end if
 		    
 		  Elseif Draw_Minute_Selected = True Then
 		    if inKeyValue = "01" or inKeyValue = "02" or inKeyValue = "03" or inKeyValue = "04" or inKeyValue = "05"or inKeyValue ="06" or inKeyValue ="07" or inKeyValue ="08" or inKeyValue ="09" Then
-		      CalendarWindow.Time_Container1.Time_Minute = inKeyValue
+		      Time_Container(window).Time_Minute = inKeyValue
 		    Elseif CDbl(inKeyValue) >=1 AND CDbl(inKeyValue) <= 9 Then
-		      CalendarWindow.Time_Container1.Time_Minute = "0"+CalendarWindow.Time_Container1.Time_Minute
+		      Time_Container(window).Time_Minute = "0"+Time_Container(window).Time_Minute
 		    Elseif inKeyValue = "0" Then
-		      CalendarWindow.Time_Container1.Time_Minute = "0"
+		      Time_Container(window).Time_Minute = "0"
 		    Elseif inKeyValue = "00" Then
-		      CalendarWindow.Time_Container1.Time_Minute = "00"
+		      Time_Container(window).Time_Minute = "00"
 		    end if
 		    
 		  End if
@@ -266,11 +266,12 @@ Inherits Canvas
 		  
 		  if Draw_Hour_Selected = True then
 		    if CDbl(inKeyBuffer) >= 1 AND CDbl(inKeyBuffer) <= 12 Then
-		      CalendarWindow.Time_Container1.Time_Hour = inKeyBuffer
+		      Time_Container(window).Time_Hour = inKeyBuffer
 		    Elseif inKeyBuffer = "00" Then
-		      CalendarWindow.Time_Container1.Time_Hour = "00"
+		      Time_Container(window).Time_Hour = "00"
+		      
 		    elseif inKeyBuffer = Chr(8) Then
-		      CalendarWindow.Time_Container1.Time_Hour = " "
+		      Time_Container(window).Time_Hour = " "
 		      KeyBuffer = ""
 		    Else
 		      Return
@@ -278,18 +279,18 @@ Inherits Canvas
 		    
 		  Elseif Draw_Minute_Selected = True Then
 		    if CDbl(inKeyBuffer) >= 1 AND CDbl(inKeyBuffer) <= 59 Then
-		      CalendarWindow.Time_Container1.Time_Minute = inKeyBuffer
+		      Time_Container(window).Time_Minute = inKeyBuffer
 		    Elseif inKeyBuffer = "00" Then
-		      CalendarWindow.Time_Container1.Time_Minute = "00"
+		      Time_Container(window).Time_Minute = "00"
 		    elseif inKeyBuffer = Chr(8) Then
-		      CalendarWindow.Time_Container1.Time_Minute = " "
+		      Time_Container(window).Time_Minute = " "
 		      KeyBuffer = ""
 		    Else
 		      Return
 		    End if
 		    
 		  End if
-		  CalendarWindow.Time_Container1.Clock1.Invalidate
+		  Time_Container(window).Clock1.Invalidate
 		  Me.Invalidate(False)
 		End Sub
 	#tag EndMethod
@@ -297,62 +298,70 @@ Inherits Canvas
 	#tag Method, Flags = &h0
 		Sub mMoveAMPM()
 		  // Switch AM/PM
-		  if CalendarWindow.Time_Container1.Time_AMPM = "AM" Then
-		    CalendarWindow.Time_Container1.Time_AMPM = "PM"
-		  Elseif CalendarWindow.Time_Container1.Time_AMPM = "PM" Then
-		    CalendarWindow.Time_Container1.Time_AMPM = "AM"
+		  if Time_Container(window).Time_AMPM = "AM" Then
+		    Time_Container(window).Time_AMPM = "PM"
+		  Elseif Time_Container(window).Time_AMPM = "PM" Then
+		    Time_Container(window).Time_AMPM = "AM"
 		  End if
 		  
-		  CalendarWindow.Time_Container1.TimePicker1.Invalidate(False)
-		  CalendarWindow.Time_Container1.Clock1.Invalidate(False)
+		  Time_Container(window).TimePicker1.Invalidate(False)
+		  Time_Container(window).Clock1.Invalidate(False)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub mMoveHourDown()
 		  // Hour is Selected so lets Move it down
-		  Dim TmpHour as Integer = CDbl(CalendarWindow.Time_Container1.Time_Hour)
+		  Dim TmpHour as Integer = CDbl(Time_Container(window).Time_Hour)
+		  // If the hour rolls past the AM/PM bounds we'll flip it
+		  if TmpHour = 12 then
+		    AMPM_Flip
+		  end if
 		  TmpHour = TmpHour - 1
 		  // Keep within the Time Constaints (12 HourTime)
 		  if TmpHour = 0 Then
 		    TmpHour = 12
 		  End if
-		  CalendarWindow.Time_Container1.Time_Hour = Str(TmpHour)
-		  CalendarWindow.Time_Container1.TimePicker1.Invalidate(False)
+		  Time_Container(window).Time_Hour = Str(TmpHour)
+		  Time_Container(window).TimePicker1.Invalidate(False)
 		  
-		  CalendarWindow.Time_Container1.Clock1.ClockHourValue = CalendarWindow.Time_Container1.Clock1.ClockHourValue - .522
-		  CalendarWindow.Time_Container1.Clock1.Invalidate(False)
+		  Time_Container(window).Clock1.ClockHourValue = Time_Container(window).Clock1.ClockHourValue - .522
+		  Time_Container(window).Clock1.Invalidate(False)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub mMoveHourUp()
 		  // Hour is Selected so lets Move it down
-		  Dim TmpHour as Integer = CDbl(CalendarWindow.Time_Container1.Time_Hour)
+		  Dim TmpHour as Integer = CDbl(Time_Container(window).Time_Hour)
+		  if TmpHour = 11 then
+		    AMPM_Flip
+		  end if
 		  TmpHour = TmpHour +1
 		  // Keep within the Time Constaints (12 HourTime)
 		  if TmpHour = 13 Then
 		    TmpHour = 1
 		  End if
-		  CalendarWindow.Time_Container1.Time_Hour = Str(TmpHour)
-		  CalendarWindow.Time_Container1.TimePicker1.Invalidate(False)
+		  Time_Container(window).Time_Hour = Str(TmpHour)
+		  Time_Container(window).TimePicker1.Invalidate(False)
 		  
-		  CalendarWindow.Time_Container1.Clock1.ClockHourValue = CalendarWindow.Time_Container1.Clock1.ClockHourValue + .522
-		  CalendarWindow.Time_Container1.Clock1.Invalidate(False)
+		  Time_Container(window).Clock1.ClockHourValue = Time_Container(window).Clock1.ClockHourValue + .522
+		  Time_Container(window).Clock1.Invalidate(False)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub mMoveMinDown()
 		  // Hour is Selected so lets Move it down
-		  Dim TmpMin as Integer = CDbl(CalendarWindow.Time_Container1.Time_Minute)
+		  Dim TmpMin as Integer = CDbl(Time_Container(window).Time_Minute)
 		  Dim TmpZeroPad as String
 		  TmpMin = TmpMin - 1
 		  if TmpMin = -1 Then
 		    TmpMin = 59
-		    Dim NewHourHandValue as Integer = fAutoAdvanceHourHand_Backwards(CDbl(CalendarWindow.Time_Container1.Time_Hour))
-		    CalendarWindow.Time_Container1.Time_Hour = Str(NewHourHandValue)
+		    'Dim NewHourHandValue as Integer = fAutoAdvanceHourHand_Backwards(CDbl(Time_Container(window).Time_Hour))
+		    'Time_Container(window).Time_Hour = Str(NewHourHandValue)
 		    TmpZeroPad = ""
+		    mMoveHourDown
 		  End if
 		  if TmpMin <=59 AND TmpMin >=10 Then
 		    TmpZeroPad = ""
@@ -361,25 +370,26 @@ Inherits Canvas
 		  End if
 		  
 		  // Keep within the Time Constaints (12 HourTime)
-		  CalendarWindow.Time_Container1.Time_Minute = TmpZeroPad+Str(TmpMin)
-		  CalendarWindow.Time_Container1.TimePicker1.Invalidate(False)
+		  Time_Container(window).Time_Minute = TmpZeroPad+Str(TmpMin)
+		  Time_Container(window).TimePicker1.Invalidate(False)
 		  
-		  CalendarWindow.Time_Container1.Clock1.ClockMinuteValue =CalendarWindow.Time_Container1.Clock1.ClockMinuteValue - .1046
-		  CalendarWindow.Time_Container1.Clock1.Invalidate(False)
+		  Time_Container(window).Clock1.ClockMinuteValue =Time_Container(window).Clock1.ClockMinuteValue - .1046
+		  Time_Container(window).Clock1.Invalidate(False)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub mMoveMinUp()
 		  // Hour is Selected so lets Move it Up
-		  Dim TmpMin as Integer = CDbl(CalendarWindow.Time_Container1.Time_Minute)
+		  Dim TmpMin as Integer = CDbl(Time_Container(window).Time_Minute)
 		  Dim TmpZeroPad as String
 		  TmpMin = TmpMin + 1
 		  if TmpMin = 60 Then
 		    TmpMin = 00
-		    Dim NewHourHandValue as Integer = fAutoAdvanceHourHand_Forward(CDbl(CalendarWindow.Time_Container1.Time_Hour))
-		    CalendarWindow.Time_Container1.Time_Hour = Str(NewHourHandValue)
+		    'Dim NewHourHandValue as Integer = fAutoAdvanceHourHand_Forward(CDbl(Time_Container(window).Time_Hour))
+		    'Time_Container(window).Time_Hour = Str(NewHourHandValue)
 		    TmpZeroPad = ""
+		    mMoveHourUp
 		  End if
 		  if TmpMin <=59 AND TmpMin >=10 Then
 		    TmpZeroPad = ""
@@ -387,11 +397,11 @@ Inherits Canvas
 		    TmpZeroPad = "0"
 		  End if
 		  // Keep within the Time Constaints (12 HourTime)
-		  CalendarWindow.Time_Container1.Time_Minute = TmpZeroPad+Str(TmpMin)
-		  CalendarWindow.Time_Container1.TimePicker1.Invalidate(False)
+		  Time_Container(window).Time_Minute = TmpZeroPad+Str(TmpMin)
+		  Time_Container(window).TimePicker1.Invalidate(False)
 		  
-		  CalendarWindow.Time_Container1.Clock1.ClockMinuteValue = CalendarWindow.Time_Container1.Clock1.ClockMinuteValue + .1046
-		  CalendarWindow.Time_Container1.Clock1.Invalidate(False)
+		  Time_Container(window).Clock1.ClockMinuteValue = Time_Container(window).Clock1.ClockMinuteValue + .1046
+		  Time_Container(window).Clock1.Invalidate(False)
 		End Sub
 	#tag EndMethod
 
