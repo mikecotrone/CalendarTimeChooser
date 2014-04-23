@@ -7,7 +7,7 @@ Date:           April 22, 2014
 
 Language:       Xojo
 
-Author by:      Mike Cotrone (mikec@intelligentvisibility.com)
+Author:         Mike Cotrone (mikec@intelligentvisibility.com)
 
 Contributors:   Jim McKay
 
