@@ -27,7 +27,7 @@ What is this Project?
 Whats New in 1.5?
 -----------------
 - Added Localizations for: Enlish, Afrikaans, Dutch, French, German, Italian, Spanish, and Swedish
-- Jim McKay restructured the containers to clean up alot of the demo code flow
+- Jim McKay spent alot of time restructuring the containers to clean up alot code flow
 - Jim McKay was able to render the Clock Hands flawlessly in v1.5
 
 ------------------------
