@@ -1,0 +1,63 @@
+#tag Window
+Begin Window TimeWindow
+   BackColor       =   &cFFFFFF00
+   Backdrop        =   0
+   CloseButton     =   True
+   Compatibility   =   ""
+   Composite       =   False
+   Frame           =   0
+   FullScreen      =   False
+   FullScreenButton=   False
+   HasBackColor    =   False
+   Height          =   261
+   ImplicitInstance=   True
+   LiveResize      =   True
+   MacProcID       =   0
+   MaxHeight       =   32000
+   MaximizeButton  =   True
+   MaxWidth        =   32000
+   MenuBar         =   0
+   MenuBarVisible  =   True
+   MinHeight       =   64
+   MinimizeButton  =   True
+   MinWidth        =   64
+   Placement       =   0
+   Resizeable      =   True
+   Title           =   "Untitled"
+   Visible         =   True
+   Width           =   434
+   Begin CalendarContainer CalendarContainer1
+      AcceptFocus     =   False
+      AcceptTabs      =   True
+      AutoDeactivate  =   True
+      BackColor       =   &c9D9D9D00
+      Backdrop        =   0
+      BothPickers     =   True
+      Enabled         =   True
+      EraseBackground =   True
+      HasBackColor    =   True
+      Height          =   227
+      HelpTag         =   ""
+      InitialParent   =   ""
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   0
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   14
+      Transparent     =   True
+      UseFocusRing    =   False
+      Visible         =   True
+      Width           =   394
+   End
+End
+#tag EndWindow
+
+#tag WindowCode
+#tag EndWindowCode
+
