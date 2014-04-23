@@ -23,7 +23,7 @@ Begin Window DateTimeWindow
    MinWidth        =   394
    Placement       =   0
    Resizeable      =   False
-   Title           =   "Untitled"
+   Title           =   ""
    Visible         =   True
    Width           =   394
    Begin Date_Time_Container Date_Time_Container1

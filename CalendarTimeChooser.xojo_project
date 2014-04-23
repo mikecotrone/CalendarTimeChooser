@@ -28,6 +28,7 @@ Picture=generaloptions;Graphics/generaloptions.png;&h4B4FE732;&h24B232DF;false;0
 Window=DateTimeWindow;Windows/DateTimeWindow.xojo_window;&h2C6F798D;&h591CDD19;false
 Class=TimePicker;Custom Classes/TimePicker.xojo_code;&h6C53EFF1;&h53385ADC;false
 Class=Calendar;Custom Classes/Calendar.xojo_code;&h5532FB20;&h53385ADC;false
+Module=Strings_Module;Strings_Module.xojo_code;&h15E51A4B;&h0;false
 MajorVersion=1
 MinorVersion=0
 SubVersion=32

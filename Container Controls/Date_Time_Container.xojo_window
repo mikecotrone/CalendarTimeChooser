@@ -137,11 +137,73 @@ End
 
 
 	#tag Method, Flags = &h21
+		Private Sub mChangeLocalizedWindowTitle()
+		  if Window isa DateTimeWindow then
+		    TrueWindow.Title = Localized_ChooseBothTitle_Str
+		  end if
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub mSetLocalization_ContainerTitle(inLocalizationInt as Integer)
+		  Select Case inLocalizationInt
+		  Case 0 // English
+		    Localized_CalendarOnlyTitle_Str = "Choose Date"
+		    Localized_ChooseBothTitle_Str = "Choose Date and Time"
+		    Localized_TimeOnlyTitle_Str = "Choose Time"
+		    
+		  Case 1 // French
+		    Localized_CalendarOnlyTitle_Str = "Choisir une date"
+		    Localized_ChooseBothTitle_Str = "Choisir la date et de l'heure"
+		    Localized_TimeOnlyTitle_Str = "Choisissez temps"
+		    
+		  Case 2 // Swedish
+		    Localized_CalendarOnlyTitle_Str = "Välj datum"
+		    Localized_ChooseBothTitle_Str = "Välj Datum och tid"
+		    Localized_TimeOnlyTitle_Str = "Välj Tid"
+		    
+		  Case 3 // Italian
+		    Localized_CalendarOnlyTitle_Str = "Scegli data"
+		    Localized_ChooseBothTitle_Str = "Scegli data e ora"
+		    Localized_TimeOnlyTitle_Str = "Scegli Ora"
+		    
+		  Case 4 // Spanish
+		    Localized_CalendarOnlyTitle_Str = "Seleccionar fecha"
+		    Localized_ChooseBothTitle_Str = "Seleccione Fecha y Hora"
+		    Localized_TimeOnlyTitle_Str = "Seleccione Hora"
+		    
+		  Case 5 // Dutch
+		    Localized_CalendarOnlyTitle_Str = "Kies Datum"
+		    Localized_ChooseBothTitle_Str = "Kies de datum en tijd"
+		    Localized_TimeOnlyTitle_Str = "Kies Time"
+		    
+		  Case 6 // German
+		    Localized_CalendarOnlyTitle_Str = "Datum wählen"
+		    Localized_ChooseBothTitle_Str = "Wählen Sie Datum und Uhrzeit"
+		    Localized_TimeOnlyTitle_Str = "Wählen Sie Zeit"
+		    
+		  Case 7 // Afrikaans
+		    Localized_CalendarOnlyTitle_Str = "kies Datum"
+		    Localized_ChooseBothTitle_Str = "Kies Datum en Tyd"
+		    Localized_TimeOnlyTitle_Str = "kies die tyd"
+		    
+		  Case 8 // Polish
+		    Localized_CalendarOnlyTitle_Str = "Wybierz datę"
+		    Localized_ChooseBothTitle_Str = "Wybierz datę i godzinę"
+		    Localized_TimeOnlyTitle_Str = "Wybierz godzinę"
+		    
+		  End Select
+		  
+		  mChangeLocalizedWindowTitle
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
 		Private Sub mSetupForBothPickers()
 		  if Window isa DateTimeWindow then
 		    window.Width = 394
 		    window.Height = 227
-		    TrueWindow.Title = "Choose Date and Time"
+		    TrueWindow.Title = Localized_ChooseBothTitle_Str
 		  end if
 		  
 		  Calendar_Container1.Enabled = True
@@ -159,7 +221,7 @@ End
 		  if window isa DateTimeWindow then
 		    window.Width = 230
 		    window.Height = 227
-		    TrueWindow.Title = "Choose Date"
+		    TrueWindow.Title = Localized_CalendarOnlyTitle_Str
 		  end if
 		  
 		  Calendar_Container1.Enabled = True
@@ -176,7 +238,7 @@ End
 		  if window isa DateTimeWindow then
 		    window.Width = 156
 		    window.Height = 195
-		    TrueWindow.Title = "Choose Time"
+		    TrueWindow.Title = Localized_TimeOnlyTitle_Str
 		  end if
 		  
 		  
@@ -313,6 +375,7 @@ End
 			  mVisiblePickers = value
 			  select case value
 			  case PickerElements.CalendarAndClock
+			    mSetLocalization_ContainerTitle(Calendar_Container1.Calendar1.LocalizationInt)
 			    mSetupForBothPickers
 			  case PickerElements.CalendarOnly
 			    mSetupForCalendarPickerOnly

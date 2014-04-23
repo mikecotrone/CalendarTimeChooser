@@ -917,6 +917,7 @@ End
 		  me.AddRow("Polish")
 		  me.AddRow("Spanish")
 		  me.AddRow("Swedish")
+		  
 		  me.ListIndex = 2 // Default to English
 		End Sub
 	#tag EndEvent
@@ -963,6 +964,9 @@ End
 		  
 		  // Load the Localized Day of the Week Abbreviation List to the Calendar
 		  MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.mBuild_LocalizedDayOfWeek_Arrays(LocalInt)
+		  
+		  // Create the Localized Window/Container Title's
+		  MyPicker.Date_Time_Container1.mSetLocalization_ContainerTitle(LocalInt)
 		  
 		  
 		End Sub
