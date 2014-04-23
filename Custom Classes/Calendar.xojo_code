@@ -89,7 +89,11 @@ Inherits Canvas
 		      Else
 		        // Capture Selected Date in Date format for Custom Event
 		        g.ForeColor = RGB(0,127,230)
-		        g.FillRoundRect(CalendarButtonClassArray(i).LeftX+OffSet+1, CalendarButtonClassArray(i).TopY+OffSet,CalendarButtonClassArray(i).Width-TwoOffset,CalendarButtonClassArray(i).Height-TwoOffset,CurveSize,CurveSize)
+		        #IF TargetMacOS Then
+		          g.FillRoundRect(CalendarButtonClassArray(i).LeftX+OffSet+1, CalendarButtonClassArray(i).TopY+OffSet,CalendarButtonClassArray(i).Width-TwoOffset,CalendarButtonClassArray(i).Height-TwoOffset,CurveSize,CurveSize)
+		        #ELSEIF TargetWin32 Then
+		          g.FillRoundRect(CalendarButtonClassArray(i).LeftX+OffSet+1, CalendarButtonClassArray(i).TopY+OffSet,CalendarButtonClassArray(i).Width-TwoOffset,CalendarButtonClassArray(i).Height-TwoOffset,0,0)
+		        #ENDIF
 		      End if
 		    End if
 		  Next i
