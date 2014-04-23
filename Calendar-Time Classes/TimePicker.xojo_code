@@ -269,7 +269,7 @@ Inherits Canvas
 		      Time_Container(window).Time_Hour = inKeyBuffer
 		    Elseif inKeyBuffer = "00" Then
 		      Time_Container(window).Time_Hour = "00"
-
+		      
 		    elseif inKeyBuffer = Chr(8) Then
 		      Time_Container(window).Time_Hour = " "
 		      KeyBuffer = ""
@@ -358,8 +358,8 @@ Inherits Canvas
 		  TmpMin = TmpMin - 1
 		  if TmpMin = -1 Then
 		    TmpMin = 59
-		    Dim NewHourHandValue as Integer = fAutoAdvanceHourHand_Backwards(CDbl(CalendarWindow.Time_Container1.Time_Hour))
-		    CalendarWindow.Time_Container1.Time_Hour = Str(NewHourHandValue)
+		    'Dim NewHourHandValue as Integer = fAutoAdvanceHourHand_Backwards(CDbl(Time_Container(window).Time_Hour))
+		    'Time_Container(window).Time_Hour = Str(NewHourHandValue)
 		    TmpZeroPad = ""
 		    mMoveHourDown
 		  End if
@@ -386,8 +386,8 @@ Inherits Canvas
 		  TmpMin = TmpMin + 1
 		  if TmpMin = 60 Then
 		    TmpMin = 00
-		    Dim NewHourHandValue as Integer = fAutoAdvanceHourHand_Forward(CDbl(CalendarWindow.Time_Container1.Time_Hour))
-		    CalendarWindow.Time_Container1.Time_Hour = Str(NewHourHandValue)
+		    'Dim NewHourHandValue as Integer = fAutoAdvanceHourHand_Forward(CDbl(Time_Container(window).Time_Hour))
+		    'Time_Container(window).Time_Hour = Str(NewHourHandValue)
 		    TmpZeroPad = ""
 		    mMoveHourUp
 		  End if

@@ -30,6 +30,9 @@ Inherits Canvas
 
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		  g.ForeColor=Date_Time_Container(Time_Container(window).Window).BackColor
+		  g.FillRect(0,0,g.Width,g.Height)
+		  
 		  // Draw Clock Image
 		  Select Case Date_Time_Container(Time_Container(window).window).ClockFaceType
 		  Case Date_Time_Container.ClockFaceType.Chrome
@@ -72,7 +75,7 @@ Inherits Canvas
 		  AMPM.HorizontalAlignment=StringShape.Alignment.Center
 		  AMPM.Text=Time_Container(window).Time_AMPM
 		  buffer.Graphics.DrawObject AMPM,buffer.Width/2,buffer.Height/2+40
-
+		  
 		  
 		  g.drawpicture buffer,0,0,g.width,g.height,0,0,buffer.Width,buffer.Height
 		  
@@ -144,7 +147,7 @@ Inherits Canvas
 		      next
 		      
 		    else //24 hour clock
-
+		      
 		      // calc the numeral location
 		      x = Cos(angle)*(radius-24)
 		      y= Sin(angle)*(radius-24)
@@ -172,7 +175,7 @@ Inherits Canvas
 		    HourHand = New CurveShape
 		    CurveShape(HourHand).Border = 100
 		    CurveShape(HourHand).BorderWidth = 4
-
+		    
 		    CurveShape(HourHand).BorderColor = &c0000FF
 		    CurveShape(HourHand).X = 1
 		    CurveShape(HourHand).Y  = 1
@@ -182,7 +185,7 @@ Inherits Canvas
 		  
 		  HourHand.Rotation=pi*2/HourCount*(CurrentHour+val(Time_Container(window).Time_Minute)/60)+.01
 		  g.DrawObject HourHand,g.Width/2, g.Height/2
-
+		  
 		End Sub
 	#tag EndMethod
 
@@ -205,7 +208,7 @@ Inherits Canvas
 		  
 		  MinHand.Rotation=(pi*2/60*val(Time_Container(window).Time_Minute))+.01
 		  g.DrawObject MinHand,g.Width/2, g.Height/2
-
+		  
 		End Sub
 	#tag EndMethod
 
@@ -242,10 +245,6 @@ Inherits Canvas
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		BorderColor As Color = &c444444
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
 		ClockHourValue As Double
 	#tag EndProperty
 
@@ -262,7 +261,7 @@ Inherits Canvas
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		Font As String = """Helvetica"""
+		Font As String = "Helvetica"
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -311,6 +310,7 @@ Inherits Canvas
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="BorderColor"
+			Visible=true
 			Group="Behavior"
 			InitialValue="&c444444"
 			Type="Color"
@@ -353,12 +353,14 @@ Inherits Canvas
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="FaceColor"
+			Visible=true
 			Group="Behavior"
 			InitialValue="&cdddddd"
 			Type="Color"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Font"
+			Visible=true
 			Group="Behavior"
 			InitialValue="""""Helvetica"""""
 			Type="String"
@@ -380,6 +382,7 @@ Inherits Canvas
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="HourCount"
+			Visible=true
 			Group="Behavior"
 			InitialValue="12"
 			Type="Integer"
@@ -392,6 +395,7 @@ Inherits Canvas
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="InitialParent"
+			Group="Position"
 			Type="String"
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -458,6 +462,7 @@ Inherits Canvas
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="TextColor"
+			Visible=true
 			Group="Behavior"
 			InitialValue="&c000000"
 			Type="Color"
@@ -485,6 +490,7 @@ Inherits Canvas
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="UseGraphicalClockHands"
+			Visible=true
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty

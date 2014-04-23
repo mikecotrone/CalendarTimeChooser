@@ -89,11 +89,11 @@ Begin ContainerControl Time_Container
       ClockHourValue  =   0.0
       ClockMinuteValue=   0.0
       ClockSecondValue=   0.0
-      DoubleBuffer    =   False
+      DoubleBuffer    =   True
       Enabled         =   True
       EraseBackground =   False
       FaceColor       =   &cDDDDDD00
-      Font            =   """""Helvetica"""""
+      Font            =   "Helvetica"
       Height          =   130
       HelpTag         =   ""
       HourCount       =   12

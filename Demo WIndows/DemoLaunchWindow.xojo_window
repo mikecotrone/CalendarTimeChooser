@@ -784,8 +784,7 @@ End
 		  // Load Popup Menu
 		  me.AddRow("Include")
 		  me.AddRow("Do NOT include")
-		  me.ListIndex = 0
-		  
+		  me.ListIndex=0
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -923,30 +922,30 @@ End
 		  Dim LocalInt as Integer
 		  Select Case Me.Text
 		  Case "English"
-		    CalendarWindow.Calendar_Container1.Calendar1.LocalizationInt = 0
+		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 0
 		    LocalInt = 0
 		  Case "French"
-		    CalendarWindow.Calendar_Container1.Calendar1.LocalizationInt = 1
+		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 1
 		    LocalInt = 1
 		  Case "Spanish"
-		    CalendarWindow.Calendar_Container1.Calendar1.LocalizationInt = 2
+		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 2
 		    LocalInt = 2
 		  Case "Swedish"
-		    CalendarWindow.Calendar_Container1.Calendar1.LocalizationInt = 3
+		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 3
 		    LocalInt = 3
 		  End Select
 		  
 		  // Create the Localized Month List
-		  CalendarWindow.Calendar_Container1.Calendar1.mBuildLocalizedMonthList(LocalInt)
+		  MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.mBuildLocalizedMonthList(LocalInt)
 		  // Create the Localized Day of the Week List
-		  CalendarWindow.Calendar_Container1.Calendar1.mBuildLocalizedDayOfWeekList(LocalInt)
+		  MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.mBuildLocalizedDayOfWeekList(LocalInt)
 		  
 		  
 		  // Load the Localized Month List to the PopUp Menu
-		  CalendarWindow.Calendar_Container1.Calendar1.mLoad_MonthList
+		  MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.mLoad_MonthList
 		  
 		  // Load the Localized Day of the Week Abbreviation List to the Calendar
-		  CalendarWindow.Calendar_Container1.Calendar1.mBuild_LocalizedDayOfWeek_Arrays(LocalInt)
+		  MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.mBuild_LocalizedDayOfWeek_Arrays(LocalInt)
 		  
 		  
 		End Sub
