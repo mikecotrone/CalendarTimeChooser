@@ -72,6 +72,7 @@ Inherits Canvas
 		  AMPM.HorizontalAlignment=StringShape.Alignment.Center
 		  AMPM.Text=Time_Container(window).Time_AMPM
 		  buffer.Graphics.DrawObject AMPM,buffer.Width/2,buffer.Height/2+40
+
 		  
 		  g.drawpicture buffer,0,0,g.width,g.height,0,0,buffer.Width,buffer.Height
 		  
@@ -143,7 +144,7 @@ Inherits Canvas
 		      next
 		      
 		    else //24 hour clock
-		      
+
 		      // calc the numeral location
 		      x = Cos(angle)*(radius-24)
 		      y= Sin(angle)*(radius-24)
@@ -171,6 +172,7 @@ Inherits Canvas
 		    HourHand = New CurveShape
 		    CurveShape(HourHand).Border = 100
 		    CurveShape(HourHand).BorderWidth = 4
+
 		    CurveShape(HourHand).BorderColor = &c0000FF
 		    CurveShape(HourHand).X = 1
 		    CurveShape(HourHand).Y  = 1
@@ -180,6 +182,7 @@ Inherits Canvas
 		  
 		  HourHand.Rotation=pi*2/HourCount*(CurrentHour+val(Time_Container(window).Time_Minute)/60)+.01
 		  g.DrawObject HourHand,g.Width/2, g.Height/2
+
 		End Sub
 	#tag EndMethod
 
@@ -202,6 +205,7 @@ Inherits Canvas
 		  
 		  MinHand.Rotation=(pi*2/60*val(Time_Container(window).Time_Minute))+.01
 		  g.DrawObject MinHand,g.Width/2, g.Height/2
+
 		End Sub
 	#tag EndMethod
 
@@ -238,6 +242,10 @@ Inherits Canvas
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		BorderColor As Color = &c444444
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		ClockHourValue As Double
 	#tag EndProperty
 
@@ -254,7 +262,7 @@ Inherits Canvas
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		Font As String = "Helvetica"
+		Font As String = """Helvetica"""
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -352,7 +360,7 @@ Inherits Canvas
 		#tag ViewProperty
 			Name="Font"
 			Group="Behavior"
-			InitialValue="Helvetica"
+			InitialValue="""""Helvetica"""""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty

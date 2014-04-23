@@ -154,6 +154,9 @@ End
 		  CalendarWindow.Width = 394
 		  CalendarWindow.Height = 227
 		  
+		  Time_Container1.Left = 235
+		  Time_Container1.Top = 5
+		  
 		  CalendarWindow.Title = "Choose Date and Time"
 		  CalendarWindow.Calendar_Container1.Enabled = True
 		  CalendarWindow.Calendar_Container1.Visible = True
@@ -182,7 +185,7 @@ End
 	#tag Method, Flags = &h0
 		Sub mSetupForTimePickerOnly()
 		  CalendarWindow.Width = 156
-		  CalendarWindow.Height = 195
+		  CalendarWindow.Height = 213
 		  
 		  CalendarWindow.Title = "Choose Time"
 		  CalendarWindow.Time_Container1.Enabled = True
@@ -192,8 +195,6 @@ End
 		  //
 		  CalendarWindow.Calendar_Container1.Enabled = False
 		  CalendarWindow.Calendar_Container1.Visible = False
-		  
-		  CalendarWindow.BackColor = RGB(228,228,228)
 		  
 		  
 		End Sub

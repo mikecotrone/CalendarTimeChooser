@@ -93,7 +93,7 @@ Begin ContainerControl Time_Container
       Enabled         =   True
       EraseBackground =   False
       FaceColor       =   &cDDDDDD00
-      Font            =   "Helvetica"
+      Font            =   """""Helvetica"""""
       Height          =   130
       HelpTag         =   ""
       HourCount       =   12
@@ -209,6 +209,16 @@ End
 		  End Select
 		  
 		  mRaiseEvent_SelectedTime
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Open()
+		  // For some reason this control doesn't look right as set in the IDE for Left/Top
+		  #IF TargetWin32 Then
+		    Me.Left = 123
+		    Me.Top =  3
+		    
+		  #ENDIF
 		End Sub
 	#tag EndEvent
 #tag EndEvents

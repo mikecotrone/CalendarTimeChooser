@@ -9,11 +9,11 @@ Begin Window DemoLaunchWindow
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   364
+   Height          =   442
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
-   MaxHeight       =   364
+   MaxHeight       =   500
    MaximizeButton  =   False
    MaxWidth        =   489
    MenuBar         =   0
@@ -78,7 +78,7 @@ Begin Window DemoLaunchWindow
       Bold            =   False
       Caption         =   ""
       Enabled         =   True
-      Height          =   205
+      Height          =   254
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -479,7 +479,7 @@ Begin Window DemoLaunchWindow
          InitialParent   =   "GroupBox1"
          InitialValue    =   ""
          Italic          =   False
-         Left            =   282
+         Left            =   278
          ListIndex       =   0
          LockBottom      =   False
          LockedInPosition=   False
@@ -509,7 +509,7 @@ Begin Window DemoLaunchWindow
          Index           =   -2147483648
          InitialParent   =   "GroupBox1"
          Italic          =   False
-         Left            =   282
+         Left            =   278
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -582,7 +582,7 @@ Begin Window DemoLaunchWindow
          TabIndex        =   24
          TabPanelIndex   =   0
          TabStop         =   True
-         Top             =   296
+         Top             =   294
          Transparent     =   True
          UseFocusRing    =   True
          Visible         =   True
@@ -615,6 +615,71 @@ Begin Window DemoLaunchWindow
          UseFocusRing    =   True
          Visible         =   True
          Width           =   50
+      End
+      Begin Label LocalizationLabel
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         Italic          =   False
+         Left            =   78
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Multiline       =   False
+         Scope           =   0
+         Selectable      =   False
+         TabIndex        =   26
+         TabPanelIndex   =   0
+         Text            =   "Calendar Localization:"
+         TextAlign       =   0
+         TextColor       =   &c00000000
+         TextFont        =   "Helvetica"
+         TextSize        =   12.0
+         TextUnit        =   0
+         Top             =   344
+         Transparent     =   True
+         Underline       =   False
+         Visible         =   True
+         Width           =   127
+      End
+      Begin PopupMenu LocalizationPopupMenu
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         InitialValue    =   ""
+         Italic          =   False
+         Left            =   76
+         ListIndex       =   0
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   27
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   368
+         Underline       =   False
+         Visible         =   True
+         Width           =   191
       End
    End
 End
@@ -837,6 +902,53 @@ End
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
 		  g.DrawPicture(generaloptions,0,0)
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events LocalizationPopupMenu
+	#tag Event
+		Sub Open()
+		  // Load Popup Menu
+		  me.AddRow("English")
+		  me.AddRow("French")
+		  me.AddRow("German")
+		  me.AddRow("Spanish")
+		  me.AddRow("Swedish")
+		  me.ListIndex = 0 // Default to English
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Change()
+		  Dim LocalInt as Integer
+		  Select Case Me.Text
+		  Case "English"
+		    CalendarWindow.Calendar_Container1.Calendar1.LocalizationInt = 0
+		    LocalInt = 0
+		  Case "French"
+		    CalendarWindow.Calendar_Container1.Calendar1.LocalizationInt = 1
+		    LocalInt = 1
+		  Case "Spanish"
+		    CalendarWindow.Calendar_Container1.Calendar1.LocalizationInt = 2
+		    LocalInt = 2
+		  Case "Swedish"
+		    CalendarWindow.Calendar_Container1.Calendar1.LocalizationInt = 3
+		    LocalInt = 3
+		  End Select
+		  
+		  // Create the Localized Month List
+		  CalendarWindow.Calendar_Container1.Calendar1.mBuildLocalizedMonthList(LocalInt)
+		  // Create the Localized Day of the Week List
+		  CalendarWindow.Calendar_Container1.Calendar1.mBuildLocalizedDayOfWeekList(LocalInt)
+		  
+		  
+		  // Load the Localized Month List to the PopUp Menu
+		  CalendarWindow.Calendar_Container1.Calendar1.mLoad_MonthList
+		  
+		  // Load the Localized Day of the Week Abbreviation List to the Calendar
+		  CalendarWindow.Calendar_Container1.Calendar1.mBuild_LocalizedDayOfWeek_Arrays(LocalInt)
+		  
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents

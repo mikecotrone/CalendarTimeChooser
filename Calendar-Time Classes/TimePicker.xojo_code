@@ -193,6 +193,46 @@ Inherits Canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
+		Private Function fAutoAdvanceHourHand_Backwards(inTime_Hour as Integer) As Integer
+		  Dim TmpTimeHourInt as Integer
+		  
+		  Select Case inTime_Hour
+		    
+		  Case 1
+		    TmpTimeHourInt = 12
+		  Case 12
+		    AMPM_Flip
+		    TmpTimeHourInt = inTime_Hour - 1
+		  Else
+		    TmpTimeHourInt = inTime_Hour - 1
+		  End select
+		  
+		  
+		  Return TmpTimeHourInt
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Function fAutoAdvanceHourHand_Forward(inTime_Hour as Integer) As Integer
+		  Dim TmpTimeHourInt as Integer
+		  
+		  Select Case inTime_Hour
+		    
+		  Case 12
+		    TmpTimeHourInt = 1
+		  Case 11
+		    AMPM_Flip
+		    TmpTimeHourInt = inTime_Hour +1
+		  Else
+		    TmpTimeHourInt = inTime_Hour +1
+		  End select
+		  
+		  
+		  Return TmpTimeHourInt
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
 		Private Sub mFormatSingleDigits(inKeyValue as String)
 		  if Draw_Hour_Selected = True Then
 		    if inKeyValue = "01" or inKeyValue = "02" or inKeyValue = "03" or inKeyValue = "04" or inKeyValue = "05"or inKeyValue ="06" or inKeyValue ="07" or inKeyValue ="08" or inKeyValue ="09" Then
@@ -229,6 +269,7 @@ Inherits Canvas
 		      Time_Container(window).Time_Hour = inKeyBuffer
 		    Elseif inKeyBuffer = "00" Then
 		      Time_Container(window).Time_Hour = "00"
+
 		    elseif inKeyBuffer = Chr(8) Then
 		      Time_Container(window).Time_Hour = " "
 		      KeyBuffer = ""
@@ -317,6 +358,8 @@ Inherits Canvas
 		  TmpMin = TmpMin - 1
 		  if TmpMin = -1 Then
 		    TmpMin = 59
+		    Dim NewHourHandValue as Integer = fAutoAdvanceHourHand_Backwards(CDbl(CalendarWindow.Time_Container1.Time_Hour))
+		    CalendarWindow.Time_Container1.Time_Hour = Str(NewHourHandValue)
 		    TmpZeroPad = ""
 		    mMoveHourDown
 		  End if
@@ -343,6 +386,8 @@ Inherits Canvas
 		  TmpMin = TmpMin + 1
 		  if TmpMin = 60 Then
 		    TmpMin = 00
+		    Dim NewHourHandValue as Integer = fAutoAdvanceHourHand_Forward(CDbl(CalendarWindow.Time_Container1.Time_Hour))
+		    CalendarWindow.Time_Container1.Time_Hour = Str(NewHourHandValue)
 		    TmpZeroPad = ""
 		    mMoveHourUp
 		  End if
