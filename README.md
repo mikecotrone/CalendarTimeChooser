@@ -32,6 +32,7 @@ Whats New in 1.5?
 - Jim McKay spent alot of time restructuring the containers to clean up alot code flow
 - Jim McKay was able to render the Clock Hands flawlessly in v1.5
 - Jim McKay added the method to Sync the clock on startup with the Current Time
+- Jim's Clock face is now a cool 12/24 hour clock face
 - 24 Hour Mode
 - Clock Hand Color Choices via Color Picker
 - Streamlined Clock Faces
