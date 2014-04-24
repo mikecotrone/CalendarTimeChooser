@@ -317,7 +317,7 @@ Begin Window DemoLaunchWindow
          TabIndex        =   22
          TabPanelIndex   =   0
          TabStop         =   True
-         Top             =   226
+         Top             =   249
          Transparent     =   True
          UseFocusRing    =   True
          Visible         =   True
@@ -507,7 +507,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "System"
          TextSize        =   0.0
          TextUnit        =   0
-         Top             =   301
+         Top             =   303
          Underline       =   False
          Visible         =   True
          Width           =   188
@@ -599,7 +599,7 @@ Begin Window DemoLaunchWindow
          TabIndex        =   36
          TabPanelIndex   =   0
          TabStop         =   True
-         Top             =   345
+         Top             =   364
          Transparent     =   True
          UseFocusRing    =   True
          Visible         =   True
@@ -806,7 +806,7 @@ Begin Window DemoLaunchWindow
       TextFont        =   "Helvetica"
       TextSize        =   12.0
       TextUnit        =   0
-      Top             =   277
+      Top             =   279
       Transparent     =   True
       Underline       =   False
       Visible         =   True
