@@ -150,7 +150,7 @@ Inherits Canvas
 		        numeral.TextSize=24
 		        x = Cos(angle)*(radius-23)
 		        y= Sin(angle)*(radius-23)
-		        buffer.Graphics.DrawObject numeral,x+radius+1,y+radius+1 //draw numeral
+		        buffer.Graphics.DrawObject numeral,x+radius-1,y+radius //draw numeral
 		        
 		        numeral.Text=str(hr+12)
 		        numeral.TextSize=18
