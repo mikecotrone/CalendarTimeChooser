@@ -33,7 +33,7 @@ Whats New in 1.5?
 - Jim McKay was able to render the Clock Hands flawlessly in v1.5
 - Jim McKay added the method to Sync the clock on startup with the Current Time
 - 24 Hour Mode
-- Clock Hand Color Choices
+- Clock Hand Color Choices via Color Picker
 - Streamlined Clock Faces
 
 ------------------------
