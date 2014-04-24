@@ -139,6 +139,10 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		HideAMPM As Boolean
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		TimeMode As Integer = 12
 	#tag EndProperty
 

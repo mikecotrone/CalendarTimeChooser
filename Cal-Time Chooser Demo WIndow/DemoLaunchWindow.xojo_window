@@ -976,18 +976,25 @@ End
 		  Case "Chrome"
 		    // Default Clock Face
 		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Chrome
+		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = False
 		  Case "Roman"
 		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Roman
+		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = False
 		  Case "Standard"
 		    MyPicker.ClockFaceType =Date_Time_Container.ClockFaceType.Standard
+		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = False
 		  Case "Google Style"
 		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.GoogleStyle
+		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = False
 		  Case "Modern"
 		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Modern
+		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = False
 		  Case "Jim's Clock"
 		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Dynamic_12hr
+		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM= False
 		  Case "Antique"
 		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Antique
+		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = True
 		  End Select
 		  
 		  
