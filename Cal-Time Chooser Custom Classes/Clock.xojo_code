@@ -49,6 +49,8 @@ Inherits Canvas
 		    mDrawClockFace (g)
 		  Case Date_Time_Container.ClockFaceType.Dynamic_24hr
 		    mDrawClockFace (g)
+		  Case Date_Time_Container.ClockFaceType.Antique
+		    g.DrawPicture(Antique130x130,0,0)
 		  End Select
 		  
 		  dim buffer As new Picture(g.Width*2,g.Height*2)

@@ -515,7 +515,8 @@ End
 		  GoogleStyle
 		  Modern
 		  Dynamic_12hr
-		Dynamic_24hr
+		  Dynamic_24hr
+		Antique
 	#tag EndEnum
 
 	#tag Enum, Name = PickerElements, Type = Integer, Flags = &h1

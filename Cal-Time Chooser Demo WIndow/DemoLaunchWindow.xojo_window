@@ -861,7 +861,12 @@ End
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  if mMyPicker=nil then mMyPicker=new DateTimeWindow
+			  if mMyPicker=nil then 
+			    mMyPicker=new DateTimeWindow
+			    mMyPicker.left =  DemoLaunchWindow.Left + DemoLaunchWindow.Width + 5
+			    mMyPicker.top = DemoLaunchWindow.Top
+			  End if
+			  
 			  return mMyPicker
 			End Get
 		#tag EndGetter
@@ -954,13 +959,14 @@ End
 	#tag Event
 		Sub Open()
 		  // Load Popup Menu
+		  me.AddRow("Antique")
 		  me.AddRow("Chrome")
 		  me.AddRow("Google Style")
 		  me.AddRow("Jim's Clock")
 		  me.AddRow("Modern")
 		  me.AddRow("Roman")
 		  me.AddRow("Standard")
-		  me.ListIndex = 0
+		  me.ListIndex = 1
 		  
 		End Sub
 	#tag EndEvent
@@ -980,6 +986,8 @@ End
 		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Modern
 		  Case "Jim's Clock"
 		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Dynamic_12hr
+		  Case "Antique"
+		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Antique
 		  End Select
 		  
 		  

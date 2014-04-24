@@ -29,6 +29,7 @@ Class=TimePicker;Cal-Time Chooser Custom Classes/TimePicker.xojo_code;&h6C53EFF1
 Class=Calendar;Cal-Time Chooser Custom Classes/Calendar.xojo_code;&h5532FB20;&h53385ADC;false
 Module=Strings_Module;Strings_Module.xojo_code;&h15E51A4B;&h0;false
 Class=App;App.xojo_code;&h4AFE05F5;&h0;false
+Picture=Antique130x130;Cal-Time Chooser Graphics/Antique130x130.png;&h41DB87FD;&h24B232DF;false;0;&h0
 MajorVersion=1
 MinorVersion=0
 SubVersion=32
