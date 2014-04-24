@@ -176,9 +176,17 @@ Inherits Canvas
 		    end if
 		  End if
 		  
-		  if UseGraphicalClockHands then
-		    HourHand = New PixmapShape(HourHandImg)
-		  else
+		  if UseGraphicalClockHands = True then
+		    Select Case ClockHandColor
+		    Case "Black"
+		      HourHand = New PixmapShape(HourHandImg_Black)
+		    Case "Red"
+		      HourHand = New PixmapShape(HourHandRed)
+		    Case "Green"
+		      HourHand = New PixmapShape(HourHandGreen)
+		    End Select
+		    
+		  elseif UseGraphicalClockHands = False Then
 		    HourHand = New CurveShape
 		    CurveShape(HourHand).Border = 100
 		    CurveShape(HourHand).BorderWidth = 4
@@ -200,9 +208,17 @@ Inherits Canvas
 		Sub mDrawClockMinuteHand(g as Graphics)
 		  Dim MinHand as Object2D
 		  
-		  if UseGraphicalClockHands then
-		    MinHand=New PixmapShape(MinuteHandImg)
-		  else
+		  if UseGraphicalClockHands = True then
+		    Select Case ClockHandColor
+		    Case "Black"
+		      MinHand=New PixmapShape(MinuteHandImg)
+		    Case "Red"
+		      MinHand=New PixmapShape(MinuteHandRed)
+		    Case "Green"
+		      MinHand=New PixmapShape(MinuteHandGreen)
+		    End Select
+		    
+		  elseif UseGraphicalClockHands = False Then
 		    MinHand = New CurveShape
 		    CurveShape(MinHand).Border = 100
 		    CurveShape(MinHand).BorderWidth = 1.5
@@ -249,6 +265,10 @@ Inherits Canvas
 
 	#tag Property, Flags = &h0
 		ClockFaceType As Date_Time_Container.ClockFaceType
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		ClockHandColor As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
