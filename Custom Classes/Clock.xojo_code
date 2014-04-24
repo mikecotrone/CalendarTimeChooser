@@ -106,11 +106,13 @@ Inherits Canvas
 		  hourTick.x2=-14
 		  hourTick.y=0
 		  hourTick.y2=0
+		  hourTick.BorderColor=TextColor
 		  dim secondTick as new CurveShape
 		  secondTick.x=-2
 		  secondTick.y=0
 		  secondTick.x2=-8
 		  secondTick.y2=0
+		  secondTick.BorderColor=TextColor
 		  radius=buffer.Width/2
 		  dim numeral As new StringShape //for drawing the numbers
 		  if HourCount=12 then
@@ -119,6 +121,7 @@ Inherits Canvas
 		    numeral.TextSize=20
 		  end if
 		  numeral.TextFont=me.font
+		  numeral.FillColor=TextColor
 		  numeral.VerticalAlignment=StringShape.Alignment.Center
 		  numeral.HorizontalAlignment=StringShape.Alignment.Center
 		  dim face As new OvalShape
@@ -312,7 +315,7 @@ Inherits Canvas
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		Font As String = "Helvetica"
+		Font As String = "System"
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -369,7 +372,8 @@ Inherits Canvas
 		#tag ViewProperty
 			Name="ClockHandColor"
 			Group="Behavior"
-			Type="String"
+			InitialValue="&c000000"
+			Type="Color"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty

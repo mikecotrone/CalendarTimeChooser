@@ -1175,12 +1175,12 @@ End
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
 		  dim p As new Picture(me.Width,me.Height)
-		  static handColor as color=MyPicker.Date_Time_Container1.Time_Container1.Clock1.ClockHandColor
+		  static handColor as color=MyPicker.ClockHandColor
 		  if SelectColor(handColor, "Select a color for the clock hands") then
 		    p.Graphics.ForeColor=handColor
 		    p.Graphics.FillRect 0,0,p.Width,p.Height
 		    me.Image=p
-		    MyPicker.Date_Time_Container1.Time_Container1.Clock1.ClockHandColor = handColor
+		    MyPicker.Date_Time_Container1.ClockHandColor = handColor
 		    
 		    dim v As Variant=handColor
 		    SelectedHandColorLabel.Text=v.StringValue
@@ -1190,12 +1190,12 @@ End
 	#tag Event
 		Sub Open()
 		  dim p As new Picture(me.Width,me.Height)
-		  p.Graphics.ForeColor=MyPicker.Date_Time_Container1.Time_Container1.Clock1.ClockHandColor
+		  p.Graphics.ForeColor=MyPicker.ClockHandColor
 		  p.Graphics.FillRect 0,0,p.Width,p.Height
 		  me.Image=p
 		  
 		  
-		  dim v As Variant=MyPicker.Date_Time_Container1.Time_Container1.Clock1.ClockHandColor
+		  dim v As Variant=MyPicker.ClockHandColor
 		  SelectedHandColorLabel.Text=v.StringValue
 		End Sub
 	#tag EndEvent

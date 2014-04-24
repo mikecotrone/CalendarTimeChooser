@@ -270,6 +270,80 @@ End
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
+			  return Time_Container1.Clock1.BorderColor
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Time_Container1.Clock1.BorderColor = value
+			End Set
+		#tag EndSetter
+		ClockFaceBorderColor As Color
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return Time_Container1.Clock1.FaceColor
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Time_Container1.Clock1.FaceColor = value
+			End Set
+		#tag EndSetter
+		ClockFaceColor As Color
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return Time_Container1.Clock1.HourCount
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  if value=12 then
+			    Time_Container1.Clock1.HourCount=12
+			  else
+			    Time_Container1.Clock1.HourCount = 24
+			  end if
+			End Set
+		#tag EndSetter
+		ClockFaceHourCount As Integer
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return Time_Container1.Clock1.TextColor
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Time_Container1.Clock1.TextColor = value
+			End Set
+		#tag EndSetter
+		ClockFaceTextColor As Color
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return Time_Container1.Clock1.Font
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Time_Container1.Clock1.Font = value
+			End Set
+		#tag EndSetter
+		ClockFaceTextFont As String
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
 			  return Time_Container1.Clock1.ClockFaceType
 			End Get
 		#tag EndGetter
@@ -287,6 +361,20 @@ End
 			End Set
 		#tag EndSetter
 		ClockFaceType As ClockFaceType
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return Time_Container1.Clock1.ClockHandColor
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Time_Container1.Clock1.ClockHandColor = value
+			End Set
+		#tag EndSetter
+		ClockHandColor As Color
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -519,6 +607,49 @@ End
 		EditorType="Picture"
 	#tag EndViewProperty
 	#tag ViewProperty
+		Name="ClockFaceBorderColor"
+		Visible=true
+		Group="Appearance"
+		InitialValue="&c444444"
+		Type="Color"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="ClockFaceColor"
+		Visible=true
+		Group="Appearance"
+		InitialValue="&cffffff"
+		Type="Color"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="ClockFaceHourCount"
+		Visible=true
+		Group="Behavior"
+		InitialValue="12"
+		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="ClockFaceTextColor"
+		Visible=true
+		Group="Appearance"
+		InitialValue="&c000000"
+		Type="Color"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="ClockFaceTextFont"
+		Visible=true
+		Group="Appearance"
+		InitialValue="System"
+		Type="String"
+		EditorType="MultiLineEditor"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="ClockHandColor"
+		Visible=true
+		Group="Appearance"
+		InitialValue="&c000000"
+		Type="Color"
+	#tag EndViewProperty
+	#tag ViewProperty
 		Name="Enabled"
 		Visible=true
 		Group="Appearance"
@@ -556,7 +687,9 @@ End
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="IncludePrevNextMonthDays"
+		Visible=true
 		Group="Behavior"
+		InitialValue="True"
 		Type="Boolean"
 	#tag EndViewProperty
 	#tag ViewProperty
@@ -652,7 +785,7 @@ End
 	#tag ViewProperty
 		Name="UseGraphicalClockHands"
 		Visible=true
-		Group="Behavior"
+		Group="Appearance"
 		InitialValue="True"
 		Type="Boolean"
 	#tag EndViewProperty
@@ -666,7 +799,9 @@ End
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="WeekStartsOnMonday"
+		Visible=true
 		Group="Behavior"
+		InitialValue="False"
 		Type="Boolean"
 	#tag EndViewProperty
 	#tag ViewProperty
