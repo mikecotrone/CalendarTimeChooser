@@ -129,7 +129,7 @@ Inherits Canvas
 		  face.BorderWidth=8
 		  face.BorderColor=BorderColor
 		  face.fill=100
-		  face.FillColor=FaceColor
+		  face.FillColor=&cdddddd //FaceColor
 		  buffer.Graphics.DrawObject face,radius,radius
 		  buffer.Graphics.ForeColor=TextColor
 		  
