@@ -925,13 +925,12 @@ End
 	#tag Event
 		Sub Open()
 		  // Load Popup Menu
-		  me.AddRow("0 - Chrome (12hr)")
-		  me.AddRow("1 - Roman (12hr)")
-		  me.AddRow("2 - Standard (12hr)")
-		  me.AddRow("3 - Google Style (12hr)")
-		  me.AddRow("4 - Modern (12hr)")
-		  me.AddRow("5 - Dynamic (12hr)")
-		  me.AddRow("6 - Dynamic (24hr)")
+		  me.AddRow("Chrome")
+		  me.AddRow("Google Style")
+		  me.AddRow("Jim's Clock")
+		  me.AddRow("Modern")
+		  me.AddRow("Roman")
+		  me.AddRow("Standard")
 		  me.ListIndex = 0
 		  
 		End Sub
@@ -939,23 +938,21 @@ End
 	#tag Event
 		Sub Change()
 		  Select Case Me.Text
-		  Case "0 - Chrome (12hr)"
+		  Case "Chrome"
 		    // Default Clock Face
 		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Chrome
-		  Case "1 - Roman (12hr)"
+		  Case "Roman"
 		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Roman
-		  Case "2 - Standard (12hr)"
+		  Case "Standard"
 		    MyPicker.ClockFaceType =Date_Time_Container.ClockFaceType.Standard
-		  Case "3 - Google Style (12hr)"
+		  Case "Google Style"
 		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.GoogleStyle
-		  Case "4 - Modern (12hr)"
+		  Case "Modern"
 		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Modern
-		  Case "5 - Dynamic (12hr)"
+		  Case "Jim's Clock"
 		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Dynamic_12hr
-		  Case "6 - Dynamic (24hr)"
-		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Dynamic_24hr
-		    TimeModePopUpMenu.ListIndex = 1
 		  End Select
+		  
 		  
 		End Sub
 	#tag EndEvent
@@ -1066,6 +1063,11 @@ End
 		    MyPicker.Date_Time_Container1.Time_Container1.TimeMode = 12
 		    if TimeModeFirstRunBool = False Then
 		      MyPicker.Date_Time_Container1.Time_Container1.TimePicker1.mOneTimeConversion24to12
+		    End if
+		    
+		    // Check to see if we still have the 24hr Dynamic Clock Face Selected .. If so then change to 12hr Dynamic
+		    if ClockFaceChangerPopupMenu.ListIndex = 6 Then
+		      ClockFaceChangerPopupMenu.ListIndex = 5
 		    End if
 		    
 		  Case "24 Hour Format"

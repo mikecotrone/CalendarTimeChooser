@@ -276,13 +276,13 @@ End
 		#tag Setter
 			Set
 			  Time_Container1.Clock1.ClockFaceType = value
-			  if value=Date_Time_Container.ClockFaceType.Dynamic_24hr then
-			    Time_Container1.Clock1.HourCount=24
-			    Time_Container1.TimeMode = 24
-			  else
-			    Time_Container1.Clock1.HourCount=12
-			    Time_Container1.TimeMode = 12
-			  end if
+			  //if value=Date_Time_Container.ClockFaceType.Dynamic_24hr then
+			  //Time_Container1.Clock1.HourCount=24
+			  //Time_Container1.TimeMode = 24
+			  //else
+			  //Time_Container1.Clock1.HourCount=12
+			  //Time_Container1.TimeMode = 12
+			  //end if
 			  me.Invalidate(false)
 			End Set
 		#tag EndSetter
