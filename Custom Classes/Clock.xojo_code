@@ -97,18 +97,21 @@ Inherits Canvas
 	#tag Method, Flags = &h0
 		Sub mDrawClockFace(g As Graphics)
 		  dim buffer As new Picture(g.Width*2,g.Height*2)
-		  dim hr,sec,x,y,radius As integer
+		  dim hr,sec,x,y,radius,tickInset As integer
 		  dim angle As Double
 		  dim hourTick As new CurveShape
 		  hourTick.x=-2
-		  hourTick.y=0
 		  hourTick.x2=-14
+		  hourTick.y=0
 		  hourTick.y2=0
+		  hourTick.BorderColor=TextColor
 		  dim secondTick as new CurveShape
 		  secondTick.x=-2
 		  secondTick.y=0
 		  secondTick.x2=-8
 		  secondTick.y2=0
+		  secondTick.BorderColor=TextColor
+		  radius=buffer.Width/2
 		  dim numeral As new StringShape //for drawing the numbers
 		  if HourCount=12 then
 		    numeral.TextSize=26
@@ -116,13 +119,18 @@ Inherits Canvas
 		    numeral.TextSize=20
 		  end if
 		  numeral.TextFont=me.font
+		  numeral.FillColor=TextColor
 		  numeral.VerticalAlignment=StringShape.Alignment.Center
 		  numeral.HorizontalAlignment=StringShape.Alignment.Center
-		  buffer.Graphics.ForeColor=BorderColor
-		  buffer.Graphics.FillOval 0,0,buffer.Width,buffer.Height //draw outline
-		  buffer.Graphics.ForeColor=FaceColor
-		  buffer.Graphics.FillOval 8,8,buffer.Width-16,buffer.Height-16 //draw background
-		  radius=buffer.Width/2
+		  dim face As new OvalShape
+		  face.Width=g.width*2-8
+		  face.Height=g.width*2-8
+		  face.Border=100
+		  face.BorderWidth=8
+		  face.BorderColor=BorderColor
+		  face.fill=100
+		  face.FillColor=FaceColor
+		  buffer.Graphics.DrawObject face,radius,radius
 		  buffer.Graphics.ForeColor=TextColor
 		  
 		  for hr=1 to HourCount
@@ -130,27 +138,49 @@ Inherits Canvas
 		    angle=pi*2*(hr/HourCount)-pi/2 //hour angle as radians
 		    //calc the hour hashmark
 		    if HourCount=12 then
-		      x = Cos(angle)*(radius-10)
-		      y= Sin(angle)*(radius-10)
+		      // calc the numeral location
+		      if Time_Container(window).TimeMode=24 then//24 hour mode
+		        
+		        tickInset=40
+		        numeral.TextSize=24
+		        x = Cos(angle)*(radius-23)
+		        y= Sin(angle)*(radius-23)
+		        buffer.Graphics.DrawObject numeral,x+radius+1,y+radius+1 //draw numeral
+		        
+		        numeral.Text=str(hr+12)
+		        numeral.TextSize=18
+		        x = Cos(angle)*(radius-68)
+		        y= Sin(angle)*(radius-68)
+		        buffer.Graphics.DrawObject numeral,x+radius+1,y+radius+1 //draw inner numeral
+		        
+		      else //12 hour mode
+		        x = Cos(angle)*(radius-40)
+		        y= Sin(angle)*(radius-40)
+		        buffer.Graphics.DrawObject numeral,x+radius+1,y+radius+1 //draw numeral
+		        tickInset=10
+		        
+		      end if
+		      
+		      //draw the hour ticks
+		      x = Cos(angle)*(radius-tickInset)
+		      y= Sin(angle)*(radius-tickInset)
 		      hourTick.Rotation=angle
 		      buffer.Graphics.DrawObject hourTick,x+radius,y+radius //draw hour ticks
-		      // calc the numeral location
-		      x = Cos(angle)*(radius-40)
-		      y= Sin(angle)*(radius-40)
-		      buffer.Graphics.DrawObject numeral,x+radius,y+radius //draw numeral
 		      
 		      // draw the second ticks
 		      for sec = 1 to 4
 		        angle=pi*2*((hr+sec/5)/HourCount)-pi/2 //hour angle as radians + fifth of an hour
-		        x = Cos(angle)*(radius-10)
-		        y= Sin(angle)*(radius-10)
+		        x = Cos(angle)*(radius-tickInset)
+		        y= Sin(angle)*(radius-tickInset)
 		        secondTick.Rotation=angle
 		        buffer.Graphics.DrawObject secondTick,x+radius,y+radius //draw second ticks
 		      next
 		      
+		      
 		    else //24 hour clock
 		      
 		      // calc the numeral location
+		      if numeral.Text="24" then numeral.text="0"
 		      x = Cos(angle)*(radius-24)
 		      y= Sin(angle)*(radius-24)
 		      buffer.Graphics.DrawObject numeral,x+radius,y+radius //draw numeral
@@ -177,14 +207,12 @@ Inherits Canvas
 		  End if
 		  
 		  if UseGraphicalClockHands = True then
-		    Select Case ClockHandColor
-		    Case "Black"
-		      HourHand = New PixmapShape(HourHandImg_Black)
-		    Case "Red"
-		      HourHand = New PixmapShape(HourHandRed)
-		    Case "Green"
-		      HourHand = New PixmapShape(HourHandGreen)
-		    End Select
+		    dim handPic As new Picture(HourHandImg_Black.Width,HourHandImg_Black.Height,32)
+		    handPic.Graphics.ForeColor=ClockHandColor
+		    handPic.Graphics.FillRect 0,0,handPic.Width,handPic.Height
+		    handPic.ApplyMask HourHandImg_Black
+		    HourHand=New PixmapShape(handPic)
+		    
 		    
 		  elseif UseGraphicalClockHands = False Then
 		    HourHand = New CurveShape
@@ -209,14 +237,11 @@ Inherits Canvas
 		  Dim MinHand as Object2D
 		  
 		  if UseGraphicalClockHands = True then
-		    Select Case ClockHandColor
-		    Case "Black"
-		      MinHand=New PixmapShape(MinuteHandImg)
-		    Case "Red"
-		      MinHand=New PixmapShape(MinuteHandRed)
-		    Case "Green"
-		      MinHand=New PixmapShape(MinuteHandGreen)
-		    End Select
+		    dim handPic As new Picture(MinuteHandImg.Width,MinuteHandImg.Height,32)
+		    handPic.Graphics.ForeColor=ClockHandColor
+		    handPic.Graphics.FillRect 0,0,handPic.Width,handPic.Height
+		    handPic.ApplyMask MinuteHandImg
+		    MinHand=New PixmapShape(handPic)
 		    
 		  elseif UseGraphicalClockHands = False Then
 		    MinHand = New CurveShape
@@ -268,7 +293,7 @@ Inherits Canvas
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		ClockHandColor As String
+		ClockHandColor As Color = &c000000
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -347,6 +372,12 @@ Inherits Canvas
 			Group="Behavior"
 			Type="String"
 			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ClockHandColor1"
+			Group="Behavior"
+			InitialValue="&c000000"
+			Type="Color"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ClockHourValue"

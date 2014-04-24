@@ -32,6 +32,11 @@ Begin Window DateTimeWindow
       AutoDeactivate  =   True
       BackColor       =   &c9D9D9D00
       Backdrop        =   0
+      ClockFaceBorderColor=   &c00000000
+      ClockFaceColor  =   &c00000000
+      ClockFaceHourCount=   0
+      ClockFaceTextColor=   &c00000000
+      ClockHandColor  =   &c00000000
       Enabled         =   True
       EraseBackground =   False
       HasBackColor    =   True
@@ -64,6 +69,76 @@ End
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
+			  return Date_Time_Container1.ClockFaceBorderColor
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Date_Time_Container1.ClockFaceBorderColor = value
+			End Set
+		#tag EndSetter
+		ClockFaceBorderColor As Color
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return Date_Time_Container1.ClockFaceColor
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Date_Time_Container1.ClockFaceColor = value
+			End Set
+		#tag EndSetter
+		ClockFaceColor As Color
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return Date_Time_Container1.ClockFaceHourCount
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Date_Time_Container1.ClockFaceHourCount = value
+			End Set
+		#tag EndSetter
+		ClockFaceHourCount As Integer
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return Date_Time_Container1.ClockFaceTextColor
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Date_Time_Container1.ClockFaceTextColor = value
+			End Set
+		#tag EndSetter
+		ClockFaceTextColor As Color
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return Date_Time_Container1.ClockFaceTextFont
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Date_Time_Container1.ClockFaceTextFont = value
+			End Set
+		#tag EndSetter
+		ClockFaceTextFont As String
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
 			  return Date_Time_Container1.ClockFaceType
 			End Get
 		#tag EndGetter
@@ -73,6 +148,20 @@ End
 			End Set
 		#tag EndSetter
 		ClockFaceType As ClockFaceType
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return Date_Time_Container1.ClockHandColor
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Date_Time_Container1.ClockHandColor = value
+			End Set
+		#tag EndSetter
+		ClockHandColor As Color
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0

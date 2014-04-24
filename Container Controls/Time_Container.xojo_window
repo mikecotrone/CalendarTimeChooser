@@ -86,6 +86,8 @@ Begin ContainerControl Time_Container
       AutoDeactivate  =   True
       Backdrop        =   0
       BorderColor     =   &c44444400
+      ClockHandColor  =   ""
+      ClockHandColor1 =   &c00000000
       ClockHourValue  =   0.0
       ClockMinuteValue=   0.0
       ClockSecondValue=   0.0

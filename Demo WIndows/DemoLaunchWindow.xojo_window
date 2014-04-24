@@ -481,37 +481,6 @@ Begin Window DemoLaunchWindow
          Visible         =   True
          Width           =   207
       End
-      Begin PopupMenu ClockHandColorPopUpMenu
-         AutoDeactivate  =   True
-         Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
-         Enabled         =   True
-         Height          =   20
-         HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "GroupBox1"
-         InitialValue    =   ""
-         Italic          =   False
-         Left            =   278
-         ListIndex       =   0
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Scope           =   0
-         TabIndex        =   33
-         TabPanelIndex   =   0
-         TabStop         =   True
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
-         Top             =   303
-         Underline       =   False
-         Visible         =   True
-         Width           =   188
-      End
       Begin PopupMenu WeekStartType
          AutoDeactivate  =   True
          Bold            =   False
@@ -700,6 +669,68 @@ Begin Window DemoLaunchWindow
          Underline       =   False
          Visible         =   True
          Width           =   188
+      End
+      Begin Label SelectedHandColorLabel
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         Italic          =   False
+         Left            =   327
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Multiline       =   False
+         Scope           =   0
+         Selectable      =   False
+         TabIndex        =   41
+         TabPanelIndex   =   0
+         Text            =   "h00000000"
+         TextAlign       =   0
+         TextColor       =   &c00000000
+         TextFont        =   "Helvetica"
+         TextSize        =   12.0
+         TextUnit        =   0
+         Top             =   303
+         Transparent     =   False
+         Underline       =   False
+         Visible         =   True
+         Width           =   100
+      End
+      Begin Canvas ClockHandColorPickerCanvas
+         AcceptFocus     =   False
+         AcceptTabs      =   False
+         AutoDeactivate  =   True
+         Backdrop        =   0
+         DoubleBuffer    =   True
+         Enabled         =   True
+         EraseBackground =   False
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         Left            =   279
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   42
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Top             =   303
+         Transparent     =   True
+         UseFocusRing    =   True
+         Visible         =   True
+         Width           =   38
       End
    End
    Begin Separator Separator2
@@ -1026,33 +1057,6 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events ClockHandColorPopUpMenu
-	#tag Event
-		Sub Open()
-		  // Load Popup Menu
-		  me.AddRow("Black")
-		  me.AddRow("Green")
-		  me.AddRow("Red")
-		  me.ListIndex = 0
-		  
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub Change()
-		  Select Case Me.Text
-		  Case "Black"
-		    MyPicker.Date_Time_Container1.Time_Container1.Clock1.ClockHandColor = "Black"
-		  Case "Red"
-		    MyPicker.Date_Time_Container1.Time_Container1.Clock1.ClockHandColor = "Red"
-		  Case "Green"
-		    MyPicker.Date_Time_Container1.Time_Container1.Clock1.ClockHandColor = "Green"
-		    
-		  End Select
-		  
-		  MyPicker.Date_Time_Container1.Time_Container1.Clock1.Invalidate(False)
-		End Sub
-	#tag EndEvent
-#tag EndEvents
 #tag Events WeekStartType
 	#tag Event
 		Sub Open()
@@ -1170,6 +1174,40 @@ End
 		  End Select
 		  
 		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events ClockHandColorPickerCanvas
+	#tag Event
+		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		  dim p As new Picture(me.Width,me.Height)
+		  static handColor as color=MyPicker.ClockHandColor
+		  if SelectColor(handColor, "Select a color for the clock hands") then
+		    MyPicker.Date_Time_Container1.ClockHandColor = handColor
+		    Invalidate(False)
+		    dim v As Variant=handColor
+		    SelectedHandColorLabel.Text=v.StringValue
+		  end if
+		End Function
+	#tag EndEvent
+	#tag Event
+		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		  g.ForeColor = RGB(0,0,0)
+		  g.PenHeight=2
+		  g.PenWidth=2
+		  g.DrawRoundRect(2,2,me.Width-2,me.Height-2,6,6)
+		  
+		  dim p As new Picture(me.Width,me.Height)
+		  p.Graphics.ForeColor=MyPicker.ClockHandColor
+		  //p.Graphics.FillRoundRect 0,0,41,12,6,6
+		  //g.DrawPicture(p,5,5)
+		  
+		  p.Graphics.FillRoundRect 0,0,p.Width-6,p.Height-6,4,4
+		  g.DrawPicture(p,4,4)
+		  
+		  
+		  dim v As Variant=MyPicker.ClockHandColor
+		  SelectedHandColorLabel.Text=v.StringValue
 		End Sub
 	#tag EndEvent
 #tag EndEvents
