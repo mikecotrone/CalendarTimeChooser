@@ -286,6 +286,7 @@ End
 		Name="ClockFaceTextFont"
 		Group="Behavior"
 		Type="String"
+		EditorType="MultiLineEditor"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="ClockHandColor"

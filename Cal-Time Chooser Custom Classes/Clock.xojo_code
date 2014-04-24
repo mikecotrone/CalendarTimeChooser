@@ -207,10 +207,10 @@ Inherits Canvas
 		  End if
 		  
 		  if UseGraphicalClockHands = True then
-		    dim handPic As new Picture(HourHandImg_Black.Width,HourHandImg_Black.Height,32)
+		    dim handPic As new Picture(HourHandImg.Width,HourHandImg.Height,32)
 		    handPic.Graphics.ForeColor=ClockHandColor
 		    handPic.Graphics.FillRect 0,0,handPic.Width,handPic.Height
-		    handPic.ApplyMask HourHandImg_Black
+		    handPic.ApplyMask HourHandImg
 		    HourHand=New PixmapShape(handPic)
 		    
 		    
