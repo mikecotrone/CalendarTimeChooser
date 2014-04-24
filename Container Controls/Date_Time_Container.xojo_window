@@ -191,9 +191,9 @@ End
 		    Localized_TimeOnlyTitle_Str = "Kies Time"
 		    
 		  Case 6 // German
-		    Localized_CalendarOnlyTitle_Str = "Wählen Sie Datum"
-		    Localized_ChooseBothTitle_Str = "Wählen Sie Datum und Uhrzeit"
-		    Localized_TimeOnlyTitle_Str = "Wählen Sie Zeit"
+		    Localized_CalendarOnlyTitle_Str = "Bitte Datum auswählen"
+		    Localized_ChooseBothTitle_Str = "Bitte Datum und Uhrzeit auswählen"
+		    Localized_TimeOnlyTitle_Str = "Bitte Zeit auswählen"
 		    
 		  Case 7 // Afrikaans
 		    Localized_CalendarOnlyTitle_Str = "kies Datum"
