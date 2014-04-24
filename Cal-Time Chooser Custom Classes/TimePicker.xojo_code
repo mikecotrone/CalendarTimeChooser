@@ -74,6 +74,45 @@ Inherits Canvas
 		      End if
 		    End if
 		    
+		    if Key = Chr(28) then // Enable Left Arrow to Tab left
+		      KeyBuffer = ""
+		      if Draw_Hour_Selected = True Then
+		        Draw_Hour_Selected = False
+		        Draw_AMPM_Selected = True
+		        Draw_Minute_Selected = False
+		        me.Invalidate(False)
+		      Elseif Draw_AMPM_Selected = True Then
+		        Draw_Hour_Selected = False
+		        Draw_Minute_Selected = True
+		        Draw_AMPM_Selected = False
+		        me.Invalidate(False)
+		      Elseif Draw_Minute_Selected = True Then
+		        Draw_Minute_Selected = False
+		        Draw_Hour_Selected = True
+		        Draw_AMPM_Selected = False
+		        me.Invalidate(False)
+		      end if
+		      
+		    Elseif Key = Chr(29) Then // Enable Right Arrow to Tab Right
+		      KeyBuffer = ""
+		      if Draw_Hour_Selected = True Then
+		        Draw_Hour_Selected = False
+		        Draw_AMPM_Selected = False
+		        Draw_Minute_Selected = True
+		        me.Invalidate(False)
+		      Elseif Draw_Minute_Selected = True Then
+		        Draw_Minute_Selected = False
+		        Draw_Hour_Selected = False
+		        Draw_AMPM_Selected = True
+		        me.Invalidate(False)
+		      Elseif Draw_AMPM_Selected = True Then
+		        Draw_Hour_Selected = True
+		        Draw_Minute_Selected = False
+		        Draw_AMPM_Selected = False
+		        me.Invalidate(False)
+		      end if
+		    end if
+		    
 		  Case 24
 		    if Key = Chr(9) Then // Tab Key Pressed
 		      KeyBuffer = ""
@@ -142,7 +181,33 @@ Inherits Canvas
 		      End if
 		    End if
 		    
+		    if Key = Chr(28) then // Enable Left Arrow to Tab left
+		      KeyBuffer = ""
+		      if Draw_Hour_Selected = True Then
+		        Draw_Hour_Selected = False
+		        Draw_Minute_Selected = True
+		        me.Invalidate(False)
+		      Elseif Draw_Minute_Selected = True Then
+		        Draw_Minute_Selected = False
+		        Draw_Hour_Selected = True
+		        me.Invalidate(False)
+		      end if
+		      
+		    Elseif Key = Chr(29) Then // Enable Right Arrow to Tab Right
+		      KeyBuffer = ""
+		      if Draw_Hour_Selected = True Then
+		        Draw_Hour_Selected = False
+		        Draw_Minute_Selected = True
+		        me.Invalidate(False)
+		      Elseif Draw_Minute_Selected = True Then
+		        Draw_Minute_Selected = False
+		        Draw_Hour_Selected = True
+		        me.Invalidate(False)
+		      end if
+		    end if
+		    
 		  END Select
+		  
 		  
 		  Return True
 		End Function
