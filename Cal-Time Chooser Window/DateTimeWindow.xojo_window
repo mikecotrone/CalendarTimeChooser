@@ -33,7 +33,7 @@ Begin Window DateTimeWindow
       BackColor       =   &c9D9D9D00
       Backdrop        =   0
       ClockFaceBorderColor=   &c00000000
-      ClockFaceColor  =   &c00000000
+      ClockFaceColor  =   &cE2E2E200
       ClockFaceHourCount=   0
       ClockFaceTextColor=   &c00000000
       ClockFaceTextFont=   ""
@@ -44,7 +44,6 @@ Begin Window DateTimeWindow
       Height          =   227
       HelpTag         =   ""
       IncludePrevNextMonthDays=   False
-      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   0
       LockBottom      =   False
