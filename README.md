@@ -19,9 +19,11 @@ What is this Project?
   - This project came out of a need for a professional calendar and time chooser for scheduling
   
   - What are the Supported Time Formats for the time chooser picklist?
-        - 12 hour time support only
+        - 12 and 24 hour time support 
         
   - Awesome Clock hand animation
+  
+  - Single or Multi Day selection
 
 
 Whats New in 1.5?
