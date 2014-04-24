@@ -36,6 +36,7 @@ Begin Window DateTimeWindow
       ClockFaceColor  =   &c00000000
       ClockFaceHourCount=   0
       ClockFaceTextColor=   &c00000000
+      ClockFaceTextFont=   ""
       ClockHandColor  =   &c00000000
       Enabled         =   True
       EraseBackground =   False
@@ -43,6 +44,7 @@ Begin Window DateTimeWindow
       Height          =   227
       HelpTag         =   ""
       IncludePrevNextMonthDays=   False
+      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   0
       LockBottom      =   False
@@ -256,6 +258,40 @@ End
 		Group="Appearance"
 		Type="Picture"
 		EditorType="Picture"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="ClockFaceBorderColor"
+		Group="Behavior"
+		InitialValue="&c000000"
+		Type="Color"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="ClockFaceColor"
+		Group="Behavior"
+		InitialValue="&c000000"
+		Type="Color"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="ClockFaceHourCount"
+		Group="Behavior"
+		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="ClockFaceTextColor"
+		Group="Behavior"
+		InitialValue="&c000000"
+		Type="Color"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="ClockFaceTextFont"
+		Group="Behavior"
+		Type="String"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="ClockHandColor"
+		Group="Behavior"
+		InitialValue="&c000000"
+		Type="Color"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="CloseButton"
