@@ -9,7 +9,7 @@ Begin Window DemoLaunchWindow
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   460
+   Height          =   410
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
@@ -78,7 +78,7 @@ Begin Window DemoLaunchWindow
       Bold            =   False
       Caption         =   ""
       Enabled         =   True
-      Height          =   303
+      Height          =   253
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -437,7 +437,7 @@ Begin Window DemoLaunchWindow
          InitialParent   =   "GroupBox1"
          InitialValue    =   ""
          Italic          =   False
-         Left            =   278
+         Left            =   279
          ListIndex       =   0
          LockBottom      =   False
          LockedInPosition=   False
@@ -451,7 +451,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "System"
          TextSize        =   0.0
          TextUnit        =   0
-         Top             =   363
+         Top             =   300
          Underline       =   False
          Visible         =   True
          Width           =   188
@@ -467,7 +467,7 @@ Begin Window DemoLaunchWindow
          Index           =   -2147483648
          InitialParent   =   "GroupBox1"
          Italic          =   False
-         Left            =   278
+         Left            =   279
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -484,7 +484,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "Helvetica"
          TextSize        =   12.0
          TextUnit        =   0
-         Top             =   338
+         Top             =   275
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -585,7 +585,7 @@ Begin Window DemoLaunchWindow
          Index           =   -2147483648
          InitialParent   =   "GroupBox1"
          Italic          =   False
-         Left            =   78
+         Left            =   280
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -602,7 +602,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "Helvetica"
          TextSize        =   12.0
          TextUnit        =   0
-         Top             =   393
+         Top             =   338
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -620,7 +620,7 @@ Begin Window DemoLaunchWindow
          InitialParent   =   "GroupBox1"
          InitialValue    =   ""
          Italic          =   False
-         Left            =   76
+         Left            =   278
          ListIndex       =   0
          LockBottom      =   False
          LockedInPosition=   False
@@ -634,7 +634,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "System"
          TextSize        =   0.0
          TextUnit        =   0
-         Top             =   417
+         Top             =   362
          Underline       =   False
          Visible         =   True
          Width           =   191
@@ -954,6 +954,7 @@ End
 		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Dynamic_12hr
 		  Case "6 - Dynamic (24hr)"
 		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Dynamic_24hr
+		    TimeModePopUpMenu.ListIndex = 1
 		  End Select
 		  
 		End Sub
