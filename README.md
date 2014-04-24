@@ -36,6 +36,7 @@ Whats New in 1.5?
 - 24 Hour Mode
 - Clock Hand Color Choices via Color Picker
 - Streamlined Clock Faces
+- Added an Antique Clock Face
 
 ------------------------
 
