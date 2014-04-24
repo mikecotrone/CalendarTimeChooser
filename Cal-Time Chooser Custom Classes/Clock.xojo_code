@@ -96,6 +96,7 @@ Inherits Canvas
 
 	#tag Method, Flags = &h0
 		Sub mDrawClockFace(g As Graphics)
+		  
 		  dim buffer As new Picture(g.Width*2,g.Height*2)
 		  dim hr,sec,x,y,radius,tickInset As integer
 		  dim angle As Double
@@ -150,7 +151,7 @@ Inherits Canvas
 		        numeral.TextSize=24
 		        x = Cos(angle)*(radius-23)
 		        y= Sin(angle)*(radius-23)
-		        buffer.Graphics.DrawObject numeral,x+radius-1,y+radius //draw numeral
+		        buffer.Graphics.DrawObject numeral,x+radius-1,y+radius-1 //draw numeral
 		        
 		        numeral.Text=str(hr+12)
 		        numeral.TextSize=18
