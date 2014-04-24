@@ -3,10 +3,6 @@ Protected Class Clock
 Inherits Canvas
 	#tag Event
 		Sub Open()
-		  //Start all Hands at 12
-		  'ClockMinuteValue = 3.248
-		  'ClockHourValue = 3.308
-		  'ClockSecondValue = 3.248
 		  
 		  dim d As new date
 		  Time_Container(window).Time_Minute=Format(d.Minute,"00")
@@ -49,6 +45,8 @@ Inherits Canvas
 		    mDrawClockFace (g)
 		  Case Date_Time_Container.ClockFaceType.Dynamic_24hr
 		    mDrawClockFace (g)
+		  Case Date_Time_Container.ClockFaceType.Antique
+		    g.DrawPicture(Antique130x130,0,0)
 		  End Select
 		  
 		  dim buffer As new Picture(g.Width*2+1,g.Height*2+1)
@@ -59,16 +57,18 @@ Inherits Canvas
 		    buffer.Graphics.FillOval(buffer.Width/2-4,buffer.Height/2-4,9,9)
 		  end if
 		  
-		  dim AMPM As new StringShape
-		  AMPM.FillColor=TextColor
-		  AMPM.TextFont=Font
-		  AMPM.TextSize=24
-		  AMPM.VerticalAlignment=StringShape.Alignment.Bottom
-		  AMPM.HorizontalAlignment=StringShape.Alignment.Center
-		  AMPM.Text=Time_Container(window).Time_AMPM
-		  // Draw String AM/PM ONLY for 12 Hour Time Format
-		  if Time_Container(window).TimeMode = 12 Then
-		    buffer.Graphics.DrawObject AMPM,buffer.Width/2,buffer.Height/2+45
+		  if Time_Container(window).HideAMPM = False Then
+		    dim AMPM As new StringShape
+		    AMPM.FillColor=TextColor
+		    AMPM.TextFont=Font
+		    AMPM.TextSize=24
+		    AMPM.VerticalAlignment=StringShape.Alignment.Bottom
+		    AMPM.HorizontalAlignment=StringShape.Alignment.Center
+		    AMPM.Text=Time_Container(window).Time_AMPM
+		    // Draw String AM/PM ONLY for 12 Hour Time Format
+		    if Time_Container(window).TimeMode = 12 Then
+		      buffer.Graphics.DrawObject AMPM,buffer.Width/2,buffer.Height/2+40
+		    End if
 		  End if
 		  
 		  // Minute Hand
@@ -98,6 +98,7 @@ Inherits Canvas
 
 	#tag Method, Flags = &h0
 		Sub mDrawClockFace(g As Graphics)
+		  
 		  dim buffer As new Picture(g.Width*2,g.Height*2)
 		  dim hr,sec,x,y,radius,tickInset As integer
 		  dim angle As Double
@@ -125,8 +126,13 @@ Inherits Canvas
 		  numeral.VerticalAlignment=StringShape.Alignment.Center
 		  numeral.HorizontalAlignment=StringShape.Alignment.Center
 		  dim face As new OvalShape
-		  face.Width=g.width*2-8
-		  face.Height=g.width*2-8
+		  #if TargetMacOS Then
+		    face.Width=g.width*2-8
+		    face.Height=g.width*2-8
+		  #Elseif TargetWin32 Then
+		    face.Width=g.width*2-20
+		    face.Height=g.width*2-20
+		  #endif
 		  face.Border=100
 		  face.BorderWidth=8
 		  face.BorderColor=BorderColor
@@ -155,7 +161,7 @@ Inherits Canvas
 		        y= Sin(angle)*(radius-68)
 		        buffer.Graphics.DrawObject numeral,x+radius+1,y+radius+1 //draw inner numeral
 		        
-		      else //12 hour mode
+		      elseif  Time_Container(window).TimeMode=12 Then //12 hour mode
 		        x = Cos(angle)*(radius-40)
 		        y= Sin(angle)*(radius-40)
 		        buffer.Graphics.DrawObject numeral,x+radius+1,y+radius+1 //draw numeral
@@ -179,7 +185,7 @@ Inherits Canvas
 		      next
 		      
 		      
-		    else //24 hour clock
+		    elseif HourCount = 24 Then //24 hour clock
 		      
 		      // calc the numeral location
 		      if numeral.Text="24" then numeral.text="0"
@@ -209,10 +215,10 @@ Inherits Canvas
 		  End if
 		  
 		  if UseGraphicalClockHands = True then
-		    dim handPic As new Picture(HourHandImg_Black.Width,HourHandImg_Black.Height,32)
+		    dim handPic As new Picture(HourHandImg.Width,HourHandImg.Height,32)
 		    handPic.Graphics.ForeColor=ClockHandColor
 		    handPic.Graphics.FillRect 0,0,handPic.Width,handPic.Height
-		    handPic.ApplyMask HourHandImg_Black
+		    handPic.ApplyMask HourHandImg
 		    HourHand=New PixmapShape(handPic)
 		    
 		    

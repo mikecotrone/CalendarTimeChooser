@@ -9,7 +9,7 @@ Begin ContainerControl Date_Time_Container
    Enabled         =   True
    EraseBackground =   False
    HasBackColor    =   True
-   Height          =   227
+   Height          =   239
    HelpTag         =   ""
    InitialParent   =   ""
    Left            =   0
@@ -68,7 +68,7 @@ Begin ContainerControl Date_Time_Container
       Enabled         =   True
       EraseBackground =   False
       HasBackColor    =   False
-      Height          =   213
+      Height          =   236
       HelpTag         =   ""
       InitialParent   =   ""
       Left            =   0
@@ -99,6 +99,7 @@ Begin ContainerControl Date_Time_Container
       HasBackColor    =   False
       Height          =   213
       HelpTag         =   ""
+      HideAMPM        =   False
       InitialParent   =   ""
       Left            =   235
       LockBottom      =   False
@@ -110,6 +111,7 @@ Begin ContainerControl Date_Time_Container
       TabIndex        =   101
       TabPanelIndex   =   0
       TabStop         =   True
+      TimeMode        =   0
       Time_AMPM       =   "AM"
       Time_AMPM_Len   =   0
       Time_Hour       =   "12"
@@ -137,11 +139,84 @@ End
 
 
 	#tag Method, Flags = &h21
+		Private Sub mChangeLocalizedWindowTitle()
+		  If Window IsA DateTimeWindow Then
+		    
+		    If DemoLaunchWindow.MyPicker.VisiblePickers = Date_Time_Container.PickerElements.CalendarAndClock Then
+		      TrueWindow.Title = Localized_ChooseBothTitle_Str
+		      
+		    Elseif DemoLaunchWindow.MyPicker.VisiblePickers = Date_Time_Container.PickerElements.CalendarOnly Then
+		      TrueWindow.Title = Localized_CalendarOnlyTitle_Str
+		      
+		    Elseif DemoLaunchWindow.MyPicker.VisiblePickers =Date_Time_Container.PickerElements.ClockOnly Then
+		      TrueWindow.Title = Localized_TimeOnlyTitle_Str
+		      
+		    End If
+		    
+		  End If
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub mSetLocalization_ContainerTitle(inLocalizationInt as Integer)
+		  Select Case inLocalizationInt
+		  Case 0 // English
+		    Localized_CalendarOnlyTitle_Str = "Choose Date"
+		    Localized_ChooseBothTitle_Str = "Choose Date and Time"
+		    Localized_TimeOnlyTitle_Str = "Choose Time"
+		    
+		  Case 1 // French
+		    Localized_CalendarOnlyTitle_Str = "Choisissez la date"
+		    Localized_ChooseBothTitle_Str = "Choisissez la date et l'heure"
+		    Localized_TimeOnlyTitle_Str = "Choisissez l'heure"
+		    
+		  Case 2 // Swedish
+		    Localized_CalendarOnlyTitle_Str = "Välj datum"
+		    Localized_ChooseBothTitle_Str = "Välj Datum och tid"
+		    Localized_TimeOnlyTitle_Str = "Välj Tid"
+		    
+		  Case 3 // Italian
+		    Localized_CalendarOnlyTitle_Str = "Scegli data"
+		    Localized_ChooseBothTitle_Str = "Scegli data e ora"
+		    Localized_TimeOnlyTitle_Str = "Scegli Ora"
+		    
+		  Case 4 // Spanish
+		    Localized_CalendarOnlyTitle_Str = "Seleccionar fecha"
+		    Localized_ChooseBothTitle_Str = "Seleccione Fecha y Hora"
+		    Localized_TimeOnlyTitle_Str = "Seleccione Hora"
+		    
+		  Case 5 // Dutch
+		    Localized_CalendarOnlyTitle_Str = "Kies Datum"
+		    Localized_ChooseBothTitle_Str = "Kies de datum en tijd"
+		    Localized_TimeOnlyTitle_Str = "Kies Time"
+		    
+		  Case 6 // German
+		    Localized_CalendarOnlyTitle_Str = "Bitte Datum auswählen"
+		    Localized_ChooseBothTitle_Str = "Bitte Datum und Uhrzeit auswählen"
+		    Localized_TimeOnlyTitle_Str = "Bitte Zeit auswählen"
+		    
+		  Case 7 // Afrikaans
+		    Localized_CalendarOnlyTitle_Str = "kies Datum"
+		    Localized_ChooseBothTitle_Str = "Kies Datum en Tyd"
+		    Localized_TimeOnlyTitle_Str = "kies die tyd"
+		    
+		  Case 8 // Polish
+		    Localized_CalendarOnlyTitle_Str = "Wybierz datę"
+		    Localized_ChooseBothTitle_Str = "Wybierz datę i godzinę"
+		    Localized_TimeOnlyTitle_Str = "Wybierz godzinę"
+		  End Select
+		  
+		  mChangeLocalizedWindowTitle
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
 		Private Sub mSetupForBothPickers()
 		  if Window isa DateTimeWindow then
 		    window.Width = 394
 		    window.Height = 227
-		    TrueWindow.Title = "Choose Date and Time"
+		    TrueWindow.Title = Localized_ChooseBothTitle_Str
 		  end if
 		  
 		  Calendar_Container1.Enabled = True
@@ -159,7 +234,7 @@ End
 		  if window isa DateTimeWindow then
 		    window.Width = 230
 		    window.Height = 227
-		    TrueWindow.Title = "Choose Date"
+		    TrueWindow.Title = Localized_CalendarOnlyTitle_Str
 		  end if
 		  
 		  Calendar_Container1.Enabled = True
@@ -176,7 +251,7 @@ End
 		  if window isa DateTimeWindow then
 		    window.Width = 156
 		    window.Height = 195
-		    TrueWindow.Title = "Choose Time"
+		    TrueWindow.Title = Localized_TimeOnlyTitle_Str
 		  end if
 		  
 		  
@@ -196,6 +271,80 @@ End
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
+			  return Time_Container1.Clock1.BorderColor
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Time_Container1.Clock1.BorderColor = value
+			End Set
+		#tag EndSetter
+		ClockFaceBorderColor As Color
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return Time_Container1.Clock1.FaceColor
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Time_Container1.Clock1.FaceColor = value
+			End Set
+		#tag EndSetter
+		ClockFaceColor As Color
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return Time_Container1.Clock1.HourCount
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  if value=12 then
+			    Time_Container1.Clock1.HourCount=12
+			  else
+			    Time_Container1.Clock1.HourCount = 24
+			  end if
+			End Set
+		#tag EndSetter
+		ClockFaceHourCount As Integer
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return Time_Container1.Clock1.TextColor
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Time_Container1.Clock1.TextColor = value
+			End Set
+		#tag EndSetter
+		ClockFaceTextColor As Color
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return Time_Container1.Clock1.Font
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Time_Container1.Clock1.Font = value
+			End Set
+		#tag EndSetter
+		ClockFaceTextFont As String
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
 			  return Time_Container1.Clock1.ClockFaceType
 			End Get
 		#tag EndGetter
@@ -204,13 +353,29 @@ End
 			  Time_Container1.Clock1.ClockFaceType = value
 			  if value=Date_Time_Container.ClockFaceType.Dynamic_24hr then
 			    Time_Container1.Clock1.HourCount=24
-			  else
+			    Time_Container1.TimeMode = 24
+			  elseif value=Date_Time_Container.ClockFaceType.Dynamic_12hr Then
 			    Time_Container1.Clock1.HourCount=12
+			    Time_Container1.TimeMode = 12
 			  end if
 			  me.Invalidate(false)
 			End Set
 		#tag EndSetter
 		ClockFaceType As ClockFaceType
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return Time_Container1.Clock1.ClockHandColor
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Time_Container1.Clock1.ClockHandColor = value
+			End Set
+		#tag EndSetter
+		ClockHandColor As Color
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -231,6 +396,10 @@ End
 		#tag EndSetter
 		IncludePrevNextMonthDays As Boolean
 	#tag EndComputedProperty
+
+	#tag Property, Flags = &h21
+		Private MultiSelectionTest As String
+	#tag EndProperty
 
 	#tag Property, Flags = &h21
 		Private mVisiblePickers As Date_Time_Container.PickerElements
@@ -329,9 +498,7 @@ End
 		#tag EndGetter
 		#tag Setter
 			Set
-			  
 			  Calendar_Container1.Calendar1.CalMonFirstDayOfWeekBool=value
-			  
 			  Calendar_Container1.Calendar1.UPDATE_MonthDays
 			  Calendar_Container1.Calendar1.UPDATE_MapDaysToCalSlots
 			  
@@ -349,7 +516,8 @@ End
 		  GoogleStyle
 		  Modern
 		  Dynamic_12hr
-		Dynamic_24hr
+		  Dynamic_24hr
+		Antique
 	#tag EndEnum
 
 	#tag Enum, Name = PickerElements, Type = Integer, Flags = &h1
@@ -383,9 +551,9 @@ End
 		  // Use this Event to push the user's "Selected Date" to anywhere in your code.
 		  // IE.   FutureScheduleAssessment_Class.FutureScheduleAssessmentDate = inSelectedDate
 		  
-		  // Demo Purposes
-		  //MsgBox "Selected Date: " + inSelectedDate.ShortDate
-		  
+		  // Demo Purposes - Testing Multi Day Selection
+		  //MultiSelectionTest = MultiSelectionTest + inSelectedDate.ShortDate + EndOfLine
+		  //MsgBox "Date(s) Selected: " + EndOfLine + MultiSelectionTest
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -441,6 +609,49 @@ End
 		EditorType="Picture"
 	#tag EndViewProperty
 	#tag ViewProperty
+		Name="ClockFaceBorderColor"
+		Visible=true
+		Group="Appearance"
+		InitialValue="&c444444"
+		Type="Color"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="ClockFaceColor"
+		Visible=true
+		Group="Appearance"
+		InitialValue="&cffffff"
+		Type="Color"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="ClockFaceHourCount"
+		Visible=true
+		Group="Behavior"
+		InitialValue="12"
+		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="ClockFaceTextColor"
+		Visible=true
+		Group="Appearance"
+		InitialValue="&c000000"
+		Type="Color"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="ClockFaceTextFont"
+		Visible=true
+		Group="Appearance"
+		InitialValue="System"
+		Type="String"
+		EditorType="MultiLineEditor"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="ClockHandColor"
+		Visible=true
+		Group="Appearance"
+		InitialValue="&c000000"
+		Type="Color"
+	#tag EndViewProperty
+	#tag ViewProperty
 		Name="Enabled"
 		Visible=true
 		Group="Appearance"
@@ -478,7 +689,9 @@ End
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="IncludePrevNextMonthDays"
+		Visible=true
 		Group="Behavior"
+		InitialValue="True"
 		Type="Boolean"
 	#tag EndViewProperty
 	#tag ViewProperty
@@ -574,7 +787,7 @@ End
 	#tag ViewProperty
 		Name="UseGraphicalClockHands"
 		Visible=true
-		Group="Behavior"
+		Group="Appearance"
 		InitialValue="True"
 		Type="Boolean"
 	#tag EndViewProperty
@@ -588,7 +801,9 @@ End
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="WeekStartsOnMonday"
+		Visible=true
 		Group="Behavior"
+		InitialValue="False"
 		Type="Boolean"
 	#tag EndViewProperty
 	#tag ViewProperty

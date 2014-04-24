@@ -114,7 +114,7 @@ Begin ContainerControl Time_Container
       Top             =   49
       Transparent     =   True
       UseFocusRing    =   True
-      UseGraphicalClockHands=   False
+      UseGraphicalClockHands=   True
       Visible         =   True
       Width           =   130
    End
@@ -136,6 +136,10 @@ End
 
 	#tag Property, Flags = &h0
 		ClockSecondsCounter As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		HideAMPM As Boolean
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -320,6 +324,11 @@ End
 		Visible=true
 		Group="Appearance"
 		Type="String"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="HideAMPM"
+		Group="Behavior"
+		Type="Boolean"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="InitialParent"

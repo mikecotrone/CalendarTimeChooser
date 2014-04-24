@@ -670,28 +670,6 @@ Begin Window DemoLaunchWindow
          Visible         =   True
          Width           =   188
       End
-      Begin ImageWell SelectHandColorImageWell
-         AutoDeactivate  =   True
-         Enabled         =   True
-         Height          =   25
-         HelpTag         =   ""
-         Image           =   0
-         Index           =   -2147483648
-         InitialParent   =   "GroupBox1"
-         Left            =   297
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Scope           =   0
-         TabIndex        =   40
-         TabPanelIndex   =   0
-         TabStop         =   True
-         Top             =   301
-         Visible         =   True
-         Width           =   25
-      End
       Begin Label SelectedHandColorLabel
          AutoDeactivate  =   True
          Bold            =   False
@@ -717,14 +695,42 @@ Begin Window DemoLaunchWindow
          Text            =   "h00000000"
          TextAlign       =   0
          TextColor       =   &c00000000
-         TextFont        =   "System"
-         TextSize        =   0.0
+         TextFont        =   "Helvetica"
+         TextSize        =   12.0
          TextUnit        =   0
-         Top             =   302
+         Top             =   303
          Transparent     =   False
          Underline       =   False
          Visible         =   True
          Width           =   100
+      End
+      Begin Canvas ClockHandColorPickerCanvas
+         AcceptFocus     =   False
+         AcceptTabs      =   False
+         AutoDeactivate  =   True
+         Backdrop        =   0
+         DoubleBuffer    =   True
+         Enabled         =   True
+         EraseBackground =   False
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         Left            =   279
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   42
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Top             =   303
+         Transparent     =   True
+         UseFocusRing    =   True
+         Visible         =   True
+         Width           =   38
       End
    End
    Begin Separator Separator2
@@ -825,7 +831,7 @@ Begin Window DemoLaunchWindow
       Selectable      =   False
       TabIndex        =   18
       TabPanelIndex   =   0
-      Text            =   "Select Clock Hand Color:"
+      Text            =   "Choose Clock Hand Color:"
       TextAlign       =   0
       TextColor       =   &c00000000
       TextFont        =   "Helvetica"
@@ -847,6 +853,12 @@ End
 		End Sub
 	#tag EndEvent
 
+	#tag Event
+		Sub Open()
+		  MyPicker.Date_Time_Container1.Calendar_Container1.mTakeMeToTodaysDate
+		End Sub
+	#tag EndEvent
+
 
 	#tag Property, Flags = &h21
 		Private mMyPicker As DateTimeWindow
@@ -855,7 +867,12 @@ End
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  if mMyPicker=nil then mMyPicker=new DateTimeWindow
+			  if mMyPicker=nil then
+			    mMyPicker=new DateTimeWindow
+			    mMyPicker.left =  DemoLaunchWindow.Left + DemoLaunchWindow.Width + 5
+			    mMyPicker.top = DemoLaunchWindow.Top
+			  End if
+			  
 			  return mMyPicker
 			End Get
 		#tag EndGetter
@@ -948,13 +965,14 @@ End
 	#tag Event
 		Sub Open()
 		  // Load Popup Menu
+		  me.AddRow("Antique")
 		  me.AddRow("Chrome")
 		  me.AddRow("Google Style")
 		  me.AddRow("Jim's Clock")
 		  me.AddRow("Modern")
 		  me.AddRow("Roman")
 		  me.AddRow("Standard")
-		  me.ListIndex = 0
+		  me.ListIndex = 1
 		  
 		End Sub
 	#tag EndEvent
@@ -964,16 +982,25 @@ End
 		  Case "Chrome"
 		    // Default Clock Face
 		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Chrome
+		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = False
 		  Case "Roman"
 		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Roman
+		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = False
 		  Case "Standard"
 		    MyPicker.ClockFaceType =Date_Time_Container.ClockFaceType.Standard
+		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = False
 		  Case "Google Style"
 		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.GoogleStyle
+		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = False
 		  Case "Modern"
 		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Modern
+		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = False
 		  Case "Jim's Clock"
 		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Dynamic_12hr
+		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM= False
+		  Case "Antique"
+		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Antique
+		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = True
 		  End Select
 		  
 		  
@@ -1011,11 +1038,6 @@ End
 		    MyPicker.Date_Time_Container1.Time_Container1.TimeMode = 12
 		    if TimeModeFirstRunBool = False Then
 		      MyPicker.Date_Time_Container1.Time_Container1.TimePicker1.mOneTimeConversion24to12
-		    End if
-		    
-		    // Check to see if we still have the 24hr Dynamic Clock Face Selected .. If so then change to 12hr Dynamic
-		    if ClockFaceChangerPopupMenu.ListIndex = 6 Then
-		      ClockFaceChangerPopupMenu.ListIndex = 5
 		    End if
 		    
 		  Case "24 Hour Format"
@@ -1171,28 +1193,33 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events SelectHandColorImageWell
+#tag Events ClockHandColorPickerCanvas
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
 		  dim p As new Picture(me.Width,me.Height)
 		  static handColor as color=MyPicker.ClockHandColor
 		  if SelectColor(handColor, "Select a color for the clock hands") then
-		    p.Graphics.ForeColor=handColor
-		    p.Graphics.FillRect 0,0,p.Width,p.Height
-		    me.Image=p
 		    MyPicker.Date_Time_Container1.ClockHandColor = handColor
-		    
+		    Invalidate(False)
 		    dim v As Variant=handColor
 		    SelectedHandColorLabel.Text=v.StringValue
 		  end if
 		End Function
 	#tag EndEvent
 	#tag Event
-		Sub Open()
+		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		  g.ForeColor = RGB(0,0,0)
+		  g.PenHeight=2
+		  g.PenWidth=2
+		  g.FillRoundRect(2,2,me.Width-2,me.Height-2,6,6)
+		  
 		  dim p As new Picture(me.Width,me.Height)
 		  p.Graphics.ForeColor=MyPicker.ClockHandColor
-		  p.Graphics.FillRect 0,0,p.Width,p.Height
-		  me.Image=p
+		  //p.Graphics.FillRoundRect 0,0,41,12,6,6
+		  //g.DrawPicture(p,5,5)
+		  
+		  p.Graphics.FillRoundRect 0,0,p.Width-6,p.Height-6,4,4
+		  g.DrawPicture(p,4,4)
 		  
 		  
 		  dim v As Variant=MyPicker.ClockHandColor

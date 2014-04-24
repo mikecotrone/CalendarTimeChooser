@@ -43,7 +43,8 @@ Begin Window DateTimeWindow
       HasBackColor    =   True
       Height          =   227
       HelpTag         =   ""
-      IncludePrevNextMonthDays=   True
+      IncludePrevNextMonthDays=   False
+      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   0
       LockBottom      =   False
@@ -257,6 +258,41 @@ End
 		Group="Appearance"
 		Type="Picture"
 		EditorType="Picture"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="ClockFaceBorderColor"
+		Group="Behavior"
+		InitialValue="&c000000"
+		Type="Color"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="ClockFaceColor"
+		Group="Behavior"
+		InitialValue="&c000000"
+		Type="Color"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="ClockFaceHourCount"
+		Group="Behavior"
+		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="ClockFaceTextColor"
+		Group="Behavior"
+		InitialValue="&c000000"
+		Type="Color"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="ClockFaceTextFont"
+		Group="Behavior"
+		Type="String"
+		EditorType="MultiLineEditor"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="ClockHandColor"
+		Group="Behavior"
+		InitialValue="&c000000"
+		Type="Color"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="CloseButton"

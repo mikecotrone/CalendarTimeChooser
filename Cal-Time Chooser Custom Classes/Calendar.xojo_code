@@ -10,19 +10,39 @@ Inherits Canvas
 
 	#tag Event
 		Sub MouseUp(X As Integer, Y As Integer)
+		  
 		  Dim i as integer
 		  for i = 0 to UBound(CalendarButtonClassArray)
-		    if X >= CalendarButtonClassArray(i).LeftX AND X <= CalendarButtonClassArray(i).RightX AND Y >= CalendarButtonClassArray(i).TopY AND Y <= CalendarButtonClassArray(i).BottomY Then
-		      mDeselectAll
-		      CalendarButtonClassArray(i).Selected = True
-		      SelectedDate = New Date
-		      SelectedDate.Day = CalendarButtonClassArray(i).Day
-		      SelectedDate.Year = CDbl(SelectedYear)
-		      CalendarButtonClassArray(i).SelectedDate = SelectedDate
-		      Calendar_Container(window).mRaiseEvent
-		      Me.Invalidate(False)
-		    end if
+		    
+		    if Keyboard.ShiftKey = True Then // Multi Selection
+		      if X >= CalendarButtonClassArray(i).LeftX AND X <= CalendarButtonClassArray(i).RightX AND Y >= CalendarButtonClassArray(i).TopY AND Y <= CalendarButtonClassArray(i).BottomY Then
+		        CalendarButtonClassArray(i).Selected = True
+		        SelectedDate = New Date
+		        SelectedDate.Day = CalendarButtonClassArray(i).Day
+		        SelectedDate.Year = CDbl(SelectedYear)
+		        CalendarButtonClassArray(i).SelectedDate = SelectedDate
+		        Calendar_Container(window).mRaiseEvent
+		        Me.Invalidate(False)
+		      end if
+		      
+		      
+		    Elseif Keyboard.ShiftKey = False Then // Single Selection
+		      if X >= CalendarButtonClassArray(i).LeftX AND X <= CalendarButtonClassArray(i).RightX AND Y >= CalendarButtonClassArray(i).TopY AND Y <= CalendarButtonClassArray(i).BottomY Then
+		        mDeselectAll
+		        CalendarButtonClassArray(i).Selected = True
+		        SelectedDate = New Date
+		        SelectedDate.Day = CalendarButtonClassArray(i).Day
+		        SelectedDate.Year = CDbl(SelectedYear)
+		        CalendarButtonClassArray(i).SelectedDate = SelectedDate
+		        Calendar_Container(window).mRaiseEvent
+		        Me.Invalidate(False)
+		      end if
+		      
+		    End if
 		  next i
+		  
+		  
+		  
 		  
 		End Sub
 	#tag EndEvent
@@ -69,7 +89,11 @@ Inherits Canvas
 		      Else
 		        // Capture Selected Date in Date format for Custom Event
 		        g.ForeColor = RGB(0,127,230)
-		        g.FillRoundRect(CalendarButtonClassArray(i).LeftX+OffSet+1, CalendarButtonClassArray(i).TopY+OffSet,CalendarButtonClassArray(i).Width-TwoOffset,CalendarButtonClassArray(i).Height-TwoOffset,CurveSize,CurveSize)
+		        #IF TargetMacOS Then
+		          g.FillRoundRect(CalendarButtonClassArray(i).LeftX+OffSet+1, CalendarButtonClassArray(i).TopY+OffSet,CalendarButtonClassArray(i).Width-TwoOffset,CalendarButtonClassArray(i).Height-TwoOffset,CurveSize,CurveSize)
+		        #ELSEIF TargetWin32 Then
+		          g.FillRoundRect(CalendarButtonClassArray(i).LeftX+OffSet+1, CalendarButtonClassArray(i).TopY+OffSet,CalendarButtonClassArray(i).Width-TwoOffset,CalendarButtonClassArray(i).Height-TwoOffset,0,0)
+		        #ENDIF
 		      End if
 		    End if
 		  Next i
@@ -79,14 +103,27 @@ Inherits Canvas
 		  g.TextFont = "System"
 		  g.Bold = false
 		  g.TextSize = 12
+		  
+		  // Measure the size of the Abbreviated Day Of Week so we may center it properly
+		  Dim xPos as Integer
+		  Dim DoWAbrvLen as Integer = DayOfWeekArray_SS(0).Len
+		  if DoWAbrvLen = 1 Then // One Letter Abbreviation (Not Implemented yet)
+		    xPos = 2
+		  Elseif DoWAbrvLen = 2 Then // Two Letter Abbreviation Spacing
+		    xPos = 11
+		  Elseif DoWAbrvLen = 3 Then // Three Letter Abbreviation Spacing
+		    xPos = 8
+		  Else // Default to two letter abbreviations
+		    xPos = 11
+		  End if
+		  
 		  if CalMonFirstDayOfWeekBool = False Then
-		    Dim xPos as Integer = 11
 		    for x as integer = 0 to UBound(DayOfWeekArray_SS)
 		      g.DrawString(DayOfWeekArray_SS(x),xPos-3,17)
 		      xpos = xPos + 30
 		    next x
+		    
 		  Elseif CalMonFirstDayOfWeekBool = True Then
-		    Dim xPos as Integer = 11
 		    for x as integer = 0 to UBound(DayOfWeek_MS)
 		      g.DrawString(DayOfWeek_MS(x),xPos-3,17)
 		      xpos = xPos + 30
@@ -100,7 +137,7 @@ Inherits Canvas
 		    if CalendarButtonClassArray(i).Selected = True Then
 		      if CDbl(SelectedYear) = CurrentDate.Year AND SelectMonthInt = CurrentDate.Month AND CalendarButtonClassArray(i).Day = CurrentDate.Day Then
 		        g.bold = false
-		        g.ForeColor = TodaysDate_Selected
+		        g.ForeColor = RGB(255,255,255)
 		      Else
 		        g.bold = false
 		        g.ForeColor = RGB(255,255,255)
@@ -578,6 +615,69 @@ Inherits Canvas
 		    Localized_Friday = "Vendredi"
 		    Localized_Saturday = "Samedi"
 		    Localized_Sunday = "Dimanche"
+		    
+		  Case 2  // Swedish
+		    Localized_Monday = "Måndag"
+		    Localized_Tuesday = "Tisdag"
+		    Localized_Wednesday = "Onsdag"
+		    Localized_Thursday = "Torsdag"
+		    Localized_Friday = "Fredag"
+		    Localized_Saturday = "Lördag"
+		    Localized_Sunday = "Söndag"
+		    
+		  Case 3 // Italian
+		    Localized_Monday = "Lunedì"
+		    Localized_Tuesday = "Martedì"
+		    Localized_Wednesday = "Mercoledì"
+		    Localized_Thursday = "Giovedì"
+		    Localized_Friday = "Venerdì"
+		    Localized_Saturday = "Sabato"
+		    Localized_Sunday = "Domenica"
+		    
+		  Case 4 // Spanish
+		    Localized_Monday = "Lunes"
+		    Localized_Tuesday = "Martes"
+		    Localized_Wednesday = "Miércoles"
+		    Localized_Thursday = "Jueves"
+		    Localized_Friday = "Viernes"
+		    Localized_Saturday = "Sábado"
+		    Localized_Sunday = "Domingo"
+		    
+		  Case 5 // Dutch
+		    Localized_Monday = "Maandag"
+		    Localized_Tuesday = "Dinsdag"
+		    Localized_Wednesday = "Woensdag"
+		    Localized_Thursday = "Donderdag"
+		    Localized_Friday = "Vrijdag"
+		    Localized_Saturday = "Zaterdag"
+		    Localized_Sunday = "Zondag"
+		    
+		  Case 6 // German
+		    Localized_Monday = "Montag"
+		    Localized_Tuesday = "Dienstag"
+		    Localized_Wednesday = "Mittwoch"
+		    Localized_Thursday = "Donnerstag"
+		    Localized_Friday = "Freitag"
+		    Localized_Saturday = "Samstag"
+		    Localized_Sunday = "Sonntag"
+		    
+		  Case 7 // Afrikaans
+		    Localized_Monday = "Maandag"
+		    Localized_Tuesday = "Dinsdag"
+		    Localized_Wednesday = "Woensdag"
+		    Localized_Thursday = "Donderdag"
+		    Localized_Friday = "Vrydag"
+		    Localized_Saturday = "Saterdag"
+		    Localized_Sunday = "Sondag"
+		    
+		  Case 8 // Polish
+		    Localized_Monday = "Poniedziałek"
+		    Localized_Tuesday = "Wtorek"
+		    Localized_Wednesday = "Środa"
+		    Localized_Thursday = "Czwartek"
+		    Localized_Friday = "Piątek"
+		    Localized_Saturday = "Sobota"
+		    Localized_Sunday = "Niedziela"
 		  End Select
 		  
 		  
@@ -615,6 +715,104 @@ Inherits Canvas
 		    Localized_October = "Octobre"
 		    Localized_November = "Novembre"
 		    Localized_December = "Décembre"
+		    
+		  Case 2 // Swedish
+		    Localized_January = "Januari"
+		    Localized_February = "Februari"
+		    Localized_March = "Mars"
+		    Localized_April = "April"
+		    Localized_May = "Maj"
+		    Localized_June = "Juni"
+		    Localized_July = "Juli"
+		    Localized_August = "Augusti"
+		    Localized_September = "September"
+		    Localized_October = "Oktober"
+		    Localized_November = "November"
+		    Localized_December = "December"
+		    
+		  Case 3 // Italian
+		    Localized_January = "Gennaio"
+		    Localized_February = "Febbraio"
+		    Localized_March = "Marzo"
+		    Localized_April = "Aprile"
+		    Localized_May = "Maggio"
+		    Localized_June = "Giugno"
+		    Localized_July = "Luglio"
+		    Localized_August = "Agosto"
+		    Localized_September = "Settembre"
+		    Localized_October = "Ottobre"
+		    Localized_November = "Novembre"
+		    Localized_December = "Dicembre"
+		    
+		  Case 4 // Spanish
+		    Localized_January = "Enero"
+		    Localized_February = "Febrero"
+		    Localized_March = "Marzo"
+		    Localized_April = "Abril"
+		    Localized_May = "Mayo"
+		    Localized_June = "Junio"
+		    Localized_July = "Julio"
+		    Localized_August = "Agosto"
+		    Localized_September = "Septiembre"
+		    Localized_October = "Octubre"
+		    Localized_November = "Noviembre"
+		    Localized_December = "Diciembre"
+		    
+		  Case 5 // Dutch
+		    Localized_January = "Januari"
+		    Localized_February = "Februari"
+		    Localized_March = "Maart"
+		    Localized_April = "April"
+		    Localized_May = "Mei"
+		    Localized_June = "Juni"
+		    Localized_July = "Juli"
+		    Localized_August = "Augustus"
+		    Localized_September = "September"
+		    Localized_October = "Oktober"
+		    Localized_November = "November"
+		    Localized_December = "December"
+		    
+		  Case 6 // German
+		    Localized_January = "Januar"
+		    Localized_February = "Februar"
+		    Localized_March = "März"
+		    Localized_April = "April"
+		    Localized_May = "Mai"
+		    Localized_June = "Juni"
+		    Localized_July = "Juli"
+		    Localized_August = "August"
+		    Localized_September = "September"
+		    Localized_October = "Oktober"
+		    Localized_November = "November"
+		    Localized_December = "Dezember"
+		    
+		  Case 7 // Afrikaans
+		    Localized_January = "Januarie"
+		    Localized_February = "Februarie"
+		    Localized_March = "Maart"
+		    Localized_April = "April"
+		    Localized_May = "Mei"
+		    Localized_June = "Junie"
+		    Localized_July = "Julie"
+		    Localized_August = "Augustus"
+		    Localized_September = "September"
+		    Localized_October = "Oktober"
+		    Localized_November = "November"
+		    Localized_December = "Desember"
+		    
+		  Case 8 // Polish
+		    Localized_January = "Styczeń"
+		    Localized_February = "Luty"
+		    Localized_March = "Marzec"
+		    Localized_April = "Kwiecień"
+		    Localized_May = "Maj"
+		    Localized_June = "Czerwiec"
+		    Localized_July = "Lipiec"
+		    Localized_August = "Sierpień"
+		    Localized_September = "Wrzesień"
+		    Localized_October = "Październik"
+		    Localized_November = "Listopad"
+		    Localized_December = "Grudzień"
 		    
 		  End Select
 		  
@@ -665,13 +863,145 @@ Inherits Canvas
 		    DayOfWeek_MS.Append "Mar"
 		    DayOfWeek_MS.Append "Mer"
 		    DayOfWeek_MS.Append "Jeu"
-		    DayOfWeek_MS.Append "Fr"
 		    DayOfWeek_MS.Append "Ven"
+		    DayOfWeek_MS.Append "Sam"
 		    DayOfWeek_MS.Append "Dim"
 		    
+		  Case 2 // Swedish
+		    //Sat - Sun
+		    Redim DayOfWeekArray_SS(-1)
+		    DayOfWeekArray_SS.Append "Sön"
+		    DayOfWeekArray_SS.Append "Mån"
+		    DayOfWeekArray_SS.Append "Tis"
+		    DayOfWeekArray_SS.Append "Ons"
+		    DayOfWeekArray_SS.Append "Tor"
+		    DayOfWeekArray_SS.Append "Fre"
+		    DayOfWeekArray_SS.Append "Lör"
+		    // Mon - Sun
+		    Redim DayOfWeek_MS(-1)
+		    DayOfWeek_MS.Append "Mån"
+		    DayOfWeek_MS.Append "Tis"
+		    DayOfWeek_MS.Append "Ons"
+		    DayOfWeek_MS.Append "Tor"
+		    DayOfWeek_MS.Append "Fre"
+		    DayOfWeek_MS.Append "Lör"
+		    DayOfWeek_MS.Append "Sön"
+		    
+		  Case 3 // Italian
+		    Redim DayOfWeekArray_SS(-1)
+		    DayOfWeekArray_SS.Append "Dom"
+		    DayOfWeekArray_SS.Append "Mar"
+		    DayOfWeekArray_SS.Append "Mer"
+		    DayOfWeekArray_SS.Append "Gio"
+		    DayOfWeekArray_SS.Append "Ven"
+		    DayOfWeekArray_SS.Append "Sab"
+		    DayOfWeekArray_SS.Append "Lör"
+		    // Mon - Sun
+		    Redim DayOfWeek_MS(-1)
+		    DayOfWeek_MS.Append "Lun"
+		    DayOfWeek_MS.Append "Mar"
+		    DayOfWeek_MS.Append "Mer"
+		    DayOfWeek_MS.Append "Gio"
+		    DayOfWeek_MS.Append "Ven"
+		    DayOfWeek_MS.Append "Sab"
+		    DayOfWeek_MS.Append "Dom"
 		    
 		    
+		  Case 4 // Spanish
+		    Redim DayOfWeekArray_SS(-1)
+		    DayOfWeekArray_SS.Append "Do" // Sunday
+		    DayOfWeekArray_SS.Append "Lu"
+		    DayOfWeekArray_SS.Append "Ma"
+		    DayOfWeekArray_SS.Append "Mi"
+		    DayOfWeekArray_SS.Append "Ju"
+		    DayOfWeekArray_SS.Append "Vi"
+		    DayOfWeekArray_SS.Append "Sá" // Saturday
+		    // Mon - Sun
+		    Redim DayOfWeek_MS(-1)
+		    DayOfWeek_MS.Append "Lu" // Monday
+		    DayOfWeek_MS.Append "Ma"
+		    DayOfWeek_MS.Append "Mi"
+		    DayOfWeek_MS.Append "Ju"
+		    DayOfWeek_MS.Append "Vi"
+		    DayOfWeek_MS.Append "Sá"
+		    DayOfWeek_MS.Append "Do" // Sunday
 		    
+		    
+		  Case 5 // Dutch
+		    Redim DayOfWeekArray_SS(-1)
+		    DayOfWeekArray_SS.Append "Zon" // Sunday
+		    DayOfWeekArray_SS.Append "Maa"
+		    DayOfWeekArray_SS.Append "Din"
+		    DayOfWeekArray_SS.Append "Woe"
+		    DayOfWeekArray_SS.Append "Don"
+		    DayOfWeekArray_SS.Append "Vry"
+		    DayOfWeekArray_SS.Append "Zat" // Saturday
+		    // Mon - Sun
+		    Redim DayOfWeek_MS(-1)
+		    DayOfWeek_MS.Append "Maa" // Monday
+		    DayOfWeek_MS.Append "Din"
+		    DayOfWeek_MS.Append "Woe"
+		    DayOfWeek_MS.Append "Don"
+		    DayOfWeek_MS.Append "Vry"
+		    DayOfWeek_MS.Append "Zat"
+		    DayOfWeek_MS.Append "Zon" // Sunday
+		    
+		  Case 6 // German
+		    Redim DayOfWeekArray_SS(-1)
+		    DayOfWeekArray_SS.Append "So" // Sunday
+		    DayOfWeekArray_SS.Append "Mo"
+		    DayOfWeekArray_SS.Append "Di"
+		    DayOfWeekArray_SS.Append "Mi"
+		    DayOfWeekArray_SS.Append "Do"
+		    DayOfWeekArray_SS.Append "Fr"
+		    DayOfWeekArray_SS.Append "Sa" // Saturday
+		    // Mon - Sun
+		    Redim DayOfWeek_MS(-1)
+		    DayOfWeek_MS.Append "Mo" // Monday
+		    DayOfWeek_MS.Append "Di"
+		    DayOfWeek_MS.Append "Mi"
+		    DayOfWeek_MS.Append "Do"
+		    DayOfWeek_MS.Append "Fr"
+		    DayOfWeek_MS.Append "Sa"
+		    DayOfWeek_MS.Append "So" // Sunday
+		    
+		  Case 7 // Africaans
+		    Redim DayOfWeekArray_SS(-1)
+		    DayOfWeekArray_SS.Append "Son" // Sunday
+		    DayOfWeekArray_SS.Append "Maa"
+		    DayOfWeekArray_SS.Append "Din"
+		    DayOfWeekArray_SS.Append "Woe"
+		    DayOfWeekArray_SS.Append "Don"
+		    DayOfWeekArray_SS.Append "Vry"
+		    DayOfWeekArray_SS.Append "Sat" // Saturday
+		    // Mon - Sun
+		    Redim DayOfWeek_MS(-1)
+		    DayOfWeek_MS.Append "Maa" // Monday
+		    DayOfWeek_MS.Append "Din"
+		    DayOfWeek_MS.Append "Woe"
+		    DayOfWeek_MS.Append "Don"
+		    DayOfWeek_MS.Append "Vry"
+		    DayOfWeek_MS.Append "Sat"
+		    DayOfWeek_MS.Append "Son" // Sunday
+		    
+		  Case 8 // Polish
+		    Redim DayOfWeekArray_SS(-1)
+		    DayOfWeekArray_SS.Append "Ni" // Sunday
+		    DayOfWeekArray_SS.Append "Pn"
+		    DayOfWeekArray_SS.Append "Wt"
+		    DayOfWeekArray_SS.Append "Śr"
+		    DayOfWeekArray_SS.Append "Czw"
+		    DayOfWeekArray_SS.Append "Pt"
+		    DayOfWeekArray_SS.Append "Sob" // Saturday
+		    // Mon - Sun
+		    Redim DayOfWeek_MS(-1)
+		    DayOfWeek_MS.Append "Pn" // Monday
+		    DayOfWeek_MS.Append "Wt"
+		    DayOfWeek_MS.Append "Śr"
+		    DayOfWeek_MS.Append "Czw"
+		    DayOfWeek_MS.Append "Pt"
+		    DayOfWeek_MS.Append "Sob"
+		    DayOfWeek_MS.Append "Ni" // Sunday
 		    
 		  End Select
 		  
@@ -1074,13 +1404,6 @@ Inherits Canvas
 	#tag Property, Flags = &h0
 		YearNumber As Integer
 	#tag EndProperty
-
-
-	#tag Enum, Name = Localizations, Type = Integer, Flags = &h0
-		English
-		  French
-		Swedish
-	#tag EndEnum
 
 
 	#tag ViewBehavior
