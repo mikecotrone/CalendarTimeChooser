@@ -317,7 +317,7 @@ Begin Window DemoLaunchWindow
          TabIndex        =   22
          TabPanelIndex   =   0
          TabStop         =   True
-         Top             =   249
+         Top             =   250
          Transparent     =   True
          UseFocusRing    =   True
          Visible         =   True
@@ -589,7 +589,7 @@ Begin Window DemoLaunchWindow
          HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "GroupBox1"
-         Left            =   17
+         Left            =   16
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -599,7 +599,7 @@ Begin Window DemoLaunchWindow
          TabIndex        =   36
          TabPanelIndex   =   0
          TabStop         =   True
-         Top             =   364
+         Top             =   365
          Transparent     =   True
          UseFocusRing    =   True
          Visible         =   True
@@ -1042,7 +1042,7 @@ End
 		  Select Case Me.Text
 		  Case "Black"
 		    MyPicker.Date_Time_Container1.Time_Container1.Clock1.ClockHandColor = "Black"
-		  Case "Red" 
+		  Case "Red"
 		    MyPicker.Date_Time_Container1.Time_Container1.Clock1.ClockHandColor = "Red"
 		  Case "Green"
 		    MyPicker.Date_Time_Container1.Time_Container1.Clock1.ClockHandColor = "Green"
