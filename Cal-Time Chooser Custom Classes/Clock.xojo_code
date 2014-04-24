@@ -3,10 +3,6 @@ Protected Class Clock
 Inherits Canvas
 	#tag Event
 		Sub Open()
-		  //Start all Hands at 12
-		  'ClockMinuteValue = 3.248
-		  'ClockHourValue = 3.308
-		  'ClockSecondValue = 3.248
 		  
 		  dim d As new date
 		  Time_Container(window).Time_Minute=Format(d.Minute,"00")
@@ -127,8 +123,13 @@ Inherits Canvas
 		  numeral.VerticalAlignment=StringShape.Alignment.Center
 		  numeral.HorizontalAlignment=StringShape.Alignment.Center
 		  dim face As new OvalShape
-		  face.Width=g.width*2-8
-		  face.Height=g.width*2-8
+		  #if TargetMacOS Then
+		    face.Width=g.width*2-8
+		    face.Height=g.width*2-8
+		  #Elseif TargetWin32 Then
+		    face.Width=g.width*2-20
+		    face.Height=g.width*2-20
+		  #endif
 		  face.Border=100
 		  face.BorderWidth=8
 		  face.BorderColor=BorderColor
