@@ -326,6 +326,11 @@ End
 		Type="String"
 	#tag EndViewProperty
 	#tag ViewProperty
+		Name="HideAMPM"
+		Group="Behavior"
+		Type="Boolean"
+	#tag EndViewProperty
+	#tag ViewProperty
 		Name="InitialParent"
 		Group="Position"
 		Type="String"
