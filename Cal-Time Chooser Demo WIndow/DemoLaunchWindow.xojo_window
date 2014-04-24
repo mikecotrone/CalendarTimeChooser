@@ -122,7 +122,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   5
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Select Chooser Type:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -188,7 +187,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   7
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Change Back Color:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -285,7 +283,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   21
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Change Clock Face:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -407,7 +404,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   29
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Select Time Mode Format:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -473,7 +469,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   31
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Select Clock Hand Type:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -539,7 +534,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   35
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Week Start Type:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -602,7 +596,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   37
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Calendar Localization:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -699,7 +692,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   41
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "h00000000"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -805,7 +797,6 @@ Begin Window DemoLaunchWindow
       Selectable      =   False
       TabIndex        =   17
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Include Previous/Next Month Days:"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -840,7 +831,6 @@ Begin Window DemoLaunchWindow
       Selectable      =   False
       TabIndex        =   18
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Choose Clock Hand Color:"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -1027,11 +1017,6 @@ End
 		    MyPicker.Date_Time_Container1.Time_Container1.TimeMode = 12
 		    if TimeModeFirstRunBool = False Then
 		      MyPicker.Date_Time_Container1.Time_Container1.TimePicker1.mOneTimeConversion24to12
-		    End if
-		    
-		    // Check to see if we still have the 24hr Dynamic Clock Face Selected .. If so then change to 12hr Dynamic
-		    if ClockFaceChangerPopupMenu.ListIndex = 6 Then
-		      ClockFaceChangerPopupMenu.ListIndex = 5
 		    End if
 		    
 		  Case "24 Hour Format"

@@ -114,7 +114,7 @@ Begin ContainerControl Time_Container
       Top             =   49
       Transparent     =   True
       UseFocusRing    =   True
-      UseGraphicalClockHands=   False
+      UseGraphicalClockHands=   True
       Visible         =   True
       Width           =   130
    End
