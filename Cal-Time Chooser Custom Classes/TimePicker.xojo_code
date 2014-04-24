@@ -3,73 +3,146 @@ Protected Class TimePicker
 Inherits Canvas
 	#tag Event
 		Function KeyDown(Key As String) As Boolean
-		  if Key = Chr(9) Then // Tab Key Pressed
-		    KeyBuffer = ""
-		    if Draw_Hour_Selected = True Then
-		      Draw_Hour_Selected = False
-		      Draw_AMPM_Selected = False
-		      Draw_Minute_Selected = True
-		      me.Invalidate(False)
-		    Elseif Draw_Minute_Selected = True Then
-		      Draw_Minute_Selected = False
-		      Draw_Hour_Selected = False
-		      Draw_AMPM_Selected = True
-		      me.Invalidate(False)
-		    Elseif Draw_AMPM_Selected = True Then
-		      Draw_Hour_Selected = True
-		      Draw_Minute_Selected = False
-		      Draw_AMPM_Selected = False
-		      me.Invalidate(False)
-		    end if
-		  End if
-		  
-		  Select Case key
-		  Case Chr(32) to Chr(47)
-		    Return True
+		  Select Case Time_Container(window).TimeMode
 		    
-		  Case Chr(48) to Chr(57) // User Enters Numbers
-		    if Draw_AMPM_Selected = True then
-		      // If the user is on the AM/PM Then Don't allow Number Entry
+		  Case 12
+		    
+		    if Key = Chr(9) Then // Tab Key Pressed
+		      KeyBuffer = ""
+		      if Draw_Hour_Selected = True Then
+		        Draw_Hour_Selected = False
+		        Draw_AMPM_Selected = False
+		        Draw_Minute_Selected = True
+		        me.Invalidate(False)
+		      Elseif Draw_Minute_Selected = True Then
+		        Draw_Minute_Selected = False
+		        Draw_Hour_Selected = False
+		        Draw_AMPM_Selected = True
+		        me.Invalidate(False)
+		      Elseif Draw_AMPM_Selected = True Then
+		        Draw_Hour_Selected = True
+		        Draw_Minute_Selected = False
+		        Draw_AMPM_Selected = False
+		        me.Invalidate(False)
+		      end if
+		    End if
+		    
+		    Select Case key
+		    Case Chr(32) to Chr(47)
 		      Return True
-		    End if
-		    // Need to only allow 2 digits
-		    KeyBuffer = KeyBuffer + Key
-		    
-		    Dim KeyBufferLen as Integer = KeyBuffer.Len
-		    if KeyBufferLen > 2 Then
+		      
+		    Case Chr(48) to Chr(57) // User Enters Numbers
+		      if Draw_AMPM_Selected = True then
+		        // If the user is on the AM/PM Then Don't allow Number Entry
+		        Return True
+		      End if
+		      // Need to only allow 2 digits
+		      KeyBuffer = KeyBuffer + Key
+		      
+		      Dim KeyBufferLen as Integer = KeyBuffer.Len
+		      if KeyBufferLen > 2 Then
+		        Return True
+		      end if
+		      
+		      mManual12HourTimeEntry(KeyBuffer)
+		      mFormatSingleDigits(KeyBuffer)
+		      
+		    Case Chr(58) to Chr(127)
 		      Return True
-		    end if
+		    End Select
 		    
-		    mManual12HourTimeEntry(KeyBuffer)
-		    mFormatSingleDigits(KeyBuffer)
-		    
-		  Case Chr(58) to Chr(127)
-		    Return True
-		  End Select
-		  
-		  If Key = Chr(8) Then // Delete Key Pressed
-		    mManual12HourTimeEntry(Chr(8))
-		  End if
-		  
-		  if Key = Chr(30)  Then  // Arrow Key Up Pressed
-		    if Draw_AMPM_Selected = True then
-		      mMoveAMPM
-		    Elseif Draw_Hour_Selected = True Then
-		      mMove12HourUp
-		    Elseif Draw_Minute_Selected = True Then
-		      mMove12MinUp
+		    If Key = Chr(8) Then // Delete Key Pressed
+		      mManual12HourTimeEntry(Chr(8))
 		    End if
 		    
-		  Elseif Key = Chr(31) Then // Arrow Key Down Pressed
-		    if Draw_AMPM_Selected = True then
-		      mMoveAMPM
-		    Elseif Draw_Hour_Selected = True Then
-		      mMove12HourDown
-		    Elseif Draw_Minute_Selected = True Then
-		      mMove12MinDown
+		    if Key = Chr(30)  Then  // Arrow Key Up Pressed
+		      if Draw_AMPM_Selected = True then
+		        mMoveAMPM
+		      Elseif Draw_Hour_Selected = True Then
+		        mMove12HourUp
+		      Elseif Draw_Minute_Selected = True Then
+		        mMove12MinUp
+		      End if
+		      
+		    Elseif Key = Chr(31) Then // Arrow Key Down Pressed
+		      if Draw_AMPM_Selected = True then
+		        mMoveAMPM
+		      Elseif Draw_Hour_Selected = True Then
+		        mMove12HourDown
+		      Elseif Draw_Minute_Selected = True Then
+		        mMove12MinDown
+		      End if
 		    End if
-		  End if
-		  
+		    
+		  Case 24
+		    if Key = Chr(9) Then // Tab Key Pressed
+		      KeyBuffer = ""
+		      if Draw_Hour_Selected = True Then
+		        Draw_Hour_Selected = False
+		        Draw_AMPM_Selected = False
+		        Draw_Minute_Selected = True
+		        me.Invalidate(False)
+		      Elseif Draw_Minute_Selected = True Then
+		        Draw_Minute_Selected = False
+		        Draw_Hour_Selected = False
+		        Draw_AMPM_Selected = True
+		        me.Invalidate(False)
+		      Elseif Draw_AMPM_Selected = True Then
+		        Draw_Hour_Selected = True
+		        Draw_Minute_Selected = False
+		        Draw_AMPM_Selected = False
+		        me.Invalidate(False)
+		      end if
+		    End if
+		    
+		    Select Case key
+		    Case Chr(32) to Chr(47)
+		      Return True
+		      
+		    Case Chr(48) to Chr(57) // User Enters Numbers
+		      if Draw_AMPM_Selected = True then
+		        // If the user is on the AM/PM Then Don't allow Number Entry
+		        Return True
+		      End if
+		      // Need to only allow 2 digits
+		      KeyBuffer = KeyBuffer + Key
+		      
+		      Dim KeyBufferLen as Integer = KeyBuffer.Len
+		      if KeyBufferLen > 2 Then
+		        Return True
+		      end if
+		      
+		      mManual24HourTimeEntry(KeyBuffer)
+		      mFormat24hrSingleDigits(KeyBuffer)
+		      
+		    Case Chr(58) to Chr(127)
+		      Return True
+		    End Select
+		    
+		    If Key = Chr(8) Then // Delete Key Pressed
+		      mManual24HourTimeEntry(Chr(8))
+		    End if
+		    
+		    if Key = Chr(30)  Then  // Arrow Key Up Pressed
+		      if Draw_AMPM_Selected = True then
+		        mMoveAMPM
+		      Elseif Draw_Hour_Selected = True Then
+		        mMove24HourUp
+		      Elseif Draw_Minute_Selected = True Then
+		        mMove24MinUp
+		      End if
+		      
+		    Elseif Key = Chr(31) Then // Arrow Key Down Pressed
+		      if Draw_AMPM_Selected = True then
+		        mMoveAMPM
+		      Elseif Draw_Hour_Selected = True Then
+		        mMove24HourDown
+		      Elseif Draw_Minute_Selected = True Then
+		        mMove24MinDown
+		      End if
+		    End if
+		    
+		  END Select
 		  
 		  Return True
 		End Function
@@ -344,6 +417,34 @@ Inherits Canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
+		Private Sub mFormat24hrSingleDigits(inKeyValue as String)
+		  if Draw_Hour_Selected = True Then
+		    if inKeyValue = "01" or inKeyValue = "02" or inKeyValue = "03" or inKeyValue = "04" or inKeyValue = "05"or inKeyValue ="06" or inKeyValue ="07" or inKeyValue ="08" or inKeyValue ="09" Then
+		      Time_Container(window).Time_Hour = inKeyValue
+		    elseif CDbl(inKeyValue) >=1 AND CDbl(inKeyValue) <= 9 Then
+		      Time_Container(window).Time_Hour = "0"+Time_Container(window).Time_Hour
+		    Elseif inKeyValue = "0" Then
+		      Time_Container(window).Time_Hour = "0"
+		    Elseif inKeyValue = "00" Then
+		      Time_Container(window).Time_Hour = "12"
+		    end if
+		    
+		  Elseif Draw_Minute_Selected = True Then
+		    if inKeyValue = "01" or inKeyValue = "02" or inKeyValue = "03" or inKeyValue = "04" or inKeyValue = "05"or inKeyValue ="06" or inKeyValue ="07" or inKeyValue ="08" or inKeyValue ="09" Then
+		      Time_Container(window).Time_Minute = inKeyValue
+		    Elseif CDbl(inKeyValue) >=1 AND CDbl(inKeyValue) <= 9 Then
+		      Time_Container(window).Time_Minute = "0"+Time_Container(window).Time_Minute
+		    Elseif inKeyValue = "0" Then
+		      Time_Container(window).Time_Minute = "0"
+		    Elseif inKeyValue = "00" Then
+		      Time_Container(window).Time_Minute = "00"
+		    end if
+		    
+		  End if
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
 		Private Sub mFormatSingleDigits(inKeyValue as String)
 		  if Draw_Hour_Selected = True Then
 		    if inKeyValue = "01" or inKeyValue = "02" or inKeyValue = "03" or inKeyValue = "04" or inKeyValue = "05"or inKeyValue ="06" or inKeyValue ="07" or inKeyValue ="08" or inKeyValue ="09" Then
@@ -377,6 +478,41 @@ Inherits Canvas
 		  
 		  if Draw_Hour_Selected = True then
 		    if CDbl(inKeyBuffer) >= 1 AND CDbl(inKeyBuffer) <= 12 Then
+		      Time_Container(window).Time_Hour = inKeyBuffer
+		    Elseif inKeyBuffer = "00" Then
+		      Time_Container(window).Time_Hour = "00"
+		      
+		    elseif inKeyBuffer = Chr(8) Then
+		      Time_Container(window).Time_Hour = " "
+		      KeyBuffer = ""
+		    Else
+		      Return
+		    End if
+		    
+		  Elseif Draw_Minute_Selected = True Then
+		    if CDbl(inKeyBuffer) >= 1 AND CDbl(inKeyBuffer) <= 59 Then
+		      Time_Container(window).Time_Minute = inKeyBuffer
+		    Elseif inKeyBuffer = "00" Then
+		      Time_Container(window).Time_Minute = "00"
+		    elseif inKeyBuffer = Chr(8) Then
+		      Time_Container(window).Time_Minute = " "
+		      KeyBuffer = ""
+		    Else
+		      Return
+		    End if
+		    
+		  End if
+		  Time_Container(window).Clock1.Invalidate
+		  Me.Invalidate(False)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub mManual24HourTimeEntry(inKeyBuffer as String)
+		  // Figure out Which Field the User is in to change
+		  
+		  if Draw_Hour_Selected = True then
+		    if CDbl(inKeyBuffer) >= 1 AND CDbl(inKeyBuffer) <= 24 Then
 		      Time_Container(window).Time_Hour = inKeyBuffer
 		    Elseif inKeyBuffer = "00" Then
 		      Time_Container(window).Time_Hour = "00"
