@@ -99,27 +99,30 @@ Inherits Canvas
 	#tag Method, Flags = &h0
 		Sub mDrawClockFace(g As Graphics)
 		  
-		  dim buffer As new Picture(g.Width*2,g.Height*2)
+		  static buffer As picture= new Picture(g.Width*4,g.Height*4)
+		  buffer.Graphics.ClearRect(0,0,buffer.Width,buffer.Height)
 		  dim hr,sec,x,y,radius,tickInset As integer
 		  dim angle As Double
 		  dim hourTick As new CurveShape
-		  hourTick.x=-2
-		  hourTick.x2=-14
+		  hourTick.x=0
+		  hourTick.x2=-20
 		  hourTick.y=0
 		  hourTick.y2=0
 		  hourTick.BorderColor=TextColor
+		  hourTick.BorderWidth=4
 		  dim secondTick as new CurveShape
-		  secondTick.x=-2
+		  secondTick.x=0
 		  secondTick.y=0
-		  secondTick.x2=-8
+		  secondTick.x2=-10
 		  secondTick.y2=0
 		  secondTick.BorderColor=TextColor
+		  secondTick.BorderWidth=4
 		  radius=buffer.Width/2
 		  dim numeral As new StringShape //for drawing the numbers
 		  if HourCount=12 then
-		    numeral.TextSize=26
+		    numeral.TextSize=52
 		  else
-		    numeral.TextSize=20
+		    numeral.TextSize=40
 		  end if
 		  numeral.TextFont=me.font
 		  numeral.FillColor=TextColor
@@ -127,14 +130,15 @@ Inherits Canvas
 		  numeral.HorizontalAlignment=StringShape.Alignment.Center
 		  dim face As new OvalShape
 		  #if TargetMacOS Then
-		    face.Width=g.width*2-8
-		    face.Height=g.width*2-8
+		    face.Width=buffer.Width-16
+		    face.Height=buffer.width-16
 		  #Elseif TargetWin32 Then
 		    face.Width=g.width*2-20
 		    face.Height=g.width*2-20
 		  #endif
+		  
 		  face.Border=100
-		  face.BorderWidth=8
+		  face.BorderWidth=16
 		  face.BorderColor=BorderColor
 		  face.fill=100
 		  face.FillColor=FaceColor
@@ -149,23 +153,23 @@ Inherits Canvas
 		      // calc the numeral location
 		      if Time_Container(window).TimeMode=24 then//24 hour mode
 		        
-		        tickInset=40
-		        numeral.TextSize=24
-		        x = Cos(angle)*(radius-23)
-		        y= Sin(angle)*(radius-23)
-		        buffer.Graphics.DrawObject numeral,x+radius+1,y+radius+1 //draw numeral
+		        tickInset=80
+		        numeral.TextSize=48
+		        x = Cos(angle)*(radius-46)
+		        y= Sin(angle)*(radius-46)
+		        buffer.Graphics.DrawObject numeral,x+radius+1,y+radius+2 //draw numeral
 		        
 		        numeral.Text=str(hr+12)
-		        numeral.TextSize=18
-		        x = Cos(angle)*(radius-68)
-		        y= Sin(angle)*(radius-68)
-		        buffer.Graphics.DrawObject numeral,x+radius+1,y+radius+1 //draw inner numeral
+		        numeral.TextSize=36
+		        x = Cos(angle)*(radius-130)
+		        y= Sin(angle)*(radius-130)
+		        buffer.Graphics.DrawObject numeral,x+radius+1,y+radius+2 //draw inner numeral
 		        
 		      elseif  Time_Container(window).TimeMode=12 Then //12 hour mode
-		        x = Cos(angle)*(radius-40)
-		        y= Sin(angle)*(radius-40)
-		        buffer.Graphics.DrawObject numeral,x+radius+1,y+radius+1 //draw numeral
-		        tickInset=10
+		        x = Cos(angle)*(radius-80)
+		        y= Sin(angle)*(radius-80)
+		        buffer.Graphics.DrawObject numeral,x+radius+1,y+radius+2 //draw numeral
+		        tickInset=20
 		        
 		      end if
 		      
@@ -189,8 +193,8 @@ Inherits Canvas
 		      
 		      // calc the numeral location
 		      if numeral.Text="24" then numeral.text="0"
-		      x = Cos(angle)*(radius-24)
-		      y= Sin(angle)*(radius-24)
+		      x = Cos(angle)*(radius-48)
+		      y= Sin(angle)*(radius-48)
 		      buffer.Graphics.DrawObject numeral,x+radius,y+radius //draw numeral
 		    end if
 		  next
