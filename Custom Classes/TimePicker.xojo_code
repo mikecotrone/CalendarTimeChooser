@@ -616,13 +616,14 @@ Inherits Canvas
 		Sub mOneTimeConversion12to24()
 		  // Do a one time conversion from 12 hour to 24 hour for the current time
 		  Time_Container(Window).Time_Hour =  fConvertHour_12to24TimeFormat(CDbl(Time_Container(Window).Time_Hour),"PM") ///////******************** UNHARD CODE
-		  Time_Container(Window).TimePicker1.Invalidate(False) 
+		  Time_Container(Window).TimePicker1.Invalidate(False)
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
 		Sub mOneTimeConversion24to12()
 		  // Do a one time conversion from 12 hour to 24 hour for the current time
+		  
 		  Time_Container(Window).Time_Hour =  fConvertHour_24to12TimeFormat(CDbl(Time_Container(Window).Time_Hour))
 		  Time_Container(Window).TimePicker1.Invalidate(False)
 		End Sub

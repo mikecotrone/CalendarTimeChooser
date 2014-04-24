@@ -279,12 +279,9 @@ End
 			  if value=Date_Time_Container.ClockFaceType.Dynamic_24hr then
 			    Time_Container1.Clock1.HourCount=24
 			    Time_Container1.TimeMode = 24
-			    // Do a one time conversion from 12 hour to 24 hour for the current time
-			    Time_Container1.TimePicker1.mOneTimeConversion12to24
 			  else
 			    Time_Container1.Clock1.HourCount=12
 			    Time_Container1.TimeMode = 12
-			    Time_Container1.TimePicker1.mOneTimeConversion24to12
 			  end if
 			  me.Invalidate(false)
 			End Set

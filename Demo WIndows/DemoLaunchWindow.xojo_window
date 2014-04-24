@@ -639,6 +639,37 @@ Begin Window DemoLaunchWindow
          Visible         =   True
          Width           =   191
       End
+      Begin PopupMenu TimeModePopUpMenu
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         InitialValue    =   ""
+         Italic          =   False
+         Left            =   278
+         ListIndex       =   0
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   28
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   367
+         Underline       =   False
+         Visible         =   True
+         Width           =   188
+      End
    End
    Begin Separator Separator2
       AutoDeactivate  =   True
@@ -711,6 +742,10 @@ End
 		#tag EndSetter
 		MyPicker As DateTimeWindow
 	#tag EndComputedProperty
+
+	#tag Property, Flags = &h21
+		Private TimeModeFirstRunBool As Boolean = True
+	#tag EndProperty
 
 
 #tag EndWindowCode
@@ -976,6 +1011,36 @@ End
 		  MyPicker.Date_Time_Container1.mSetLocalization_ContainerTitle(LocalInt)
 		  
 		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events TimeModePopUpMenu
+	#tag Event
+		Sub Open()
+		  // Load Popup Menu
+		  me.AddRow("12 Hour Format")
+		  me.AddRow("24 Hour Format")
+		  me.ListIndex = 0
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Change()
+		  Select Case Me.Text
+		  Case "12 Hour Format"
+		    MyPicker.Date_Time_Container1.Time_Container1.TimeMode = 12
+		    if TimeModeFirstRunBool = False Then
+		      MyPicker.Date_Time_Container1.Time_Container1.TimePicker1.mOneTimeConversion24to12
+		    End if
+		    
+		  Case "24 Hour Format"
+		    MyPicker.Date_Time_Container1.Time_Container1.TimeMode = 24
+		    MyPicker.Date_Time_Container1.Time_Container1.TimePicker1.mOneTimeConversion12to24
+		    TimeModeFirstRunBool = False
+		  End Select
+		  
+		  MyPicker.Date_Time_Container1.Time_Container1.Clock1.Invalidate(False)
+		  MyPicker.Date_Time_Container1.Time_Container1.TimePicker1.Invalidate(False)
 		End Sub
 	#tag EndEvent
 #tag EndEvents
