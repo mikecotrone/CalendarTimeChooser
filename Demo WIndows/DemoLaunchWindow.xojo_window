@@ -9,7 +9,7 @@ Begin Window DemoLaunchWindow
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   500
+   Height          =   456
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
@@ -512,6 +512,195 @@ Begin Window DemoLaunchWindow
          Visible         =   True
          Width           =   188
       End
+      Begin PopupMenu WeekStartType
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         InitialValue    =   ""
+         Italic          =   False
+         Left            =   77
+         ListIndex       =   0
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   34
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   365
+         Underline       =   False
+         Visible         =   True
+         Width           =   188
+      End
+      Begin Label WeekStartTypeLabel
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         Italic          =   False
+         Left            =   77
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Multiline       =   False
+         Scope           =   0
+         Selectable      =   False
+         TabIndex        =   35
+         TabPanelIndex   =   0
+         Text            =   "Week Start Type:"
+         TextAlign       =   0
+         TextColor       =   &c00000000
+         TextFont        =   "Helvetica"
+         TextSize        =   12.0
+         TextUnit        =   0
+         Top             =   340
+         Transparent     =   True
+         Underline       =   False
+         Visible         =   True
+         Width           =   127
+      End
+      Begin Canvas CalendarIcon
+         AcceptFocus     =   False
+         AcceptTabs      =   False
+         AutoDeactivate  =   True
+         Backdrop        =   0
+         DoubleBuffer    =   False
+         Enabled         =   True
+         EraseBackground =   True
+         Height          =   47
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         Left            =   17
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   36
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Top             =   345
+         Transparent     =   True
+         UseFocusRing    =   True
+         Visible         =   True
+         Width           =   47
+      End
+      Begin Label LocalizationLabel
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         Italic          =   False
+         Left            =   80
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Multiline       =   False
+         Scope           =   0
+         Selectable      =   False
+         TabIndex        =   37
+         TabPanelIndex   =   0
+         Text            =   "Calendar Localization:"
+         TextAlign       =   0
+         TextColor       =   &c00000000
+         TextFont        =   "Helvetica"
+         TextSize        =   12.0
+         TextUnit        =   0
+         Top             =   393
+         Transparent     =   True
+         Underline       =   False
+         Visible         =   True
+         Width           =   127
+      End
+      Begin PopupMenu LocalizationPopupMenu
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         InitialValue    =   ""
+         Italic          =   False
+         Left            =   78
+         ListIndex       =   0
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   38
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   417
+         Underline       =   False
+         Visible         =   True
+         Width           =   191
+      End
+      Begin PopupMenu IncludePrevNextMonDaysPopUpMenu
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         InitialValue    =   ""
+         Italic          =   False
+         Left            =   278
+         ListIndex       =   0
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   39
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   365
+         Underline       =   False
+         Visible         =   True
+         Width           =   188
+      End
    End
    Begin Separator Separator2
       AutoDeactivate  =   True
@@ -520,7 +709,7 @@ Begin Window DemoLaunchWindow
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   10
+      Left            =   7
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -530,7 +719,7 @@ Begin Window DemoLaunchWindow
       TabIndex        =   6
       TabPanelIndex   =   0
       TabStop         =   True
-      Top             =   380
+      Top             =   333
       Visible         =   True
       Width           =   469
    End
@@ -555,195 +744,6 @@ Begin Window DemoLaunchWindow
       Visible         =   True
       Width           =   469
    End
-   Begin PopupMenu LocalizationPopupMenu
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      InitialValue    =   ""
-      Italic          =   False
-      Left            =   280
-      ListIndex       =   0
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   8
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   411
-      Underline       =   False
-      Visible         =   True
-      Width           =   191
-   End
-   Begin Label LocalizationLabel
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   282
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   9
-      TabPanelIndex   =   0
-      Text            =   "Calendar Localization:"
-      TextAlign       =   0
-      TextColor       =   &c00000000
-      TextFont        =   "Helvetica"
-      TextSize        =   12.0
-      TextUnit        =   0
-      Top             =   387
-      Transparent     =   True
-      Underline       =   False
-      Visible         =   True
-      Width           =   127
-   End
-   Begin Canvas CalendarIcon
-      AcceptFocus     =   False
-      AcceptTabs      =   False
-      AutoDeactivate  =   True
-      Backdrop        =   0
-      DoubleBuffer    =   False
-      Enabled         =   True
-      EraseBackground =   True
-      Height          =   47
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   20
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   10
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Top             =   392
-      Transparent     =   True
-      UseFocusRing    =   True
-      Visible         =   True
-      Width           =   47
-   End
-   Begin Label WeekStartTypeLabel
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   80
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Multiline       =   False
-      Scope           =   0
-      Selectable      =   False
-      TabIndex        =   11
-      TabPanelIndex   =   0
-      Text            =   "Week Start Type:"
-      TextAlign       =   0
-      TextColor       =   &c00000000
-      TextFont        =   "Helvetica"
-      TextSize        =   12.0
-      TextUnit        =   0
-      Top             =   387
-      Transparent     =   True
-      Underline       =   False
-      Visible         =   True
-      Width           =   127
-   End
-   Begin PopupMenu WeekStartType
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      InitialValue    =   ""
-      Italic          =   False
-      Left            =   80
-      ListIndex       =   0
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   12
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   412
-      Underline       =   False
-      Visible         =   True
-      Width           =   188
-   End
-   Begin PopupMenu IncludePrevNextMonDaysPopUpMenu
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      InitialValue    =   ""
-      Italic          =   False
-      Left            =   -224
-      ListIndex       =   0
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   16
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0.0
-      TextUnit        =   0
-      Top             =   379
-      Underline       =   False
-      Visible         =   True
-      Width           =   188
-   End
    Begin Label IncludeNextPrevMonDaysLabel
       AutoDeactivate  =   True
       Bold            =   False
@@ -755,7 +755,7 @@ Begin Window DemoLaunchWindow
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   -224
+      Left            =   278
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -772,7 +772,7 @@ Begin Window DemoLaunchWindow
       TextFont        =   "Helvetica"
       TextSize        =   12.0
       TextUnit        =   0
-      Top             =   355
+      Top             =   340
       Transparent     =   True
       Underline       =   False
       Visible         =   True
@@ -1053,6 +1053,36 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
+#tag Events WeekStartType
+	#tag Event
+		Sub Open()
+		  // Load Popup Menu
+		  me.AddRow("Week Starts on Sunday")
+		  me.AddRow("Week Starts on Monday")
+		  me.ListIndex = 0
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Change()
+		  Select Case Me.Text
+		  Case "Week Starts on Sunday"
+		    MyPicker.WeekStartsOnMonday = False
+		  Case "Week Starts on Monday"
+		    MyPicker.WeekStartsOnMonday = True
+		  End Select
+		  
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events CalendarIcon
+	#tag Event
+		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		  g.DrawPicture(cal46x50,0,0)
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag Events LocalizationPopupMenu
 	#tag Event
 		Sub Open()
@@ -1116,36 +1146,6 @@ End
 		  
 		  // Create the Localized Window/Container Title's
 		  MyPicker.Date_Time_Container1.mSetLocalization_ContainerTitle(LocalInt)
-		  
-		  
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events CalendarIcon
-	#tag Event
-		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
-		  g.DrawPicture(cal46x50,0,0)
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events WeekStartType
-	#tag Event
-		Sub Open()
-		  // Load Popup Menu
-		  me.AddRow("Week Starts on Sunday")
-		  me.AddRow("Week Starts on Monday")
-		  me.ListIndex = 0
-		  
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub Change()
-		  Select Case Me.Text
-		  Case "Week Starts on Sunday"
-		    MyPicker.WeekStartsOnMonday = False
-		  Case "Week Starts on Monday"
-		    MyPicker.WeekStartsOnMonday = True
-		  End Select
 		  
 		  
 		End Sub
