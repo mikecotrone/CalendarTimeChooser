@@ -291,16 +291,7 @@ Inherits Canvas
 		  g.DrawString(DrawStringValue,10,16)
 		  g.PenWidth=1
 		  g.PenHeight=1
-		  ///
-		  //if Time_Container(window).TimeMode = 24 Then
-		  //g.TextSize=11
-		  //g.Transparency = 10
-		  //g.ForeColor = &c0000FF
-		  //g.TextFont = "Helvetica"
-		  //g.DrawString(" 24h",50,15)
-		  //g.ForeColor = RGB(0,0,0)
-		  //End if
-		  ///
+		  
 		  g.Transparency = 50
 		  g.DrawRoundRect(0,0,me.Width,me.Height,6,6)
 		  

@@ -353,7 +353,7 @@ End
 			  if value=Date_Time_Container.ClockFaceType.Dynamic_24hr then
 			    Time_Container1.Clock1.HourCount=24
 			    Time_Container1.TimeMode = 24
-			  else
+			  elseif value=Date_Time_Container.ClockFaceType.Dynamic_12hr Then
 			    Time_Container1.Clock1.HourCount=12
 			    Time_Container1.TimeMode = 12
 			  end if
