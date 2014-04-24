@@ -153,7 +153,7 @@ Inherits Canvas
 		        y= Sin(angle)*(radius-68)
 		        buffer.Graphics.DrawObject numeral,x+radius+1,y+radius+1 //draw inner numeral
 		        
-		      else //12 hour mode
+		      elseif  Time_Container(window).TimeMode=12 Then //12 hour mode
 		        x = Cos(angle)*(radius-40)
 		        y= Sin(angle)*(radius-40)
 		        buffer.Graphics.DrawObject numeral,x+radius+1,y+radius+1 //draw numeral
@@ -177,7 +177,7 @@ Inherits Canvas
 		      next
 		      
 		      
-		    else //24 hour clock
+		    elseif HourCount = 24 Then //24 hour clock
 		      
 		      // calc the numeral location
 		      if numeral.Text="24" then numeral.text="0"

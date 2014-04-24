@@ -26,8 +26,7 @@ Begin ContainerControl Date_Time_Container
    Visible         =   True
    Width           =   394
    Begin Timer ClockSecondHandTimer
-      Enabled         =   True
-      Height          =   "32"
+      Height          =   32
       Index           =   -2147483648
       InitialParent   =   ""
       Left            =   0
@@ -37,8 +36,7 @@ Begin ContainerControl Date_Time_Container
       Scope           =   0
       TabPanelIndex   =   0
       Top             =   0
-      Visible         =   True
-      Width           =   "32"
+      Width           =   32
    End
    Begin Separator Separator1
       AutoDeactivate  =   True
@@ -72,7 +70,6 @@ Begin ContainerControl Date_Time_Container
       HasBackColor    =   False
       Height          =   236
       HelpTag         =   ""
-      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   0
       LockBottom      =   False
@@ -102,7 +99,6 @@ Begin ContainerControl Date_Time_Container
       HasBackColor    =   False
       Height          =   213
       HelpTag         =   ""
-      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   235
       LockBottom      =   False
@@ -354,13 +350,13 @@ End
 		#tag Setter
 			Set
 			  Time_Container1.Clock1.ClockFaceType = value
-			  //if value=Date_Time_Container.ClockFaceType.Dynamic_24hr then
-			  //Time_Container1.Clock1.HourCount=24
-			  //Time_Container1.TimeMode = 24
-			  //else
-			  //Time_Container1.Clock1.HourCount=12
-			  //Time_Container1.TimeMode = 12
-			  //end if
+			  if value=Date_Time_Container.ClockFaceType.Dynamic_24hr then
+			    Time_Container1.Clock1.HourCount=24
+			    Time_Container1.TimeMode = 24
+			  else
+			    Time_Container1.Clock1.HourCount=12
+			    Time_Container1.TimeMode = 12
+			  end if
 			  me.Invalidate(false)
 			End Set
 		#tag EndSetter
