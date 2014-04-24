@@ -512,8 +512,10 @@ Inherits Canvas
 		  // Figure out Which Field the User is in to change
 		  
 		  if Draw_Hour_Selected = True then
-		    if CDbl(inKeyBuffer) >= 1 AND CDbl(inKeyBuffer) <= 24 Then
+		    if CDbl(inKeyBuffer) >= 1 AND CDbl(inKeyBuffer) <= 23 Then
 		      Time_Container(window).Time_Hour = inKeyBuffer
+		    Elseif CDbl(inKeyBuffer) = 24 then
+		      Time_Container(window).Time_Hour = "00"
 		    Elseif inKeyBuffer = "00" Then
 		      Time_Container(window).Time_Hour = "00"
 		      
