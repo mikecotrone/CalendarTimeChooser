@@ -831,7 +831,7 @@ Begin Window DemoLaunchWindow
       Selectable      =   False
       TabIndex        =   18
       TabPanelIndex   =   0
-      Text            =   "Select Clock Hand Color:"
+      Text            =   "Choose Clock Hand Color:"
       TextAlign       =   0
       TextColor       =   &c00000000
       TextFont        =   "Helvetica"
