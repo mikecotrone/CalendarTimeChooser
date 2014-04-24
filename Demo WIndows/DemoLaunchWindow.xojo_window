@@ -9,7 +9,7 @@ Begin Window DemoLaunchWindow
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   442
+   Height          =   456
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
@@ -78,7 +78,7 @@ Begin Window DemoLaunchWindow
       Bold            =   False
       Caption         =   ""
       Enabled         =   True
-      Height          =   254
+      Height          =   299
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -230,243 +230,6 @@ Begin Window DemoLaunchWindow
          Visible         =   True
          Width           =   188
       End
-      Begin Label IncludeNextPrevMonDaysLabel
-         AutoDeactivate  =   True
-         Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
-         Enabled         =   True
-         Height          =   20
-         HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "GroupBox1"
-         Italic          =   False
-         Left            =   78
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Multiline       =   False
-         Scope           =   0
-         Selectable      =   False
-         TabIndex        =   11
-         TabPanelIndex   =   0
-         Text            =   "Include Previous/Next Month Days:"
-         TextAlign       =   0
-         TextColor       =   &c00000000
-         TextFont        =   "Helvetica"
-         TextSize        =   12.0
-         TextUnit        =   0
-         Top             =   224
-         Transparent     =   True
-         Underline       =   False
-         Visible         =   True
-         Width           =   207
-      End
-      Begin PopupMenu IncludePrevNextMonDaysPopUpMenu
-         AutoDeactivate  =   True
-         Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
-         Enabled         =   True
-         Height          =   20
-         HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "GroupBox1"
-         InitialValue    =   ""
-         Italic          =   False
-         Left            =   78
-         ListIndex       =   0
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Scope           =   0
-         TabIndex        =   12
-         TabPanelIndex   =   0
-         TabStop         =   True
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
-         Top             =   248
-         Underline       =   False
-         Visible         =   True
-         Width           =   188
-      End
-      Begin Label UseGraphicalClockHandsLabel
-         AutoDeactivate  =   True
-         Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
-         Enabled         =   True
-         Height          =   20
-         HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "GroupBox1"
-         Italic          =   False
-         Left            =   279
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Multiline       =   False
-         Scope           =   0
-         Selectable      =   False
-         TabIndex        =   14
-         TabPanelIndex   =   0
-         Text            =   "Use Graphical Clock Hands:"
-         TextAlign       =   0
-         TextColor       =   &c00000000
-         TextFont        =   "Helvetica"
-         TextSize        =   12.0
-         TextUnit        =   0
-         Top             =   224
-         Transparent     =   True
-         Underline       =   False
-         Visible         =   True
-         Width           =   207
-      End
-      Begin PopupMenu UseGraphicalClockHandsPopUpMenu
-         AutoDeactivate  =   True
-         Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
-         Enabled         =   True
-         Height          =   20
-         HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "GroupBox1"
-         InitialValue    =   ""
-         Italic          =   False
-         Left            =   279
-         ListIndex       =   0
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Scope           =   0
-         TabIndex        =   15
-         TabPanelIndex   =   0
-         TabStop         =   True
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
-         Top             =   248
-         Underline       =   False
-         Visible         =   True
-         Width           =   188
-      End
-      Begin Separator Separator1
-         AutoDeactivate  =   True
-         Enabled         =   True
-         Height          =   4
-         HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "GroupBox1"
-         Left            =   8
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Scope           =   0
-         TabIndex        =   16
-         TabPanelIndex   =   0
-         TabStop         =   True
-         Top             =   215
-         Visible         =   True
-         Width           =   469
-      End
-      Begin Separator Separator2
-         AutoDeactivate  =   True
-         Enabled         =   True
-         Height          =   4
-         HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "GroupBox1"
-         Left            =   8
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Scope           =   0
-         TabIndex        =   17
-         TabPanelIndex   =   0
-         TabStop         =   True
-         Top             =   282
-         Visible         =   True
-         Width           =   469
-      End
-      Begin PopupMenu WeekStartType
-         AutoDeactivate  =   True
-         Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
-         Enabled         =   True
-         Height          =   20
-         HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "GroupBox1"
-         InitialValue    =   ""
-         Italic          =   False
-         Left            =   78
-         ListIndex       =   0
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Scope           =   0
-         TabIndex        =   18
-         TabPanelIndex   =   0
-         TabStop         =   True
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
-         Top             =   314
-         Underline       =   False
-         Visible         =   True
-         Width           =   188
-      End
-      Begin Label WeekStartTypeLabel
-         AutoDeactivate  =   True
-         Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
-         Enabled         =   True
-         Height          =   20
-         HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "GroupBox1"
-         Italic          =   False
-         Left            =   78
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Multiline       =   False
-         Scope           =   0
-         Selectable      =   False
-         TabIndex        =   19
-         TabPanelIndex   =   0
-         Text            =   "Week Start Type:"
-         TextAlign       =   0
-         TextColor       =   &c00000000
-         TextFont        =   "Helvetica"
-         TextSize        =   12.0
-         TextUnit        =   0
-         Top             =   289
-         Transparent     =   True
-         Underline       =   False
-         Visible         =   True
-         Width           =   127
-      End
       Begin PopupMenu ClockFaceChangerPopupMenu
          AutoDeactivate  =   True
          Bold            =   False
@@ -493,7 +256,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "System"
          TextSize        =   0.0
          TextUnit        =   0
-         Top             =   314
+         Top             =   249
          Underline       =   False
          Visible         =   True
          Width           =   188
@@ -526,7 +289,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "Helvetica"
          TextSize        =   12.0
          TextUnit        =   0
-         Top             =   289
+         Top             =   224
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -544,7 +307,7 @@ Begin Window DemoLaunchWindow
          HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "GroupBox1"
-         Left            =   19
+         Left            =   17
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -554,35 +317,7 @@ Begin Window DemoLaunchWindow
          TabIndex        =   22
          TabPanelIndex   =   0
          TabStop         =   True
-         Top             =   227
-         Transparent     =   True
-         UseFocusRing    =   True
-         Visible         =   True
-         Width           =   47
-      End
-      Begin Canvas CalendarIcon
-         AcceptFocus     =   False
-         AcceptTabs      =   False
-         AutoDeactivate  =   True
-         Backdrop        =   0
-         DoubleBuffer    =   False
-         Enabled         =   True
-         EraseBackground =   True
-         Height          =   47
-         HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "GroupBox1"
-         Left            =   18
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Scope           =   0
-         TabIndex        =   24
-         TabPanelIndex   =   0
-         TabStop         =   True
-         Top             =   294
+         Top             =   250
          Transparent     =   True
          UseFocusRing    =   True
          Visible         =   True
@@ -616,7 +351,38 @@ Begin Window DemoLaunchWindow
          Visible         =   True
          Width           =   50
       End
-      Begin Label LocalizationLabel
+      Begin PopupMenu TimeModePopUpMenu
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         InitialValue    =   ""
+         Italic          =   False
+         Left            =   78
+         ListIndex       =   0
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   28
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   249
+         Underline       =   False
+         Visible         =   True
+         Width           =   188
+      End
+      Begin Label TimeModeLabel
          AutoDeactivate  =   True
          Bold            =   False
          DataField       =   ""
@@ -636,7 +402,230 @@ Begin Window DemoLaunchWindow
          Multiline       =   False
          Scope           =   0
          Selectable      =   False
-         TabIndex        =   26
+         TabIndex        =   29
+         TabPanelIndex   =   0
+         Text            =   "Select Time Mode Format:"
+         TextAlign       =   0
+         TextColor       =   &c00000000
+         TextFont        =   "Helvetica"
+         TextSize        =   12.0
+         TextUnit        =   0
+         Top             =   224
+         Transparent     =   True
+         Underline       =   False
+         Visible         =   True
+         Width           =   207
+      End
+      Begin PopupMenu UseGraphicalClockHandsPopUpMenu
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         InitialValue    =   ""
+         Italic          =   False
+         Left            =   78
+         ListIndex       =   0
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   30
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   303
+         Underline       =   False
+         Visible         =   True
+         Width           =   188
+      End
+      Begin Label UseGraphicalClockHandsLabel
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         Italic          =   False
+         Left            =   78
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Multiline       =   False
+         Scope           =   0
+         Selectable      =   False
+         TabIndex        =   31
+         TabPanelIndex   =   0
+         Text            =   "Select Clock Hand Type:"
+         TextAlign       =   0
+         TextColor       =   &c00000000
+         TextFont        =   "Helvetica"
+         TextSize        =   12.0
+         TextUnit        =   0
+         Top             =   279
+         Transparent     =   True
+         Underline       =   False
+         Visible         =   True
+         Width           =   207
+      End
+      Begin PopupMenu ClockHandColorPopUpMenu
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         InitialValue    =   ""
+         Italic          =   False
+         Left            =   278
+         ListIndex       =   0
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   33
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   303
+         Underline       =   False
+         Visible         =   True
+         Width           =   188
+      End
+      Begin PopupMenu WeekStartType
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         InitialValue    =   ""
+         Italic          =   False
+         Left            =   77
+         ListIndex       =   0
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   34
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   365
+         Underline       =   False
+         Visible         =   True
+         Width           =   188
+      End
+      Begin Label WeekStartTypeLabel
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         Italic          =   False
+         Left            =   77
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Multiline       =   False
+         Scope           =   0
+         Selectable      =   False
+         TabIndex        =   35
+         TabPanelIndex   =   0
+         Text            =   "Week Start Type:"
+         TextAlign       =   0
+         TextColor       =   &c00000000
+         TextFont        =   "Helvetica"
+         TextSize        =   12.0
+         TextUnit        =   0
+         Top             =   340
+         Transparent     =   True
+         Underline       =   False
+         Visible         =   True
+         Width           =   127
+      End
+      Begin Canvas CalendarIcon
+         AcceptFocus     =   False
+         AcceptTabs      =   False
+         AutoDeactivate  =   True
+         Backdrop        =   0
+         DoubleBuffer    =   False
+         Enabled         =   True
+         EraseBackground =   True
+         Height          =   47
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         Left            =   16
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   36
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Top             =   365
+         Transparent     =   True
+         UseFocusRing    =   True
+         Visible         =   True
+         Width           =   47
+      End
+      Begin Label LocalizationLabel
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         Italic          =   False
+         Left            =   80
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Multiline       =   False
+         Scope           =   0
+         Selectable      =   False
+         TabIndex        =   37
          TabPanelIndex   =   0
          Text            =   "Calendar Localization:"
          TextAlign       =   0
@@ -644,7 +633,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "Helvetica"
          TextSize        =   12.0
          TextUnit        =   0
-         Top             =   344
+         Top             =   393
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -662,7 +651,7 @@ Begin Window DemoLaunchWindow
          InitialParent   =   "GroupBox1"
          InitialValue    =   ""
          Italic          =   False
-         Left            =   76
+         Left            =   78
          ListIndex       =   0
          LockBottom      =   False
          LockedInPosition=   False
@@ -670,22 +659,170 @@ Begin Window DemoLaunchWindow
          LockRight       =   False
          LockTop         =   True
          Scope           =   0
-         TabIndex        =   27
+         TabIndex        =   38
          TabPanelIndex   =   0
          TabStop         =   True
          TextFont        =   "System"
          TextSize        =   0.0
          TextUnit        =   0
-         Top             =   368
+         Top             =   417
          Underline       =   False
          Visible         =   True
          Width           =   191
       End
+      Begin PopupMenu IncludePrevNextMonDaysPopUpMenu
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         InitialValue    =   ""
+         Italic          =   False
+         Left            =   278
+         ListIndex       =   0
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   39
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   365
+         Underline       =   False
+         Visible         =   True
+         Width           =   188
+      End
+   End
+   Begin Separator Separator2
+      AutoDeactivate  =   True
+      Enabled         =   True
+      Height          =   4
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   7
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   6
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   333
+      Visible         =   True
+      Width           =   469
+   End
+   Begin Separator Separator1
+      AutoDeactivate  =   True
+      Enabled         =   True
+      Height          =   4
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   6
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   7
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   214
+      Visible         =   True
+      Width           =   469
+   End
+   Begin Label IncludeNextPrevMonDaysLabel
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   278
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   17
+      TabPanelIndex   =   0
+      Text            =   "Include Previous/Next Month Days:"
+      TextAlign       =   0
+      TextColor       =   &c00000000
+      TextFont        =   "Helvetica"
+      TextSize        =   12.0
+      TextUnit        =   0
+      Top             =   340
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   207
+   End
+   Begin Label GraphicalClockHandColorLabel
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   278
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   18
+      TabPanelIndex   =   0
+      Text            =   "Select Clock Hand Color:"
+      TextAlign       =   0
+      TextColor       =   &c00000000
+      TextFont        =   "Helvetica"
+      TextSize        =   12.0
+      TextUnit        =   0
+      Top             =   279
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   207
    End
 End
 #tag EndWindow
 
 #tag WindowCode
+	#tag Event
+		Sub Close()
+		  quit(0)
+		End Sub
+	#tag EndEvent
+
+
 	#tag Property, Flags = &h21
 		Private mMyPicker As DateTimeWindow
 	#tag EndProperty
@@ -704,6 +841,10 @@ End
 		#tag EndSetter
 		MyPicker As DateTimeWindow
 	#tag EndComputedProperty
+
+	#tag Property, Flags = &h21
+		Private TimeModeFirstRunBool As Boolean = True
+	#tag EndProperty
 
 
 #tag EndWindowCode
@@ -778,34 +919,16 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events IncludePrevNextMonDaysPopUpMenu
+#tag Events ClockFaceChangerPopupMenu
 	#tag Event
 		Sub Open()
 		  // Load Popup Menu
-		  me.AddRow("Include")
-		  me.AddRow("Do NOT include")
-		  me.ListIndex=0
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub Change()
-		  Select Case Me.Text
-		  Case "Include"
-		    MyPicker.IncludePrevNextMonthDays = True
-		  Case "Do NOT include"
-		    MyPicker.IncludePrevNextMonthDays = False
-		  End Select
-		  
-		  
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events UseGraphicalClockHandsPopUpMenu
-	#tag Event
-		Sub Open()
-		  // Load Popup Menu
-		  me.AddRow("Use Graphical Clock Hands")
-		  me.AddRow("Use Lines for Clock Hands")
+		  me.AddRow("Chrome")
+		  me.AddRow("Google Style")
+		  me.AddRow("Jim's Clock")
+		  me.AddRow("Modern")
+		  me.AddRow("Roman")
+		  me.AddRow("Standard")
 		  me.ListIndex = 0
 		  
 		End Sub
@@ -813,12 +936,120 @@ End
 	#tag Event
 		Sub Change()
 		  Select Case Me.Text
-		  Case "Use Graphical Clock Hands"
+		  Case "Chrome"
+		    // Default Clock Face
+		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Chrome
+		  Case "Roman"
+		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Roman
+		  Case "Standard"
+		    MyPicker.ClockFaceType =Date_Time_Container.ClockFaceType.Standard
+		  Case "Google Style"
+		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.GoogleStyle
+		  Case "Modern"
+		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Modern
+		  Case "Jim's Clock"
+		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Dynamic_12hr
+		  End Select
+		  
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events ClockIcon
+	#tag Event
+		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		  g.DrawPicture(ClockIcon50x50,0,0)
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events GeneralIcon
+	#tag Event
+		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		  g.DrawPicture(generaloptions,0,0)
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events TimeModePopUpMenu
+	#tag Event
+		Sub Open()
+		  // Load Popup Menu
+		  me.AddRow("12 Hour Format")
+		  me.AddRow("24 Hour Format")
+		  me.ListIndex = 0
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Change()
+		  Select Case Me.Text
+		  Case "12 Hour Format"
+		    MyPicker.Date_Time_Container1.Time_Container1.TimeMode = 12
+		    if TimeModeFirstRunBool = False Then
+		      MyPicker.Date_Time_Container1.Time_Container1.TimePicker1.mOneTimeConversion24to12
+		    End if
+		    
+		    // Check to see if we still have the 24hr Dynamic Clock Face Selected .. If so then change to 12hr Dynamic
+		    if ClockFaceChangerPopupMenu.ListIndex = 6 Then
+		      ClockFaceChangerPopupMenu.ListIndex = 5
+		    End if
+		    
+		  Case "24 Hour Format"
+		    MyPicker.Date_Time_Container1.Time_Container1.TimeMode = 24
+		    MyPicker.Date_Time_Container1.Time_Container1.TimePicker1.mOneTimeConversion12to24
+		    TimeModeFirstRunBool = False
+		  End Select
+		  
+		  MyPicker.Date_Time_Container1.Time_Container1.Clock1.Invalidate(False)
+		  MyPicker.Date_Time_Container1.Time_Container1.TimePicker1.Invalidate(False)
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events UseGraphicalClockHandsPopUpMenu
+	#tag Event
+		Sub Open()
+		  // Load Popup Menu
+		  me.AddRow("Graphical Clock Hands")
+		  me.AddRow("Lines for Clock Hands")
+		  me.ListIndex = 0
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Change()
+		  Select Case Me.Text
+		  Case "Graphical Clock Hands"
 		    MyPicker.UseGraphicalClockHands=True
-		  Case "Use Lines for Clock Hands"
+		  Case "Lines for Clock Hands"
 		    MyPicker.UseGraphicalClockHands=False
 		  End Select
 		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events ClockHandColorPopUpMenu
+	#tag Event
+		Sub Open()
+		  // Load Popup Menu
+		  me.AddRow("Black")
+		  me.AddRow("Green")
+		  me.AddRow("Red")
+		  me.ListIndex = 0
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Change()
+		  Select Case Me.Text
+		  Case "Black"
+		    MyPicker.Date_Time_Container1.Time_Container1.Clock1.ClockHandColor = "Black"
+		  Case "Red"
+		    MyPicker.Date_Time_Container1.Time_Container1.Clock1.ClockHandColor = "Red"
+		  Case "Green"
+		    MyPicker.Date_Time_Container1.Time_Container1.Clock1.ClockHandColor = "Green"
+		    
+		  End Select
+		  
+		  MyPicker.Date_Time_Container1.Time_Container1.Clock1.Invalidate(False)
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -845,51 +1076,6 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events ClockFaceChangerPopupMenu
-	#tag Event
-		Sub Open()
-		  // Load Popup Menu
-		  me.AddRow("0 - Chrome (12hr)")
-		  me.AddRow("1 - Roman (12hr)")
-		  me.AddRow("2 - Standard (12hr)")
-		  me.AddRow("3 - Google Style (12hr)")
-		  me.AddRow("4 - Modern (12hr)")
-		  me.AddRow("5 - Dynamic (12hr)")
-		  me.AddRow("5 - Dynamic (24hr)")
-		  me.ListIndex = 0
-		  
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub Change()
-		  Select Case Me.Text
-		  Case "0 - Chrome (12hr)"
-		    // Default Clock Face
-		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Chrome
-		  Case "1 - Roman (12hr)"
-		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Roman
-		  Case "2 - Standard (12hr)"
-		    MyPicker.ClockFaceType =Date_Time_Container.ClockFaceType.Standard
-		  Case "3 - Google Style (12hr)"
-		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.GoogleStyle
-		  Case "4 - Modern (12hr)"
-		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Modern
-		  Case "5 - Dynamic (12hr)"
-		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Dynamic_12hr
-		  Case "5 - Dynamic (24hr)"
-		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Dynamic_24hr
-		  End Select
-		  
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events ClockIcon
-	#tag Event
-		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
-		  g.DrawPicture(ClockIcon50x50,0,0)
-		End Sub
-	#tag EndEvent
-#tag EndEvents
 #tag Events CalendarIcon
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
@@ -897,24 +1083,21 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events GeneralIcon
-	#tag Event
-		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
-		  g.DrawPicture(generaloptions,0,0)
-		End Sub
-	#tag EndEvent
-#tag EndEvents
 #tag Events LocalizationPopupMenu
 	#tag Event
 		Sub Open()
 		  // Load Popup Menu
+		  me.AddRow("Afrikaans")
+		  me.AddRow("Dutch")
 		  me.AddRow("English")
 		  me.AddRow("French")
 		  me.AddRow("German")
+		  me.AddRow("Italian")
+		  me.AddRow("Polish")
 		  me.AddRow("Spanish")
 		  me.AddRow("Swedish")
-		  me.ListIndex = 0 // Default to English
 		  
+		  me.ListIndex = 2 // Default to English
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -927,12 +1110,27 @@ End
 		  Case "French"
 		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 1
 		    LocalInt = 1
-		  Case "Spanish"
+		  Case "Swedish"
 		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 2
 		    LocalInt = 2
-		  Case "Swedish"
+		  Case "Italian"
 		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 3
 		    LocalInt = 3
+		  Case "Spanish"
+		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 4
+		    LocalInt = 4
+		  Case "Dutch"
+		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 5
+		    LocalInt = 5
+		  Case "German"
+		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 6
+		    LocalInt = 6
+		  Case "Afrikaans"
+		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 7
+		    LocalInt = 7
+		  Case "Polish"
+		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 8
+		    LocalInt = 8
 		  End Select
 		  
 		  // Create the Localized Month List
@@ -940,12 +1138,36 @@ End
 		  // Create the Localized Day of the Week List
 		  MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.mBuildLocalizedDayOfWeekList(LocalInt)
 		  
-		  
 		  // Load the Localized Month List to the PopUp Menu
 		  MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.mLoad_MonthList
 		  
 		  // Load the Localized Day of the Week Abbreviation List to the Calendar
 		  MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.mBuild_LocalizedDayOfWeek_Arrays(LocalInt)
+		  
+		  // Create the Localized Window/Container Title's
+		  MyPicker.Date_Time_Container1.mSetLocalization_ContainerTitle(LocalInt)
+		  
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events IncludePrevNextMonDaysPopUpMenu
+	#tag Event
+		Sub Open()
+		  // Load Popup Menu
+		  me.AddRow("Include")
+		  me.AddRow("Do NOT include")
+		  me.ListIndex=0
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Change()
+		  Select Case Me.Text
+		  Case "Include"
+		    MyPicker.IncludePrevNextMonthDays = True
+		  Case "Do NOT include"
+		    MyPicker.IncludePrevNextMonthDays = False
+		  End Select
 		  
 		  
 		End Sub

@@ -7,11 +7,11 @@ Date:           April 22, 2014
 
 Language:       Xojo
 
-Written by:     Mike Cotrone (mikec@intelligentvisibility.com)
+Author:         Mike Cotrone (mikec@intelligentvisibility.com)
 
 Contributors:   Jim McKay
 
-Version:        1.4
+Version:        1.5
 
 
 What is this Project?
@@ -19,9 +19,24 @@ What is this Project?
   - This project came out of a need for a professional calendar and time chooser for scheduling
   
   - What are the Supported Time Formats for the time chooser picklist?
-        - 12 hour time support only
+        - 12 and 24 hour time support 
         
   - Awesome Clock hand animation
+  
+  - Single or Multi Day selection
+
+
+Whats New in 1.5?
+-----------------
+- Added Localizations for: Enlish, Afrikaans, Dutch, French, German, Italian, Polish, Spanish, and Swedish
+- Jim McKay spent alot of time restructuring the containers to clean up alot code flow
+- Jim McKay was able to render the Clock Hands flawlessly in v1.5
+- Jim McKay added the method to Sync the clock on startup with the Current Time
+- 24 Hour Mode
+- Clock Hand Color Choices
+- Streamlined Clock Faces
+
+------------------------
 
 How to Use this Project?
 
