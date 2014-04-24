@@ -1008,8 +1008,8 @@ End
 	#tag Event
 		Sub Open()
 		  // Load Popup Menu
-		  me.AddRow("Use Graphical Clock Hands")
-		  me.AddRow("Use Lines for Clock Hands")
+		  me.AddRow("Graphical Clock Hands")
+		  me.AddRow("Lines for Clock Hands")
 		  me.ListIndex = 0
 		  
 		End Sub
@@ -1017,9 +1017,9 @@ End
 	#tag Event
 		Sub Change()
 		  Select Case Me.Text
-		  Case "Use Graphical Clock Hands"
+		  Case "Graphical Clock Hands"
 		    MyPicker.UseGraphicalClockHands=True
-		  Case "Use Lines for Clock Hands"
+		  Case "Lines for Clock Hands"
 		    MyPicker.UseGraphicalClockHands=False
 		  End Select
 		  
