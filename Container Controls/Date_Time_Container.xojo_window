@@ -9,7 +9,7 @@ Begin ContainerControl Date_Time_Container
    Enabled         =   True
    EraseBackground =   False
    HasBackColor    =   True
-   Height          =   227
+   Height          =   239
    HelpTag         =   ""
    InitialParent   =   ""
    Left            =   0
@@ -68,7 +68,7 @@ Begin ContainerControl Date_Time_Container
       Enabled         =   True
       EraseBackground =   False
       HasBackColor    =   False
-      Height          =   213
+      Height          =   236
       HelpTag         =   ""
       InitialParent   =   ""
       Left            =   0

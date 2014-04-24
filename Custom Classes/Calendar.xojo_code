@@ -113,7 +113,7 @@ Inherits Canvas
 		    xPos = 11
 		  Elseif DoWAbrvLen = 3 Then // Three Letter Abbreviation Spacing
 		    xPos = 8
-		  Else // Default to two letter abbreviations 
+		  Else // Default to two letter abbreviations
 		    xPos = 11
 		  End if
 		  
@@ -948,22 +948,22 @@ Inherits Canvas
 		    
 		  Case 6 // German
 		    Redim DayOfWeekArray_SS(-1)
-		    DayOfWeekArray_SS.Append "Son" // Sunday
-		    DayOfWeekArray_SS.Append "Mon"
-		    DayOfWeekArray_SS.Append "Die"
-		    DayOfWeekArray_SS.Append "Mit"
-		    DayOfWeekArray_SS.Append "Don"
-		    DayOfWeekArray_SS.Append "Fre"
-		    DayOfWeekArray_SS.Append "Sam" // Saturday
+		    DayOfWeekArray_SS.Append "So" // Sunday
+		    DayOfWeekArray_SS.Append "Mo"
+		    DayOfWeekArray_SS.Append "Di"
+		    DayOfWeekArray_SS.Append "Mi"
+		    DayOfWeekArray_SS.Append "Do"
+		    DayOfWeekArray_SS.Append "Fr"
+		    DayOfWeekArray_SS.Append "Sa" // Saturday
 		    // Mon - Sun
 		    Redim DayOfWeek_MS(-1)
-		    DayOfWeek_MS.Append "Mon" // Monday
-		    DayOfWeek_MS.Append "Die"
-		    DayOfWeek_MS.Append "Mit"
-		    DayOfWeek_MS.Append "Don"
-		    DayOfWeek_MS.Append "Fre"
-		    DayOfWeek_MS.Append "Sam"
-		    DayOfWeek_MS.Append "Son" // Sunday
+		    DayOfWeek_MS.Append "Mo" // Monday
+		    DayOfWeek_MS.Append "Di"
+		    DayOfWeek_MS.Append "Mi"
+		    DayOfWeek_MS.Append "Do"
+		    DayOfWeek_MS.Append "Fr"
+		    DayOfWeek_MS.Append "Sa"
+		    DayOfWeek_MS.Append "So" // Sunday
 		    
 		  Case 7 // Africaans
 		    Redim DayOfWeekArray_SS(-1)

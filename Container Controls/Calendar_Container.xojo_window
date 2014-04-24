@@ -9,7 +9,7 @@ Begin ContainerControl Calendar_Container
    Enabled         =   True
    EraseBackground =   False
    HasBackColor    =   False
-   Height          =   214
+   Height          =   232
    HelpTag         =   ""
    InitialParent   =   ""
    Left            =   0
@@ -37,7 +37,7 @@ Begin ContainerControl Calendar_Container
       InitialParent   =   ""
       InitialValue    =   ""
       Italic          =   False
-      Left            =   11
+      Left            =   9
       ListIndex       =   0
       LockBottom      =   False
       LockedInPosition=   False
@@ -68,7 +68,7 @@ Begin ContainerControl Calendar_Container
       InitialParent   =   ""
       InitialValue    =   ""
       Italic          =   False
-      Left            =   104
+      Left            =   102
       ListIndex       =   0
       LockBottom      =   False
       LockedInPosition=   False
@@ -100,7 +100,7 @@ Begin ContainerControl Calendar_Container
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   171
+      Left            =   93
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   False
@@ -113,7 +113,7 @@ Begin ContainerControl Calendar_Container
       TextFont        =   "Helvetica"
       TextSize        =   12.0
       TextUnit        =   0
-      Top             =   2
+      Top             =   201
       Underline       =   False
       Visible         =   True
       Width           =   16
@@ -131,7 +131,7 @@ Begin ContainerControl Calendar_Container
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   187
+      Left            =   109
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   False
@@ -144,7 +144,7 @@ Begin ContainerControl Calendar_Container
       TextFont        =   "Helvetica"
       TextSize        =   11.0
       TextUnit        =   0
-      Top             =   2
+      Top             =   201
       Underline       =   False
       Visible         =   True
       Width           =   18
@@ -162,7 +162,7 @@ Begin ContainerControl Calendar_Container
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   205
+      Left            =   127
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   False
@@ -175,7 +175,7 @@ Begin ContainerControl Calendar_Container
       TextFont        =   "Helvetica"
       TextSize        =   12.0
       TextUnit        =   0
-      Top             =   2
+      Top             =   201
       Underline       =   False
       Visible         =   True
       Width           =   16
@@ -236,7 +236,7 @@ Begin ContainerControl Calendar_Container
       TabStop         =   True
       TodaysDate_NotSelected=   &c0000FF00
       TodaysDate_Selected=   &cFFFF0000
-      Top             =   33
+      Top             =   30
       Transparent     =   False
       UseFocusRing    =   True
       Visible         =   True
@@ -259,10 +259,72 @@ Begin ContainerControl Calendar_Container
          TabIndex        =   0
          TabPanelIndex   =   0
          TabStop         =   True
-         Top             =   56
+         Top             =   53
          Visible         =   True
          Width           =   205
       End
+   End
+   Begin PushButton NextYearButton
+      AutoDeactivate  =   True
+      Bold            =   True
+      ButtonStyle     =   "4"
+      Cancel          =   False
+      Caption         =   ">>"
+      Default         =   False
+      Enabled         =   True
+      Height          =   18
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   143
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   False
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   53
+      TabPanelIndex   =   0
+      TabStop         =   False
+      TextFont        =   "Helvetica"
+      TextSize        =   12.0
+      TextUnit        =   0
+      Top             =   201
+      Underline       =   False
+      Visible         =   True
+      Width           =   20
+   End
+   Begin PushButton PrevYearButton
+      AutoDeactivate  =   True
+      Bold            =   True
+      ButtonStyle     =   "4"
+      Cancel          =   False
+      Caption         =   "<<"
+      Default         =   False
+      Enabled         =   True
+      Height          =   18
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   73
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   False
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   54
+      TabPanelIndex   =   0
+      TabStop         =   False
+      TextFont        =   "Helvetica"
+      TextSize        =   12.0
+      TextUnit        =   0
+      Top             =   201
+      Underline       =   False
+      Visible         =   True
+      Width           =   20
    End
 End
 #tag EndWindow
@@ -302,6 +364,23 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
+		Private Sub mNextYear()
+		  Calendar1.mDeselectAll
+		  
+		  Calendar1.NextYear = CDbl(YearPopup.Text)+1
+		  for i as integer = 0 to YearPopup.ListCount-1
+		    if Str(Calendar1.NextYear) = YearPopup.List(i) Then
+		      YearPopup.ListIndex = i
+		      exit
+		    End if
+		  next i
+		  
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
 		Private Sub mPrevMonth()
 		  // Need a Check to See about Decrementing Year or not
 		  Calendar1.mDeselectAll
@@ -322,6 +401,23 @@ End
 		      exit
 		    End if
 		  next i
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub mPrevYear()
+		  Calendar1.mDeselectAll
+		  
+		  Calendar1.NextYear = CDbl(YearPopup.Text)-1
+		  for i as integer = 0 to YearPopup.ListCount-1
+		    if Str(Calendar1.NextYear) = YearPopup.List(i) Then
+		      YearPopup.ListIndex = i
+		      exit
+		    End if
+		  next i
+		  
+		  
 		  
 		End Sub
 	#tag EndMethod
@@ -424,6 +520,30 @@ End
 	#tag Event
 		Sub Action()
 		  mNextMonth
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		  Me.SetFocus
+		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events NextYearButton
+	#tag Event
+		Sub Action()
+		  mNextYear
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		  Me.SetFocus
+		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events PrevYearButton
+	#tag Event
+		Sub Action()
+		  mPrevYear
 		End Sub
 	#tag EndEvent
 	#tag Event
