@@ -139,7 +139,7 @@ Inherits Canvas
 		  face.BorderWidth=16
 		  face.BorderColor=BorderColor
 		  face.fill=100
-		  face.FillColor=FaceColor
+		  face.FillColor= ClockFaceColor
 		  buffer.Graphics.DrawObject face,radius,radius
 		  buffer.Graphics.ForeColor=TextColor
 		  
@@ -299,6 +299,10 @@ Inherits Canvas
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		ClockFaceColor As Color = &cdddddd
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		ClockFaceType As Date_Time_Container.ClockFaceType
 	#tag EndProperty
 
@@ -316,10 +320,6 @@ Inherits Canvas
 
 	#tag Property, Flags = &h0
 		ClockSecondValue As Double
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		FaceColor As Color = &cdddddd
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -419,13 +419,6 @@ Inherits Canvas
 			Group="Behavior"
 			InitialValue="True"
 			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="FaceColor"
-			Visible=true
-			Group="Behavior"
-			InitialValue="&cdddddd"
-			Type="Color"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Font"
@@ -559,7 +552,6 @@ Inherits Canvas
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="UseGraphicalClockHands"
-			Visible=true
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty

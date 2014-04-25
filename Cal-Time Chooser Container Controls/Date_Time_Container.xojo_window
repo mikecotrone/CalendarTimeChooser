@@ -140,6 +140,8 @@ End
 
 	#tag Method, Flags = &h21
 		Private Sub mChangeLocalizedWindowTitle()
+		  // ** MUST DETACH FROM DEMO WINDOW
+		  
 		  If Window IsA DateTimeWindow Then
 		    
 		    If DemoLaunchWindow.MyPicker.VisiblePickers = Date_Time_Container.PickerElements.CalendarAndClock Then
@@ -280,20 +282,6 @@ End
 			End Set
 		#tag EndSetter
 		ClockFaceBorderColor As Color
-	#tag EndComputedProperty
-
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  return Time_Container1.Clock1.FaceColor
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  Time_Container1.Clock1.FaceColor = value
-			End Set
-		#tag EndSetter
-		ClockFaceColor As Color
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -615,12 +603,6 @@ End
 		Type="Color"
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="ClockFaceColor"
-		Group="Behavior"
-		InitialValue="&c000000"
-		Type="Color"
-	#tag EndViewProperty
-	#tag ViewProperty
 		Name="ClockFaceHourCount"
 		Group="Behavior"
 		Type="Integer"
@@ -776,9 +758,7 @@ End
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="UseGraphicalClockHands"
-		Visible=true
 		Group="Behavior"
-		InitialValue="True"
 		Type="Boolean"
 	#tag EndViewProperty
 	#tag ViewProperty

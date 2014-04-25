@@ -86,6 +86,7 @@ Begin ContainerControl Time_Container
       AutoDeactivate  =   True
       Backdrop        =   0
       BorderColor     =   &c44444400
+      ClockFaceColor  =   &cDDDDDD00
       ClockHandColor  =   &c00000000
       ClockHourValue  =   0.0
       ClockMinuteValue=   0.0
@@ -93,7 +94,6 @@ Begin ContainerControl Time_Container
       DoubleBuffer    =   True
       Enabled         =   True
       EraseBackground =   False
-      FaceColor       =   &cA8A8A800
       Font            =   "Helvetica"
       Height          =   130
       HelpTag         =   ""

@@ -1264,16 +1264,6 @@ Inherits Canvas
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		#tag Note
-			// 0 -  English
-			// 1 -  French
-			// 2 -  Spanish
-			// 3 -  Swedish
-		#tag EndNote
-		LocalizationInt As Integer = 0
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
 		Localized_April As String
 	#tag EndProperty
 

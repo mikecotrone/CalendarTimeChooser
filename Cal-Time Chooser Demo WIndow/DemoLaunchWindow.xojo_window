@@ -122,6 +122,7 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   5
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Select Chooser Type:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -187,6 +188,7 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   7
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Change Back Color:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -283,6 +285,7 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   21
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Change Clock Face:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -404,6 +407,7 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   29
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Select Time Mode Format:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -469,6 +473,7 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   31
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Select Clock Hand Type:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -534,6 +539,7 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   35
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Week Start Type:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -596,6 +602,7 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   37
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Calendar Localization:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -692,6 +699,7 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   41
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "h00000000"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -797,6 +805,7 @@ Begin Window DemoLaunchWindow
       Selectable      =   False
       TabIndex        =   17
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Include Previous/Next Month Days:"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -831,6 +840,7 @@ Begin Window DemoLaunchWindow
       Selectable      =   False
       TabIndex        =   18
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Choose Clock Hand Color:"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -1123,51 +1133,26 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub Change()
-		  Dim LocalInt as Integer
 		  Select Case Me.Text
 		  Case "English"
-		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 0
-		    LocalInt = 0
+		    MyPicker.LocalizationInt = 0
 		  Case "French"
-		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 1
-		    LocalInt = 1
+		    MyPicker.LocalizationInt = 1
 		  Case "Swedish"
-		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 2
-		    LocalInt = 2
+		    MyPicker.LocalizationInt= 2
 		  Case "Italian"
-		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 3
-		    LocalInt = 3
+		    MyPicker.LocalizationInt = 3
 		  Case "Spanish"
-		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 4
-		    LocalInt = 4
+		    MyPicker.LocalizationInt = 4
 		  Case "Dutch"
-		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 5
-		    LocalInt = 5
+		    MyPicker.LocalizationInt = 5
 		  Case "German"
-		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 6
-		    LocalInt = 6
+		    MyPicker.LocalizationInt = 6
 		  Case "Afrikaans"
-		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 7
-		    LocalInt = 7
+		    MyPicker.LocalizationInt = 7
 		  Case "Polish"
-		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.LocalizationInt = 8
-		    LocalInt = 8
+		    MyPicker.LocalizationInt = 8
 		  End Select
-		  
-		  // Create the Localized Month List
-		  MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.mBuildLocalizedMonthList(LocalInt)
-		  // Create the Localized Day of the Week List
-		  MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.mBuildLocalizedDayOfWeekList(LocalInt)
-		  
-		  // Load the Localized Month List to the PopUp Menu
-		  MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.mLoad_MonthList
-		  
-		  // Load the Localized Day of the Week Abbreviation List to the Calendar
-		  MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.mBuild_LocalizedDayOfWeek_Arrays(LocalInt)
-		  
-		  // Create the Localized Window/Container Title's
-		  MyPicker.Date_Time_Container1.mSetLocalization_ContainerTitle(LocalInt)
-		  
 		  
 		End Sub
 	#tag EndEvent

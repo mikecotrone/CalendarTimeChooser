@@ -33,7 +33,6 @@ Begin Window DateTimeWindow
       BackColor       =   &c9D9D9D00
       Backdrop        =   0
       ClockFaceBorderColor=   &c00000000
-      ClockFaceColor  =   &cE2E2E200
       ClockFaceHourCount=   0
       ClockFaceTextColor=   &c00000000
       ClockFaceTextFont=   ""
@@ -79,20 +78,6 @@ End
 			End Set
 		#tag EndSetter
 		ClockFaceBorderColor As Color
-	#tag EndComputedProperty
-
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  return Date_Time_Container1.ClockFaceColor
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  Date_Time_Container1.ClockFaceColor = value
-			End Set
-		#tag EndSetter
-		ClockFaceColor As Color
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -184,6 +169,39 @@ End
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
+			  return mLocalizationInt
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mLocalizationInt = value
+			  
+			  // Create the Localized Month List
+			  Date_Time_Container1.Calendar_Container1.Calendar1.mBuildLocalizedMonthList(mLocalizationInt)
+			  // Create the Localized Day of the Week List
+			  Date_Time_Container1.Calendar_Container1.Calendar1.mBuildLocalizedDayOfWeekList(mLocalizationInt)
+			  
+			  // Load the Localized Month List to the PopUp Menu
+			  Date_Time_Container1.Calendar_Container1.Calendar1.mLoad_MonthList
+			  
+			  // Load the Localized Day of the Week Abbreviation List to the Calendar
+			  Date_Time_Container1.Calendar_Container1.Calendar1.mBuild_LocalizedDayOfWeek_Arrays(mLocalizationInt)
+			  
+			  // Create the Localized Window/Container Title's
+			  Date_Time_Container1.mSetLocalization_ContainerTitle(mLocalizationInt)
+			  
+			End Set
+		#tag EndSetter
+		LocalizationInt As Integer
+	#tag EndComputedProperty
+
+	#tag Property, Flags = &h21
+		Private mLocalizationInt As Integer = 0
+	#tag EndProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
 			  return Date_Time_Container1.SelectedDate
 			End Get
 		#tag EndGetter
@@ -260,12 +278,6 @@ End
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="ClockFaceBorderColor"
-		Group="Behavior"
-		InitialValue="&c000000"
-		Type="Color"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="ClockFaceColor"
 		Group="Behavior"
 		InitialValue="&c000000"
 		Type="Color"
