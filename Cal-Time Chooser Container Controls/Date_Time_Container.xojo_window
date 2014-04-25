@@ -144,13 +144,13 @@ End
 		  
 		  If Window IsA DateTimeWindow Then
 		    
-		    If DemoLaunchWindow.MyPicker.VisiblePickers = Date_Time_Container.PickerElements.CalendarAndClock Then
+		    If DateTimeWindow(Window).VisiblePickers = Date_Time_Container.PickerElements.CalendarAndClock Then
 		      TrueWindow.Title = Localized_ChooseBothTitle_Str
 		      
-		    Elseif DemoLaunchWindow.MyPicker.VisiblePickers = Date_Time_Container.PickerElements.CalendarOnly Then
+		    Elseif DateTimeWindow(Window).VisiblePickers = Date_Time_Container.PickerElements.CalendarOnly Then
 		      TrueWindow.Title = Localized_CalendarOnlyTitle_Str
 		      
-		    Elseif DemoLaunchWindow.MyPicker.VisiblePickers =Date_Time_Container.PickerElements.ClockOnly Then
+		    Elseif DateTimeWindow(Window).VisiblePickers =Date_Time_Container.PickerElements.ClockOnly Then
 		      TrueWindow.Title = Localized_TimeOnlyTitle_Str
 		      
 		    End If
