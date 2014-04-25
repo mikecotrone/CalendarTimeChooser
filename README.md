@@ -3,7 +3,7 @@ CalendarTimeChooser
 
 Xojo Calendar and Time Chooser Picklist
 
-Date:           April 22, 2014
+Date:           April 25, 2014
 
 Language:       Xojo
 
@@ -11,7 +11,7 @@ Author:         Mike Cotrone (mikec@intelligentvisibility.com)
 
 Contributors:   Jim McKay
 
-Version:        1.5
+Version:        1.6
 
 
 What is this Project?
@@ -37,6 +37,7 @@ Whats New in 1.5?
 - Clock Hand Color Choices via Color Picker
 - Streamlined Clock Faces
 - Added an Antique Clock Face
+- Many bug fixes
 
 ------------------------
 
