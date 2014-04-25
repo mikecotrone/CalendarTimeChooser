@@ -715,7 +715,12 @@ Inherits Canvas
 		    AMPM_Flip
 		  End if
 		  
-		  Time_Container(window).Time_Hour = Str(TmpHour)
+		  if TmpHour = 0 then
+		    Time_Container(window).Time_Hour = "00"
+		  Else
+		    Time_Container(window).Time_Hour = Str(TmpHour)
+		  End if
+		  
 		  Time_Container(window).TimePicker1.Invalidate(False)
 		  
 		  Time_Container(window).Clock1.ClockHourValue = Time_Container(window).Clock1.ClockHourValue + .522
@@ -736,7 +741,11 @@ Inherits Canvas
 		    AMPM_Flip
 		  End if
 		  
-		  Time_Container(window).Time_Hour = Str(TmpHour)
+		  if TmpHour = 0 then
+		    Time_Container(window).Time_Hour = "00"
+		  Else
+		    Time_Container(window).Time_Hour = Str(TmpHour)
+		  End if
 		  Time_Container(window).TimePicker1.Invalidate(False)
 		  
 		  Time_Container(window).Clock1.ClockHourValue = Time_Container(window).Clock1.ClockHourValue + .522
