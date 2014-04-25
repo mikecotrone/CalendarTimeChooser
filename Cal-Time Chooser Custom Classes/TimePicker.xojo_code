@@ -381,7 +381,7 @@ Inherits Canvas
 		Private Function fConvertHour_12to24TimeFormat(inHour12HourTime as Integer, inAMPM as String) As String
 		  Dim Results as String
 		  
-		  if  inHour12HourTime >= 1 AND inHour12HourTime <= 12 AND inAMPM = "AM" Then
+		  if  inHour12HourTime >= 1 AND inHour12HourTime <= 11 AND inAMPM = "AM" Then
 		    // No need to convert
 		    Results = Str(inHour12HourTime)
 		  Elseif  inHour12HourTime = 1 AND inAMPM = "PM" Then
@@ -406,8 +406,8 @@ Inherits Canvas
 		    Results = "22"
 		  Elseif  inHour12HourTime = 11 AND inAMPM = "PM" Then
 		    Results = "23"
-		  Elseif  inHour12HourTime = 12 AND inAMPM = "PM" Then
-		    Results = "24"
+		  Elseif  inHour12HourTime = 12 AND inAMPM = "AM" Then
+		    Results = "00"
 		  end if
 		  
 		  Return Results
@@ -466,6 +466,9 @@ Inherits Canvas
 		    Results = Str(inHour24HourTime)
 		    Time_Container(Window).Time_AMPM = "AM"
 		    
+		  Elseif inHour24HourTime = 0 Then
+		    Results = "12"
+		    Time_Container(Window).Time_AMPM = "AM"
 		  end if
 		  
 		  Return Results
