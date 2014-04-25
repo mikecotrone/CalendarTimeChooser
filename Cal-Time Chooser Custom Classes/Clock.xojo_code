@@ -131,8 +131,8 @@ Inherits Canvas
 		    face.Width=buffer.Width-16
 		    face.Height=buffer.width-16
 		  #Elseif TargetWin32 Then
-		    face.Width=g.width*2-20
-		    face.Height=g.width*2-20
+		    face.Width=buffer.Width-32
+		    face.Height=buffer.width-32
 		  #endif
 		  
 		  face.Border=100
@@ -375,6 +375,12 @@ Inherits Canvas
 			Visible=true
 			Group="Behavior"
 			InitialValue="&c444444"
+			Type="Color"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ClockFaceColor"
+			Group="Behavior"
+			InitialValue="&cdddddd"
 			Type="Color"
 		#tag EndViewProperty
 		#tag ViewProperty
