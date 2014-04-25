@@ -706,6 +706,7 @@ Inherits Canvas
 		Sub mMove24HourDown()
 		  // Hour is Selected so lets Move it down
 		  Dim TmpHour as Integer = CDbl(Time_Container(window).Time_Hour)
+		  Dim TmpZeroPad as String
 		  
 		  TmpHour = TmpHour -1
 		  
@@ -715,10 +716,16 @@ Inherits Canvas
 		    AMPM_Flip
 		  End if
 		  
+		  if Tmphour >= 1 AND Tmphour <=9 Then
+		    TmpZeroPad = "0"
+		  Else
+		    TmpZeroPad = ""
+		  End if
+		  
 		  if TmpHour = 0 then
 		    Time_Container(window).Time_Hour = "00"
 		  Else
-		    Time_Container(window).Time_Hour = Str(TmpHour)
+		    Time_Container(window).Time_Hour = TmpZeroPad+Str(TmpHour)
 		  End if
 		  
 		  Time_Container(window).TimePicker1.Invalidate(False)
@@ -732,7 +739,7 @@ Inherits Canvas
 		Sub mMove24HourUp()
 		  // Hour is Selected so lets Move it down
 		  Dim TmpHour as Integer = CDbl(Time_Container(window).Time_Hour)
-		  
+		  Dim TmpZeroPad as String
 		  TmpHour = TmpHour +1
 		  
 		  // Keep within the 24 hour Time Constaints
@@ -741,11 +748,20 @@ Inherits Canvas
 		    AMPM_Flip
 		  End if
 		  
+		  
+		  if Tmphour >= 1 AND Tmphour <=9 Then
+		    TmpZeroPad = "0"
+		  Else
+		    TmpZeroPad = ""
+		  End if
+		  
 		  if TmpHour = 0 then
 		    Time_Container(window).Time_Hour = "00"
 		  Else
-		    Time_Container(window).Time_Hour = Str(TmpHour)
+		    Time_Container(window).Time_Hour = TmpZeroPad+Str(TmpHour) 
 		  End if
+		  
+		  
 		  Time_Container(window).TimePicker1.Invalidate(False)
 		  
 		  Time_Container(window).Clock1.ClockHourValue = Time_Container(window).Clock1.ClockHourValue + .522
