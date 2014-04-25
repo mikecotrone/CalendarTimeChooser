@@ -99,6 +99,7 @@ Begin ContainerControl Date_Time_Container
       HasBackColor    =   False
       Height          =   213
       HelpTag         =   ""
+      HideAMPM        =   False
       InitialParent   =   ""
       Left            =   235
       LockBottom      =   False
@@ -305,7 +306,7 @@ End
 			Set
 			  if value=12 then
 			    Time_Container1.Clock1.HourCount=12
-			  else
+			  elseif value = 24 then
 			    Time_Container1.Clock1.HourCount = 24
 			  end if
 			End Set

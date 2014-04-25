@@ -116,7 +116,7 @@ Inherits Canvas
 		  dim numeral As new StringShape //for drawing the numbers
 		  if HourCount=12 then
 		    numeral.TextSize=26
-		  else
+		  elseif HourCount = 24 then
 		    numeral.TextSize=20
 		  end if
 		  numeral.TextFont=me.font

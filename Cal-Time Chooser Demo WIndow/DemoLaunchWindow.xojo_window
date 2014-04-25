@@ -867,7 +867,7 @@ End
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  if mMyPicker=nil then 
+			  if mMyPicker=nil then
 			    mMyPicker=new DateTimeWindow
 			    mMyPicker.left =  DemoLaunchWindow.Left + DemoLaunchWindow.Width + 5
 			    mMyPicker.top = DemoLaunchWindow.Top
@@ -958,6 +958,7 @@ End
 		  End Select
 		  
 		  MyPicker.Invalidate(True)
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents

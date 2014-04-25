@@ -93,7 +93,7 @@ Begin ContainerControl Time_Container
       DoubleBuffer    =   True
       Enabled         =   True
       EraseBackground =   False
-      FaceColor       =   &cE2E2E200
+      FaceColor       =   &cA8A8A800
       Font            =   "Helvetica"
       Height          =   130
       HelpTag         =   ""
