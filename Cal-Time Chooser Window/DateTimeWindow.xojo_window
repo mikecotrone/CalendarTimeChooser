@@ -159,7 +159,6 @@ End
 		#tag EndGetter
 		#tag Setter
 			Set
-			  
 			  Date_Time_Container1.IncludePrevNextMonthDays=value
 			  
 			End Set
@@ -170,23 +169,17 @@ End
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return mLocalizationInt
+			  return Date_Time_Container1.LocalizationInt
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  mLocalizationInt = value
-			  
 			  // Redirect Values to the Date-Calendar Container this way we can stay non dependant on this Window in case user wants something else other than this window
-			  Date_Time_Container1.LocalizationInt = mLocalizationInt
+			  Date_Time_Container1.LocalizationInt = Value
 			End Set
 		#tag EndSetter
 		LocalizationInt As Integer
 	#tag EndComputedProperty
-
-	#tag Property, Flags = &h21
-		Private mLocalizationInt As Integer = 0
-	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
@@ -210,7 +203,6 @@ End
 		#tag EndGetter
 		#tag Setter
 			Set
-			  
 			  Date_Time_Container1.UseGraphicalClockHands=value
 			  
 			  
