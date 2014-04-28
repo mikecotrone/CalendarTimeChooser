@@ -3,7 +3,7 @@ CalendarTimeChooser
 
 Xojo Calendar and Time Chooser Picklist
 
-Date:           April 25, 2014
+Date:           April 28, 2014
 
 Language:       Xojo
 
@@ -24,6 +24,19 @@ What is this Project?
   - Awesome Clock hand animation
   
   - Single or Multi Day selection
+
+
+Whats New in 1.6?
+-----------------
+- Added Next / Previous Calendar Day Focus Feature.
+    - When you click on the greyed days on either the previous or next month that month will then come to focus on the calendar
+
+- Added the ability to toggle on/off multiple day selectionc capability
+
+- Restructured additional Demo Window / DateTime Window to detach dependencies on windows while keeping dependencies on the main DateTimeContainer
+
+- 24 hour bug fixes
+
 
 
 Whats New in 1.5?
