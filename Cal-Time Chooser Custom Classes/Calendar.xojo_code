@@ -14,23 +14,37 @@ Inherits Canvas
 		  Dim i as integer
 		  for i = 0 to UBound(CalendarButtonClassArray)
 		    
+		    
 		    if Keyboard.ShiftKey = True Then // Multi Selection
-		      if X >= CalendarButtonClassArray(i).LeftX AND X <= CalendarButtonClassArray(i).RightX AND Y >= CalendarButtonClassArray(i).TopY AND Y <= CalendarButtonClassArray(i).BottomY Then
-		        CalendarButtonClassArray(i).Selected = True
-		        SelectedDate = New Date
-		        SelectedDate.Day = CalendarButtonClassArray(i).Day
-		        SelectedDate.Year = CDbl(SelectedYear)
-		        CalendarButtonClassArray(i).SelectedDate = SelectedDate
-		        Calendar_Container(window).mRaiseEvent
-		        Me.Invalidate(False)
+		      if AllowMultipleSelections = True Then
+		        if X >= CalendarButtonClassArray(i).LeftX AND X <= CalendarButtonClassArray(i).RightX AND Y >= CalendarButtonClassArray(i).TopY AND Y <= CalendarButtonClassArray(i).BottomY Then
+		          CalendarButtonClassArray(i).Selected = True
+		          SelectedDate = New Date
+		          // Set the correct month
+		          if CalendarButtonClassArray(i).NextMonthMark = True Then
+		            SelectedDate.Month = fConvertMonthStringToMonthNumber(NextMonth)
+		          Elseif CalendarButtonClassArray(i).PrevMonthMark = True Then
+		            SelectedDate.Month = fConvertMonthStringToMonthNumber(PreviousMonth)
+		          end if
+		          SelectedDate.Day = CalendarButtonClassArray(i).Day
+		          SelectedDate.Year = CDbl(SelectedYear)
+		          CalendarButtonClassArray(i).SelectedDate = SelectedDate
+		          Calendar_Container(window).mRaiseEvent
+		          Me.Invalidate(False)
+		        end if
 		      end if
-		      
 		      
 		    Elseif Keyboard.ShiftKey = False Then // Single Selection
 		      if X >= CalendarButtonClassArray(i).LeftX AND X <= CalendarButtonClassArray(i).RightX AND Y >= CalendarButtonClassArray(i).TopY AND Y <= CalendarButtonClassArray(i).BottomY Then
 		        mDeselectAll
 		        CalendarButtonClassArray(i).Selected = True
 		        SelectedDate = New Date
+		        // Set the correct month
+		        if CalendarButtonClassArray(i).NextMonthMark = True Then
+		          SelectedDate.Month = fConvertMonthStringToMonthNumber(NextMonth)
+		        Elseif CalendarButtonClassArray(i).PrevMonthMark = True Then
+		          SelectedDate.Month = fConvertMonthStringToMonthNumber(PreviousMonth)
+		        end if
 		        SelectedDate.Day = CalendarButtonClassArray(i).Day
 		        SelectedDate.Year = CDbl(SelectedYear)
 		        CalendarButtonClassArray(i).SelectedDate = SelectedDate
@@ -43,6 +57,7 @@ Inherits Canvas
 		  
 		  
 		  
+		  // Need to flag if the date is in the current month, previous month, or next month
 		  
 		End Sub
 	#tag EndEvent
@@ -192,8 +207,6 @@ Inherits Canvas
 		Sub constructor()
 		  // Calling the overridden superclass constructor.
 		  Super.Constructor
-		  
-		  
 		  
 		  // Assign Calendar Spaces
 		  mInitialAssignmentCalendarButtons(36)
@@ -1216,6 +1229,10 @@ Inherits Canvas
 
 
 	#tag Property, Flags = &h0
+		AllowMultipleSelections As Boolean
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		CalendarButton As CalendarButtonClass
 	#tag EndProperty
 
@@ -1490,12 +1507,6 @@ Inherits Canvas
 			Name="Left"
 			Visible=true
 			Group="Position"
-			Type="Integer"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="LocalizationInt"
-			Group="Behavior"
-			InitialValue="0"
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty

@@ -272,6 +272,23 @@ End
 
 
 	#tag ComputedProperty, Flags = &h0
+		#tag Setter
+			Set
+			  Select Case value
+			    
+			  Case True
+			    Calendar_Container1.Calendar1.AllowMultipleSelections = True
+			    
+			  Case False
+			    Calendar_Container1.Calendar1.AllowMultipleSelections = False
+			    
+			  End Select
+			End Set
+		#tag EndSetter
+		AllowMultipleCalendarSelections As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
 			  return Time_Container1.Clock1.BorderColor
@@ -575,10 +592,6 @@ End
 		Sub SelectedDate(inSelectedDate as Date)
 		  // Use this Event to push the user's "Selected Date" to anywhere in your code.
 		  // IE.   FutureScheduleAssessment_Class.FutureScheduleAssessmentDate = inSelectedDate
-		  
-		  // Demo Purposes - Testing Multi Day Selection
-		  //MultiSelectionTest = MultiSelectionTest + inSelectedDate.ShortDate + EndOfLine
-		  //MsgBox "Date(s) Selected: " + EndOfLine + MultiSelectionTest
 		End Sub
 	#tag EndEvent
 #tag EndEvents

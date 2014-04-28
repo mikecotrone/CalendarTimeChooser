@@ -70,6 +70,21 @@ End
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
+			  Return Date_Time_Container1.Calendar_Container1.Calendar1.AllowMultipleSelections
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Date_Time_Container1.Calendar_Container1.Calendar1.AllowMultipleSelections = value
+			  
+			End Set
+		#tag EndSetter
+		AllowMultipleCalendarSelections As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
 			  return Date_Time_Container1.ClockFaceBorderColor
 			End Get
 		#tag EndGetter

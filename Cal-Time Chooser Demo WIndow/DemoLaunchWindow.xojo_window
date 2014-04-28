@@ -732,6 +732,71 @@ Begin Window DemoLaunchWindow
          Visible         =   True
          Width           =   38
       End
+      Begin Label AllowMultipleCalSelections_Label
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         Italic          =   False
+         Left            =   278
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Multiline       =   False
+         Scope           =   0
+         Selectable      =   False
+         TabIndex        =   43
+         TabPanelIndex   =   0
+         Text            =   "Allow Multiple Date Selections:"
+         TextAlign       =   0
+         TextColor       =   &c00000000
+         TextFont        =   "Helvetica"
+         TextSize        =   12.0
+         TextUnit        =   0
+         Top             =   393
+         Transparent     =   True
+         Underline       =   False
+         Visible         =   True
+         Width           =   178
+      End
+      Begin PopupMenu AllowMultipleDateSelections_PopupMenu
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         InitialValue    =   ""
+         Italic          =   False
+         Left            =   278
+         ListIndex       =   0
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   44
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   417
+         Underline       =   False
+         Visible         =   True
+         Width           =   191
+      End
    End
    Begin Separator Separator2
       AutoDeactivate  =   True
@@ -1189,6 +1254,28 @@ End
 		  
 		  dim v As Variant=MyPicker.ClockHandColor
 		  SelectedHandColorLabel.Text=v.StringValue
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events AllowMultipleDateSelections_PopupMenu
+	#tag Event
+		Sub Open()
+		  // Load Popup Menu
+		  me.AddRow("False")
+		  me.AddRow("True")
+		  
+		  me.ListIndex = 0 // Default to English
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Change()
+		  Select Case Me.Text
+		  Case "True"
+		    MyPicker.AllowMultipleCalendarSelections = True
+		  Case "False"
+		    MyPicker.AllowMultipleCalendarSelections = False
+		  End Select
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
