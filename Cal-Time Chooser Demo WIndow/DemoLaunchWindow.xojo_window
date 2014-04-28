@@ -943,10 +943,6 @@ End
 		MyPicker As DateTimeWindow
 	#tag EndComputedProperty
 
-	#tag Property, Flags = &h21
-		Private TimeModeFirstRunBool As Boolean = True
-	#tag EndProperty
-
 
 #tag EndWindowCode
 
@@ -1096,7 +1092,6 @@ End
 		  Select Case Me.Text
 		  Case "12 Hour Format"
 		    MyPicker.Date_Time_Container1.Time_Container1.TimeMode = 12
-		    
 		  Case "24 Hour Format"
 		    MyPicker.Date_Time_Container1.Time_Container1.TimeMode = 24
 		  End Select

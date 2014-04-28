@@ -158,16 +158,22 @@ End
 			  
 			  Select Case mTimeMode
 			  Case 12
-			    Me.TimePicker1.mOneTimeConversion24to12
-			    
+			    if TimeModeFirstRunBool = False Then
+			      Me.TimePicker1.mOneTimeConversion24to12
+			    End if
 			  Case 24
-			    Me.TimePicker1.mOneTimeConversion24to12
+			    Me.TimePicker1.mOneTimeConversion12to24
+			    TimeModeFirstRunBool = False
 			    
 			  End Select
 			End Set
 		#tag EndSetter
 		TimeMode As Integer
 	#tag EndComputedProperty
+
+	#tag Property, Flags = &h0
+		TimeModeFirstRunBool As Boolean = True
+	#tag EndProperty
 
 	#tag Property, Flags = &h0
 		Time_AMPM As String = "AM"
