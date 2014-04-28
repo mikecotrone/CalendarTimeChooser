@@ -626,6 +626,11 @@ End
 		EditorType="Boolean"
 	#tag EndViewProperty
 	#tag ViewProperty
+		Name="AllowMultipleCalendarSelections"
+		Group="Behavior"
+		Type="Boolean"
+	#tag EndViewProperty
+	#tag ViewProperty
 		Name="AutoDeactivate"
 		Visible=true
 		Group="Appearance"

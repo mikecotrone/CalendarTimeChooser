@@ -51,8 +51,25 @@ Inherits Canvas
 		        SelectedDate.Day = CalendarButtonClassArray(i).Day
 		        SelectedDate.Year = CDbl(SelectedYear)
 		        CalendarButtonClassArray(i).SelectedDate = SelectedDate
+		        
 		        Calendar_Container(window).mRaiseEvent
-		        mTakeUsToMonth(MonthToAdvance)
+		        if MonthToAdvance = "Next" or MonthToAdvance = "Prev" Then
+		          // Converting here
+		          mTakeUsToMonth(MonthToAdvance, SelectedDate)
+		          //
+		          
+		          for ii as integer = 0 to UBound(CalendarButtonClassArray)
+		            if CalendarButtonClassArray(ii).Day = SelectedDate.Day Then
+		              CalendarButtonClassArray(ii).TransMark = True
+		              CalendarButtonClassArray(ii).SelectedDate = SelectedDate
+		            Else
+		              CalendarButtonClassArray(ii).TransMark = False
+		            End if
+		            
+		          next ii
+		          mDeselectAll
+		          mRemapSelectedToSlot
+		        End if
 		        Me.Invalidate(False)
 		      end if
 		      
@@ -104,7 +121,8 @@ Inherits Canvas
 		  // Draw Highlight If Selected
 		  for i as integer = 0 to UBound(CalendarButtonClassArray)
 		    if CalendarButtonClassArray(i).Selected = True Then
-		      if CalendarButtonClassArray(i).Day = 0 Then // We don't want a user to be able to Select a Day that is hidden
+		      if CalendarButtonClassArray(i).Day = 0 Then
+		        // We don't want a user to be able to Select a Day that is hidden
 		      Else
 		        // Capture Selected Date in Date format for Custom Event
 		        g.ForeColor = RGB(0,127,230)
@@ -115,6 +133,7 @@ Inherits Canvas
 		        #ENDIF
 		      End if
 		    End if
+		    
 		  Next i
 		  
 		  // Draw the Day of Week Labels using the Boolean to know if we are Sat - Sun or Mon - Sun
@@ -198,6 +217,7 @@ Inherits Canvas
 		    
 		    
 		  next i
+		  
 		  
 		  
 		  
@@ -1075,8 +1095,6 @@ Inherits Canvas
 		      row =  1
 		      CalendarButton = New CalendarButtonClass
 		      CalendarButton.ID = y
-		      //CalendarButton.RightX = y * 30 ' Do Not Give X/Y so we can't select this
-		      //CalendarButton.BottomY = row  * 24  ' Do Not Give X/Y so we can't select this
 		      CalendarButton.Row = row
 		    Case 8 to 14 // Row 2
 		      row =  2
@@ -1164,13 +1182,29 @@ Inherits Canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub mTakeUsToMonth(inMonth as String)
+		Private Sub mRemapSelectedToSlot()
+		  for i as integer = 0 to UBound(CalendarButtonClassArray)
+		    
+		    if CalendarButtonClassArray(i).SelectedDate= CalendarButtonClassArray(i).MyDate Then
+		      if CalendarButtonClassArray(i).Day = SelectedDate.Day Then
+		        CalendarButtonClassArray(i).Selected = True
+		      end if
+		    End if
+		    
+		  next
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub mTakeUsToMonth(inMonth as String, inSelectedDate as Date)
+		  // need to remap CalendarButtonClassArray(i).Day = SelectedDate.Day
+		  
+		  
+		  
+		  
 		  Select Case inMonth
-		    
-		    
 		  Case "Next"
 		    // Need a Check to See about Incrementing Year or not
-		    mDeselectAll
 		    if NextMonth = Localized_January then
 		      // Need to increment Year
 		      NextYear = CDbl(Calendar_Container(Window).YearPopup.Text)+1
@@ -1190,7 +1224,6 @@ Inherits Canvas
 		    
 		  Case "Prev"
 		    
-		    mDeselectAll
 		    if PreviousMonth = Calendar_Container(Window).Calendar1.Localized_December then
 		      // Need to increment Year
 		      PrevYear = CDbl(Calendar_Container(Window).YearPopup.Text)-1
@@ -1212,6 +1245,12 @@ Inherits Canvas
 		    
 		  End Select
 		  
+		  
+		  
+		  
+		  Me.Invalidate(False)
+		  
+		  
 		End Sub
 	#tag EndMethod
 
@@ -1228,15 +1267,22 @@ Inherits Canvas
 		  // Map the Calendar Slots to Correct Month Days
 		  Dim DayCounter as Integer  = 1
 		  Dim i  as integer
+		  
 		  for i = FirstCalSlot to NumOfDaysInMonth+FirstCalSlot-1
 		    // Erase Other Marks
 		    CalendarButtonClassArray(i).PrevMonthMark = False
 		    CalendarButtonClassArray(i).NextMonthMark = False
 		    // Process Selected Month Day
 		    CalendarButtonClassArray(i).Day = DayCounter
+		    Dim TmpDate as New Date
+		    TmpDate.Day = DayCounter
+		    TmpDate.Year = CDbl(SelectedYear)
+		    TmpDate.Month = fConvertMonthStringToMonthNumber(SelectedMonth)
+		    CalendarButtonClassArray(i).MyDate = TmpDate
 		    DayCounter = DayCounter + 1
 		    Invalidate(False)
 		  Next i
+		  
 		  
 		  // Need to Calculate How many Available Spaces for the previous month's worth of Calendar Days
 		  Dim CalPrevMonthSpacesAvailable as Integer = fCalcHowManyCalSlotsAvailable(7,13,1)
@@ -1256,6 +1302,13 @@ Inherits Canvas
 		    Dim ii as integer
 		    for ii = FirstCalSlot-1 DownTo CalPrevMonthSpacesAvailable
 		      CalendarButtonClassArray(ii).Day = PrevDayCounter
+		      
+		      Dim TmpDate as New Date
+		      TmpDate.Day = PrevDayCounter
+		      TmpDate.Year = CDbl(SelectedYear)
+		      TmpDate.Month = fConvertMonthStringToMonthNumber(PreviousMonth)
+		      CalendarButtonClassArray(i).MyDate = TmpDate
+		      
 		      CalendarButtonClassArray(ii).PrevMonthMark = True
 		      PrevDayCounter = PrevDayCounter - 1
 		      Invalidate(False)
@@ -1267,6 +1320,13 @@ Inherits Canvas
 		    Dim LastCalSlot as Integer = FirstCalSlot + NumOfDaysInMonth
 		    for xx = LastCalSlot to 48 // 48 is the Last Calendar Slot
 		      CalendarButtonClassArray(xx).Day = NextDayCounter
+		      
+		      Dim TmpDate as New Date
+		      TmpDate.Day = NextDayCounter
+		      TmpDate.Year = CDbl(SelectedYear)
+		      TmpDate.Month = fConvertMonthStringToMonthNumber(NextMonth)
+		      CalendarButtonClassArray(i).MyDate = TmpDate
+		      
 		      CalendarButtonClassArray(xx).NextMonthMark = True
 		      NextDayCounter = NextDayCounter + 1
 		      Invalidate(False)

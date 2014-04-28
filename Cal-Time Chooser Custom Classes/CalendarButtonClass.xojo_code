@@ -39,6 +39,10 @@ Protected Class CalendarButtonClass
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		MyDate As Date
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		NextMonthMark As Boolean
 	#tag EndProperty
 
@@ -75,6 +79,10 @@ Protected Class CalendarButtonClass
 		#tag EndSetter
 		TopY As Integer
 	#tag EndComputedProperty
+
+	#tag Property, Flags = &h0
+		TransMark As Boolean
+	#tag EndProperty
 
 	#tag Property, Flags = &h0
 		Width As Integer = 30
