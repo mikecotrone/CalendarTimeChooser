@@ -45,6 +45,7 @@ Begin Window DateTimeWindow
       IncludePrevNextMonthDays=   False
       InitialParent   =   ""
       Left            =   0
+      LocalizationInt =   0
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -176,20 +177,8 @@ End
 			Set
 			  mLocalizationInt = value
 			  
-			  // Create the Localized Month List
-			  Date_Time_Container1.Calendar_Container1.Calendar1.mBuildLocalizedMonthList(mLocalizationInt)
-			  // Create the Localized Day of the Week List
-			  Date_Time_Container1.Calendar_Container1.Calendar1.mBuildLocalizedDayOfWeekList(mLocalizationInt)
-			  
-			  // Load the Localized Month List to the PopUp Menu
-			  Date_Time_Container1.Calendar_Container1.Calendar1.mLoad_MonthList
-			  
-			  // Load the Localized Day of the Week Abbreviation List to the Calendar
-			  Date_Time_Container1.Calendar_Container1.Calendar1.mBuild_LocalizedDayOfWeek_Arrays(mLocalizationInt)
-			  
-			  // Create the Localized Window/Container Title's
-			  Date_Time_Container1.mSetLocalization_ContainerTitle(mLocalizationInt)
-			  
+			  // Redirect Values to the Date-Calendar Container this way we can stay non dependant on this Window in case user wants something else other than this window
+			  Date_Time_Container1.LocalizationInt = mLocalizationInt
 			End Set
 		#tag EndSetter
 		LocalizationInt As Integer
@@ -397,6 +386,11 @@ End
 		InitialValue="True"
 		Type="Boolean"
 		EditorType="Boolean"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="LocalizationInt"
+		Group="Behavior"
+		Type="Integer"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="MacProcID"

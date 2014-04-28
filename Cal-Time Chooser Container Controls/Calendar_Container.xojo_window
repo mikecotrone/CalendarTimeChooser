@@ -196,7 +196,6 @@ Begin ContainerControl Calendar_Container
       Index           =   -2147483648
       InitialParent   =   ""
       Left            =   9
-      LocalizationInt =   0
       Localized_April =   ""
       Localized_August=   ""
       Localized_December=   ""

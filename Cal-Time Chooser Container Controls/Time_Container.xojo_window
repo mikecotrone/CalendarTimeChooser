@@ -142,9 +142,32 @@ End
 		HideAMPM As Boolean
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		TimeMode As Integer = 12
+	#tag Property, Flags = &h21
+		Private mTimeMode As Integer = 12
 	#tag EndProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return mTimeMode
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mTimeMode = value
+			  
+			  Select Case mTimeMode
+			  Case 12
+			    Me.TimePicker1.mOneTimeConversion24to12
+			    
+			  Case 24
+			    Me.TimePicker1.mOneTimeConversion24to12
+			    
+			  End Select
+			End Set
+		#tag EndSetter
+		TimeMode As Integer
+	#tag EndComputedProperty
 
 	#tag Property, Flags = &h0
 		Time_AMPM As String = "AM"

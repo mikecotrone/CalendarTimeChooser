@@ -386,6 +386,42 @@ End
 		IncludePrevNextMonthDays As Boolean
 	#tag EndComputedProperty
 
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return mLocalizationInt
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mLocalizationInt = value
+			  
+			  // Create the Localized Month List
+			  Me.Calendar_Container1.Calendar1.mBuildLocalizedMonthList(mLocalizationInt)
+			  // Create the Localized Day of the Week List
+			  Me.Calendar_Container1.Calendar1.mBuildLocalizedDayOfWeekList(mLocalizationInt)
+			  
+			  // Load the Localized Month List to the PopUp Menu
+			  Me.Calendar_Container1.Calendar1.mLoad_MonthList
+			  
+			  // Load the Localized Day of the Week Abbreviation List to the Calendar
+			  Me.Calendar_Container1.Calendar1.mBuild_LocalizedDayOfWeek_Arrays(mLocalizationInt)
+			  
+			  // Create the Localized Window/Container Title's
+			  Me.mSetLocalization_ContainerTitle(mLocalizationInt)
+			  
+			  // Start Calendar on Today's Date
+			  me.Calendar_Container1.mTakeMeToTodaysDate
+			  
+			End Set
+		#tag EndSetter
+		LocalizationInt As Integer
+	#tag EndComputedProperty
+
+	#tag Property, Flags = &h21
+		Private mLocalizationInt As Integer = 0
+	#tag EndProperty
+
 	#tag Property, Flags = &h21
 		Private MultiSelectionTest As String
 	#tag EndProperty
@@ -676,6 +712,11 @@ End
 		Name="Left"
 		Visible=true
 		Group="Position"
+		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="LocalizationInt"
+		Group="Behavior"
 		Type="Integer"
 	#tag EndViewProperty
 	#tag ViewProperty
