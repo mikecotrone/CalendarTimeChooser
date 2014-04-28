@@ -96,7 +96,6 @@ Inherits Canvas
 
 	#tag Method, Flags = &h0
 		Sub mDrawClockFace(g As Graphics)
-		  
 		  static buffer As picture= new Picture(g.Width*4,g.Height*4)
 		  buffer.Graphics.ClearRect(0,0,buffer.Width,buffer.Height)
 		  dim hr,sec,x,y,radius,tickInset As integer
