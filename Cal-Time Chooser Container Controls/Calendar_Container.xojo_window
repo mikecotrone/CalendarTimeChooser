@@ -183,6 +183,7 @@ Begin ContainerControl Calendar_Container
    Begin Calendar Calendar1
       AcceptFocus     =   False
       AcceptTabs      =   False
+      AllowMultipleSelections=   False
       AutoDeactivate  =   True
       Backdrop        =   0
       CalMonFirstDayOfWeekBool=   False
@@ -443,6 +444,16 @@ End
 		    if CurrentDateYearString = YearPopup.List(i) Then
 		      YearPopup.ListIndex = i
 		    End if
+		  next i
+		  
+		  //Select Todays Date
+		  for i as integer = 0 to UBound(Calendar1.CalendarButtonClassArray)
+		    if Calendar1.CalendarButtonClassArray(i).Day = Calendar1.CurrentDate.Day Then
+		      Calendar1.CalendarButtonClassArray(i).Selected = True
+		      Calendar1.Invalidate(False)
+		    End if
+		    
+		    
 		  next i
 		End Sub
 	#tag EndMethod

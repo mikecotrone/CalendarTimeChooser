@@ -183,9 +183,9 @@ Inherits Canvas
 		    elseif CalendarButtonClassArray(i).NextMonthMark = True OR  CalendarButtonClassArray(i).PrevMonthMark = True Then
 		      g.bold = false
 		      g.ForeColor= RGB(170,170,170)
-		    elseif CDbl(SelectedYear) = CurrentDate.Year AND SelectMonthInt = CurrentDate.Month AND CalendarButtonClassArray(i).Day = CurrentDate.Day Then // If Today's Date Not Selected
+		    elseif CDbl(SelectedYear) = CurrentDate.Year AND SelectMonthInt = CurrentDate.Month AND CalendarButtonClassArray(i).Day = CurrentDate.Day Then
 		      g.bold = True
-		      g.ForeColor = TodaysDate_NotSelected
+		      g.ForeColor = &c0000ff
 		    Else
 		      g.bold = false
 		      g.ForeColor = RGB(0,0,0)
@@ -1195,13 +1195,26 @@ Inherits Canvas
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub mSelectDayToHighlight(inDate as Date)
+		  for i as integer = 0 to UBound(CalendarButtonClassArray)
+		    
+		    SelectedDate = New Date
+		    // Set the correct month
+		    SelectedDate = CurrentDate
+		    CalendarButtonClassArray(i).SelectedDate = inDate
+		    if CalendarButtonClassArray(i).MyDate = inDate Then
+		      CalendarButtonClassArray(i).Selected = True
+		    End if
+		    Me.Invalidate(False)
+		    
+		    
+		  next
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h21
 		Private Sub mTakeUsToMonth(inMonth as String, inSelectedDate as Date)
-		  // need to remap CalendarButtonClassArray(i).Day = SelectedDate.Day
-		  
-		  
-		  
-		  
 		  Select Case inMonth
 		  Case "Next"
 		    // Need a Check to See about Incrementing Year or not
@@ -1352,8 +1365,8 @@ Inherits Canvas
 		CalendarButton As CalendarButtonClass
 	#tag EndProperty
 
-	#tag Property, Flags = &h21
-		Private CalendarButtonClassArray() As CalendarButtonClass
+	#tag Property, Flags = &h0
+		CalendarButtonClassArray() As CalendarButtonClass
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
