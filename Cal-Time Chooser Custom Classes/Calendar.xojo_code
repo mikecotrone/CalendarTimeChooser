@@ -40,15 +40,19 @@ Inherits Canvas
 		        CalendarButtonClassArray(i).Selected = True
 		        SelectedDate = New Date
 		        // Set the correct month
+		        Dim MonthToAdvance as String
 		        if CalendarButtonClassArray(i).NextMonthMark = True Then
 		          SelectedDate.Month = fConvertMonthStringToMonthNumber(NextMonth)
+		          MonthToAdvance = "Next"
 		        Elseif CalendarButtonClassArray(i).PrevMonthMark = True Then
 		          SelectedDate.Month = fConvertMonthStringToMonthNumber(PreviousMonth)
+		          MonthToAdvance = "Prev"
 		        end if
 		        SelectedDate.Day = CalendarButtonClassArray(i).Day
 		        SelectedDate.Year = CDbl(SelectedYear)
 		        CalendarButtonClassArray(i).SelectedDate = SelectedDate
 		        Calendar_Container(window).mRaiseEvent
+		        mTakeUsToMonth(MonthToAdvance)
 		        Me.Invalidate(False)
 		      end if
 		      
@@ -1159,6 +1163,58 @@ Inherits Canvas
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h21
+		Private Sub mTakeUsToMonth(inMonth as String)
+		  Select Case inMonth
+		    
+		    
+		  Case "Next"
+		    // Need a Check to See about Incrementing Year or not
+		    mDeselectAll
+		    if NextMonth = Localized_January then
+		      // Need to increment Year
+		      NextYear = CDbl(Calendar_Container(Window).YearPopup.Text)+1
+		      for i as integer = 0 to Calendar_Container(Window).YearPopup.ListCount-1
+		        if Str(NextYear) = Calendar_Container(Window).YearPopup.List(i) Then
+		          Calendar_Container(Window).YearPopup.ListIndex = i
+		          exit
+		        End if
+		      next i
+		    End if
+		    for i as integer = 0 to Calendar_Container(Window).MonthPopup.ListCount-1
+		      if NextMonth = Calendar_Container(Window).MonthPopup.List(i) Then
+		        Calendar_Container(Window).MonthPopup.ListIndex = i
+		        exit
+		      End if
+		    next i
+		    
+		  Case "Prev"
+		    
+		    mDeselectAll
+		    if PreviousMonth = Calendar_Container(Window).Calendar1.Localized_December then
+		      // Need to increment Year
+		      PrevYear = CDbl(Calendar_Container(Window).YearPopup.Text)-1
+		      for i as integer = 0 to Calendar_Container(Window).YearPopup.ListCount-1
+		        if Str(PrevYear) = Calendar_Container(Window).YearPopup.List(i) Then
+		          Calendar_Container(Window).YearPopup.ListIndex = i
+		          exit
+		        End if
+		      next i
+		    End if
+		    
+		    for i as integer = 0 to Calendar_Container(Window).MonthPopup.ListCount-1
+		      if PreviousMonth = Calendar_Container(Window).MonthPopup.List(i) Then
+		        Calendar_Container(Window).MonthPopup.ListIndex = i
+		        exit
+		      End if
+		    next i
+		    
+		    
+		  End Select
+		  
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Sub UPDATE_MapDaysToCalSlots()
 		  Dim NumOfDaysInMonth as Integer  = fNumOfDaysInMonth(SelectedMonth)
@@ -1423,6 +1479,11 @@ Inherits Canvas
 		#tag ViewProperty
 			Name="AcceptTabs"
 			Visible=true
+			Group="Behavior"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AllowMultipleSelections"
 			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
