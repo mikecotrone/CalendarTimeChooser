@@ -18,6 +18,8 @@ What is this Project?
 
   - This project came out of a need for a professional calendar and time chooser for scheduling
   
+  - The intent of this project is NOT "to be a clock". It is a Chooser of Date(s) and the time.
+  
   - What are the Supported Time Formats for the time chooser picklist?
         - 12 and 24 hour time support 
         
