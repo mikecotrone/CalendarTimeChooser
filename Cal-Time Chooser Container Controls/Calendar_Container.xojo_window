@@ -453,6 +453,7 @@ End
 		  for i as integer = 0 to UBound(Calendar1.CalendarButtonClassArray)
 		    if Calendar1.CalendarButtonClassArray(i).Day = Calendar1.CurrentDate.Day Then
 		      Calendar1.CalendarButtonClassArray(i).Selected = True
+		      Calendar1.SelectedDate = Calendar1.CalendarButtonClassArray(i).MyDate
 		      Calendar1.Invalidate(False)
 		    End if
 		    
