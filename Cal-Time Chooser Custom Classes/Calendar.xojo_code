@@ -1404,10 +1404,12 @@ Inherits Canvas
 		#tag EndGetter
 		#tag Setter
 			Set
-			  mEndYear = value
+			  if value <> 0 Then
+			    mEndYear = value
+			  End if
 			  
 			  // Build Year Popup Menu on Calendar Container
-			  mLoad_YearList(StartYear,EndYear)
+			  mLoad_YearList(mStartYear,EndYear)
 			  
 			  // Choose Today's Date
 			  Calendar_Container(window).mTakeMeToTodaysDate
@@ -1557,6 +1559,7 @@ Inherits Canvas
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
+			  
 			  return mStartYear
 			End Get
 		#tag EndGetter
@@ -1565,7 +1568,7 @@ Inherits Canvas
 			  mStartYear = value
 			  
 			  // Build Year Popup Menu on Calendar Container
-			  mLoad_YearList(StartYear,EndYear)
+			  mLoad_YearList(mStartYear,mEndYear)
 			  
 			  // Choose Today's Date
 			  Calendar_Container(window).mTakeMeToTodaysDate
