@@ -489,6 +489,7 @@ End
 		  Calendar1.mCalculateYear(Me.Text)
 		  Calendar1.UPDATE_MonthDays
 		  Calendar1.UPDATE_MapDaysToCalSlots
+		  Calendar1.SelectedDate.Year = CDbl(Calendar1.SelectedYear)
 		  
 		End Sub
 	#tag EndEvent
