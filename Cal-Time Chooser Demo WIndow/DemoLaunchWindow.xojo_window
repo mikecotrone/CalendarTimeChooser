@@ -9,16 +9,16 @@ Begin Window DemoLaunchWindow
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   550
+   Height          =   518
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
-   MaxHeight       =   500
+   MaxHeight       =   518
    MaximizeButton  =   False
    MaxWidth        =   489
    MenuBar         =   0
    MenuBarVisible  =   True
-   MinHeight       =   364
+   MinHeight       =   518
    MinimizeButton  =   True
    MinWidth        =   489
    Placement       =   0
@@ -78,7 +78,7 @@ Begin Window DemoLaunchWindow
       Bold            =   False
       Caption         =   ""
       Enabled         =   True
-      Height          =   374
+      Height          =   361
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -902,7 +902,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "Helvetica"
          TextSize        =   12.0
          TextUnit        =   0
-         Top             =   482
+         Top             =   476
          Underline       =   False
          UseFocusRing    =   True
          Visible         =   True
@@ -945,7 +945,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "Helvetica"
          TextSize        =   12.0
          TextUnit        =   0
-         Top             =   482
+         Top             =   476
          Underline       =   False
          UseFocusRing    =   True
          Visible         =   True
