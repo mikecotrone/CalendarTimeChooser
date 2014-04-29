@@ -1407,7 +1407,7 @@ Inherits Canvas
 			  mEndYear = value
 			  
 			  // Build Year Popup Menu on Calendar Container
-			  mLoad_YearList(mStartYear,EndYear)
+			  mLoad_YearList(StartYear,EndYear)
 			  
 			  // Choose Today's Date
 			  Calendar_Container(window).mTakeMeToTodaysDate
@@ -1569,7 +1569,6 @@ Inherits Canvas
 			  
 			  // Choose Today's Date
 			  Calendar_Container(window).mTakeMeToTodaysDate
-			  
 			  
 			  Me.Invalidate(False)
 			End Set
