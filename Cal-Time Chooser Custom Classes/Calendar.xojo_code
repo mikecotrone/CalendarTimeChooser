@@ -27,9 +27,10 @@ Inherits Canvas
 		            SelectedDate.Month = fConvertMonthStringToMonthNumber(PreviousMonth)
 		          end if
 		          SelectedDate.Day = CalendarButtonClassArray(i).Day
+		          SelectedDate.Month = fConvertMonthStringToMonthNumber(SelectedMonth)
 		          SelectedDate.Year = CDbl(SelectedYear)
 		          CalendarButtonClassArray(i).SelectedDate = SelectedDate
-		          Calendar_Container(window).mRaiseEvent
+		          Calendar_Container(window).mRaiseEvent(SelectedDate)
 		          Me.Invalidate(False)
 		        end if
 		      end if
@@ -49,10 +50,11 @@ Inherits Canvas
 		          MonthToAdvance = "Prev"
 		        end if
 		        SelectedDate.Day = CalendarButtonClassArray(i).Day
+		        SelectedDate.Month = fConvertMonthStringToMonthNumber(SelectedMonth)
 		        SelectedDate.Year = CDbl(SelectedYear)
 		        CalendarButtonClassArray(i).SelectedDate = SelectedDate
+		        Calendar_Container(window).mRaiseEvent(SelectedDate)
 		        
-		        Calendar_Container(window).mRaiseEvent
 		        if MonthToAdvance = "Next" or MonthToAdvance = "Prev" Then
 		          // Converting here
 		          mTakeUsToMonth(MonthToAdvance, SelectedDate)

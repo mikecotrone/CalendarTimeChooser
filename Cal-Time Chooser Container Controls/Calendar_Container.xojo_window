@@ -189,6 +189,7 @@ Begin ContainerControl Calendar_Container
       CalMonFirstDayOfWeekBool=   False
       DoubleBuffer    =   False
       Enabled         =   True
+      EndYear         =   0
       EraseBackground =   False
       FirstWeekDay    =   ""
       Height          =   169
@@ -231,6 +232,7 @@ Begin ContainerControl Calendar_Container
       SelectedX       =   0
       SelectedY       =   0
       SelectedYear    =   ""
+      StartYear       =   0
       TabIndex        =   52
       TabPanelIndex   =   0
       TabStop         =   True
@@ -423,8 +425,8 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub mRaiseEvent()
-		  RaiseEvent SelectedDate(Calendar1.SelectedDate)
+		Sub mRaiseEvent(inSelectedDate as Date)
+		  RaiseEvent SelectedDate(inSelectedDate)
 		End Sub
 	#tag EndMethod
 
@@ -474,6 +476,7 @@ End
 		  Calendar1.mCalculateMonth(Me.Text)
 		  Calendar1.UPDATE_MonthDays
 		  Calendar1.UPDATE_MapDaysToCalSlots
+		  Calendar1.mDeselectAll
 		  
 		End Sub
 	#tag EndEvent
