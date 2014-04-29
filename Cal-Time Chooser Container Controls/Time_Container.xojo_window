@@ -434,6 +434,12 @@ End
 		Type="Integer"
 	#tag EndViewProperty
 	#tag ViewProperty
+		Name="TimeModeFirstRunBool"
+		Group="Behavior"
+		InitialValue="True"
+		Type="Boolean"
+	#tag EndViewProperty
+	#tag ViewProperty
 		Name="Time_AMPM"
 		Group="Behavior"
 		InitialValue="AM"

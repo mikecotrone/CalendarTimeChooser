@@ -4,6 +4,7 @@ Inherits Application
 	#tag Event
 		Sub Open()
 		  app.UseGDIPlus=true
+		  
 		  DemoLaunchWindow.Show
 		  
 		  

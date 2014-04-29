@@ -112,6 +112,7 @@ Begin ContainerControl Date_Time_Container
       TabPanelIndex   =   0
       TabStop         =   True
       TimeMode        =   0
+      TimeModeFirstRunBool=   True
       Time_AMPM       =   "AM"
       Time_AMPM_Len   =   0
       Time_Hour       =   "12"

@@ -240,7 +240,7 @@ Inherits Canvas
 		  //StartYear = CurrentDate.Year
 		  
 		  // Build Year Popup Menu on Calendar Container
-		  mLoad_YearList(StartYear,2050)
+		  mLoad_YearList(StartYear,EndYear)
 		  
 		  //// Build Month Popup Menu on Calendar Container
 		  mLoad_MonthList
@@ -1174,10 +1174,13 @@ Inherits Canvas
 	#tag Method, Flags = &h21
 		Private Sub mLoad_YearList(inStartYear as integer, inEndYear as Integer)
 		  // Load the Year Pop Up Menu on the Calendar Container
+		  Calendar_Container(window).YearPopup.DeleteAllRows
 		  for i as integer = inStartYear to inEndYear
 		    Calendar_Container(window).YearPopup.AddRow Str(i)
 		  next i
+		  
 		  Calendar_Container(window).YearPopup.ListIndex = 0
+		  
 		End Sub
 	#tag EndMethod
 
@@ -1393,9 +1396,27 @@ Inherits Canvas
 		Private DayOfWeek_MS() As String
 	#tag EndProperty
 
-	#tag Property, Flags = &h21
-		Private EndYear As Integer
-	#tag EndProperty
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return mEndYear
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mEndYear = value
+			  
+			  // Build Year Popup Menu on Calendar Container
+			  mLoad_YearList(mStartYear,EndYear)
+			  
+			  // Choose Today's Date
+			  Calendar_Container(window).mTakeMeToTodaysDate
+			  
+			  Me.Invalidate(False)
+			End Set
+		#tag EndSetter
+		EndYear As Integer
+	#tag EndComputedProperty
 
 	#tag Property, Flags = &h0
 		FirstWeekDay As String
@@ -1485,8 +1506,16 @@ Inherits Canvas
 		Localized_Wednesday As String
 	#tag EndProperty
 
+	#tag Property, Flags = &h21
+		Private mEndYear As Integer = 2060
+	#tag EndProperty
+
 	#tag Property, Flags = &h0
 		MonthNumber As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private mStartYear As Integer = 1904
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -1525,9 +1554,28 @@ Inherits Canvas
 		SelectedYear As String
 	#tag EndProperty
 
-	#tag Property, Flags = &h21
-		Private StartYear As Integer = 1900
-	#tag EndProperty
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return mStartYear
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mStartYear = value
+			  
+			  // Build Year Popup Menu on Calendar Container
+			  mLoad_YearList(mStartYear,EndYear)
+			  
+			  // Choose Today's Date
+			  Calendar_Container(window).mTakeMeToTodaysDate
+			  
+			  
+			  Me.Invalidate(False)
+			End Set
+		#tag EndSetter
+		StartYear As Integer
+	#tag EndComputedProperty
 
 	#tag Property, Flags = &h0
 		TodaysDate_NotSelected As Color = &c0000FF
