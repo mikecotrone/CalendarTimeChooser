@@ -1452,7 +1452,6 @@ End
 		  
 		  if Asc(Key) = 13 Then // Enter
 		    If me.text = "" Then Exit
-		    // Submit the Entry
 		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.StartYear = CDbl(Me.Text)
 		  End if
 		End Function

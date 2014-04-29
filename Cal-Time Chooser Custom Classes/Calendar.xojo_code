@@ -1565,7 +1565,7 @@ Inherits Canvas
 			  mStartYear = value
 			  
 			  // Build Year Popup Menu on Calendar Container
-			  mLoad_YearList(mStartYear,EndYear)
+			  mLoad_YearList(StartYear,EndYear)
 			  
 			  // Choose Today's Date
 			  Calendar_Container(window).mTakeMeToTodaysDate
@@ -1641,6 +1641,11 @@ Inherits Canvas
 			Group="Appearance"
 			InitialValue="True"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="EndYear"
+			Group="Behavior"
+			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="EraseBackground"
@@ -1883,6 +1888,11 @@ Inherits Canvas
 			Group="Behavior"
 			Type="String"
 			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="StartYear"
+			Group="Behavior"
+			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
