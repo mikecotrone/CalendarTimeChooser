@@ -208,6 +208,7 @@ Inherits Canvas
 		    
 		  END Select
 		  
+		  Time_Container(Window).mRaiseEvent_SelectedTime
 		  
 		  Return True
 		End Function
@@ -758,7 +759,7 @@ Inherits Canvas
 		  if TmpHour = 0 then
 		    Time_Container(window).Time_Hour = "00"
 		  Else
-		    Time_Container(window).Time_Hour = TmpZeroPad+Str(TmpHour) 
+		    Time_Container(window).Time_Hour = TmpZeroPad+Str(TmpHour)
 		  End if
 		  
 		  
