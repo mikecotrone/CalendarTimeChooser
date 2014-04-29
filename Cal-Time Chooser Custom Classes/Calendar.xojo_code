@@ -10,7 +10,6 @@ Inherits Canvas
 
 	#tag Event
 		Sub MouseUp(X As Integer, Y As Integer)
-		  
 		  Dim i as integer
 		  for i = 0 to UBound(CalendarButtonClassArray)
 		    
@@ -30,7 +29,7 @@ Inherits Canvas
 		          SelectedDate.Month = fConvertMonthStringToMonthNumber(SelectedMonth)
 		          SelectedDate.Year = CDbl(SelectedYear)
 		          CalendarButtonClassArray(i).SelectedDate = SelectedDate
-		          Calendar_Container(window).mRaiseEvent(SelectedDate)
+		          Calendar_Container(window).mRaiseEvent(CalendarButtonClassArray(i).SelectedDate)
 		          Me.Invalidate(False)
 		        end if
 		      end if
@@ -50,14 +49,12 @@ Inherits Canvas
 		          MonthToAdvance = "Prev"
 		        end if
 		        SelectedDate.Day = CalendarButtonClassArray(i).Day
-		        SelectedDate.Month = fConvertMonthStringToMonthNumber(SelectedMonth)
 		        SelectedDate.Year = CDbl(SelectedYear)
 		        CalendarButtonClassArray(i).SelectedDate = SelectedDate
-		        Calendar_Container(window).mRaiseEvent(SelectedDate)
-		        
 		        if MonthToAdvance = "Next" or MonthToAdvance = "Prev" Then
 		          // Converting here
 		          mTakeUsToMonth(MonthToAdvance, SelectedDate)
+		          Calendar_Container(window).mRaiseEvent(SelectedDate)
 		          //
 		          
 		          for ii as integer = 0 to UBound(CalendarButtonClassArray)
@@ -71,6 +68,10 @@ Inherits Canvas
 		          next ii
 		          mDeselectAll
 		          mRemapSelectedToSlot
+		        Else
+		          SelectedDate.Month = fConvertMonthStringToMonthNumber(SelectedMonth)
+		          Calendar_Container(window).mRaiseEvent(SelectedDate)
+		          
 		        End if
 		        Me.Invalidate(False)
 		      end if
