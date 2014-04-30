@@ -87,15 +87,6 @@ Inherits Canvas
 	#tag EndEvent
 
 	#tag Event
-		Sub Open()
-		  // Choose Today's Date When we Open
-		  Calendar_Container(window).mTakeMeToTodaysDate
-		  
-		  
-		End Sub
-	#tag EndEvent
-
-	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
 		  g.AntiAlias = True
 		  // Fill White Background
@@ -106,15 +97,7 @@ Inherits Canvas
 		  g.ForeColor = RGB(116,116,116)
 		  g.PenHeight = 2
 		  g.PenWidth = 2
-		  g.DrawroundRect(0,0,me.Width,me.Height,3,3)
-		  
-		  // Draw Test Grid
-		  //for i as integer = 0 to me.Width Step 24
-		  //g.DrawLine (0,i,me.Width,i)
-		  //next i
-		  //for i as integer = 0 to me.Width Step 30
-		  //g.DrawLine (i,0,i,me.Height)
-		  //next i
+		  g.DrawroundRect(0,0,me.Width,me.Height,8,8)
 		  
 		  // Parms for the Highlighting Below
 		  dim OffSet as Integer = 3
@@ -257,7 +240,6 @@ Inherits Canvas
 		  
 		  // Figure out Century Number
 		  CenturyNumber = fCalcCenturyNumber(2015)
-		  
 		  
 		  
 		End Sub
@@ -1169,20 +1151,33 @@ Inherits Canvas
 		  Calendar_Container(window).MonthPopup.AddRow Localized_November
 		  Calendar_Container(window).MonthPopup.AddRow Localized_December
 		  
-		  Calendar_Container(window).MonthPopup.ListIndex = 0
+		  // Default to Today's Month on Startup
+		  Dim TodaysMonth as New Date
+		  Dim TodaysMonthString as String = fConvertMonthIntToMonthString(TodaysMonth.Month)
 		  
+		  for i as integer = 0 to Calendar_Container(Window).MonthPopup.ListCount-1
+		    if TodaysMonthString = Calendar_Container(Window).MonthPopup.List(i) Then
+		      Calendar_Container(Window).MonthPopup.ListIndex = i
+		    End if
+		  next i
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h21
-		Private Sub mLoad_YearList(inStartYear as integer, inEndYear as Integer)
+	#tag Method, Flags = &h0
+		Sub mLoad_YearList(inStartYear as integer, inEndYear as Integer)
 		  // Load the Year Pop Up Menu on the Calendar Container
 		  Calendar_Container(window).YearPopup.DeleteAllRows
 		  for i as integer = inStartYear to inEndYear
 		    Calendar_Container(window).YearPopup.AddRow Str(i)
 		  next i
 		  
-		  Calendar_Container(window).YearPopup.ListIndex = 0
+		  // Load Curent Year
+		  Dim TodaysYear as New Date
+		  for i as integer = 0 to Calendar_Container(window).YearPopup.ListCount-1
+		    if Str(TodaysYear.Year) = Calendar_Container(window).YearPopup.List(i) Then
+		      Calendar_Container(window).YearPopup.ListIndex = i
+		    End if
+		  next i
 		  
 		End Sub
 	#tag EndMethod
@@ -1293,11 +1288,14 @@ Inherits Canvas
 		    CalendarButtonClassArray(i).NextMonthMark = False
 		    // Process Selected Month Day
 		    CalendarButtonClassArray(i).Day = DayCounter
+		    
+		    // Set MYDate for Current Month
 		    Dim TmpDate as New Date
+		    TmpDate.Month = fConvertMonthStringToMonthNumber(SelectedMonth)
 		    TmpDate.Day = DayCounter
 		    TmpDate.Year = CDbl(SelectedYear)
-		    TmpDate.Month = fConvertMonthStringToMonthNumber(SelectedMonth)
 		    CalendarButtonClassArray(i).MyDate = TmpDate
+		    
 		    DayCounter = DayCounter + 1
 		    Invalidate(False)
 		  Next i
@@ -1323,10 +1321,10 @@ Inherits Canvas
 		      CalendarButtonClassArray(ii).Day = PrevDayCounter
 		      
 		      Dim TmpDate as New Date
-		      TmpDate.Day = PrevDayCounter
 		      TmpDate.Year = CDbl(SelectedYear)
 		      TmpDate.Month = fConvertMonthStringToMonthNumber(PreviousMonth)
-		      CalendarButtonClassArray(i).MyDate = TmpDate
+		      TmpDate.Day = PrevDayCounter
+		      CalendarButtonClassArray(ii).MyDate = TmpDate
 		      
 		      CalendarButtonClassArray(ii).PrevMonthMark = True
 		      PrevDayCounter = PrevDayCounter - 1
@@ -1341,10 +1339,10 @@ Inherits Canvas
 		      CalendarButtonClassArray(xx).Day = NextDayCounter
 		      
 		      Dim TmpDate as New Date
-		      TmpDate.Day = NextDayCounter
 		      TmpDate.Year = CDbl(SelectedYear)
 		      TmpDate.Month = fConvertMonthStringToMonthNumber(NextMonth)
-		      CalendarButtonClassArray(i).MyDate = TmpDate
+		      TmpDate.Day = NextDayCounter
+		      CalendarButtonClassArray(xx).MyDate = TmpDate
 		      
 		      CalendarButtonClassArray(xx).NextMonthMark = True
 		      NextDayCounter = NextDayCounter + 1
@@ -1399,29 +1397,9 @@ Inherits Canvas
 		Private DayOfWeek_MS() As String
 	#tag EndProperty
 
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  return mEndYear
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  if value <> 0 Then
-			    mEndYear = value
-			  End if
-			  
-			  // Build Year Popup Menu on Calendar Container
-			  mLoad_YearList(mStartYear,EndYear)
-			  
-			  // Choose Today's Date
-			  Calendar_Container(window).mTakeMeToTodaysDate
-			  
-			  Me.Invalidate(False)
-			End Set
-		#tag EndSetter
-		EndYear As Integer
-	#tag EndComputedProperty
+	#tag Property, Flags = &h0
+		EndYear As Integer = 2050
+	#tag EndProperty
 
 	#tag Property, Flags = &h0
 		FirstWeekDay As String
@@ -1511,16 +1489,12 @@ Inherits Canvas
 		Localized_Wednesday As String
 	#tag EndProperty
 
-	#tag Property, Flags = &h21
-		Private mEndYear As Integer = 2060
-	#tag EndProperty
-
 	#tag Property, Flags = &h0
 		MonthNumber As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mStartYear As Integer = 1904
+		Private mSelectedYear As String
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -1555,32 +1529,27 @@ Inherits Canvas
 		SelectedY As Integer
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		SelectedYear As String
-	#tag EndProperty
-
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  
-			  return mStartYear
+			  return mSelectedYear
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  mStartYear = value
+			  mSelectedYear = value
 			  
-			  // Build Year Popup Menu on Calendar Container
-			  mLoad_YearList(mStartYear,mEndYear)
-			  
-			  // Choose Today's Date
-			  Calendar_Container(window).mTakeMeToTodaysDate
-			  
-			  Me.Invalidate(False)
+			  if mSelectedYear = "" Then 
+			    mSelectedYear = "2014"
+			  End if
 			End Set
 		#tag EndSetter
-		StartYear As Integer
+		SelectedYear As String
 	#tag EndComputedProperty
+
+	#tag Property, Flags = &h0
+		StartYear As Integer = 1904
+	#tag EndProperty
 
 	#tag Property, Flags = &h0
 		TodaysDate_NotSelected As Color = &c0000FF
@@ -1650,6 +1619,7 @@ Inherits Canvas
 		#tag ViewProperty
 			Name="EndYear"
 			Group="Behavior"
+			InitialValue="2050"
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
@@ -1897,6 +1867,7 @@ Inherits Canvas
 		#tag ViewProperty
 			Name="StartYear"
 			Group="Behavior"
+			InitialValue="1904"
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty

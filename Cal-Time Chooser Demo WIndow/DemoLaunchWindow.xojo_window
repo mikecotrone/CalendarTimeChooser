@@ -1072,6 +1072,13 @@ End
 		End Sub
 	#tag EndEvent
 
+	#tag Event
+		Sub Open()
+		  // Force today's day selected
+		  MyPicker.Date_Time_Container1.Calendar_Container1.mTakeMeToTodaysDate
+		End Sub
+	#tag EndEvent
+
 
 	#tag Property, Flags = &h21
 		Private mMyPicker As DateTimeWindow
@@ -1452,8 +1459,9 @@ End
 		  
 		  if Asc(Key) = 13 Then // Enter
 		    If me.text = "" Then Exit
-		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.StartYear = CDbl(Me.Text)
-		  End if
+		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.mLoad_YearList(CDbl(Me.Text),CDbl(CalEndYear_Textfield.Text))
+		    
+		  end if
 		End Function
 	#tag EndEvent
 #tag EndEvents
@@ -1481,9 +1489,7 @@ End
 		  
 		  if Asc(Key) = 13 Then // Enter
 		    If me.text = "" Then Exit
-		    // Submit the Entry
-		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.EndYear = CDbl(Me.Text)
-		    
+		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.mLoad_YearList(CDbl(CalStartYear_Textfield.Text),CDbl(Me.Text))
 		  End if
 		End Function
 	#tag EndEvent

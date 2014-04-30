@@ -9,7 +9,7 @@ Begin ContainerControl Time_Container
    Enabled         =   True
    EraseBackground =   True
    HasBackColor    =   False
-   Height          =   213
+   Height          =   252
    HelpTag         =   ""
    InitialParent   =   ""
    Left            =   0
@@ -42,7 +42,7 @@ Begin ContainerControl Time_Container
       Index           =   -2147483648
       InitialParent   =   ""
       KeyBuffer       =   ""
-      Left            =   37
+      Left            =   42
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -52,7 +52,7 @@ Begin ContainerControl Time_Container
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   False
-      Top             =   3
+      Top             =   14
       Transparent     =   True
       UseFocusRing    =   False
       Visible         =   True
@@ -66,7 +66,7 @@ Begin ContainerControl Time_Container
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   123
+      Left            =   124
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -76,7 +76,7 @@ Begin ContainerControl Time_Container
       TabIndex        =   1
       TabPanelIndex   =   0
       TabStop         =   False
-      Top             =   -1
+      Top             =   10
       Visible         =   True
       Width           =   16
    End
@@ -100,7 +100,7 @@ Begin ContainerControl Time_Container
       HourCount       =   12
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   13
+      Left            =   15
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -111,7 +111,7 @@ Begin ContainerControl Time_Container
       TabPanelIndex   =   0
       TabStop         =   True
       TextColor       =   &c08020200
-      Top             =   49
+      Top             =   62
       Transparent     =   True
       UseFocusRing    =   True
       UseGraphicalClockHands=   True

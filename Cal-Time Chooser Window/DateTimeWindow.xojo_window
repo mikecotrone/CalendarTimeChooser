@@ -9,16 +9,16 @@ Begin Window DateTimeWindow
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   227
+   Height          =   252
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
-   MaxHeight       =   227
+   MaxHeight       =   252
    MaximizeButton  =   True
    MaxWidth        =   394
    MenuBar         =   0
    MenuBarVisible  =   True
-   MinHeight       =   227
+   MinHeight       =   252
    MinimizeButton  =   True
    MinWidth        =   394
    Placement       =   0
@@ -29,6 +29,7 @@ Begin Window DateTimeWindow
    Begin Date_Time_Container Date_Time_Container1
       AcceptFocus     =   False
       AcceptTabs      =   True
+      AllowMultipleCalendarSelections=   False
       AutoDeactivate  =   True
       BackColor       =   &c9D9D9D00
       Backdrop        =   0
@@ -40,7 +41,7 @@ Begin Window DateTimeWindow
       Enabled         =   True
       EraseBackground =   False
       HasBackColor    =   True
-      Height          =   227
+      Height          =   252
       HelpTag         =   ""
       IncludePrevNextMonthDays=   False
       InitialParent   =   ""
@@ -257,7 +258,14 @@ End
 
 #tag EndWindowCode
 
+#tag Events Date_Time_Container1
+#tag EndEvents
 #tag ViewBehavior
+	#tag ViewProperty
+		Name="AllowMultipleCalendarSelections"
+		Group="Behavior"
+		Type="Boolean"
+	#tag EndViewProperty
 	#tag ViewProperty
 		Name="BackColor"
 		Visible=true

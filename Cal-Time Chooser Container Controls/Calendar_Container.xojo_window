@@ -9,7 +9,7 @@ Begin ContainerControl Calendar_Container
    Enabled         =   True
    EraseBackground =   False
    HasBackColor    =   False
-   Height          =   232
+   Height          =   252
    HelpTag         =   ""
    InitialParent   =   ""
    Left            =   0
@@ -51,7 +51,7 @@ Begin ContainerControl Calendar_Container
       TextFont        =   "Helvetica"
       TextSize        =   13.0
       TextUnit        =   0
-      Top             =   4
+      Top             =   17
       Underline       =   False
       Visible         =   True
       Width           =   91
@@ -82,7 +82,7 @@ Begin ContainerControl Calendar_Container
       TextFont        =   "Helvetica"
       TextSize        =   13.0
       TextUnit        =   0
-      Top             =   4
+      Top             =   17
       Underline       =   False
       Visible         =   True
       Width           =   62
@@ -113,7 +113,7 @@ Begin ContainerControl Calendar_Container
       TextFont        =   "Helvetica"
       TextSize        =   12.0
       TextUnit        =   0
-      Top             =   201
+      Top             =   218
       Underline       =   False
       Visible         =   True
       Width           =   16
@@ -144,7 +144,7 @@ Begin ContainerControl Calendar_Container
       TextFont        =   "Helvetica"
       TextSize        =   11.0
       TextUnit        =   0
-      Top             =   201
+      Top             =   218
       Underline       =   False
       Visible         =   True
       Width           =   18
@@ -175,7 +175,7 @@ Begin ContainerControl Calendar_Container
       TextFont        =   "Helvetica"
       TextSize        =   12.0
       TextUnit        =   0
-      Top             =   201
+      Top             =   218
       Underline       =   False
       Visible         =   True
       Width           =   16
@@ -238,7 +238,7 @@ Begin ContainerControl Calendar_Container
       TabStop         =   True
       TodaysDate_NotSelected=   &c0000FF00
       TodaysDate_Selected=   &cFFFF0000
-      Top             =   30
+      Top             =   43
       Transparent     =   False
       UseFocusRing    =   True
       Visible         =   True
@@ -261,7 +261,7 @@ Begin ContainerControl Calendar_Container
          TabIndex        =   0
          TabPanelIndex   =   0
          TabStop         =   True
-         Top             =   53
+         Top             =   66
          Visible         =   True
          Width           =   205
       End
@@ -292,7 +292,7 @@ Begin ContainerControl Calendar_Container
       TextFont        =   "Helvetica"
       TextSize        =   12.0
       TextUnit        =   0
-      Top             =   201
+      Top             =   218
       Underline       =   False
       Visible         =   True
       Width           =   20
@@ -323,8 +323,36 @@ Begin ContainerControl Calendar_Container
       TextFont        =   "Helvetica"
       TextSize        =   12.0
       TextUnit        =   0
-      Top             =   201
+      Top             =   218
       Underline       =   False
+      Visible         =   True
+      Width           =   20
+   End
+   Begin Canvas RecurringCanvas
+      AcceptFocus     =   False
+      AcceptTabs      =   False
+      AutoDeactivate  =   True
+      Backdrop        =   0
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   True
+      Height          =   20
+      HelpTag         =   "Set recurring date"
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   200
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   55
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   13
+      Transparent     =   True
+      UseFocusRing    =   True
       Visible         =   True
       Width           =   20
    End
@@ -450,8 +478,8 @@ End
 		  
 		  //Select Todays Date
 		  Calendar1.mDeselectAll
-		  for i as integer = 0 to UBound(Calendar1.CalendarButtonClassArray)
-		    if Calendar1.CalendarButtonClassArray(i).Day = Calendar1.CurrentDate.Day Then
+		  for i as integer = 7 to UBound(Calendar1.CalendarButtonClassArray) // Only begin at 7 Since 0-6 Are reserved for Day Of Week Titles
+		    if Calendar1.CalendarButtonClassArray(i).MyDate.Month = Calendar1.CurrentDate.Month AND   Calendar1.CalendarButtonClassArray(i).MyDate.Day = Calendar1.CurrentDate.Day Then
 		      Calendar1.CalendarButtonClassArray(i).Selected = True
 		      Calendar1.SelectedDate = Calendar1.CalendarButtonClassArray(i).MyDate
 		      Calendar1.Invalidate(False)
@@ -481,6 +509,11 @@ End
 		  
 		End Sub
 	#tag EndEvent
+	#tag Event
+		Sub Open()
+		  
+		End Sub
+	#tag EndEvent
 #tag EndEvents
 #tag Events YearPopup
 	#tag Event
@@ -489,19 +522,19 @@ End
 		  Calendar1.mCalculateYear(Me.Text)
 		  Calendar1.UPDATE_MonthDays
 		  Calendar1.UPDATE_MapDaysToCalSlots
-		  Calendar1.SelectedDate.Year = CDbl(Calendar1.SelectedYear)
 		  
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  Me.SetFocus
-		End Function
-	#tag EndEvent
-	#tag Event
 		Sub Open()
+		  // Default to today's Year only on open
+		  Dim TodaysYear as New Date
 		  
-		  
+		  for i as integer = 0 to Me.ListCount-1
+		    if Str(TodaysYear.Year) = Me.List(i) Then
+		      Me.ListIndex = i
+		    End if
+		  next i
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -566,6 +599,23 @@ End
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
 		  Me.SetFocus
 		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events RecurringCanvas
+	#tag Event
+		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		  g.DrawPicture(Reoccur20x20,0,0)
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub MouseEnter()
+		  Me.MouseCursor = System.Cursors.FingerPointer
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub MouseExit()
+		  Me.MouseCursor = System.Cursors.StandardPointer
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior

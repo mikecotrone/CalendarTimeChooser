@@ -9,7 +9,7 @@ Begin ContainerControl Date_Time_Container
    Enabled         =   True
    EraseBackground =   False
    HasBackColor    =   True
-   Height          =   239
+   Height          =   252
    HelpTag         =   ""
    InitialParent   =   ""
    Left            =   0
@@ -45,7 +45,7 @@ Begin ContainerControl Date_Time_Container
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   232
+      Left            =   234
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -68,7 +68,7 @@ Begin ContainerControl Date_Time_Container
       Enabled         =   True
       EraseBackground =   False
       HasBackColor    =   False
-      Height          =   236
+      Height          =   252
       HelpTag         =   ""
       InitialParent   =   ""
       Left            =   0
@@ -81,7 +81,7 @@ Begin ContainerControl Date_Time_Container
       TabIndex        =   100
       TabPanelIndex   =   0
       TabStop         =   True
-      Top             =   5
+      Top             =   0
       Transparent     =   True
       UseFocusRing    =   False
       Visible         =   True
@@ -97,7 +97,7 @@ Begin ContainerControl Date_Time_Container
       Enabled         =   True
       EraseBackground =   True
       HasBackColor    =   False
-      Height          =   213
+      Height          =   252
       HelpTag         =   ""
       HideAMPM        =   False
       InitialParent   =   ""
@@ -119,7 +119,7 @@ Begin ContainerControl Date_Time_Container
       Time_Hour_Len   =   0
       Time_Minute     =   "00"
       Time_Minute_Len =   0
-      Top             =   5
+      Top             =   0
       Transparent     =   True
       UseFocusRing    =   False
       Visible         =   True
@@ -219,7 +219,7 @@ End
 		Private Sub mSetupForBothPickers()
 		  if Window isa DateTimeWindow then
 		    window.Width = 394
-		    window.Height = 227
+		    window.Height = 252
 		    TrueWindow.Title = Localized_ChooseBothTitle_Str
 		  end if
 		  
@@ -237,7 +237,7 @@ End
 		Private Sub mSetupForCalendarPickerOnly()
 		  if window isa DateTimeWindow then
 		    window.Width = 230
-		    window.Height = 227
+		    window.Height = 252
 		    TrueWindow.Title = Localized_CalendarOnlyTitle_Str
 		  end if
 		  
@@ -254,7 +254,7 @@ End
 		Private Sub mSetupForTimePickerOnly()
 		  if window isa DateTimeWindow then
 		    window.Width = 156
-		    window.Height = 195
+		    window.Height = 252
 		    TrueWindow.Title = Localized_TimeOnlyTitle_Str
 		  end if
 		  
@@ -429,7 +429,7 @@ End
 			  Me.mSetLocalization_ContainerTitle(mLocalizationInt)
 			  
 			  // Start Calendar on Today's Date
-			  me.Calendar_Container1.mTakeMeToTodaysDate
+			  //me.Calendar_Container1.mTakeMeToTodaysDate
 			  
 			End Set
 		#tag EndSetter
