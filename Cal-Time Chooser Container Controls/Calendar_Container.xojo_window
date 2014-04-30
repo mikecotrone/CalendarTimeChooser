@@ -522,6 +522,7 @@ End
 		  Calendar1.mCalculateYear(Me.Text)
 		  Calendar1.UPDATE_MonthDays
 		  Calendar1.UPDATE_MapDaysToCalSlots
+		  Calendar1.mDeselectAll
 		  
 		End Sub
 	#tag EndEvent
