@@ -104,6 +104,14 @@ Inherits Canvas
 		  dim TwoOffset as Integer = (OffSet*2)
 		  dim CurveSize as Integer = 6
 		  
+		  // Set Today's Date for Selected Date (on first time run)
+		  for i as integer = 7 to UBound(CalendarButtonClassArray)
+		    if CalendarButtonClassArray(i).MyDate = CurrentDate Then
+		      CalendarButtonClassArray(i).Selected = True
+		      CalendarButtonClassArray(i).SelectedDate = CurrentDate
+		    end if
+		  next
+		  
 		  // Draw Highlight If Selected
 		  for i as integer = 0 to UBound(CalendarButtonClassArray)
 		    if CalendarButtonClassArray(i).Selected = True Then
@@ -240,6 +248,7 @@ Inherits Canvas
 		  
 		  // Figure out Century Number
 		  CenturyNumber = fCalcCenturyNumber(2015)
+		  
 		  
 		  
 		End Sub

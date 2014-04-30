@@ -1075,7 +1075,7 @@ End
 	#tag Event
 		Sub Open()
 		  // Force today's day selected
-		  MyPicker.Date_Time_Container1.Calendar_Container1.mTakeMeToTodaysDate
+		  //MyPicker.Date_Time_Container1.Calendar_Container1.mTakeMeToTodaysDate
 		End Sub
 	#tag EndEvent
 
