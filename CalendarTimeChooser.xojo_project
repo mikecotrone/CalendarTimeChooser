@@ -1,6 +1,7 @@
 Type=Desktop
 RBProjectVersion=2014.011
 MinIDEVersion=20070100
+Class=RecurringCanvas;RecurringCanvas.xojo_code;&h7E7B901F;&h0;false
 Class=CalendarButtonClass;Cal-Time Chooser Custom Classes/CalendarButtonClass.xojo_code;&h773410CA;&h53385ADC;false
 Window=Time_Container;Cal-Time Chooser Container Controls/Time_Container.xojo_window;&h75C4E5BC;&h39EFD0A9;false
 Folder=Cal-Time Chooser Demo WIndow;Cal-Time Chooser Demo WIndow;&h4F0F88F7;&h0;false

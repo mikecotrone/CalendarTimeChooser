@@ -105,12 +105,15 @@ Inherits Canvas
 		  dim CurveSize as Integer = 6
 		  
 		  // Set Today's Date for Selected Date (on first time run)
-		  for i as integer = 7 to UBound(CalendarButtonClassArray)
-		    if CalendarButtonClassArray(i).MyDate = CurrentDate Then
-		      CalendarButtonClassArray(i).Selected = True
-		      CalendarButtonClassArray(i).SelectedDate = CurrentDate
-		    end if
-		  next
+		  if SelectTodayRunOnce = False Then
+		    for i as integer = 7 to UBound(CalendarButtonClassArray)
+		      if CalendarButtonClassArray(i).MyDate = CurrentDate Then
+		        CalendarButtonClassArray(i).Selected = True
+		        CalendarButtonClassArray(i).SelectedDate = CurrentDate
+		      end if
+		    next
+		    SelectTodayRunOnce = True
+		  end if
 		  
 		  // Draw Highlight If Selected
 		  for i as integer = 0 to UBound(CalendarButtonClassArray)
@@ -1407,7 +1410,7 @@ Inherits Canvas
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		EndYear As Integer = 2050
+		EndYear As Integer = 2060
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -1555,6 +1558,10 @@ Inherits Canvas
 		#tag EndSetter
 		SelectedYear As String
 	#tag EndComputedProperty
+
+	#tag Property, Flags = &h21
+		Private SelectTodayRunOnce As Boolean = False
+	#tag EndProperty
 
 	#tag Property, Flags = &h0
 		StartYear As Integer = 1904

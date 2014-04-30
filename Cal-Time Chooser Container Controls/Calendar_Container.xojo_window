@@ -328,7 +328,7 @@ Begin ContainerControl Calendar_Container
       Visible         =   True
       Width           =   20
    End
-   Begin Canvas RecurringCanvas
+   Begin RecurringCanvas RecurringCanvas1
       AcceptFocus     =   False
       AcceptTabs      =   False
       AutoDeactivate  =   True
@@ -337,20 +337,20 @@ Begin ContainerControl Calendar_Container
       Enabled         =   True
       EraseBackground =   True
       Height          =   20
-      HelpTag         =   "Set recurring date"
+      HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   200
+      Left            =   204
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   False
       LockTop         =   True
       Scope           =   0
-      TabIndex        =   55
+      TabIndex        =   56
       TabPanelIndex   =   0
       TabStop         =   True
-      Top             =   13
+      Top             =   14
       Transparent     =   True
       UseFocusRing    =   True
       Visible         =   True
@@ -600,23 +600,6 @@ End
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
 		  Me.SetFocus
 		End Function
-	#tag EndEvent
-#tag EndEvents
-#tag Events RecurringCanvas
-	#tag Event
-		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
-		  g.DrawPicture(Reoccur20x20,0,0)
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub MouseEnter()
-		  Me.MouseCursor = System.Cursors.FingerPointer
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub MouseExit()
-		  Me.MouseCursor = System.Cursors.StandardPointer
-		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
