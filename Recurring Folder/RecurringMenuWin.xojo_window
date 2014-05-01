@@ -289,7 +289,7 @@ End
 		    Recurring_Module.Selected_MenuItem.SelectedItem_Date = DemoLaunchWindow.MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.SelectedDate
 		    Recurring_Module.Selected_MenuItem.Selected = True
 		    Me.InvalidateCell(-1,-1)
-		    AfterSelectionTimer.Period = 50
+		    AfterSelectionTimer.Period = 65
 		    AfterSelectionTimer.Mode = timer.ModeMultiple
 		    //Self.close
 		    
@@ -313,7 +313,7 @@ End
 	#tag Event
 		Sub Action()
 		  
-		  if AfterSelectionTimer_Counter =9 Then
+		  if AfterSelectionTimer_Counter =5 Then
 		    Me.Mode = timer.ModeOff
 		    Self.Close
 		    exit
