@@ -602,6 +602,15 @@ End
 		End Function
 	#tag EndEvent
 #tag EndEvents
+#tag Events RecurringCanvas1
+	#tag Event
+		Sub UserRecurring_Choice(inSelectedMenuItemClass as SelectedMenuItem)
+		  // This is where you will receive the User's Selection Class
+		  
+		  dim a as string
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
 		Name="AcceptFocus"

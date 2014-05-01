@@ -46,10 +46,21 @@ Inherits Canvas
 
 
 	#tag Method, Flags = &h0
+		Sub mRecurringCanvasRaiseEvent(inSelectedMenuItem as SelectedMenuItem)
+		  RaiseEvent UserRecurring_Choice(inSelectedMenuItem)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub mSetupPopupMenu()
 		  
 		End Sub
 	#tag EndMethod
+
+
+	#tag Hook, Flags = &h0
+		Event UserRecurring_Choice(inSelectedMenuItemClass as SelectedMenuItem)
+	#tag EndHook
 
 
 	#tag ViewBehavior

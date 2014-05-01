@@ -77,8 +77,10 @@ Begin Window RecurringMenuWin
       _ScrollWidth    =   -1
    End
    Begin Timer AfterSelectionTimer
-      Height          =   32
+      Enabled         =   True
+      Height          =   "32"
       Index           =   -2147483648
+      InitialParent   =   ""
       Left            =   0
       LockedInPosition=   False
       Mode            =   0
@@ -86,7 +88,8 @@ Begin Window RecurringMenuWin
       Scope           =   0
       TabPanelIndex   =   0
       Top             =   0
-      Width           =   32
+      Visible         =   True
+      Width           =   "32"
    End
 End
 #tag EndWindow
@@ -180,7 +183,7 @@ End
 		Sub mLoad_Selected_MenuItem()
 		  // Need to look at the SelectedMenuItem Class to Prepopulate Previously Selected Items or Default (Row0)
 		  if Recurring_Module.Selected_MenuItem <> Nil Then
-		    FireCheckMark = True 
+		    FireCheckMark = True
 		    mRow = Recurring_Module.Selected_MenuItem.Row
 		    
 		  End if
@@ -288,6 +291,7 @@ End
 		    Recurring_Module.Selected_MenuItem.Item_String = Me.Cell(Me.ListIndex, 0)
 		    Recurring_Module.Selected_MenuItem.SelectedItem_Date = DemoLaunchWindow.MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.SelectedDate
 		    Recurring_Module.Selected_MenuItem.Selected = True
+		    DemoLaunchWindow.MyPicker.Date_Time_Container1.Calendar_Container1.RecurringCanvas1.mRecurringCanvasRaiseEvent(Recurring_Module.Selected_MenuItem)
 		    Me.InvalidateCell(-1,-1)
 		    AfterSelectionTimer.Period = 65
 		    AfterSelectionTimer.Mode = timer.ModeMultiple
