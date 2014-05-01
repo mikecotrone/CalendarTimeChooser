@@ -244,7 +244,7 @@ End
 		      g.ForeColor = RGB(230,230,230)
 		      g.FillRect 0,0,RW,RH
 		    End if
-		    g.DrawPicture(Checkmark10x11,3,7)
+		    g.DrawPicture(Checkmark10x11,5,7)
 		  End if
 		  
 		  
