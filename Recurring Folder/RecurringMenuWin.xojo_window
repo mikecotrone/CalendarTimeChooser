@@ -199,7 +199,7 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private Fire_Highlight_Flash As Boolean = False
+		Private Fire_Highlight_Flash As Integer = 0
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -244,6 +244,11 @@ End
 		  Dim RW as integer = me.Column(column).WidthActual
 		  Dim RH as integer = me.RowHeight
 		  
+		  // Draw Check mark on already selected Item
+		  if FireCheckMark = True AND row = mRow Then
+		    g.DrawPicture(Checkmark10x11,5,7)
+		  End if
+		  
 		  // Draw Highlighted Row as Mouse Moves Over Row
 		  if Highlight_Row0 = True AND Row = 0 Then
 		    g.ForeColor = RGB(203,220,252)
@@ -260,15 +265,16 @@ End
 		  end if
 		  
 		  // After a user Clicks the Row
-		  if Fire_Highlight_Flash = True AND row = mRow Then
+		  if Fire_Highlight_Flash = 1 AND row = mRow Then // **
 		    g.ForeColor = RGB(210,210,210)
 		    g.FillRect 0,0,RW,RH
 		    g.DrawPicture(Checkmark10x11,5,7)
-		  Elseif Fire_Highlight_Flash = False  AND row = mRow  Then
+		  Elseif Fire_Highlight_Flash = 2  AND row = mRow  Then
 		    g.ForeColor = RGB(230,230,230)
 		    g.FillRect 0,0,RW,RH
 		    g.DrawPicture(Checkmark10x11,5,7)
 		  End if
+		  
 		  
 		  Return true
 		  
@@ -280,6 +286,7 @@ End
 		Function CellClick(row as Integer, column as Integer, x as Integer, y as Integer) As Boolean
 		  mRow = row
 		  FireCheckMark =True
+		  Fire_Highlight_Flash = 1
 		  
 		End Function
 	#tag EndEvent
@@ -375,12 +382,12 @@ End
 		  end if
 		  
 		  // Trigger Flash Effects
-		  if Fire_Highlight_Flash = False Then
-		    Fire_Highlight_Flash = True
+		  if Fire_Highlight_Flash = 1 Then
+		    Fire_Highlight_Flash = 2
 		    RecurringMenuLB.InvalidateCell(-1,0)
 		    AfterSelectionTimer_Counter = AfterSelectionTimer_Counter+1
-		  Elseif  Fire_Highlight_Flash = True Then
-		    Fire_Highlight_Flash = False
+		  Elseif  Fire_Highlight_Flash = 2 Then
+		    Fire_Highlight_Flash = 1
 		    RecurringMenuLB.InvalidateCell(-1,0)
 		    AfterSelectionTimer_Counter = AfterSelectionTimer_Counter+1
 		  End if
