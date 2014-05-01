@@ -607,7 +607,6 @@ End
 		Sub UserRecurring_Choice(inSelectedMenuItemClass as SelectedMenuItem)
 		  // This is where you will receive the User's Selection Class
 		  
-		  dim a as string
 		End Sub
 	#tag EndEvent
 #tag EndEvents

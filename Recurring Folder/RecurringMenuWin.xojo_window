@@ -77,8 +77,7 @@ Begin Window RecurringMenuWin
       _ScrollWidth    =   -1
    End
    Begin Timer AfterSelectionTimer
-      Enabled         =   True
-      Height          =   "32"
+      Height          =   32
       Index           =   -2147483648
       InitialParent   =   ""
       Left            =   0
@@ -88,8 +87,7 @@ Begin Window RecurringMenuWin
       Scope           =   0
       TabPanelIndex   =   0
       Top             =   0
-      Visible         =   True
-      Width           =   "32"
+      Width           =   32
    End
 End
 #tag EndWindow
@@ -205,6 +203,22 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
+		Private Highlight_Row0 As boolean = False
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private Highlight_Row1 As boolean = False
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private Highlight_Row2 As boolean = False
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private Highlight_Row3 As boolean = False
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
 		Private mRow As Integer
 	#tag EndProperty
 
@@ -230,26 +244,31 @@ End
 		  Dim RW as integer = me.Column(column).WidthActual
 		  Dim RH as integer = me.RowHeight
 		  
-		  //Fill background Cell color (multicolor) of Only Added Rows
-		  If row Mod 2=0 then
-		    g.foreColor = RGB(240,245,254)
-		  else
-		    g.foreColor = RGB(255,255,255)
-		  end if
-		  g.FillRect 0,0,RW,RH
-		  
-		  if FireCheckMark = True AND row = mrow Then
-		    g.ForeColor = RGB(220,220,220)
+		  // Draw Highlighted Row as Mouse Moves Over Row
+		  if Highlight_Row0 = True AND Row = 0 Then
+		    g.ForeColor = RGB(203,220,252)
 		    g.FillRect 0,0,RW,RH
-		    if Fire_Highlight_Flash = True AND row = mRow Then
-		      g.FillRect 0,0,RW,RH
-		    Elseif Fire_Highlight_Flash = False  AND row = mRow Then
-		      g.ForeColor = RGB(230,230,230)
-		      g.FillRect 0,0,RW,RH
-		    End if
+		  Elseif Highlight_Row1 = True AND Row = 1 Then
+		    g.ForeColor = RGB(203,220,252)
+		    g.FillRect 0,0,RW,RH
+		  Elseif Highlight_Row2 = True AND Row = 2 Then
+		    g.ForeColor = RGB(203,220,252)
+		    g.FillRect 0,0,RW,RH
+		  Elseif Highlight_Row3 = True AND Row = 3 Then
+		    g.ForeColor = RGB(203,220,252)
+		    g.FillRect 0,0,RW,RH
+		  end if
+		  
+		  // After a user Clicks the Row
+		  if Fire_Highlight_Flash = True AND row = mRow Then
+		    g.ForeColor = RGB(210,210,210)
+		    g.FillRect 0,0,RW,RH
+		    g.DrawPicture(Checkmark10x11,5,7)
+		  Elseif Fire_Highlight_Flash = False  AND row = mRow  Then
+		    g.ForeColor = RGB(230,230,230)
+		    g.FillRect 0,0,RW,RH
 		    g.DrawPicture(Checkmark10x11,5,7)
 		  End if
-		  
 		  
 		  Return true
 		  
@@ -261,6 +280,7 @@ End
 		Function CellClick(row as Integer, column as Integer, x as Integer, y as Integer) As Boolean
 		  mRow = row
 		  FireCheckMark =True
+		  
 		End Function
 	#tag EndEvent
 	#tag Event
@@ -312,12 +332,43 @@ End
 		  Return True
 		End Function
 	#tag EndEvent
+	#tag Event
+		Sub MouseMove(X As Integer, Y As Integer)
+		  if x >=0 AND x<=me.Width AND y>=0 AND y<=30 Then
+		    Highlight_Row0 = True
+		    Highlight_Row1 = False
+		    Highlight_Row2 = False
+		    Highlight_Row3= False
+		    me.InvalidateCell(-1,0)
+		  Elseif x >=0 AND x<=me.Width AND y>=31 AND y<=60 Then
+		    Highlight_Row0 = False
+		    Highlight_Row1 = True
+		    Highlight_Row2 = False
+		    Highlight_Row3= False
+		    me.InvalidateCell(-1,0)
+		  Elseif x >=0 AND x<=me.Width AND y>=61 AND y<=90 Then
+		    Highlight_Row0 = False
+		    Highlight_Row1 = False
+		    Highlight_Row2 = True
+		    Highlight_Row3= False
+		    me.InvalidateCell(-1,0)
+		  Elseif x >=0 AND x<=me.Width AND y>=91 AND y<=120 Then
+		    Highlight_Row0 = False
+		    Highlight_Row1 = False
+		    Highlight_Row2 = False
+		    Highlight_Row3= True
+		    me.InvalidateCell(-1,0)
+		  End if
+		  
+		  
+		End Sub
+	#tag EndEvent
 #tag EndEvents
 #tag Events AfterSelectionTimer
 	#tag Event
 		Sub Action()
 		  
-		  if AfterSelectionTimer_Counter =5 Then
+		  if AfterSelectionTimer_Counter =4 Then
 		    Me.Mode = timer.ModeOff
 		    Self.Close
 		    exit
