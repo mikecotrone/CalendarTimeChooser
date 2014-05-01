@@ -1,6 +1,7 @@
 Type=Desktop
 RBProjectVersion=2014.011
 MinIDEVersion=20070100
+Module=Recurring_Module;Recurring Folder/Recurring_Module.xojo_code;&h22AD1F74;&h246485FC;false
 Class=SelectedMenuItem;Recurring Folder/SelectedMenuItem.xojo_code;&h7C643691;&h246485FC;false
 Folder=Recurring Folder;Recurring Folder;&h246485FC;&h0;false
 Window=RecurringMenuWin;Recurring Folder/RecurringMenuWin.xojo_window;&h61655F1;&h246485FC;false
