@@ -9,16 +9,16 @@ Begin Window RecurringMenuWin
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   126
+   Height          =   121
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
-   MaxHeight       =   126
+   MaxHeight       =   121
    MaximizeButton  =   False
    MaxWidth        =   172
    MenuBar         =   0
    MenuBarVisible  =   True
-   MinHeight       =   126
+   MinHeight       =   121
    MinimizeButton  =   False
    MinWidth        =   172
    Placement       =   0
@@ -96,7 +96,7 @@ End
 		    setLevel(Self.Handle, 1)
 		  #endif
 		  
-		  mAddMenuItems
+		  //mAddMenuItems
 		End Sub
 	#tag EndEvent
 
@@ -127,7 +127,6 @@ End
 		Sub mAddMenuItems()
 		  // Get Realtime User Selected Month
 		  OTF_DayOfMonth_String = DemoLaunchWindow.MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.SelectedMonth
-		  
 		  // Get Realtime User Selected Day of the Week
 		  Dim DayofWeekString as String = fConvertDayOfWeek_Int_to_Str(DemoLaunchWindow.MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.SelectedDate.DayOfWeek)
 		  OTF_DayOfWeek_String =DayofWeekString
@@ -141,6 +140,7 @@ End
 		    DayEnding = "st"
 		  End if
 		  
+		  // Update options
 		  RecurringMenuLB.AddRow "Once Only"
 		  RecurringMenuLB.AddRow "Every "+DayofWeekString
 		  RecurringMenuLB.AddRow "Day "+OTF_Day_String+" of Every "+OTF_DayOfMonth_String
@@ -164,9 +164,21 @@ End
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub mLoad_Selected_MenuItem()
+		  // Need to look at the SelectedMenuItem Class to Prepopulate Previously Selected Items or Default (Row0)
+		  if Recurring_Module.Selected_MenuItem <> Nil Then
+		    FireCheckMark = True 
+		    mRow = Recurring_Module.Selected_MenuItem.Row
+		    
+		  End if
+		  
+		End Sub
+	#tag EndMethod
+
 
 	#tag Property, Flags = &h21
-		Private FireCheckMark As Boolean = False
+		Private FireCheckMark As Boolean = True
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -183,10 +195,6 @@ End
 
 	#tag Property, Flags = &h21
 		Private OTF_Day_String As String
-	#tag EndProperty
-
-	#tag Property, Flags = &h0
-		Selected_MenuItem As SelectedMenuItem
 	#tag EndProperty
 
 
@@ -208,6 +216,8 @@ End
 		  g.FillRect 0,0,RW,RH
 		  
 		  if FireCheckMark = True AND row = mrow Then
+		    g.ForeColor = RGB(200,200,190)
+		    g.FillRect 0,0,RW,RH
 		    g.DrawPicture(Checkmark10x11,3,7)
 		  End if
 		  
@@ -245,25 +255,19 @@ End
 		  Me.SelectionType = Listbox.SelectionSingle
 		  Me.DefaultRowHeight = 30
 		  
-		  
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub Change()
 		  if me.ListIndex =  mRow Then
 		    //FireCheckMark = True
+		    Recurring_Module.Selected_MenuItem = New SelectedMenuItem
+		    Recurring_Module.Selected_MenuItem.Row = mRow
+		    Recurring_Module.Selected_MenuItem.Item_String = Me.Cell(Me.ListIndex, 0)
+		    Recurring_Module.Selected_MenuItem.SelectedItem_Date = DemoLaunchWindow.MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.SelectedDate
+		    Recurring_Module.Selected_MenuItem.Selected = True
 		    Me.InvalidateCell(-1,-1)
-		    Selected_MenuItem = New SelectedMenuItem
-		    // Populate our MenuItem Entry
-		    Selected_MenuItem.Row = mRow
-		    Selected_MenuItem.Item_String = Me.Cell(Me.ListIndex, 0)
-		    Selected_MenuItem.SelectedItem_Date = DemoLaunchWindow.MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.SelectedDate
-		    Selected_MenuItem.Selected = True
-		    
-		    dim a as string
-		    //MsgBox(Me.Cell(Me.ListIndex, 0))
-		    
-		    //Self.close
+		    Self.close
 		    
 		  End if
 		  
@@ -279,11 +283,6 @@ End
 		Function MouseWheel(X As Integer, Y As Integer, deltaX as Integer, deltaY as Integer) As Boolean
 		  Return True
 		End Function
-	#tag EndEvent
-	#tag Event
-		Sub CellGotFocus(row as Integer, column as Integer)
-		  MsgBox  "FIRE"
-		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior

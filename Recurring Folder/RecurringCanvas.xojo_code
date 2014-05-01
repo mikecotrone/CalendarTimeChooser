@@ -4,7 +4,6 @@ Inherits Canvas
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
 		  
-		  
 		  Return True
 		End Function
 	#tag EndEvent
@@ -27,7 +26,9 @@ Inherits Canvas
 		  RecurringMenuWin.Top = DateTimeWindow(Date_Time_Container(Calendar_Container(window).Window).Window).Top + 40
 		  
 		  RecurringMenuWin.mAddMenuItems
+		  RecurringMenuWin.mLoad_Selected_MenuItem
 		  RecurringMenuWin.Show
+		  
 		End Sub
 	#tag EndEvent
 
