@@ -266,7 +266,7 @@ End
 		  Me.ColumnsResizable = True
 		  Me.RequiresSelection = False
 		  Me.ColumnCount = 1
-		  me.ColumnAlignmentOffset(0) = 10
+		  me.ColumnAlignmentOffset(0) = 13
 		  Me.HasHeading = False
 		  Me.AutoHideScrollbars = True
 		  Me.ScrollBarHorizontal = False
