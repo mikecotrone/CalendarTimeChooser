@@ -129,16 +129,6 @@ End
 #tag EndWindow
 
 #tag WindowCode
-	#tag Event
-		Function KeyDown(Key As String) As Boolean
-		  if asc(key)=27 then
-		    me.close
-		    Return True
-		  end
-		End Function
-	#tag EndEvent
-
-
 	#tag Method, Flags = &h21
 		Private Sub mChangeLocalizedWindowTitle()
 		  // ** MUST DETACH FROM DEMO WINDOW

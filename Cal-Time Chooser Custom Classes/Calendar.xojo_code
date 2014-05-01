@@ -87,6 +87,14 @@ Inherits Canvas
 	#tag EndEvent
 
 	#tag Event
+		Sub Open()
+		  // Set Initially the Selected Date for Today's Date
+		  Dim TodayIsTheDay as new Date
+		  SelectedDate = TodayIsTheDay
+		End Sub
+	#tag EndEvent
+
+	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
 		  g.AntiAlias = True
 		  // Fill White Background
@@ -1551,7 +1559,7 @@ Inherits Canvas
 			Set
 			  mSelectedYear = value
 			  
-			  if mSelectedYear = "" Then 
+			  if mSelectedYear = "" Then
 			    mSelectedYear = "2014"
 			  End if
 			End Set

@@ -60,7 +60,7 @@ Begin Window RecurringMenuWin
       RequiresSelection=   False
       Scope           =   0
       ScrollbarHorizontal=   False
-      ScrollBarVertical=   True
+      ScrollBarVertical=   False
       SelectionType   =   0
       TabIndex        =   0
       TabPanelIndex   =   0
@@ -73,6 +73,7 @@ Begin Window RecurringMenuWin
       UseFocusRing    =   True
       Visible         =   True
       Width           =   172
+      _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
 End
@@ -80,21 +81,70 @@ End
 
 #tag WindowCode
 	#tag Event
+		Function KeyDown(Key As String) As Boolean
+		  if asc(key)=27 then
+		    me.close
+		    Return True
+		  end
+		End Function
+	#tag EndEvent
+
+	#tag Event
 		Sub Open()
+		  #If TargetMacOS Then
+		    soft declare sub setLevel lib "Cocoa" selector "setLevel:" (windowRef as integer, sender as integer)
+		    setLevel(Self.Handle, 1)
+		  #endif
+		  
 		  mAddMenuItems
 		End Sub
 	#tag EndEvent
 
 
+	#tag Method, Flags = &h21
+		Private Function fConvertDayOfWeek_Int_to_Str(inDayofWeek_Int as Integer) As String
+		  Select Case inDayofWeek_Int
+		    
+		  Case 1
+		    Return "Sunday"
+		  Case 2
+		    Return "Monday"
+		  Case 3
+		    Return "Tuesday"
+		  Case 4
+		    Return "Wednesday"
+		  Case 5
+		    Return "Thursday"
+		  Case 6
+		    Return "Friday"
+		  Case 7
+		    Return "Saturday"
+		  End Select
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Sub mAddMenuItems()
+		  // Get Realtime User Selected Month
 		  OTF_DayOfMonth_String = DemoLaunchWindow.MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.SelectedMonth
 		  
+		  // Get Realtime User Selected Day of the Week
+		  Dim DayofWeekString as String = fConvertDayOfWeek_Int_to_Str(DemoLaunchWindow.MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.SelectedDate.DayOfWeek)
+		  OTF_DayOfWeek_String =DayofWeekString
+		  
+		  // Get User Selected Day
+		  OTF_Day_String = Str(DemoLaunchWindow.MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.SelectedDate.Day)
+		  Dim DayEnding as String
+		  if CDbl(OTF_Day_String) > 1 Then
+		    DayEnding = "th"
+		  Else
+		    DayEnding = "st"
+		  End if
 		  
 		  RecurringMenuLB.AddRow "Once Only"
-		  RecurringMenuLB.AddRow "Every Wednesday"
-		  RecurringMenuLB.AddRow "Day 10 of Every "+OTF_DayOfMonth_String
-		  RecurringMenuLB.AddRow "Every April 30"
+		  RecurringMenuLB.AddRow "Every "+DayofWeekString
+		  RecurringMenuLB.AddRow "Day "+OTF_Day_String+" of Every "+OTF_DayOfMonth_String
+		  RecurringMenuLB.AddRow "Every "+ OTF_DayOfMonth_String +" "+OTF_Day_String+DayEnding
 		  
 		  // Measure the Size of the Longest menu
 		  Dim LineLen as Integer
@@ -106,14 +156,18 @@ End
 		  next
 		  LineLenArray.sort
 		  
+		  // Update the Width of the PopUp Menu Dynamically based on size of Menu Wording
 		  RecurringMenuWin.Width = LineLenArray(LineLenArray.Ubound)
 		  RecurringMenuLB.Width = LineLenArray(LineLenArray.Ubound)
-		  dim ash as integer = LineLenArray(LineLenArray.Ubound)
-		  dim a as string
+		  
 		  
 		End Sub
 	#tag EndMethod
 
+
+	#tag Property, Flags = &h21
+		Private FireCheckMark As Boolean = False
+	#tag EndProperty
 
 	#tag Property, Flags = &h21
 		Private mRow As Integer
@@ -125,6 +179,14 @@ End
 
 	#tag Property, Flags = &h21
 		Private OTF_DayOfWeek_String As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private OTF_Day_String As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		Selected_MenuItem As SelectedMenuItem
 	#tag EndProperty
 
 
@@ -143,15 +205,18 @@ End
 		  else
 		    g.foreColor = RGB(255,255,255)
 		  end if
-		  g.FillRect 1,1,RW,RH
+		  g.FillRect 0,0,RW,RH
+		  
+		  if FireCheckMark = True AND row = mrow Then
+		    g.DrawPicture(Checkmark10x11,3,7)
+		  End if
 		  
 		  
 		  
 		  
 		  
 		  
-		  
-		  Return false
+		  Return true
 		  
 		  
 		  
@@ -160,7 +225,7 @@ End
 	#tag Event
 		Function CellClick(row as Integer, column as Integer, x as Integer, y as Integer) As Boolean
 		  mRow = row
-		  
+		  FireCheckMark = True
 		End Function
 	#tag EndEvent
 	#tag Event
@@ -186,17 +251,39 @@ End
 	#tag Event
 		Sub Change()
 		  if me.ListIndex =  mRow Then
-		    // Selected CEll
-		    MsgBox(Me.Cell(Me.ListIndex, 0))
+		    //FireCheckMark = True
+		    Me.InvalidateCell(-1,-1)
+		    Selected_MenuItem = New SelectedMenuItem
+		    // Populate our MenuItem Entry
+		    Selected_MenuItem.Row = mRow
+		    Selected_MenuItem.Item_String = Me.Cell(Me.ListIndex, 0)
+		    Selected_MenuItem.SelectedItem_Date = DemoLaunchWindow.MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.SelectedDate
+		    Selected_MenuItem.Selected = True
 		    
-		    Self.close
+		    dim a as string
+		    //MsgBox(Me.Cell(Me.ListIndex, 0))
+		    
+		    //Self.close
+		    
 		  End if
+		  
+		  
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Function CellTextPaint(g As Graphics, row As Integer, column As Integer, x as Integer, y as Integer) As Boolean
-		  
+		  g.ForeColor = RGB(0,0,0)
 		End Function
+	#tag EndEvent
+	#tag Event
+		Function MouseWheel(X As Integer, Y As Integer, deltaX as Integer, deltaY as Integer) As Boolean
+		  Return True
+		End Function
+	#tag EndEvent
+	#tag Event
+		Sub CellGotFocus(row as Integer, column as Integer)
+		  MsgBox  "FIRE"
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
