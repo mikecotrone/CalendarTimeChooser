@@ -76,6 +76,18 @@ Begin Window RecurringMenuWin
       _ScrollOffset   =   0
       _ScrollWidth    =   -1
    End
+   Begin Timer AfterSelectionTimer
+      Height          =   32
+      Index           =   -2147483648
+      Left            =   0
+      LockedInPosition=   False
+      Mode            =   0
+      Period          =   1000
+      Scope           =   0
+      TabPanelIndex   =   0
+      Top             =   0
+      Width           =   32
+   End
 End
 #tag EndWindow
 
@@ -178,7 +190,15 @@ End
 
 
 	#tag Property, Flags = &h21
+		Private AfterSelectionTimer_Counter As Integer = 0
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
 		Private FireCheckMark As Boolean = True
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private Fire_Highlight_Flash As Boolean = False
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -216,14 +236,16 @@ End
 		  g.FillRect 0,0,RW,RH
 		  
 		  if FireCheckMark = True AND row = mrow Then
-		    g.ForeColor = RGB(200,200,190)
+		    g.ForeColor = RGB(220,220,220)
 		    g.FillRect 0,0,RW,RH
+		    if Fire_Highlight_Flash = True AND row = mRow Then
+		      g.FillRect 0,0,RW,RH
+		    Elseif Fire_Highlight_Flash = False  AND row = mRow Then
+		      g.ForeColor = RGB(230,230,230)
+		      g.FillRect 0,0,RW,RH
+		    End if
 		    g.DrawPicture(Checkmark10x11,3,7)
 		  End if
-		  
-		  
-		  
-		  
 		  
 		  
 		  Return true
@@ -235,7 +257,7 @@ End
 	#tag Event
 		Function CellClick(row as Integer, column as Integer, x as Integer, y as Integer) As Boolean
 		  mRow = row
-		  FireCheckMark = True
+		  FireCheckMark =True
 		End Function
 	#tag EndEvent
 	#tag Event
@@ -267,7 +289,9 @@ End
 		    Recurring_Module.Selected_MenuItem.SelectedItem_Date = DemoLaunchWindow.MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.SelectedDate
 		    Recurring_Module.Selected_MenuItem.Selected = True
 		    Me.InvalidateCell(-1,-1)
-		    Self.close
+		    AfterSelectionTimer.Period = 50
+		    AfterSelectionTimer.Mode = timer.ModeMultiple
+		    //Self.close
 		    
 		  End if
 		  
@@ -283,6 +307,29 @@ End
 		Function MouseWheel(X As Integer, Y As Integer, deltaX as Integer, deltaY as Integer) As Boolean
 		  Return True
 		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events AfterSelectionTimer
+	#tag Event
+		Sub Action()
+		  
+		  if AfterSelectionTimer_Counter =9 Then
+		    Me.Mode = timer.ModeOff
+		    Self.Close
+		    exit
+		  end if
+		  
+		  // Trigger Flash Effects
+		  if Fire_Highlight_Flash = False Then
+		    Fire_Highlight_Flash = True
+		    RecurringMenuLB.InvalidateCell(-1,0)
+		    AfterSelectionTimer_Counter = AfterSelectionTimer_Counter+1
+		  Elseif  Fire_Highlight_Flash = True Then
+		    Fire_Highlight_Flash = False
+		    RecurringMenuLB.InvalidateCell(-1,0)
+		    AfterSelectionTimer_Counter = AfterSelectionTimer_Counter+1
+		  End if
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
