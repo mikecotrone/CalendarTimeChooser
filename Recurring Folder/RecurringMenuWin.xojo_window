@@ -253,15 +253,27 @@ End
 		  if Highlight_Row0 = True AND Row = 0 Then
 		    g.ForeColor = RGB(203,220,252)
 		    g.FillRect 0,0,RW,RH
+		    if Selected_MenuItem.Row = 0 Then
+		      g.DrawPicture(Checkmark10x11,5,7)
+		    End if
 		  Elseif Highlight_Row1 = True AND Row = 1 Then
 		    g.ForeColor = RGB(203,220,252)
 		    g.FillRect 0,0,RW,RH
+		    if Selected_MenuItem.Row = 1 Then
+		      g.DrawPicture(Checkmark10x11,5,7)
+		    End if
 		  Elseif Highlight_Row2 = True AND Row = 2 Then
 		    g.ForeColor = RGB(203,220,252)
 		    g.FillRect 0,0,RW,RH
+		    if Selected_MenuItem.Row = 2 Then
+		      g.DrawPicture(Checkmark10x11,5,7)
+		    End if
 		  Elseif Highlight_Row3 = True AND Row = 3 Then
 		    g.ForeColor = RGB(203,220,252)
 		    g.FillRect 0,0,RW,RH
+		    if Selected_MenuItem.Row = 3 Then
+		      g.DrawPicture(Checkmark10x11,5,7)
+		    End if
 		  end if
 		  
 		  // After a user Clicks the Row
@@ -273,6 +285,14 @@ End
 		    g.ForeColor = RGB(230,230,230)
 		    g.FillRect 0,0,RW,RH
 		    g.DrawPicture(Checkmark10x11,5,7)
+		  End if
+		  
+		  // Only Draw the First Bottom Line under Row 0
+		  if row = 0 AND column = 0 Then
+		    g.ForeColor = RGB(120,120,120)
+		    g.PenHeight = 1
+		    g.PenWidth = 1
+		    g.DrawLine (0,RH-1,RW,RH-1)
 		  End if
 		  
 		  
