@@ -27,6 +27,8 @@ What is this Project?
   
   - Single or Multi Day selection
 
+  - Recurring option
+
 Whats New in 1.8?
 -----------------
 - Added a "Recurring" option to the time chooser
