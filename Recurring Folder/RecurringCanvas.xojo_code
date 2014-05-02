@@ -2,6 +2,14 @@
 Protected Class RecurringCanvas
 Inherits Canvas
 	#tag Event
+		Sub Activate()
+		  if DynMenuWin <> Nil Then
+		    DynMenuWin.Close
+		  End if
+		End Sub
+	#tag EndEvent
+
+	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
 		  
 		  Return True
@@ -22,12 +30,12 @@ Inherits Canvas
 
 	#tag Event
 		Sub MouseUp(X As Integer, Y As Integer)
-		  RecurringMenuWin.Left = DateTimeWindow(Date_Time_Container(Calendar_Container(window).Window).Window).Left + DateTimeWindow(Date_Time_Container(Calendar_Container(window).Window).Window).Width/2
-		  RecurringMenuWin.Top = DateTimeWindow(Date_Time_Container(Calendar_Container(window).Window).Window).Top + 40
+		  DynMenuWin=new RecurringMenuWin
+		  DynMenuWin.left = DateTimeWindow(Date_Time_Container(Calendar_Container(window).Window).Window).Left + DateTimeWindow(Date_Time_Container(Calendar_Container(window).Window).Window).Width/2
+		  DynMenuWin.top = DateTimeWindow(Date_Time_Container(Calendar_Container(window).Window).Window).Top + 40
+		  DynMenuWin.mAddMenuItems
+		  DynMenuWin.mLoad_Selected_MenuItem
 		  
-		  RecurringMenuWin.mAddMenuItems
-		  RecurringMenuWin.mLoad_Selected_MenuItem
-		  RecurringMenuWin.Show
 		  
 		End Sub
 	#tag EndEvent
@@ -61,6 +69,11 @@ Inherits Canvas
 	#tag Hook, Flags = &h0
 		Event UserRecurring_Choice(inSelectedMenuItemClass as SelectedMenuItem)
 	#tag EndHook
+
+
+	#tag Property, Flags = &h0
+		DynMenuWin As RecurringMenuWin
+	#tag EndProperty
 
 
 	#tag ViewBehavior

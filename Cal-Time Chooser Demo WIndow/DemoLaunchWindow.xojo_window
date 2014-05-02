@@ -122,6 +122,7 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   5
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Select Chooser Type:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -187,6 +188,7 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   7
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Change Back Color:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -283,6 +285,7 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   21
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Change Clock Face:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -404,6 +407,7 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   29
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Select Time Mode Format:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -469,6 +473,7 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   31
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Select Clock Hand Type:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -534,6 +539,7 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   35
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Week Start Type:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -596,6 +602,7 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   37
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Calendar Localization:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -692,6 +699,7 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   41
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "h00000000"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -754,6 +762,7 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   43
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Allow Multiple Date Selections:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -819,6 +828,7 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   45
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Calendar Start Year:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -853,6 +863,7 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   46
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Calendar End Year:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -1016,6 +1027,7 @@ Begin Window DemoLaunchWindow
       Selectable      =   False
       TabIndex        =   17
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Include Previous/Next Month Days:"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -1050,6 +1062,7 @@ Begin Window DemoLaunchWindow
       Selectable      =   False
       TabIndex        =   18
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Choose Clock Hand Color:"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -1071,31 +1084,6 @@ End
 		  quit(0)
 		End Sub
 	#tag EndEvent
-
-
-	#tag Property, Flags = &h21
-		Private mMyPicker As DateTimeWindow
-	#tag EndProperty
-
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  if mMyPicker=nil then
-			    mMyPicker=new DateTimeWindow
-			    mMyPicker.left =  DemoLaunchWindow.Left + DemoLaunchWindow.Width + 5
-			    mMyPicker.top = DemoLaunchWindow.Top
-			  End if
-			  
-			  return mMyPicker
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  mMyPicker = value
-			End Set
-		#tag EndSetter
-		MyPicker As DateTimeWindow
-	#tag EndComputedProperty
 
 
 #tag EndWindowCode
@@ -1127,11 +1115,11 @@ End
 		Sub Change()
 		  Select Case Me.Text
 		  Case "Calendar and Time"
-		    MyPicker.VisiblePickers=Date_Time_Container.PickerElements.CalendarAndClock
+		    App.MyPicker.VisiblePickers=Date_Time_Container.PickerElements.CalendarAndClock
 		  Case "Calendar Only"
-		    MyPicker.VisiblePickers=Date_Time_Container.PickerElements.CalendarOnly
+		    App.MyPicker.VisiblePickers=Date_Time_Container.PickerElements.CalendarOnly
 		  Case "Time Only"
-		    MyPicker.VisiblePickers=Date_Time_Container.PickerElements.ClockOnly
+		    App.MyPicker.VisiblePickers=Date_Time_Container.PickerElements.ClockOnly
 		  End Select
 		  
 		  
@@ -1155,18 +1143,18 @@ End
 		Sub Change()
 		  Select Case Me.Text
 		  Case "Dark Grey"
-		    MyPicker.Date_Time_Container1.BackColor = RGB(173,173,173)
+		    App.MyPicker.Date_Time_Container1.BackColor = RGB(173,173,173)
 		  Case "Medium Grey"
-		    MyPicker.Date_Time_Container1.BackColor = RGB(200,200,200)
+		    App.MyPicker.Date_Time_Container1.BackColor = RGB(200,200,200)
 		  Case "Light Grey"
-		    MyPicker.Date_Time_Container1.BackColor = RGB(239,239,239)
+		    App.MyPicker.Date_Time_Container1.BackColor = RGB(239,239,239)
 		  Case "Light Green"
-		    MyPicker.Date_Time_Container1.BackColor = &cc5cfc5
+		    App.MyPicker.Date_Time_Container1.BackColor = &cc5cfc5
 		  Case "Light Cyan"
-		    MyPicker.Date_Time_Container1.BackColor = RGB(234,244,255)
+		    App.MyPicker.Date_Time_Container1.BackColor = RGB(234,244,255)
 		  End Select
 		  
-		  MyPicker.Invalidate(True)
+		  App.MyPicker.Invalidate(True)
 		  
 		End Sub
 	#tag EndEvent
@@ -1191,26 +1179,26 @@ End
 		  Select Case Me.Text
 		  Case "Chrome"
 		    // Default Clock Face
-		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Chrome
-		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = False
+		    App.MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Chrome
+		    App.MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = False
 		  Case "Roman"
-		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Roman
-		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = False
+		    App.MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Roman
+		    App.MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = False
 		  Case "Standard"
-		    MyPicker.ClockFaceType =Date_Time_Container.ClockFaceType.Standard
-		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = False
+		    App.MyPicker.ClockFaceType =Date_Time_Container.ClockFaceType.Standard
+		    App.MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = False
 		  Case "Google Style"
-		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.GoogleStyle
-		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = False
+		    App.MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.GoogleStyle
+		    App.MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = False
 		  Case "Modern"
-		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Modern
-		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = False
+		    App.MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Modern
+		    App.MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = False
 		  Case "Jim's Clock"
-		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Dynamic_12hr
-		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM= False
+		    App.MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Dynamic_12hr
+		    App.MyPicker.Date_Time_Container1.Time_Container1.HideAMPM= False
 		  Case "Antique"
-		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Antique
-		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = True
+		    App.MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Antique
+		    App.MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = True
 		  End Select
 		  
 		  
@@ -1245,13 +1233,13 @@ End
 		Sub Change()
 		  Select Case Me.Text
 		  Case "12 Hour Format"
-		    MyPicker.Date_Time_Container1.Time_Container1.TimeMode = 12
+		    App.MyPicker.Date_Time_Container1.Time_Container1.TimeMode = 12
 		  Case "24 Hour Format"
-		    MyPicker.Date_Time_Container1.Time_Container1.TimeMode = 24
+		    App.MyPicker.Date_Time_Container1.Time_Container1.TimeMode = 24
 		  End Select
 		  
-		  MyPicker.Date_Time_Container1.Time_Container1.Clock1.Invalidate(False)
-		  MyPicker.Date_Time_Container1.Time_Container1.TimePicker1.Invalidate(False)
+		  App.MyPicker.Date_Time_Container1.Time_Container1.Clock1.Invalidate(False)
+		  App.MyPicker.Date_Time_Container1.Time_Container1.TimePicker1.Invalidate(False)
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -1269,9 +1257,9 @@ End
 		Sub Change()
 		  Select Case Me.Text
 		  Case "Graphical Clock Hands"
-		    MyPicker.UseGraphicalClockHands=True
+		    App.MyPicker.UseGraphicalClockHands=True
 		  Case "Lines for Clock Hands"
-		    MyPicker.UseGraphicalClockHands=False
+		    App.MyPicker.UseGraphicalClockHands=False
 		  End Select
 		  
 		End Sub
@@ -1291,9 +1279,9 @@ End
 		Sub Change()
 		  Select Case Me.Text
 		  Case "Week Starts on Sunday"
-		    MyPicker.WeekStartsOnMonday = False
+		    App.MyPicker.WeekStartsOnMonday = False
 		  Case "Week Starts on Monday"
-		    MyPicker.WeekStartsOnMonday = True
+		    App.MyPicker.WeekStartsOnMonday = True
 		  End Select
 		  
 		  
@@ -1328,23 +1316,23 @@ End
 		Sub Change()
 		  Select Case Me.Text
 		  Case "English"
-		    MyPicker.LocalizationInt = 0
+		    App.MyPicker.LocalizationInt = 0
 		  Case "French"
-		    MyPicker.LocalizationInt = 1
+		    App.MyPicker.LocalizationInt = 1
 		  Case "Swedish"
-		    MyPicker.LocalizationInt= 2
+		    App.MyPicker.LocalizationInt= 2
 		  Case "Italian"
-		    MyPicker.LocalizationInt = 3
+		    App.MyPicker.LocalizationInt = 3
 		  Case "Spanish"
-		    MyPicker.LocalizationInt = 4
+		    App.MyPicker.LocalizationInt = 4
 		  Case "Dutch"
-		    MyPicker.LocalizationInt = 5
+		    App.MyPicker.LocalizationInt = 5
 		  Case "German"
-		    MyPicker.LocalizationInt = 6
+		    App.MyPicker.LocalizationInt = 6
 		  Case "Afrikaans"
-		    MyPicker.LocalizationInt = 7
+		    App.MyPicker.LocalizationInt = 7
 		  Case "Polish"
-		    MyPicker.LocalizationInt = 8
+		    App.MyPicker.LocalizationInt = 8
 		  End Select
 		  
 		End Sub
@@ -1363,9 +1351,9 @@ End
 		Sub Change()
 		  Select Case Me.Text
 		  Case "Include"
-		    MyPicker.IncludePrevNextMonthDays = True
+		    App.MyPicker.IncludePrevNextMonthDays = True
 		  Case "Do NOT include"
-		    MyPicker.IncludePrevNextMonthDays = False
+		    App.MyPicker.IncludePrevNextMonthDays = False
 		  End Select
 		  
 		  
@@ -1376,9 +1364,9 @@ End
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
 		  dim p As new Picture(me.Width,me.Height)
-		  static handColor as color=MyPicker.ClockHandColor
+		  static handColor as color=App.MyPicker.ClockHandColor
 		  if SelectColor(handColor, "Select a color for the clock hands") then
-		    MyPicker.Date_Time_Container1.ClockHandColor = handColor
+		    App.MyPicker.Date_Time_Container1.ClockHandColor = handColor
 		    Invalidate(False)
 		    dim v As Variant=handColor
 		    SelectedHandColorLabel.Text=v.StringValue
@@ -1393,7 +1381,7 @@ End
 		  g.DrawRoundRect(2,2,me.Width-2,me.Height-2,6,6)
 		  
 		  dim p As new Picture(me.Width,me.Height)
-		  p.Graphics.ForeColor=MyPicker.ClockHandColor
+		  p.Graphics.ForeColor=App.MyPicker.ClockHandColor
 		  //p.Graphics.FillRoundRect 0,0,41,12,6,6
 		  //g.DrawPicture(p,5,5)
 		  
@@ -1401,7 +1389,7 @@ End
 		  g.DrawPicture(p,4,4)
 		  
 		  
-		  dim v As Variant=MyPicker.ClockHandColor
+		  dim v As Variant=App.MyPicker.ClockHandColor
 		  SelectedHandColorLabel.Text=v.StringValue
 		End Sub
 	#tag EndEvent
@@ -1420,9 +1408,9 @@ End
 		Sub Change()
 		  Select Case Me.Text
 		  Case "True"
-		    MyPicker.AllowMultipleCalendarSelections = True
+		    App.MyPicker.AllowMultipleCalendarSelections = True
 		  Case "False"
-		    MyPicker.AllowMultipleCalendarSelections = False
+		    App.MyPicker.AllowMultipleCalendarSelections = False
 		  End Select
 		  
 		End Sub
@@ -1452,7 +1440,7 @@ End
 		  
 		  if Asc(Key) = 13 Then // Enter
 		    If me.text = "" Then Exit
-		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.mLoad_YearList(CDbl(Me.Text),CDbl(CalEndYear_Textfield.Text))
+		    App.MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.mLoad_YearList(CDbl(Me.Text),CDbl(CalEndYear_Textfield.Text))
 		    
 		  end if
 		End Function
@@ -1482,7 +1470,7 @@ End
 		  
 		  if Asc(Key) = 13 Then // Enter
 		    If me.text = "" Then Exit
-		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.mLoad_YearList(CDbl(CalStartYear_Textfield.Text),CDbl(Me.Text))
+		    App.MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.mLoad_YearList(CDbl(CalStartYear_Textfield.Text),CDbl(Me.Text))
 		  End if
 		End Function
 	#tag EndEvent

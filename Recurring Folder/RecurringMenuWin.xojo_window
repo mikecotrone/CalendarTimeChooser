@@ -89,6 +89,18 @@ Begin Window RecurringMenuWin
       Top             =   0
       Width           =   32
    End
+   Begin Timer DelayCloseTimer
+      Height          =   32
+      Index           =   -2147483648
+      Left            =   0
+      LockedInPosition=   False
+      Mode            =   0
+      Period          =   1000
+      Scope           =   0
+      TabPanelIndex   =   0
+      Top             =   0
+      Width           =   32
+   End
 End
 #tag EndWindow
 
@@ -96,10 +108,17 @@ End
 	#tag Event
 		Function KeyDown(Key As String) As Boolean
 		  if asc(key)=27 then
-		    me.close
+		    Self.close
 		    Return True
 		  end
 		End Function
+	#tag EndEvent
+
+	#tag Event
+		Sub MouseExit()
+		  DelayCloseTimer.Period = 250
+		  DelayCloseTimer.Mode = timer.ModeSingle
+		End Sub
 	#tag EndEvent
 
 	#tag Event
@@ -139,13 +158,13 @@ End
 	#tag Method, Flags = &h0
 		Sub mAddMenuItems()
 		  // Get Realtime User Selected Month
-		  OTF_DayOfMonth_String = DemoLaunchWindow.MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.SelectedMonth
+		  OTF_DayOfMonth_String = App.MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.SelectedMonth
 		  // Get Realtime User Selected Day of the Week
-		  Dim DayofWeekString as String = fConvertDayOfWeek_Int_to_Str(DemoLaunchWindow.MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.SelectedDate.DayOfWeek)
+		  Dim DayofWeekString as String = fConvertDayOfWeek_Int_to_Str(App.MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.SelectedDate.DayOfWeek)
 		  OTF_DayOfWeek_String =DayofWeekString
 		  
 		  // Get User Selected Day
-		  OTF_Day_String = Str(DemoLaunchWindow.MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.SelectedDate.Day)
+		  OTF_Day_String = Str(App.MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.SelectedDate.Day)
 		  Dim DayEnding as String
 		  if CDbl(OTF_Day_String) > 1 Then
 		    DayEnding = "th"
@@ -154,6 +173,7 @@ End
 		  End if
 		  
 		  // Update options
+		  RecurringMenuLB.DeleteAllRows
 		  RecurringMenuLB.AddRow "Once Only"
 		  RecurringMenuLB.AddRow "Every "+DayofWeekString
 		  RecurringMenuLB.AddRow "Day "+OTF_Day_String+" of Every "+OTF_DayOfMonth_String
@@ -170,7 +190,7 @@ End
 		  LineLenArray.sort
 		  
 		  // Update the Width of the PopUp Menu Dynamically based on size of Menu Wording
-		  RecurringMenuWin.Width = LineLenArray(LineLenArray.Ubound)
+		  Me.Width = LineLenArray(LineLenArray.Ubound)
 		  RecurringMenuLB.Width = LineLenArray(LineLenArray.Ubound)
 		  
 		  
@@ -332,20 +352,19 @@ End
 	#tag Event
 		Sub Change()
 		  if me.ListIndex =  mRow Then
-		    //FireCheckMark = True
 		    Recurring_Module.Selected_MenuItem = New SelectedMenuItem
 		    Recurring_Module.Selected_MenuItem.Row = mRow
 		    Recurring_Module.Selected_MenuItem.Item_String = Me.Cell(Me.ListIndex, 0)
-		    Recurring_Module.Selected_MenuItem.SelectedItem_Date = DemoLaunchWindow.MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.SelectedDate
+		    Recurring_Module.Selected_MenuItem.SelectedItem_Date = App.MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.SelectedDate
 		    Recurring_Module.Selected_MenuItem.Selected = True
-		    DemoLaunchWindow.MyPicker.Date_Time_Container1.Calendar_Container1.RecurringCanvas1.mRecurringCanvasRaiseEvent(Recurring_Module.Selected_MenuItem)
+		    App.MyPicker.Date_Time_Container1.Calendar_Container1.RecurringCanvas1.mRecurringCanvasRaiseEvent(Recurring_Module.Selected_MenuItem)
 		    Me.InvalidateCell(-1,-1)
+		    
+		    // Launch Flash Effect after user selects a choice
 		    AfterSelectionTimer.Period = 65
 		    AfterSelectionTimer.Mode = timer.ModeMultiple
-		    //Self.close
 		    
 		  End if
-		  
 		  
 		End Sub
 	#tag EndEvent
@@ -411,6 +430,14 @@ End
 		    RecurringMenuLB.InvalidateCell(-1,0)
 		    AfterSelectionTimer_Counter = AfterSelectionTimer_Counter+1
 		  End if
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events DelayCloseTimer
+	#tag Event
+		Sub Action()
+		  Self.Close
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents

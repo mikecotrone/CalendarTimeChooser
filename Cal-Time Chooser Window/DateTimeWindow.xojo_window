@@ -70,10 +70,12 @@ End
 #tag WindowCode
 	#tag Event
 		Function KeyDown(Key As String) As Boolean
-		  if asc(key)=27 then
-		    me.close
-		    Return True
-		  end
+		  // Uncomment if you would like to allow a user to hit the escape key to close this window
+		  
+		  //if asc(key)=27 then
+		  //me.close
+		  //Return True
+		  //end
 		End Function
 	#tag EndEvent
 

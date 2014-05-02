@@ -12,7 +12,7 @@
    <key>CFBundleInfoDictionaryVersion</key>
    <string>6.0</string>
    <key>CFBundleVersion</key>
-   <string>1.0.32.3.33</string>
+   <string>1.8.0.3.69</string>
    <key>CFBundleDevelopmentRegion</key>
    <string>en</string>
    <key>CFBundlePackageType</key>
@@ -22,7 +22,7 @@
    <key>CFBundleGetInfoString</key>
    <string></string>
    <key>CFBundleShortVersionString</key>
-   <string></string>
+   <string>1.8</string>
    <key>CFBundleIconFile</key>
    <string>CalendarTimeChooser.icns</string>
 <key>LSMinimumSystemVersion</key>
