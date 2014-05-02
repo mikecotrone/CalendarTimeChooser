@@ -3,7 +3,7 @@ CalendarTimeChooser
 
 Xojo Calendar and Time Chooser Picklist
 
-Date:           April 28, 2014
+Date:           May 2, 2014
 
 Language:       Xojo
 
@@ -11,7 +11,7 @@ Author:         Mike Cotrone (mikec@intelligentvisibility.com)
 
 Contributors:   Jim McKay
 
-Version:        1.6
+Version:        1.8
 
 
 What is this Project?
@@ -27,6 +27,13 @@ What is this Project?
   
   - Single or Multi Day selection
 
+Whats New in 1.8?
+-----------------
+- Added a "Recurring" option to the time chooser
+
+Whats New in 1.7?
+-----------------
+- All Bug Fixes
 
 Whats New in 1.6?
 -----------------
