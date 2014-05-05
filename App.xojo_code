@@ -3,8 +3,9 @@ Protected Class App
 Inherits Application
 	#tag Event
 		Sub Open()
-		  app.UseGDIPlus=true
+		  app.UseGDIPlus=true // For Windows
 		  
+		  // This Launches the Demo Launch Window for our Demo
 		  DemoLaunchWindow.Show
 		  
 		  
@@ -21,7 +22,7 @@ Inherits Application
 		
 		Written by:     Mike Cotrone (mikec@intelligentvisibility.com)
 		Contributors:  Jim McKay
-		Version:           1.5
+		Version:           1.8
 		
 		Please see github repo for updated documentation:
 		https://github.com/mikecotrone/CalendarTimeChooser

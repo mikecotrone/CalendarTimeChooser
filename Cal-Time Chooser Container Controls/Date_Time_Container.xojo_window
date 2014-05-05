@@ -159,6 +159,10 @@ End
 		    Localized_CalendarOnlyTitle_Str = "Choose Date"
 		    Localized_ChooseBothTitle_Str = "Choose Date and Time"
 		    Localized_TimeOnlyTitle_Str = "Choose Time"
+		    Localized_Recurring_OnceOnly_Str = "Once Only"
+		    Localized_Recurring_Every_Str = "Every " // Trailing space is done purposely
+		    Localized_Recurring_Day_Str = "Day " // Trailing space is done purposely
+		    Localized_Recurring_of_Every_Str = " of Every " // Leading and Trailing space is done purposely
 		    
 		  Case 1 // French
 		    Localized_CalendarOnlyTitle_Str = "Choisissez la date"
@@ -174,31 +178,55 @@ End
 		    Localized_CalendarOnlyTitle_Str = "Scegli data"
 		    Localized_ChooseBothTitle_Str = "Scegli data e ora"
 		    Localized_TimeOnlyTitle_Str = "Scegli Ora"
+		    Localized_Recurring_OnceOnly_Str =  "Sólo una vez" // "Once Only"
+		    Localized_Recurring_Every_Str =  "cada " // "Every " // Trailing space is done purposely
+		    Localized_Recurring_Day_Str =      "día "  // "Day " // Trailing space is done purposely
+		    Localized_Recurring_of_Every_Str =   " de cada "  // " of Every " // Leading and Trailing space is done purposely
 		    
 		  Case 4 // Spanish
 		    Localized_CalendarOnlyTitle_Str = "Seleccionar fecha"
 		    Localized_ChooseBothTitle_Str = "Seleccione Fecha y Hora"
 		    Localized_TimeOnlyTitle_Str = "Seleccione Hora"
+		    Localized_Recurring_OnceOnly_Str =  "Sólo una vez" // "Once Only"
+		    Localized_Recurring_Every_Str =  "cada " // "Every " // Trailing space is done purposely
+		    Localized_Recurring_Day_Str =      "día "  // "Day " // Trailing space is done purposely
+		    Localized_Recurring_of_Every_Str =   " de cada "  // " of Every " // Leading and Trailing space is done purposely
 		    
 		  Case 5 // Dutch
 		    Localized_CalendarOnlyTitle_Str = "Kies Datum"
 		    Localized_ChooseBothTitle_Str = "Kies de datum en tijd"
 		    Localized_TimeOnlyTitle_Str = "Kies Time"
+		    Localized_Recurring_OnceOnly_Str =  "eenmalig" // "Once Only"
+		    Localized_Recurring_Every_Str =  "iedere " // "Every " // Trailing space is done purposely
+		    Localized_Recurring_Day_Str =      "dag "  // "Day " // Trailing space is done purposely
+		    Localized_Recurring_of_Every_Str =   " van Elk "  // " of Every " // Leading and Trailing space is done purposely
 		    
 		  Case 6 // German
 		    Localized_CalendarOnlyTitle_Str = "Bitte Datum auswählen"
 		    Localized_ChooseBothTitle_Str = "Bitte Datum und Uhrzeit auswählen"
 		    Localized_TimeOnlyTitle_Str = "Bitte Zeit auswählen"
+		    Localized_Recurring_OnceOnly_Str = "Nur einmal"
+		    Localized_Recurring_Every_Str = "Jeden " // Trailing space is done purposely
+		    Localized_Recurring_Day_Str = "Tag " // Trailing space is done purposely
+		    Localized_Recurring_of_Every_Str = " für jeden " // Leading and Trailing space is done purposely
 		    
 		  Case 7 // Afrikaans
 		    Localized_CalendarOnlyTitle_Str = "kies Datum"
 		    Localized_ChooseBothTitle_Str = "Kies Datum en Tyd"
 		    Localized_TimeOnlyTitle_Str = "kies die tyd"
+		    Localized_Recurring_OnceOnly_Str =  "slegs een keer" // "Once Only"
+		    Localized_Recurring_Every_Str =  "elke " // "Every " // Trailing space is done purposely
+		    Localized_Recurring_Day_Str =      "dag "  // "Day " // Trailing space is done purposely
+		    Localized_Recurring_of_Every_Str =   " van elke "  // " of Every " // Leading and Trailing space is done purposely
 		    
 		  Case 8 // Polish
 		    Localized_CalendarOnlyTitle_Str = "Wybierz datę"
 		    Localized_ChooseBothTitle_Str = "Wybierz datę i godzinę"
 		    Localized_TimeOnlyTitle_Str = "Wybierz godzinę"
+		    Localized_Recurring_OnceOnly_Str =  "Tylko raz" // "Once Only"
+		    Localized_Recurring_Every_Str =  "każdy " // "Every " // Trailing space is done purposely
+		    Localized_Recurring_Day_Str =      "dzień "  // "Day " // Trailing space is done purposely
+		    Localized_Recurring_of_Every_Str =   " z każdym "  // " of Every " // Leading and Trailing space is done purposely
 		  End Select
 		  
 		  mChangeLocalizedWindowTitle

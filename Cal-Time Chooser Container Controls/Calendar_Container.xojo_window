@@ -400,12 +400,6 @@ End
 		End Function
 	#tag EndEvent
 
-	#tag Event
-		Sub Open()
-		  Recurring_Module.Open_SelectRecurringDefault
-		End Sub
-	#tag EndEvent
-
 
 	#tag Method, Flags = &h21
 		Private Sub mNextMonth()
