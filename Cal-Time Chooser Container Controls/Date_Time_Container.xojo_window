@@ -168,20 +168,28 @@ End
 		    Localized_CalendarOnlyTitle_Str = "Choisissez la date"
 		    Localized_ChooseBothTitle_Str = "Choisissez la date et l'heure"
 		    Localized_TimeOnlyTitle_Str = "Choisissez l'heure"
+		    Localized_Recurring_OnceOnly_Str =  "Une seule fois" // "Once Only"
+		    Localized_Recurring_Every_Str =  "tous " // "Every " // Trailing space is done purposely
+		    Localized_Recurring_Day_Str =      "jour "  // "Day " // Trailing space is done purposely
+		    Localized_Recurring_of_Every_Str =   " de chaque "  // " of Every " // Leading and Trailing space is done purposely
 		    
 		  Case 2 // Swedish
 		    Localized_CalendarOnlyTitle_Str = "Välj datum"
 		    Localized_ChooseBothTitle_Str = "Välj Datum och tid"
 		    Localized_TimeOnlyTitle_Str = "Välj Tid"
+		    Localized_Recurring_OnceOnly_Str =  "En gång bara" // "Once Only"
+		    Localized_Recurring_Every_Str =  "Varje " // "Every " // Trailing space is done purposely
+		    Localized_Recurring_Day_Str =      "dag "  // "Day " // Trailing space is done purposely
+		    Localized_Recurring_of_Every_Str =   " av varje "  // " of Every " // Leading and Trailing space is done purposely
 		    
 		  Case 3 // Italian
 		    Localized_CalendarOnlyTitle_Str = "Scegli data"
 		    Localized_ChooseBothTitle_Str = "Scegli data e ora"
 		    Localized_TimeOnlyTitle_Str = "Scegli Ora"
-		    Localized_Recurring_OnceOnly_Str =  "Sólo una vez" // "Once Only"
-		    Localized_Recurring_Every_Str =  "cada " // "Every " // Trailing space is done purposely
-		    Localized_Recurring_Day_Str =      "día "  // "Day " // Trailing space is done purposely
-		    Localized_Recurring_of_Every_Str =   " de cada "  // " of Every " // Leading and Trailing space is done purposely
+		    Localized_Recurring_OnceOnly_Str =  "Solo una volta" // "Once Only"
+		    Localized_Recurring_Every_Str =  "ogni " // "Every " // Trailing space is done purposely
+		    Localized_Recurring_Day_Str =      "giorno "  // "Day " // Trailing space is done purposely
+		    Localized_Recurring_of_Every_Str =   " di ogni "  // " of Every " // Leading and Trailing space is done purposely
 		    
 		  Case 4 // Spanish
 		    Localized_CalendarOnlyTitle_Str = "Seleccionar fecha"
