@@ -65,6 +65,7 @@ Whats New in 1.5?
 
 ------------------------
 
+
 How to Use this Project?
 
 Please read our full "How To" documentation located at:
