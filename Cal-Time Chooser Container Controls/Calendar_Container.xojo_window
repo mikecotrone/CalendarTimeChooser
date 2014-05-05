@@ -328,6 +328,40 @@ Begin ContainerControl Calendar_Container
       Visible         =   True
       Width           =   20
    End
+   Begin Label RecurrenceLabel
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   -46
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   57
+      TabPanelIndex   =   0
+      Text            =   "Recurrence"
+      TextAlign       =   0
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   1.0
+      TextUnit        =   0
+      Top             =   -113
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   100
+   End
    Begin RecurringCanvas RecurringCanvas1
       AcceptFocus     =   False
       AcceptTabs      =   False
@@ -347,7 +381,7 @@ Begin ContainerControl Calendar_Container
       LockRight       =   False
       LockTop         =   True
       Scope           =   0
-      TabIndex        =   56
+      TabIndex        =   58
       TabPanelIndex   =   0
       TabStop         =   True
       Top             =   14
@@ -465,6 +499,12 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub mRaiseEvent_Recurring(inSelectedMenuItem as String)
+		  RaiseEvent Recurring_Selection(inSelectedMenuItem)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub mTakeMeToTodaysDate()
 		  // Bring Us Back to Today's Month
 		  Dim CurrentDateMonthString as String = Calendar1.fConvertMonthIntToMonthString(Calendar1.CurrentDate.Month)
@@ -496,6 +536,10 @@ End
 		End Sub
 	#tag EndMethod
 
+
+	#tag Hook, Flags = &h0
+		Event Recurring_Selection(inSelectedMenuItem as String)
+	#tag EndHook
 
 	#tag Hook, Flags = &h0
 		Event SelectedDate(inSelectedDate as Date)
@@ -606,14 +650,6 @@ End
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
 		  Me.SetFocus
 		End Function
-	#tag EndEvent
-#tag EndEvents
-#tag Events RecurringCanvas1
-	#tag Event
-		Sub UserRecurring_Choice(inSelectedMenuItemClass as SelectedMenuItem)
-		  // This is where you will receive the User's Selection Class
-		  
-		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior

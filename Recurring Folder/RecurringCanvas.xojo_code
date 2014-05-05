@@ -2,14 +2,6 @@
 Protected Class RecurringCanvas
 Inherits Canvas
 	#tag Event
-		Sub Activate()
-		  if DynMenuWin <> Nil Then
-		    DynMenuWin.Close
-		  End if
-		End Sub
-	#tag EndEvent
-
-	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
 		  
 		  Return True
@@ -30,11 +22,14 @@ Inherits Canvas
 
 	#tag Event
 		Sub MouseUp(X As Integer, Y As Integer)
-		  DynMenuWin=new RecurringMenuWin
-		  DynMenuWin.left = DateTimeWindow(Date_Time_Container(Calendar_Container(window).Window).Window).Left + DateTimeWindow(Date_Time_Container(Calendar_Container(window).Window).Window).Width/2
-		  DynMenuWin.top = DateTimeWindow(Date_Time_Container(Calendar_Container(window).Window).Window).Top + 40
-		  DynMenuWin.mAddMenuItems
-		  DynMenuWin.mLoad_Selected_MenuItem
+		  mAddMenuItems
+		  dim result As MenuItem=myMenu.PopUp
+		  if result<>nil then 
+		    RecurringMode=result.Tag
+		    
+		    // Raise User Defined Event
+		    Calendar_Container(window).mRaiseEvent_Recurring(result.Text)
+		  end if
 		  
 		  
 		End Sub
@@ -42,7 +37,7 @@ Inherits Canvas
 
 	#tag Event
 		Sub Open()
-		  
+		  myMenu=new MenuItem
 		End Sub
 	#tag EndEvent
 
@@ -53,9 +48,55 @@ Inherits Canvas
 	#tag EndEvent
 
 
+	#tag Method, Flags = &h21
+		Private Function fConvertDayOfWeek_Int_to_Str(inDayofWeek_Int as Integer) As String
+		  Select Case inDayofWeek_Int
+		    
+		  Case 1
+		    Return "Sunday"
+		  Case 2
+		    Return "Monday"
+		  Case 3
+		    Return "Tuesday"
+		  Case 4
+		    Return "Wednesday"
+		  Case 5
+		    Return "Thursday"
+		  Case 6
+		    Return "Friday"
+		  Case 7
+		    Return "Saturday"
+		  End Select
+		End Function
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
-		Sub mRecurringCanvasRaiseEvent(inSelectedMenuItem as SelectedMenuItem)
-		  RaiseEvent UserRecurring_Choice(inSelectedMenuItem)
+		Sub mAddMenuItems()
+		  myMenu=new MenuItem
+		  // Get Realtime User Selected Month
+		  dim OTF_DayOfMonth_String as string = Calendar_Container(window).Calendar1.SelectedMonth
+		  // Get Realtime User Selected Day of the Week
+		  Dim DayofWeekString as String = fConvertDayOfWeek_Int_to_Str(Calendar_Container(window).Calendar1.SelectedDate.DayOfWeek)
+		  dim OTF_DayOfWeek_String as string =DayofWeekString
+		  
+		  // Get User Selected Day
+		  dim OTF_Day_String as string = Str(Calendar_Container(window).Calendar1.SelectedDate.Day)
+		  Dim DayEnding as String
+		  if CDbl(OTF_Day_String) > 1 Then
+		    DayEnding = "th"
+		  Else
+		    DayEnding = "st"
+		  End if
+		  
+		  // Update options
+		  myMenu.Append new MenuItem("Once Only",0)
+		  myMenu.Append new MenuItem("Every "+DayofWeekString,1)
+		  myMenu.Append new MenuItem("Day "+OTF_Day_String+" of Every "+OTF_DayOfMonth_String,2)
+		  myMenu.Append new MenuItem("Every "+ OTF_DayOfMonth_String +" "+OTF_Day_String+DayEnding,3)
+		  if RecurringMode>-1 then myMenu.Item(RecurringMode).Checked=true
+		  
+		  
+		  
 		End Sub
 	#tag EndMethod
 
@@ -66,13 +107,12 @@ Inherits Canvas
 	#tag EndMethod
 
 
-	#tag Hook, Flags = &h0
-		Event UserRecurring_Choice(inSelectedMenuItemClass as SelectedMenuItem)
-	#tag EndHook
-
+	#tag Property, Flags = &h0
+		myMenu As MenuItem
+	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		DynMenuWin As RecurringMenuWin
+		RecurringMode As Integer = 0
 	#tag EndProperty
 
 
@@ -183,6 +223,12 @@ Inherits Canvas
 			Visible=true
 			Group="ID"
 			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="RecurringMode"
+			Group="Behavior"
+			InitialValue="0"
+			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"

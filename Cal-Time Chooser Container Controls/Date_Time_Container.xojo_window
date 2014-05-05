@@ -483,6 +483,10 @@ End
 		SelectedDate As Date
 	#tag EndComputedProperty
 
+	#tag Property, Flags = &h0
+		TEST As STRING
+	#tag EndProperty
+
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
@@ -583,6 +587,14 @@ End
 		Sub SelectedDate(inSelectedDate as Date)
 		  // Use this Event to push the user's "Selected Date" to anywhere in your code.
 		  // IE.   FutureScheduleAssessment_Class.FutureScheduleAssessmentDate = inSelectedDate
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Recurring_Selection(inSelectedMenuItem as String)
+		  
+		  
+		  
+		  TEST = inSelectedMenuItem
 		End Sub
 	#tag EndEvent
 #tag EndEvents

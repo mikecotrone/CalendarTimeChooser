@@ -29,31 +29,6 @@ Inherits Application
 	#tag EndNote
 
 
-	#tag Property, Flags = &h21
-		Private mMyPicker As DateTimeWindow
-	#tag EndProperty
-
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  if mMyPicker=nil then
-			    mMyPicker=new DateTimeWindow
-			    mMyPicker.left =  DemoLaunchWindow.Left + DemoLaunchWindow.Width + 5
-			    mMyPicker.top = DemoLaunchWindow.Top
-			  End if
-			  
-			  return mMyPicker
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  mMyPicker = value
-			End Set
-		#tag EndSetter
-		MyPicker As DateTimeWindow
-	#tag EndComputedProperty
-
-
 	#tag ViewBehavior
 	#tag EndViewBehavior
 End Class
