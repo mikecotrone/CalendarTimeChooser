@@ -26,7 +26,8 @@ Begin ContainerControl Date_Time_Container
    Visible         =   True
    Width           =   394
    Begin Timer ClockSecondHandTimer
-      Height          =   32
+      Enabled         =   True
+      Height          =   "32"
       Index           =   -2147483648
       InitialParent   =   ""
       Left            =   0
@@ -36,7 +37,8 @@ Begin ContainerControl Date_Time_Container
       Scope           =   0
       TabPanelIndex   =   0
       Top             =   0
-      Width           =   32
+      Visible         =   True
+      Width           =   "32"
    End
    Begin Separator Separator1
       AutoDeactivate  =   True
@@ -70,6 +72,7 @@ Begin ContainerControl Date_Time_Container
       HasBackColor    =   False
       Height          =   252
       HelpTag         =   ""
+      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   0
       LockBottom      =   False
@@ -100,6 +103,7 @@ Begin ContainerControl Date_Time_Container
       Height          =   252
       HelpTag         =   ""
       HideAMPM        =   False
+      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   235
       LockBottom      =   False
@@ -628,9 +632,6 @@ End
 	#tag Event
 		Sub Recurring_Selection(inSelectedMenuItem as String)
 		  
-		  
-		  
-		  TEST = inSelectedMenuItem
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -639,9 +640,6 @@ End
 		Sub SelectedTime(inHours as String, inMinutes as String, inAMPM as String)
 		  // I decided to send the selected Time in separate string parts to allow for maximum control on formating.
 		  
-		  // My example Format shows a format (without quotes):     "hh:MM AM/PM"
-		  
-		  // Demo Purposes
 		  //Dim TmpDateFormatString as String = inHours+":"+inMinutes+" "+inAMPM
 		  //MsgBox "Selected Time: " + TmpDateFormatString
 		End Sub
@@ -832,6 +830,12 @@ End
 		InitialValue="True"
 		Type="Boolean"
 		EditorType="Boolean"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="TEST"
+		Group="Behavior"
+		Type="STRING"
+		EditorType="MultiLineEditor"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Top"
