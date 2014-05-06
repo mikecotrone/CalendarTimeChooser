@@ -7,7 +7,7 @@ Inherits Application
 		  
 		  // This Launches the Demo Launch Window for our Demo
 		  DemoLaunchWindow.Show
-		  Window1.Show
+		  
 		  
 		  
 		  
