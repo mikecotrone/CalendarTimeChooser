@@ -57,6 +57,7 @@ Begin Window DateTimeWindow
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
+      TEST            =   ""
       Top             =   0
       Transparent     =   True
       UseFocusRing    =   False
