@@ -61,6 +61,31 @@ Protected Module Cal_Time_Strings_Module
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Localized_Recurring_Day_Str"
+			Group="Behavior"
+			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Localized_Recurring_Every_Month_Day_Str"
+			Group="Behavior"
+			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Localized_Recurring_Every_Str"
+			Group="Behavior"
+			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Localized_Recurring_of_Every_Str"
+			Group="Behavior"
+			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Localized_Recurring_OnceOnly_Str"
+			Group="Behavior"
+			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Localized_TimeOnlyTitle_Str"
 			Group="Behavior"
 			Type="String"
