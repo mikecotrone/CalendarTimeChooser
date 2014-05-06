@@ -90,6 +90,7 @@ Inherits Canvas
 		  
 		  // Update options
 		  myMenu.Append new MenuItem(Cal_Time_Strings_Module.Localized_Recurring_OnceOnly_Str,0)
+		  myMenu.Append new MenuItem(MenuItem.TextSeparator)
 		  myMenu.Append new MenuItem(Cal_Time_Strings_Module.Localized_Recurring_Every_Str+DayofWeekString,1)
 		  myMenu.Append new MenuItem(Localized_Recurring_Day_Str+OTF_Day_String+Localized_Recurring_of_Every_Str+OTF_DayOfMonth_String,2)
 		  myMenu.Append new MenuItem(Cal_Time_Strings_Module.Localized_Recurring_Every_Str + OTF_DayOfMonth_String + " "+OTF_Day_String+DayEnding,3) //Localized_Recurring_Every_Month_Day_Str
