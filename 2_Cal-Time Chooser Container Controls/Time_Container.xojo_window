@@ -130,7 +130,7 @@ End
 
 
 	#tag Hook, Flags = &h0
-		Event SelectedTime(inHours as String, inMinutes as String, inAMPM as String)
+		Event SelectedTime(inHours as String, inMinutes as String, optional inAMPM as String)
 	#tag EndHook
 
 

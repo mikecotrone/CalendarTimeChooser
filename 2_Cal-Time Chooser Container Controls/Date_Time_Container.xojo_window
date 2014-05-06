@@ -637,7 +637,7 @@ End
 #tag EndEvents
 #tag Events Time_Container1
 	#tag Event
-		Sub SelectedTime(inHours as String, inMinutes as String, inAMPM as String)
+		Sub SelectedTime(inHours as String, inMinutes as String, optional inAMPM as String)
 		  // I decided to send the selected Time in separate string parts to allow for maximum control on formating.
 		  
 		  //Dim TmpDateFormatString as String = inHours+":"+inMinutes+" "+inAMPM
