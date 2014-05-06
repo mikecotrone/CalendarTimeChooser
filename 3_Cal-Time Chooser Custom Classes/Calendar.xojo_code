@@ -1417,9 +1417,21 @@ Inherits Canvas
 		Private DayOfWeek_MS() As String
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		EndYear As Integer = 2060
-	#tag EndProperty
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return inEndYear
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  inEndYear = value
+			  
+			  mLoad_YearList(StartYear,inEndYear)
+			End Set
+		#tag EndSetter
+		EndYear As Integer
+	#tag EndComputedProperty
 
 	#tag Property, Flags = &h0
 		FirstWeekDay As String
@@ -1427,6 +1439,14 @@ Inherits Canvas
 
 	#tag Property, Flags = &h0
 		IncludePrevNextMonthDaysBool As Boolean = True
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private inEndYear As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private inStartYear As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -1571,9 +1591,21 @@ Inherits Canvas
 		Private SelectTodayRunOnce As Boolean = False
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		StartYear As Integer = 1904
-	#tag EndProperty
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  Return inStartYear
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  inStartYear= value
+			  
+			  mLoad_YearList(inStartYear,2020)
+			End Set
+		#tag EndSetter
+		StartYear As Integer
+	#tag EndComputedProperty
 
 	#tag Property, Flags = &h0
 		TodaysDate_NotSelected As Color = &c0000FF

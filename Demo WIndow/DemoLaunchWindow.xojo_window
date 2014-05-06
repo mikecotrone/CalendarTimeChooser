@@ -122,7 +122,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   5
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Select Chooser Type:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -188,7 +187,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   7
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Change Back Color:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -285,7 +283,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   21
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Change Clock Face:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -407,7 +404,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   29
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Select Time Mode Format:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -473,7 +469,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   31
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Select Clock Hand Type:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -539,7 +534,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   35
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Week Start Type:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -602,7 +596,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   37
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Calendar Localization:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -699,7 +692,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   41
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "h00000000"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -762,7 +754,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   43
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Allow Multiple Date Selections:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -828,7 +819,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   45
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Calendar Start Year:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -863,7 +853,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   46
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Calendar End Year:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -1027,7 +1016,6 @@ Begin Window DemoLaunchWindow
       Selectable      =   False
       TabIndex        =   17
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Include Previous/Next Month Days:"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -1062,7 +1050,6 @@ Begin Window DemoLaunchWindow
       Selectable      =   False
       TabIndex        =   18
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Choose Clock Hand Color:"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -1449,6 +1436,9 @@ End
 		    Declare Sub setBezelStyle Lib "Cocoa" Selector "setBezelStyle:" (handle As Integer, value As Integer)
 		    setBezelStyle(Me.Handle, 1)
 		  #Endif
+		  
+		  // PreSet first Selection upon open
+		  MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.mLoad_YearList(CDbl(Me.Text),CDbl(CalEndYear_Textfield.Text))
 		End Sub
 	#tag EndEvent
 	#tag Event
