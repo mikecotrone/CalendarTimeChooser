@@ -61,7 +61,7 @@ Begin ContainerControl Time_Container
    Begin UpDownArrows Time_Nav
       AcceptFocus     =   False
       AutoDeactivate  =   True
-      Enabled         =   True
+      Enabled         =   False
       Height          =   30
       HelpTag         =   ""
       Index           =   -2147483648
@@ -122,6 +122,17 @@ End
 #tag EndWindow
 
 #tag WindowCode
+	#tag Event
+		Sub MouseExit()
+		  Me.Time_Nav.Enabled = False
+		  Me.TimePicker1.Draw_AMPM_Selected= False
+		  Me.TimePicker1.Draw_Hour_Selected = False
+		  Me.TimePicker1.Draw_Minute_Selected = False
+		  Me.TimePicker1.Invalidate(False)
+		End Sub
+	#tag EndEvent
+
+
 	#tag Method, Flags = &h0
 		Sub mRaiseEvent_SelectedTime()
 		  RaiseEvent SelectedTime(Time_Hour, Time_Minute, Time_AMPM)

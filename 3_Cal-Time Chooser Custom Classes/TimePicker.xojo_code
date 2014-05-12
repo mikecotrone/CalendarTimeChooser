@@ -268,16 +268,19 @@ Inherits Canvas
 		  Time_Container(window).Time_AMPM_Len = Time_Container(window).Time_AMPM.Len*11
 		  
 		  if Draw_Hour_Selected = True Then
+		    Time_Container(window).Time_Nav.Enabled = True
 		    Draw_Select_Hour(g, Time_Container(window).Time_Hour_Len)
 		  end if
 		  
 		  if Draw_Minute_Selected = True Then
+		    Time_Container(window).Time_Nav.Enabled = True
 		    Draw_Select_Minute(g, Time_Container(window).Time_Minute_Len)
 		  end if
 		  
 		  Dim DrawStringValue as String
 		  if Time_Container(window).TimeMode = 12 Then
 		    if Draw_AMPM_Selected = True Then
+		      Time_Container(window).Time_Nav.Enabled = True
 		      Draw_AMPM(g, Time_Container(window).Time_AMPM_Len)
 		    End if
 		    DrawStringValue = Time_Container(window).Time_Hour+":"+Time_Container(window).Time_Minute+" "+Time_Container(window).Time_AMPM
