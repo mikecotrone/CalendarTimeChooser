@@ -25,9 +25,9 @@ Inherits Canvas
 		          Elseif CalendarButtonClassArray(i).PrevMonthMark = True Then
 		            SelectedDate.Month = fConvertMonthStringToMonthNumber(PreviousMonth)
 		          end if
-		          SelectedDate.Day = CalendarButtonClassArray(i).Day
 		          SelectedDate.Month = fConvertMonthStringToMonthNumber(SelectedMonth)
 		          SelectedDate.Year = CDbl(SelectedYear)
+		          SelectedDate.Day = CalendarButtonClassArray(i).Day
 		          CalendarButtonClassArray(i).SelectedDate = SelectedDate
 		          Calendar_Container(window).mRaiseEvent(CalendarButtonClassArray(i).SelectedDate)
 		          Me.Invalidate(False)
@@ -48,7 +48,6 @@ Inherits Canvas
 		          SelectedDate.Month = fConvertMonthStringToMonthNumber(PreviousMonth)
 		          MonthToAdvance = "Prev"
 		        end if
-		        SelectedDate.Day = CalendarButtonClassArray(i).Day
 		        SelectedDate.Year = CDbl(SelectedYear)
 		        CalendarButtonClassArray(i).SelectedDate = SelectedDate
 		        if MonthToAdvance = "Next" or MonthToAdvance = "Prev" Then
@@ -70,6 +69,7 @@ Inherits Canvas
 		          mRemapSelectedToSlot
 		        Else
 		          SelectedDate.Month = fConvertMonthStringToMonthNumber(SelectedMonth)
+		          SelectedDate.Day = CalendarButtonClassArray(i).Day
 		          Calendar_Container(window).mRaiseEvent(SelectedDate)
 		          
 		        End if
