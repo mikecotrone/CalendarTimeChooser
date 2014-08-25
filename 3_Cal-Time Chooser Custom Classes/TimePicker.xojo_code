@@ -268,19 +268,19 @@ Inherits Canvas
 		  Time_Container(window).Time_AMPM_Len = Time_Container(window).Time_AMPM.Len*11
 		  
 		  if Draw_Hour_Selected = True Then
-		    Time_Container(window).Time_Nav.Enabled = True
+		    //Time_Container(window).Time_Nav.Enabled = True
 		    Draw_Select_Hour(g, Time_Container(window).Time_Hour_Len)
 		  end if
 		  
 		  if Draw_Minute_Selected = True Then
-		    Time_Container(window).Time_Nav.Enabled = True
+		    //Time_Container(window).Time_Nav.Enabled = True
 		    Draw_Select_Minute(g, Time_Container(window).Time_Minute_Len)
 		  end if
 		  
 		  Dim DrawStringValue as String
 		  if Time_Container(window).TimeMode = 12 Then
 		    if Draw_AMPM_Selected = True Then
-		      Time_Container(window).Time_Nav.Enabled = True
+		      //Time_Container(window).Time_Nav.Enabled = True
 		      Draw_AMPM(g, Time_Container(window).Time_AMPM_Len)
 		    End if
 		    DrawStringValue = Time_Container(window).Time_Hour+":"+Time_Container(window).Time_Minute+" "+Time_Container(window).Time_AMPM
@@ -477,6 +477,29 @@ Inherits Canvas
 		  
 		  Return Results
 		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub mDrawGradientBackfill(g as graphics)
+		  // Awesome Gradient Fill
+		  dim i as integer, ratio, endratio as Double
+		  dim StartColor, EndColor as Color
+		  
+		  // Gradient
+		  StartColor = RGB(235, 239, 242)
+		  EndColor = RGB(100,100,100)
+		  
+		  // Draw The Gradient
+		  for i = g.Height DownTo 0
+		    // Need our ratios of start / end
+		    ratio = (i/g.Height)
+		    endratio = ((g.Height-i)/g.Height)
+		    // Determine the Color
+		    g.ForeColor = RGB(StartColor.Red * endratio + EndColor.Red * ratio, StartColor.Green * endratio + EndColor.Green * ratio, StartColor.Blue * endratio + EndColor.Blue * ratio)
+		    // Draw the current line
+		    g.DrawLine 0, i, g.Width, i
+		  next
+		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21

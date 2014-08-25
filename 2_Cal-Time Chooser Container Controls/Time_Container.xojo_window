@@ -61,7 +61,7 @@ Begin ContainerControl Time_Container
    Begin UpDownArrows Time_Nav
       AcceptFocus     =   False
       AutoDeactivate  =   True
-      Enabled         =   False
+      Enabled         =   True
       Height          =   30
       HelpTag         =   ""
       Index           =   -2147483648
@@ -91,7 +91,7 @@ Begin ContainerControl Time_Container
       ClockHourValue  =   0.0
       ClockMinuteValue=   0.0
       ClockSecondValue=   0.0
-      DoubleBuffer    =   True
+      DoubleBuffer    =   False
       Enabled         =   True
       EraseBackground =   False
       Font            =   "Helvetica"
@@ -122,17 +122,6 @@ End
 #tag EndWindow
 
 #tag WindowCode
-	#tag Event
-		Sub MouseExit()
-		  Me.Time_Nav.Enabled = False
-		  Me.TimePicker1.Draw_AMPM_Selected= False
-		  Me.TimePicker1.Draw_Hour_Selected = False
-		  Me.TimePicker1.Draw_Minute_Selected = False
-		  Me.TimePicker1.Invalidate(False)
-		End Sub
-	#tag EndEvent
-
-
 	#tag Method, Flags = &h0
 		Sub mRaiseEvent_SelectedTime()
 		  RaiseEvent SelectedTime(Time_Hour, Time_Minute, Time_AMPM)
@@ -216,6 +205,11 @@ End
 #tag Events Time_Nav
 	#tag Event
 		Sub Down()
+		  // Default Behavior
+		  if TimePicker1.Draw_Hour_Selected = False AND TimePicker1.Draw_Minute_Selected = False AND TimePicker1.Draw_AMPM_Selected = False Then
+		     TimePicker1.Draw_Hour_Selected = True
+		  end if
+		  
 		  // Change Hours Down
 		  Select Case TimePicker1.Draw_Hour_Selected
 		  Case True
@@ -247,6 +241,11 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub Up()
+		  // Default Behavior
+		  if TimePicker1.Draw_Hour_Selected = False AND TimePicker1.Draw_Minute_Selected = False AND TimePicker1.Draw_AMPM_Selected = False Then
+		    TimePicker1.Draw_Hour_Selected = True
+		  end if
+		  
 		  // Change Hours Up
 		  Select Case TimePicker1.Draw_Hour_Selected
 		  Case True
@@ -283,6 +282,7 @@ End
 		    Me.Left = 123
 		    Me.Top =  3
 		  #ENDIF
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents

@@ -3,6 +3,9 @@ Protected Class Clock
 Inherits Canvas
 	#tag Event
 		Sub Open()
+		  #IF TargetWin32 Then
+		    DoubleBuffer = True
+		  #ENDIF
 		  
 		  dim d As new date
 		  Time_Container(window).Time_Minute=Format(d.Minute,"00")
@@ -21,13 +24,20 @@ Inherits Canvas
 		      Time_Container(window).Time_Hour="12"
 		    end if
 		  end if
+		  
 		End Sub
 	#tag EndEvent
 
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
-		  g.ForeColor=Date_Time_Container(Time_Container(window).Window).BackColor
-		  g.FillRect(0,0,g.Width,g.Height)
+		  g.AntiAlias = True
+		  // Control the use of the Gradient Fill or Normal Background color
+		  if UseGradientFill = False Then
+		    g.ForeColor=Date_Time_Container(Time_Container(window).Window).BackColor
+		    g.FillRect(0,0,g.Width,g.Height)
+		  Elseif UseGradientFill = True Then
+		    
+		  end if
 		  
 		  // Draw Clock Image
 		  Select Case Date_Time_Container(Time_Container(window).window).ClockFaceType
@@ -78,6 +88,8 @@ Inherits Canvas
 		    End if
 		  End if
 		  g.drawpicture buffer,0,0,g.width,g.height,0,0,buffer.Width,buffer.Height
+		  
+		  
 		  
 		  
 		  
@@ -334,6 +346,10 @@ Inherits Canvas
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		UseGradientFill As Boolean
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		UseGraphicalClockHands As Boolean
 	#tag EndProperty
 
@@ -553,6 +569,11 @@ Inherits Canvas
 			Visible=true
 			Group="Appearance"
 			InitialValue="True"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="UseGradientFill"
+			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty

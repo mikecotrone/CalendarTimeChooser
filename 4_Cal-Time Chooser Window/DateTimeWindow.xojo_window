@@ -44,7 +44,6 @@ Begin Window DateTimeWindow
       Height          =   252
       HelpTag         =   ""
       IncludePrevNextMonthDays=   False
-      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   0
       LocalizationInt =   0
@@ -80,6 +79,30 @@ End
 		  //end
 		End Function
 	#tag EndEvent
+
+
+	#tag Method, Flags = &h21
+		Private Sub mDrawGradientBackfill(g as graphics)
+		  // Awesome Gradient Fill
+		  dim i as integer, ratio, endratio as Double
+		  dim StartColor, EndColor as Color
+		  
+		  // Gradient
+		  StartColor = RGB(255, 255, 255)
+		  EndColor = Date_Time_Container1.BackColor
+		  
+		  // Draw The Gradient
+		  for i = g.Height DownTo 0
+		    // Need our ratios of start / end
+		    ratio = (i/g.Height)
+		    endratio = ((g.Height-i)/g.Height)
+		    // Determine the Color
+		    g.ForeColor = RGB(StartColor.Red * endratio + EndColor.Red * ratio, StartColor.Green * endratio + EndColor.Green * ratio, StartColor.Blue * endratio + EndColor.Blue * ratio)
+		    // Draw the current line
+		    g.DrawLine 0, i, g.Width, i
+		  next
+		End Sub
+	#tag EndMethod
 
 
 	#tag ComputedProperty, Flags = &h0
@@ -228,6 +251,24 @@ End
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
+			  return Date_Time_Container1.Time_Container1.Clock1.UseGradientFill
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Date_Time_Container1.Time_Container1.Clock1.UseGradientFill  = value
+			End Set
+		#tag EndSetter
+		UseGradientFillClock As Boolean
+	#tag EndComputedProperty
+
+	#tag Property, Flags = &h0
+		UseGradientFillWindow As Boolean
+	#tag EndProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
 			  Return Date_Time_Container1.UseGraphicalClockHands
 			End Get
 		#tag EndGetter
@@ -272,6 +313,15 @@ End
 
 #tag EndWindowCode
 
+#tag Events Date_Time_Container1
+	#tag Event
+		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		  if UseGradientFillWindow = True Then
+		    mDrawGradientBackfill(g)
+		  End
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
 		Name="AllowMultipleCalendarSelections"

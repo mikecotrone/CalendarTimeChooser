@@ -26,8 +26,7 @@ Begin ContainerControl Date_Time_Container
    Visible         =   True
    Width           =   394
    Begin Timer ClockSecondHandTimer
-      Enabled         =   True
-      Height          =   "32"
+      Height          =   32
       Index           =   -2147483648
       InitialParent   =   ""
       Left            =   0
@@ -37,8 +36,7 @@ Begin ContainerControl Date_Time_Container
       Scope           =   0
       TabPanelIndex   =   0
       Top             =   0
-      Visible         =   True
-      Width           =   "32"
+      Width           =   32
    End
    Begin Separator Separator1
       AutoDeactivate  =   True
@@ -72,7 +70,6 @@ Begin ContainerControl Date_Time_Container
       HasBackColor    =   False
       Height          =   252
       HelpTag         =   ""
-      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   0
       LockBottom      =   False
@@ -103,7 +100,6 @@ Begin ContainerControl Date_Time_Container
       Height          =   252
       HelpTag         =   ""
       HideAMPM        =   False
-      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   235
       LockBottom      =   False

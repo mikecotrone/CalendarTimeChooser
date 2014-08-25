@@ -90,12 +90,12 @@ Begin ContainerControl Calendar_Container
    Begin PushButton PreviousMonthButton
       AutoDeactivate  =   True
       Bold            =   True
-      ButtonStyle     =   "4"
+      ButtonStyle     =   "1"
       Cancel          =   False
       Caption         =   "<"
       Default         =   False
       Enabled         =   True
-      Height          =   18
+      Height          =   20
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -121,12 +121,12 @@ Begin ContainerControl Calendar_Container
    Begin PushButton CurrentMonthButton
       AutoDeactivate  =   True
       Bold            =   False
-      ButtonStyle     =   "4"
+      ButtonStyle     =   "1"
       Cancel          =   False
       Caption         =   ""
       Default         =   False
       Enabled         =   True
-      Height          =   18
+      Height          =   20
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -152,12 +152,12 @@ Begin ContainerControl Calendar_Container
    Begin PushButton NextMonthButton
       AutoDeactivate  =   True
       Bold            =   True
-      ButtonStyle     =   "4"
+      ButtonStyle     =   "1"
       Cancel          =   False
       Caption         =   ">"
       Default         =   False
       Enabled         =   True
-      Height          =   18
+      Height          =   20
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -269,12 +269,12 @@ Begin ContainerControl Calendar_Container
    Begin PushButton NextYearButton
       AutoDeactivate  =   True
       Bold            =   True
-      ButtonStyle     =   "4"
+      ButtonStyle     =   "1"
       Cancel          =   False
       Caption         =   ">>"
       Default         =   False
       Enabled         =   True
-      Height          =   18
+      Height          =   20
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -300,12 +300,12 @@ Begin ContainerControl Calendar_Container
    Begin PushButton PrevYearButton
       AutoDeactivate  =   True
       Bold            =   True
-      ButtonStyle     =   "4"
+      ButtonStyle     =   "1"
       Cancel          =   False
       Caption         =   "<<"
       Default         =   False
       Enabled         =   True
-      Height          =   18
+      Height          =   20
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -350,7 +350,6 @@ Begin ContainerControl Calendar_Container
       Selectable      =   False
       TabIndex        =   57
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Recurrence"
       TextAlign       =   0
       TextColor       =   &c00000000

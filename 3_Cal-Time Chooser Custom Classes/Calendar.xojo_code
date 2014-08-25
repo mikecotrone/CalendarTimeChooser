@@ -97,6 +97,7 @@ Inherits Canvas
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
 		  g.AntiAlias = True
+		  
 		  // Fill White Background
 		  g.ForeColor = RGB(255,255,255)
 		  g.FillRect (1,1,me.Width-2,me.Height-2)
@@ -1692,6 +1693,18 @@ Inherits Canvas
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="GradientColor1"
+			Group="Behavior"
+			InitialValue="&c000000"
+			Type="Color"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="GradientColor2"
+			Group="Behavior"
+			InitialValue="&c000000"
+			Type="Color"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Height"
 			Visible=true
 			Group="Position"
@@ -1983,6 +1996,11 @@ Inherits Canvas
 			Visible=true
 			Group="Appearance"
 			InitialValue="True"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="UseGradientFill"
+			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty

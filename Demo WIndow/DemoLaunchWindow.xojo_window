@@ -9,11 +9,11 @@ Begin Window DemoLaunchWindow
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   518
+   Height          =   604
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
-   MaxHeight       =   518
+   MaxHeight       =   900
    MaximizeButton  =   False
    MaxWidth        =   489
    MenuBar         =   0
@@ -78,7 +78,7 @@ Begin Window DemoLaunchWindow
       Bold            =   False
       Caption         =   ""
       Enabled         =   True
-      Height          =   361
+      Height          =   445
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -176,7 +176,7 @@ Begin Window DemoLaunchWindow
          Index           =   -2147483648
          InitialParent   =   "GroupBox1"
          Italic          =   False
-         Left            =   279
+         Left            =   79
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -187,48 +187,17 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   7
          TabPanelIndex   =   0
-         Text            =   "Change Back Color:"
+         Text            =   "Change Window Back Color:"
          TextAlign       =   0
          TextColor       =   &c00000000
          TextFont        =   "Helvetica"
          TextSize        =   12.0
          TextUnit        =   0
-         Top             =   158
+         Top             =   237
          Transparent     =   True
          Underline       =   False
          Visible         =   True
-         Width           =   127
-      End
-      Begin PopupMenu ChangeBackColorPopupMenu
-         AutoDeactivate  =   True
-         Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
-         Enabled         =   True
-         Height          =   20
-         HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "GroupBox1"
-         InitialValue    =   ""
-         Italic          =   False
-         Left            =   278
-         ListIndex       =   0
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Scope           =   0
-         TabIndex        =   8
-         TabPanelIndex   =   0
-         TabStop         =   True
-         TextFont        =   "System"
-         TextSize        =   0.0
-         TextUnit        =   0
-         Top             =   183
-         Underline       =   False
-         Visible         =   True
-         Width           =   188
+         Width           =   175
       End
       Begin PopupMenu ClockFaceChangerPopupMenu
          AutoDeactivate  =   True
@@ -256,7 +225,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "System"
          TextSize        =   0.0
          TextUnit        =   0
-         Top             =   250
+         Top             =   337
          Underline       =   False
          Visible         =   True
          Width           =   188
@@ -289,7 +258,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "Helvetica"
          TextSize        =   12.0
          TextUnit        =   0
-         Top             =   224
+         Top             =   311
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -317,7 +286,7 @@ Begin Window DemoLaunchWindow
          TabIndex        =   22
          TabPanelIndex   =   0
          TabStop         =   True
-         Top             =   250
+         Top             =   337
          Transparent     =   True
          UseFocusRing    =   True
          Visible         =   True
@@ -377,7 +346,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "System"
          TextSize        =   0.0
          TextUnit        =   0
-         Top             =   249
+         Top             =   336
          Underline       =   False
          Visible         =   True
          Width           =   188
@@ -410,7 +379,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "Helvetica"
          TextSize        =   12.0
          TextUnit        =   0
-         Top             =   224
+         Top             =   311
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -442,7 +411,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "System"
          TextSize        =   0.0
          TextUnit        =   0
-         Top             =   303
+         Top             =   390
          Underline       =   False
          Visible         =   True
          Width           =   188
@@ -475,7 +444,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "Helvetica"
          TextSize        =   12.0
          TextUnit        =   0
-         Top             =   279
+         Top             =   366
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -507,7 +476,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "System"
          TextSize        =   0.0
          TextUnit        =   0
-         Top             =   365
+         Top             =   452
          Underline       =   False
          Visible         =   True
          Width           =   188
@@ -540,7 +509,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "Helvetica"
          TextSize        =   12.0
          TextUnit        =   0
-         Top             =   340
+         Top             =   427
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -568,7 +537,7 @@ Begin Window DemoLaunchWindow
          TabIndex        =   36
          TabPanelIndex   =   0
          TabStop         =   True
-         Top             =   365
+         Top             =   452
          Transparent     =   True
          UseFocusRing    =   True
          Visible         =   True
@@ -602,7 +571,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "Helvetica"
          TextSize        =   12.0
          TextUnit        =   0
-         Top             =   393
+         Top             =   480
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -634,7 +603,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "System"
          TextSize        =   0.0
          TextUnit        =   0
-         Top             =   417
+         Top             =   504
          Underline       =   False
          Visible         =   True
          Width           =   191
@@ -665,7 +634,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "System"
          TextSize        =   0.0
          TextUnit        =   0
-         Top             =   365
+         Top             =   452
          Underline       =   False
          Visible         =   True
          Width           =   188
@@ -698,7 +667,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "Helvetica"
          TextSize        =   12.0
          TextUnit        =   0
-         Top             =   303
+         Top             =   390
          Transparent     =   False
          Underline       =   False
          Visible         =   True
@@ -726,7 +695,7 @@ Begin Window DemoLaunchWindow
          TabIndex        =   42
          TabPanelIndex   =   0
          TabStop         =   True
-         Top             =   303
+         Top             =   390
          Transparent     =   True
          UseFocusRing    =   True
          Visible         =   True
@@ -760,7 +729,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "Helvetica"
          TextSize        =   12.0
          TextUnit        =   0
-         Top             =   393
+         Top             =   480
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -792,7 +761,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "System"
          TextSize        =   0.0
          TextUnit        =   0
-         Top             =   417
+         Top             =   504
          Underline       =   False
          Visible         =   True
          Width           =   191
@@ -825,7 +794,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "Helvetica"
          TextSize        =   12.0
          TextUnit        =   0
-         Top             =   450
+         Top             =   537
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -859,7 +828,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "Helvetica"
          TextSize        =   12.0
          TextUnit        =   0
-         Top             =   450
+         Top             =   537
          Transparent     =   True
          Underline       =   False
          Visible         =   True
@@ -902,7 +871,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "Helvetica"
          TextSize        =   12.0
          TextUnit        =   0
-         Top             =   476
+         Top             =   563
          Underline       =   False
          UseFocusRing    =   True
          Visible         =   True
@@ -945,11 +914,132 @@ Begin Window DemoLaunchWindow
          TextFont        =   "Helvetica"
          TextSize        =   12.0
          TextUnit        =   0
-         Top             =   476
+         Top             =   563
          Underline       =   False
          UseFocusRing    =   True
          Visible         =   True
          Width           =   80
+      End
+      Begin Label UseGradientFillLabel
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         Italic          =   False
+         Left            =   279
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Multiline       =   False
+         Scope           =   0
+         Selectable      =   False
+         TabIndex        =   49
+         TabPanelIndex   =   0
+         Text            =   "Use Gradient Fill:"
+         TextAlign       =   0
+         TextColor       =   &c00000000
+         TextFont        =   "Helvetica"
+         TextSize        =   12.0
+         TextUnit        =   0
+         Top             =   237
+         Transparent     =   True
+         Underline       =   False
+         Visible         =   True
+         Width           =   127
+      End
+      Begin PopupMenu UseGradientFillPopupMenu
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         InitialValue    =   ""
+         Italic          =   False
+         Left            =   278
+         ListIndex       =   0
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   50
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   262
+         Underline       =   False
+         Visible         =   True
+         Width           =   188
+      End
+      Begin Canvas BackGroundIcon
+         AcceptFocus     =   False
+         AcceptTabs      =   False
+         AutoDeactivate  =   True
+         Backdrop        =   0
+         DoubleBuffer    =   False
+         Enabled         =   True
+         EraseBackground =   True
+         Height          =   47
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         Left            =   17
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   51
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Top             =   237
+         Transparent     =   True
+         UseFocusRing    =   True
+         Visible         =   True
+         Width           =   50
+      End
+      Begin Canvas WindowColorPickerCanvas
+         AcceptFocus     =   False
+         AcceptTabs      =   False
+         AutoDeactivate  =   True
+         Backdrop        =   0
+         DoubleBuffer    =   True
+         Enabled         =   True
+         EraseBackground =   False
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         Left            =   78
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         TabIndex        =   52
+         TabPanelIndex   =   0
+         TabStop         =   True
+         Top             =   262
+         Transparent     =   True
+         UseFocusRing    =   True
+         Visible         =   True
+         Width           =   159
       End
    End
    Begin Separator Separator2
@@ -969,7 +1059,7 @@ Begin Window DemoLaunchWindow
       TabIndex        =   6
       TabPanelIndex   =   0
       TabStop         =   True
-      Top             =   333
+      Top             =   420
       Visible         =   True
       Width           =   469
    End
@@ -990,7 +1080,7 @@ Begin Window DemoLaunchWindow
       TabIndex        =   7
       TabPanelIndex   =   0
       TabStop         =   True
-      Top             =   214
+      Top             =   301
       Visible         =   True
       Width           =   469
    End
@@ -1022,7 +1112,7 @@ Begin Window DemoLaunchWindow
       TextFont        =   "Helvetica"
       TextSize        =   12.0
       TextUnit        =   0
-      Top             =   340
+      Top             =   427
       Transparent     =   True
       Underline       =   False
       Visible         =   True
@@ -1056,11 +1146,32 @@ Begin Window DemoLaunchWindow
       TextFont        =   "Helvetica"
       TextSize        =   12.0
       TextUnit        =   0
-      Top             =   279
+      Top             =   366
       Transparent     =   True
       Underline       =   False
       Visible         =   True
       Width           =   207
+   End
+   Begin Separator Separator3
+      AutoDeactivate  =   True
+      Enabled         =   True
+      Height          =   4
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   0
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   19
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   219
+      Visible         =   True
+      Width           =   469
    End
 End
 #tag EndWindow
@@ -1104,9 +1215,9 @@ End
 	#tag Event
 		Sub Open()
 		  
-		  Me.Text = "Welcome to the ""Calendar and Time Chooser Project""! "+EndOfLine+EndOfLine
+		  Me.Text = "Welcome to the open source ""Calendar and Time Chooser Project""! "+EndOfLine+EndOfLine
 		  
-		  Me.AppendText "This project was written in Xojo 2014r1.1 and is free to use in your commercial and/or open source software."+EndOfLine+EndOfLine+_
+		  Me.AppendText "This project is written using Xojo 2014r2.1 and is free to use in your commercial and/or open source software."+EndOfLine+EndOfLine+_
 		  "Please read the ""Quick Start App Note"" and If you have any questions "+_
 		  "please email me at mikec@intelligentvisibility.com."+EndOfLine
 		End Sub
@@ -1135,39 +1246,6 @@ End
 		  End Select
 		  
 		  
-		  
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events ChangeBackColorPopupMenu
-	#tag Event
-		Sub Open()
-		  // Load Popup Menu
-		  me.AddRow("Dark Grey")
-		  me.AddRow("Medium Grey")
-		  me.AddRow("Light Grey")
-		  me.AddRow("Light Green")
-		  me.AddRow("Light Cyan")
-		  me.ListIndex = 0
-		  
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub Change()
-		  Select Case Me.Text
-		  Case "Dark Grey"
-		    MyPicker.Date_Time_Container1.BackColor = RGB(173,173,173)
-		  Case "Medium Grey"
-		    MyPicker.Date_Time_Container1.BackColor = RGB(200,200,200)
-		  Case "Light Grey"
-		    MyPicker.Date_Time_Container1.BackColor = RGB(239,239,239)
-		  Case "Light Green"
-		    MyPicker.Date_Time_Container1.BackColor = &cc5cfc5
-		  Case "Light Cyan"
-		    MyPicker.Date_Time_Container1.BackColor = RGB(234,244,255)
-		  End Select
-		  
-		  MyPicker.Invalidate(True)
 		  
 		End Sub
 	#tag EndEvent
@@ -1388,7 +1466,7 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
-		  g.ForeColor = RGB(0,0,0)
+		  g.ForeColor = RGB(100,100,100)
 		  g.PenHeight=2
 		  g.PenWidth=2
 		  g.DrawRoundRect(2,2,me.Width-2,me.Height-2,6,6)
@@ -1489,6 +1567,69 @@ End
 		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.mLoad_YearList(CDbl(CalStartYear_Textfield.Text),CDbl(Me.Text))
 		  End if
 		End Function
+	#tag EndEvent
+#tag EndEvents
+#tag Events UseGradientFillPopupMenu
+	#tag Event
+		Sub Open()
+		  // Load Popup Menu
+		  Me.AddRow("False")
+		  me.AddRow("True")
+		  me.ListIndex = 0
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Change()
+		  Select Case Me.Text
+		  Case "True"
+		    MyPicker.UseGradientFillWindow = True
+		    MyPicker.UseGradientFillClock = True
+		  Case "False"
+		    MyPicker.UseGradientFillWindow =  False
+		    MyPicker.UseGradientFillClock = False
+		  End Select
+		  
+		  MyPicker.Invalidate(True)
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events BackGroundIcon
+	#tag Event
+		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		  g.DrawPicture(kscolor,0,0)
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events WindowColorPickerCanvas
+	#tag Event
+		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		  dim p As new Picture(me.Width,me.Height)
+		  static windowBorderColor as color=MyPicker.Date_Time_Container1.BackColor
+		  
+		  if SelectColor(windowBorderColor, "Select a window background color") then
+		    MyPicker.Date_Time_Container1.BackColor = windowBorderColor
+		    MyPicker.Invalidate(True)
+		    Me.Invalidate(False)
+		  end if
+		  
+		End Function
+	#tag EndEvent
+	#tag Event
+		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		  g.ForeColor = RGB(100,100,100)
+		  g.PenHeight=2
+		  g.PenWidth=2
+		  g.DrawRoundRect(2,2,me.Width-2,me.Height-2,6,6)
+		  
+		  dim p As new Picture(me.Width,me.Height)
+		  p.Graphics.ForeColor=MyPicker.Date_Time_Container1.BackColor
+		  
+		  p.Graphics.FillRoundRect 0,0,p.Width-6,p.Height-6,4,4
+		  g.DrawPicture(p,4,4)
+		  
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
