@@ -18,22 +18,21 @@ What is this Project?
 
   - This project came out of a need for a professional calendar and time chooser for scheduling
   
-  - The intent of this project is NOT "to be a clock". It is a Chooser of Date(s) and the time.
-  
-  - What are the Supported Time Formats for the time chooser picklist?
-        - 12 and 24 hour time support 
+  - Supported Time Formats are 12 and 24 hour
         
-  - Awesome Clock hand animation
+  - Professional smooth clock hand animation
   
-  - Single or Multi Day selection
+  - Single or Multi Day calendar selection capability
 
-  - Recurring option
+  - Recurring calendar selection option
   
   
 Whats New in 1.9?
 -----------------
 - Added the ability to use a Gradient fill for the Date/Time Chooser Window
+- Added a color wheel to allow custom window color selection
 - Resolved the lack of native feel when choosing / using the Clock time chooser
+- Updated the "Demo Window" to reflect the Gradient fill feature
 
 Whats New in 1.8?
 -----------------
