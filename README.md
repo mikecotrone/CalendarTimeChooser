@@ -71,8 +71,9 @@ How to Use this Project?
 Please read our full "How To" documentation located at:
 https://github.com/mikecotrone/CalendarTimeChooser/tree/master/Documentation
 
-Report Issues?
 
-Please submit a bug/issue:
+How to Report Issues?
+
+Please submit bug/issues at:
 https://github.com/IntelligentVisibility/CalendarTimeChooser/issues
 
