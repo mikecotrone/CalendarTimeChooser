@@ -1,3 +1,4 @@
 *.debug.app*
 *.xojo_uistate
 *.dylib
+/TEST/
