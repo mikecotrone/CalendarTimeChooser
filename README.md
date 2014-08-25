@@ -11,7 +11,7 @@ Author:         Mike Cotrone (mikec@intelligentvisibility.com)
 
 Contributors:   Jim McKay
 
-Version:        1.8
+Version:        1.9
 
 
 What is this Project?
@@ -28,6 +28,12 @@ What is this Project?
   - Single or Multi Day selection
 
   - Recurring option
+  
+  
+Whats New in 1.9?
+-----------------
+- Added the ability to use a Gradient fill for the Date/Time Chooser Window
+- Resolved the lack of native feel when choosing / using the Clock time chooser
 
 Whats New in 1.8?
 -----------------
