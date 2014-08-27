@@ -11,7 +11,7 @@ Author:         Mike Cotrone (mikec@intelligentvisibility.com)
 
 Contributors:   Jim McKay
 
-Version:        1.9
+Version:        2.0
 
 
 What is this Project?
@@ -26,7 +26,15 @@ What is this Project?
 
   - Recurring calendar selection option
   
-  
+Whats New in 2.0?
+-----------------
+- Added Portuguese Localization
+- Improved the separator alignment on the Date_Time_Container
+- Added Cancel and Submit buttons to the DateTimeWindow for easier implementation
+- Added #IF Target statements to properly display Cancel/Submit button arrangement for Windows/Mac
+- Force a show DateTimeWindow after every demo option selection for a smoother demo experience
+
+
 Whats New in 1.9?
 -----------------
 - Added the ability to use a Gradient fill for the Date/Time Chooser Window
