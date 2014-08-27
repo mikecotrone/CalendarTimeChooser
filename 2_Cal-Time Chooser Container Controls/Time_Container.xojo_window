@@ -100,7 +100,7 @@ Begin ContainerControl Time_Container
       HourCount       =   12
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   15
+      Left            =   16
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
