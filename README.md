@@ -3,7 +3,7 @@ CalendarTimeChooser
 
 Xojo Calendar and Time Chooser Picklist
 
-Date:           August 25, 2014
+Date:           August 26, 2014
 
 Language:       Xojo 2014r2.1
 
