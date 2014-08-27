@@ -1245,6 +1245,7 @@ End
 		    MyPicker.VisiblePickers=Date_Time_Container.PickerElements.ClockOnly
 		  End Select
 		  
+		  MyPicker.Show
 		  
 		  
 		End Sub
@@ -1291,6 +1292,7 @@ End
 		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType.Antique
 		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = True
 		  End Select
+		  MyPicker.Show
 		  
 		  
 		End Sub
@@ -1331,6 +1333,7 @@ End
 		  
 		  MyPicker.Date_Time_Container1.Time_Container1.Clock1.Invalidate(False)
 		  MyPicker.Date_Time_Container1.Time_Container1.TimePicker1.Invalidate(False)
+		  MyPicker.Show
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -1375,6 +1378,7 @@ End
 		    MyPicker.WeekStartsOnMonday = True
 		  End Select
 		  
+		  MyPicker.Show
 		  
 		End Sub
 	#tag EndEvent
@@ -1397,6 +1401,7 @@ End
 		  me.AddRow("German")
 		  me.AddRow("Italian")
 		  me.AddRow("Polish")
+		  me.AddRow("Portuguese")
 		  me.AddRow("Spanish")
 		  me.AddRow("Swedish")
 		  
@@ -1424,8 +1429,11 @@ End
 		    MyPicker.LocalizationInt = 7
 		  Case "Polish"
 		    MyPicker.LocalizationInt = 8
+		  Case "Portuguese"
+		    MyPicker.LocalizationInt = 9
 		  End Select
 		  
+		  MyPicker.Show
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -1447,6 +1455,7 @@ End
 		    MyPicker.IncludePrevNextMonthDays = False
 		  End Select
 		  
+		  MyPicker.Show
 		  
 		End Sub
 	#tag EndEvent
@@ -1461,7 +1470,9 @@ End
 		    Invalidate(False)
 		    dim v As Variant=handColor
 		    SelectedHandColorLabel.Text=v.StringValue
+		    MyPicker.Show
 		  end if
+		  
 		End Function
 	#tag EndEvent
 	#tag Event
@@ -1503,6 +1514,8 @@ End
 		  Case "False"
 		    MyPicker.AllowMultipleCalendarSelections = False
 		  End Select
+		  
+		  MyPicker.Show
 		  
 		End Sub
 	#tag EndEvent
@@ -1591,6 +1604,7 @@ End
 		  End Select
 		  
 		  MyPicker.Invalidate(True)
+		  MyPicker.Show
 		  
 		End Sub
 	#tag EndEvent
@@ -1612,6 +1626,7 @@ End
 		    MyPicker.Date_Time_Container1.BackColor = windowBorderColor
 		    MyPicker.Invalidate(True)
 		    Me.Invalidate(False)
+		    MyPicker.Show
 		  end if
 		  
 		End Function

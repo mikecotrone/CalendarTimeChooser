@@ -2,23 +2,23 @@
 Begin Window DateTimeWindow
    BackColor       =   &cFFFFFF00
    Backdrop        =   0
-   CloseButton     =   False
+   CloseButton     =   True
    Compatibility   =   ""
    Composite       =   False
    Frame           =   0
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   252
+   Height          =   286
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
-   MaxHeight       =   252
+   MaxHeight       =   286
    MaximizeButton  =   True
    MaxWidth        =   394
    MenuBar         =   0
    MenuBarVisible  =   True
-   MinHeight       =   252
+   MinHeight       =   286
    MinimizeButton  =   True
    MinWidth        =   394
    Placement       =   0
@@ -64,6 +64,89 @@ Begin Window DateTimeWindow
       Visible         =   True
       WeekStartsOnMonday=   False
       Width           =   394
+   End
+   Begin PushButton Cancel_Button
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   True
+      Caption         =   "Cancel"
+      Default         =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   126
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   1
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "Helvetica"
+      TextSize        =   12.0
+      TextUnit        =   0
+      Top             =   259
+      Underline       =   False
+      Visible         =   True
+      Width           =   69
+   End
+   Begin PushButton Finished_Button
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   True
+      Caption         =   "Submit"
+      Default         =   False
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   200
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   2
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "Helvetica"
+      TextSize        =   12.0
+      TextUnit        =   0
+      Top             =   259
+      Underline       =   False
+      Visible         =   True
+      Width           =   69
+   End
+   Begin Separator Separator1
+      AutoDeactivate  =   True
+      Enabled         =   True
+      Height          =   1
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   0
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   3
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   252
+      Visible         =   True
+      Width           =   401
    End
 End
 #tag EndWindow
@@ -322,6 +405,20 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
+#tag Events Cancel_Button
+	#tag Event
+		Sub Action()
+		  //Self.Close
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events Finished_Button
+	#tag Event
+		Sub Action()
+		  MsgBox "Thank you for choosing our project"
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
 		Name="AllowMultipleCalendarSelections"
@@ -575,6 +672,16 @@ End
 		Group="Appearance"
 		InitialValue="Untitled"
 		Type="String"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="UseGradientFillClock"
+		Group="Behavior"
+		Type="Boolean"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="UseGradientFillWindow"
+		Group="Behavior"
+		Type="Boolean"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="UseGraphicalClockHands"

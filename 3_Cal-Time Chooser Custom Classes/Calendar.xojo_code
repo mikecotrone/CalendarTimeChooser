@@ -721,6 +721,15 @@ Inherits Canvas
 		    Localized_Friday = "Piątek"
 		    Localized_Saturday = "Sobota"
 		    Localized_Sunday = "Niedziela"
+		    
+		  Case 9 // Portuguese
+		    Localized_Monday = "Segunda-feira"
+		    Localized_Tuesday = "Terça-feira"
+		    Localized_Wednesday = "Quarta-feira"
+		    Localized_Thursday = "Quinta-feira"
+		    Localized_Friday = "Sexta-feira"
+		    Localized_Saturday = "Sábado"
+		    Localized_Sunday = "Domingo"
 		  End Select
 		  
 		  
@@ -856,6 +865,20 @@ Inherits Canvas
 		    Localized_October = "Październik"
 		    Localized_November = "Listopad"
 		    Localized_December = "Grudzień"
+		    
+		  Case 9 // Portuguese
+		    Localized_January = "Janeiro"
+		    Localized_February = "Fevereiro"
+		    Localized_March = "Março"
+		    Localized_April = "Abril"
+		    Localized_May = "Maio"
+		    Localized_June = "Junho"
+		    Localized_July = "Julho"
+		    Localized_August = "Agosto"
+		    Localized_September = "Setembro"
+		    Localized_October = "Outubro"
+		    Localized_November = "Novembro"
+		    Localized_December = "Dezembro"
 		    
 		  End Select
 		  
@@ -1045,6 +1068,25 @@ Inherits Canvas
 		    DayOfWeek_MS.Append "Pt"
 		    DayOfWeek_MS.Append "Sob"
 		    DayOfWeek_MS.Append "Ni" // Sunday
+		    
+		  Case 9 // Portuguese
+		    Redim DayOfWeekArray_SS(-1)
+		    DayOfWeekArray_SS.Append "Dom" // Sunday
+		    DayOfWeekArray_SS.Append "Seg"
+		    DayOfWeekArray_SS.Append "Ter"
+		    DayOfWeekArray_SS.Append "Qua"
+		    DayOfWeekArray_SS.Append "Qui"
+		    DayOfWeekArray_SS.Append "Sex"
+		    DayOfWeekArray_SS.Append "Sab" // Saturday
+		    // Mon - Sun
+		    Redim DayOfWeek_MS(-1)
+		    DayOfWeek_MS.Append "Seg" // Monday
+		    DayOfWeek_MS.Append "Ter"
+		    DayOfWeek_MS.Append "Qua"
+		    DayOfWeek_MS.Append "Qui"
+		    DayOfWeek_MS.Append "Sex"
+		    DayOfWeek_MS.Append "Sab"
+		    DayOfWeek_MS.Append "Dom" // Sunday
 		    
 		  End Select
 		  
@@ -1693,18 +1735,6 @@ Inherits Canvas
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="GradientColor1"
-			Group="Behavior"
-			InitialValue="&c000000"
-			Type="Color"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="GradientColor2"
-			Group="Behavior"
-			InitialValue="&c000000"
-			Type="Color"
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="Height"
 			Visible=true
 			Group="Position"
@@ -1996,11 +2026,6 @@ Inherits Canvas
 			Visible=true
 			Group="Appearance"
 			InitialValue="True"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="UseGradientFill"
-			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty

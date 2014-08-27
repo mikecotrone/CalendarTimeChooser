@@ -9,7 +9,7 @@ Begin ContainerControl Date_Time_Container
    Enabled         =   True
    EraseBackground =   False
    HasBackColor    =   True
-   Height          =   252
+   Height          =   286
    HelpTag         =   ""
    InitialParent   =   ""
    Left            =   0
@@ -45,7 +45,7 @@ Begin ContainerControl Date_Time_Container
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   234
+      Left            =   236
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -235,6 +235,16 @@ End
 		    Localized_Recurring_Every_Str =  "każdy " // "Every " // Trailing space is done purposely
 		    Localized_Recurring_Day_Str =      "dzień "  // "Day " // Trailing space is done purposely
 		    Localized_Recurring_of_Every_Str =   " z każdym "  // " of Every " // Leading and Trailing space is done purposely
+		    
+		  Case 9 // Portuguese
+		    Localized_CalendarOnlyTitle_Str = "escolher data"
+		    Localized_ChooseBothTitle_Str = "Escolha data e hora"
+		    Localized_TimeOnlyTitle_Str = "Escolha Tempo"
+		    Localized_Recurring_OnceOnly_Str = "Once Only"
+		    Localized_Recurring_Every_Str = "cada " // Trailing space is done purposely
+		    Localized_Recurring_Day_Str = "dia " // Trailing space is done purposely
+		    Localized_Recurring_of_Every_Str = " de cada " // Leading and Trailing space is done purposely
+		    
 		  End Select
 		  
 		  mChangeLocalizedWindowTitle
@@ -245,7 +255,16 @@ End
 		Private Sub mSetupForBothPickers()
 		  if Window isa DateTimeWindow then
 		    window.Width = 394
-		    window.Height = 252
+		    window.Height = 286
+		    
+		    #If TargetMacOS Then
+		      DateTimeWindow(Window).Cancel_Button.Left = 126
+		      DateTimeWindow(Window).Finished_Button.Left = 200
+		    #ElseIf TargetWin32 Then
+		      DateTimeWindow(Window).Cancel_Button.Left = 200
+		      DateTimeWindow(Window).Finished_Button.Left = 126
+		    #endif
+		    
 		    TrueWindow.Title = Localized_ChooseBothTitle_Str
 		  end if
 		  
@@ -256,14 +275,26 @@ End
 		  Time_Container1.Visible = True
 		  
 		  
+		  
+		  
+		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Sub mSetupForCalendarPickerOnly()
 		  if window isa DateTimeWindow then
-		    window.Width = 230
-		    window.Height = 252
+		    window.Width = 236
+		    window.Height = 286
+		    
+		    #If TargetMacOS Then
+		      DateTimeWindow(Window).Cancel_Button.Left = 50
+		      DateTimeWindow(Window).Finished_Button.Left = 124
+		    #Elseif TargetWin32 Then
+		      DateTimeWindow(Window).Cancel_Button.Left = 124
+		      DateTimeWindow(Window).Finished_Button.Left = 50
+		    #endif
+		    
 		    TrueWindow.Title = Localized_CalendarOnlyTitle_Str
 		  end if
 		  
@@ -279,15 +310,21 @@ End
 	#tag Method, Flags = &h21
 		Private Sub mSetupForTimePickerOnly()
 		  if window isa DateTimeWindow then
-		    window.Width = 156
-		    window.Height = 252
+		    window.Width = 236
+		    window.Height = 286
+		    #If TargetMacOS Then
+		      DateTimeWindow(Window).Cancel_Button.Left = 50
+		      DateTimeWindow(Window).Finished_Button.Left = 124
+		    #Elseif TargetWin32 Then
+		      DateTimeWindow(Window).Cancel_Button.Left = 124
+		      DateTimeWindow(Window).Finished_Button.Left = 50
+		    #endif
 		    TrueWindow.Title = Localized_TimeOnlyTitle_Str
 		  end if
 		  
-		  
 		  Time_Container1.Enabled = True
 		  Time_Container1.Visible = True
-		  Time_Container1.Left = 0
+		  Time_Container1.Left = DateTimeWindow(Window).Width/2-Time_Container1.Width/2
 		  //
 		  Calendar_Container1.Enabled = False
 		  Calendar_Container1.Visible = False

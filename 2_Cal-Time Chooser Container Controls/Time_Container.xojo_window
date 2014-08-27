@@ -9,7 +9,7 @@ Begin ContainerControl Time_Container
    Enabled         =   True
    EraseBackground =   True
    HasBackColor    =   False
-   Height          =   252
+   Height          =   286
    HelpTag         =   ""
    InitialParent   =   ""
    Left            =   0
@@ -42,7 +42,7 @@ Begin ContainerControl Time_Container
       Index           =   -2147483648
       InitialParent   =   ""
       KeyBuffer       =   ""
-      Left            =   42
+      Left            =   38
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -66,7 +66,7 @@ Begin ContainerControl Time_Container
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   124
+      Left            =   120
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -114,6 +114,7 @@ Begin ContainerControl Time_Container
       Top             =   62
       Transparent     =   True
       UseFocusRing    =   True
+      UseGradientFill =   False
       UseGraphicalClockHands=   True
       Visible         =   True
       Width           =   130
@@ -207,7 +208,7 @@ End
 		Sub Down()
 		  // Default Behavior
 		  if TimePicker1.Draw_Hour_Selected = False AND TimePicker1.Draw_Minute_Selected = False AND TimePicker1.Draw_AMPM_Selected = False Then
-		     TimePicker1.Draw_Hour_Selected = True
+		    TimePicker1.Draw_Hour_Selected = True
 		  end if
 		  
 		  // Change Hours Down
