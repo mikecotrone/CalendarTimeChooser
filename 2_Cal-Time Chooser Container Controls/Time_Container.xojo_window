@@ -111,7 +111,7 @@ Begin ContainerControl Time_Container
       TabPanelIndex   =   0
       TabStop         =   True
       TextColor       =   &c08020200
-      Top             =   62
+      Top             =   59
       Transparent     =   True
       UseFocusRing    =   True
       UseGradientFill =   False

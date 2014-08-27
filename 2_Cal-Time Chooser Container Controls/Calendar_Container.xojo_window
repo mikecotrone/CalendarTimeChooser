@@ -100,7 +100,7 @@ Begin ContainerControl Calendar_Container
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   94
+      Left            =   93
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   False
@@ -131,7 +131,7 @@ Begin ContainerControl Calendar_Container
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   110
+      Left            =   108
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   False
@@ -162,7 +162,7 @@ Begin ContainerControl Calendar_Container
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   128
+      Left            =   125
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   False
@@ -279,7 +279,7 @@ Begin ContainerControl Calendar_Container
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   144
+      Left            =   140
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   False
