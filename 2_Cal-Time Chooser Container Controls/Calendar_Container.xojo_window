@@ -401,6 +401,12 @@ End
 		End Function
 	#tag EndEvent
 
+	#tag Event
+		Sub Open()
+		  
+		End Sub
+	#tag EndEvent
+
 
 	#tag Method, Flags = &h21
 		Private Sub mNextMonth()

@@ -88,9 +88,17 @@ Inherits Canvas
 
 	#tag Event
 		Sub Open()
+		  #If TargetWin32 Then
+		    DoubleBuffer = True
+		    Transparent = True
+		    EraseBackground = False
+		    
+		  #endif
 		  // Set Initially the Selected Date for Today's Date
 		  Dim TodayIsTheDay as new Date
 		  SelectedDate = TodayIsTheDay
+		  
+		  
 		End Sub
 	#tag EndEvent
 

@@ -1049,7 +1049,7 @@ Begin Window DemoLaunchWindow
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   7
+      Left            =   10
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -1061,7 +1061,7 @@ Begin Window DemoLaunchWindow
       TabStop         =   True
       Top             =   420
       Visible         =   True
-      Width           =   469
+      Width           =   468
    End
    Begin Separator Separator1
       AutoDeactivate  =   True
@@ -1070,7 +1070,7 @@ Begin Window DemoLaunchWindow
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   6
+      Left            =   10
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -1082,7 +1082,7 @@ Begin Window DemoLaunchWindow
       TabStop         =   True
       Top             =   301
       Visible         =   True
-      Width           =   469
+      Width           =   467
    End
    Begin Label IncludeNextPrevMonDaysLabel
       AutoDeactivate  =   True
@@ -1159,7 +1159,7 @@ Begin Window DemoLaunchWindow
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   0
+      Left            =   10
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -1171,7 +1171,7 @@ Begin Window DemoLaunchWindow
       TabStop         =   True
       Top             =   219
       Visible         =   True
-      Width           =   469
+      Width           =   468
    End
 End
 #tag EndWindow
@@ -1582,14 +1582,31 @@ End
 		End Function
 	#tag EndEvent
 #tag EndEvents
+#tag Events UseGradientFillLabel
+	#tag Event
+		Sub Open()
+		  #IF TargetMacOS Then
+		    Me.Visible = true
+		    
+		  #ElseIf TargetWin32 Then
+		    Me.Visible = False
+		    
+		  #endif
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag Events UseGradientFillPopupMenu
 	#tag Event
 		Sub Open()
-		  // Load Popup Menu
-		  Me.AddRow("False")
-		  me.AddRow("True")
-		  me.ListIndex = 0
-		  
+		  #If TargetMacOS Then
+		    // Load Popup Menu
+		    Me.AddRow("False")
+		    me.AddRow("True")
+		    me.ListIndex = 0
+		  #ElseIf TargetWin32 Then
+		    Me.Visible = False
+		    
+		  #endif
 		End Sub
 	#tag EndEvent
 	#tag Event

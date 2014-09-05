@@ -123,6 +123,13 @@ End
 #tag EndWindow
 
 #tag WindowCode
+	#tag Event
+		Sub Open()
+		  
+		End Sub
+	#tag EndEvent
+
+
 	#tag Method, Flags = &h0
 		Sub mRaiseEvent_SelectedTime()
 		  RaiseEvent SelectedTime(Time_Hour, Time_Minute, Time_AMPM)
@@ -280,8 +287,8 @@ End
 		Sub Open()
 		  // For some reason this control doesn't look right as set in the IDE for Left/Top
 		  #IF TargetWin32 Then
-		    Me.Left = 123
-		    Me.Top =  3
+		    Me.Left = 125
+		    Me.Top =  13
 		  #ENDIF
 		  
 		End Sub

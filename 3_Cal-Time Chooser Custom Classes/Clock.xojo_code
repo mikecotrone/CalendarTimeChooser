@@ -4,7 +4,9 @@ Inherits Canvas
 	#tag Event
 		Sub Open()
 		  #IF TargetWin32 Then
-		    DoubleBuffer = True
+		    DoubleBuffer = true
+		    Transparent = true
+		    EraseBackground = true
 		  #ENDIF
 		  
 		  dim d As new date
@@ -32,12 +34,21 @@ Inherits Canvas
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
 		  g.AntiAlias = True
 		  // Control the use of the Gradient Fill or Normal Background color
-		  if UseGradientFill = False Then
+		  
+		  #IF TargetMacOS Then
+		    if UseGradientFill = False Then
+		      g.ForeColor=Date_Time_Container(Time_Container(window).Window).BackColor
+		      g.FillRect(0,0,g.Width,g.Height)
+		    Elseif UseGradientFill = True Then
+		      //
+		    end if
+		    
+		    
+		  #ELSEIF TargetWin32 Then
 		    g.ForeColor=Date_Time_Container(Time_Container(window).Window).BackColor
 		    g.FillRect(0,0,g.Width,g.Height)
-		  Elseif UseGradientFill = True Then
 		    
-		  end if
+		  #ENDIF
 		  
 		  // Draw Clock Image
 		  Select Case Date_Time_Container(Time_Container(window).window).ClockFaceType
