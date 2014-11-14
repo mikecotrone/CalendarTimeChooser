@@ -496,6 +496,8 @@ End
 	#tag Method, Flags = &h0
 		Sub mRaiseEvent(inSelectedDate as Date)
 		  RaiseEvent SelectedDate(inSelectedDate)
+		  
+		  
 		End Sub
 	#tag EndMethod
 
@@ -539,7 +541,7 @@ End
 
 
 	#tag Hook, Flags = &h0
-		Event Recurring_Selection(inSelectedMenuItem as String)
+		Event Recurring_Selection(inSelectedRecurring as String)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0
