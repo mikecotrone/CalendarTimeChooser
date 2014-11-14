@@ -133,6 +133,7 @@ End
 	#tag Method, Flags = &h0
 		Sub mRaiseEvent_SelectedTime()
 		  RaiseEvent SelectedTime(Time_Hour, Time_Minute, Time_AMPM)
+		  
 		End Sub
 	#tag EndMethod
 
