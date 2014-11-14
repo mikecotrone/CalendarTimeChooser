@@ -3,7 +3,9 @@ Protected Class App
 Inherits Application
 	#tag Event
 		Sub Open()
-		  app.UseGDIPlus=true // For Windows
+		  #If TargetWin32 = True Then
+		    app.UseGDIPlus=true
+		  #endif
 		  
 		  // This Launches the Demo Launch Window for our Demo
 		  DemoLaunchWindow.Show
