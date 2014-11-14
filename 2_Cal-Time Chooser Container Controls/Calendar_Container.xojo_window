@@ -395,19 +395,6 @@ End
 #tag EndWindow
 
 #tag WindowCode
-	#tag Event
-		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  
-		End Function
-	#tag EndEvent
-
-	#tag Event
-		Sub Open()
-		  
-		End Sub
-	#tag EndEvent
-
-
 	#tag Method, Flags = &h21
 		Private Sub mNextMonth()
 		  // Need a Check to See about Incrementing Year or not
@@ -496,6 +483,8 @@ End
 	#tag Method, Flags = &h0
 		Sub mRaiseEvent(inSelectedDate as Date)
 		  RaiseEvent SelectedDate(inSelectedDate)
+		  
+		  
 		End Sub
 	#tag EndMethod
 
@@ -507,6 +496,7 @@ End
 
 	#tag Method, Flags = &h0
 		Sub mTakeMeToTodaysDate()
+		  
 		  // Bring Us Back to Today's Month
 		  Dim CurrentDateMonthString as String = Calendar1.fConvertMonthIntToMonthString(Calendar1.CurrentDate.Month)
 		  for i as integer = 0 to MonthPopup.ListCount-1
@@ -526,11 +516,13 @@ End
 		  //Select Todays Date
 		  Calendar1.mDeselectAll
 		  for i as integer = 7 to UBound(Calendar1.CalendarButtonClassArray) // Only begin at 7 Since 0-6 Are reserved for Day Of Week Titles
-		    if Calendar1.CalendarButtonClassArray(i).MyDate.Month = Calendar1.CurrentDate.Month AND   Calendar1.CalendarButtonClassArray(i).MyDate.Day = Calendar1.CurrentDate.Day Then
-		      Calendar1.CalendarButtonClassArray(i).Selected = True
-		      Calendar1.SelectedDate = Calendar1.CalendarButtonClassArray(i).MyDate
-		      Calendar1.Invalidate(False)
-		    End if
+		    if Calendar1.CalendarButtonClassArray(i).MyDate <> Nil Then
+		      if Calendar1.CalendarButtonClassArray(i).MyDate.Month = Calendar1.CurrentDate.Month AND  Calendar1.CalendarButtonClassArray(i).MyDate.Day = Calendar1.CurrentDate.Day Then
+		        Calendar1.CalendarButtonClassArray(i).Selected = True
+		        Calendar1.SelectedDate = Calendar1.CalendarButtonClassArray(i).MyDate
+		        Calendar1.Invalidate(False)
+		      End if
+		    end if
 		    
 		    
 		  next i
@@ -539,7 +531,7 @@ End
 
 
 	#tag Hook, Flags = &h0
-		Event Recurring_Selection(inSelectedMenuItem as String)
+		Event Recurring_Selection(inSelectedRecurring as String)
 	#tag EndHook
 
 	#tag Hook, Flags = &h0

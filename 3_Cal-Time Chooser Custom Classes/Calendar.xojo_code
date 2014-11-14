@@ -92,8 +92,9 @@ Inherits Canvas
 		    DoubleBuffer = True
 		    Transparent = True
 		    EraseBackground = False
-		    
 		  #endif
+		  
+		  
 		  // Set Initially the Selected Date for Today's Date
 		  Dim TodayIsTheDay as new Date
 		  SelectedDate = TodayIsTheDay
@@ -242,7 +243,7 @@ Inherits Canvas
 
 
 	#tag Method, Flags = &h1000
-		Sub constructor()
+		Sub Constructor()
 		  // Calling the overridden superclass constructor.
 		  Super.Constructor
 		  
@@ -251,23 +252,23 @@ Inherits Canvas
 		  
 		  // Date Instantiations
 		  CurrentDate = new Date
-		  //StartYear = CurrentDate.Year
 		  
-		  // Build Year Popup Menu on Calendar Container
-		  mLoad_YearList(StartYear,EndYear)
+		  // ------- MODIFY THE VALUES IN THIS METHOD IF YOU WANT A CUSTOM CALENDAR START DATE UPON OPENING
+		  SetCustomCalendarStartDate()
 		  
-		  //// Build Month Popup Menu on Calendar Container
-		  mLoad_MonthList
+		  // LOAD THE YEAR POP UP MENU WITH THE PROPER SELECTION
+		  mLoad_YearList(UserSelectedStartYear,UserSelectedEndYear,CurrentDate.Year)
 		  
 		  // Load the Localized Day of the Week Abbreviation List to the Calendar
 		  mBuild_LocalizedDayOfWeek_Arrays(0)
 		  
-		  /// /// /// /// /// /// /// /// ///
+		  /// /// /// /// /// /// /
 		  /// Gregorian Math ///
-		  /// /// /// /// /// /// /// ///
+		  /// /// /// /// /// /// 
 		  
 		  // Figure out Century Number
 		  CenturyNumber = fCalcCenturyNumber(2015)
+		  
 		  
 		  
 		  
@@ -1222,9 +1223,10 @@ Inherits Canvas
 		  Calendar_Container(window).MonthPopup.AddRow Localized_November
 		  Calendar_Container(window).MonthPopup.AddRow Localized_December
 		  
-		  // Default to Today's Month on Startup
 		  Dim TodaysMonth as New Date
-		  Dim TodaysMonthString as String = fConvertMonthIntToMonthString(TodaysMonth.Month)
+		  Dim TodaysMonthString as String 
+		  
+		  TodaysMonthString  = fConvertMonthIntToMonthString(TodaysMonth.Month)
 		  
 		  for i as integer = 0 to Calendar_Container(Window).MonthPopup.ListCount-1
 		    if TodaysMonthString = Calendar_Container(Window).MonthPopup.List(i) Then
@@ -1235,20 +1237,42 @@ Inherits Canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub mLoad_YearList(inStartYear as integer, inEndYear as Integer)
+		Sub mLoad_YearList(inStartYear as integer, inEndYear as Integer, optional inSelectedYear as Integer)
 		  // Load the Year Pop Up Menu on the Calendar Container
-		  Calendar_Container(window).YearPopup.DeleteAllRows
-		  for i as integer = inStartYear to inEndYear
-		    Calendar_Container(window).YearPopup.AddRow Str(i)
-		  next i
 		  
-		  // Load Curent Year
+		  if inStartYear = 0 OR inEndYear = 0 Then
+		    Calendar_Container(window).YearPopup.DeleteAllRows
+		    for i as integer = 1905 to 2060
+		      Calendar_Container(window).YearPopup.AddRow Str(i)
+		    next i
+		  Else
+		    Calendar_Container(window).YearPopup.DeleteAllRows
+		    for i as integer = inStartYear to inEndYear
+		      Calendar_Container(window).YearPopup.AddRow Str(i)
+		    next i
+		  end if
+		  
+		  // Load Curent Year if inSelectedYear = 0
+		  
 		  Dim TodaysYear as New Date
-		  for i as integer = 0 to Calendar_Container(window).YearPopup.ListCount-1
-		    if Str(TodaysYear.Year) = Calendar_Container(window).YearPopup.List(i) Then
-		      Calendar_Container(window).YearPopup.ListIndex = i
-		    End if
-		  next i
+		  
+		  if inSelectedYear = 0 Then
+		    for i as integer = 0 to Calendar_Container(window).YearPopup.ListCount-1
+		      if Str(TodaysYear.Year) = Calendar_Container(window).YearPopup.List(i) Then
+		        Calendar_Container(window).YearPopup.ListIndex = i
+		      End if
+		    next i
+		    
+		  Elseif inSelectedYear <> 0 Then
+		    
+		    for j as integer = 0 to Calendar_Container(window).YearPopup.ListCount-1
+		      if Str(inSelectedYear) = Calendar_Container(window).YearPopup.List(j) Then
+		        Calendar_Container(window).YearPopup.ListIndex = j
+		      End if
+		    next j
+		    
+		    
+		  end if
 		  
 		End Sub
 	#tag EndMethod
@@ -1334,6 +1358,26 @@ Inherits Canvas
 		  
 		  
 		  Me.Invalidate(False)
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Protected Sub SetCustomCalendarStartDate()
+		  // ------- SET THESE VALUES IF YOU WOULD LIKE A CUSTOM CALENDAR START DATE
+		  
+		  
+		  // IF THESE USER VALUES ARE NOT PRESENT WE WILL DEFAULT TO TODAY'S DATE
+		  //CurrentDate.Month = 5
+		  //CurrentDate.Day = 6
+		  //CurrentDate.Year= 2090
+		  
+		  
+		  // THE START AND END YEAR VALUES ARE THE YEAR BOUNDARY WITHIN YOUR CALENDAR YEAR POP UP MENU
+		  // IF THESE USER VALUES ARE NOT PRESENT WE WILL DEFAULT TO StartYear: 1905 EndYear: 2061
+		  //UserSelectedStartYear = 1000
+		  //UserSelectedEndYear = 2100
 		  
 		  
 		End Sub
@@ -1478,7 +1522,7 @@ Inherits Canvas
 			Set
 			  inEndYear = value
 			  
-			  mLoad_YearList(StartYear,inEndYear)
+			  //mLoad_YearList(StartYear,inEndYear)
 			End Set
 		#tag EndSetter
 		EndYear As Integer
@@ -1652,7 +1696,7 @@ Inherits Canvas
 			Set
 			  inStartYear= value
 			  
-			  mLoad_YearList(inStartYear,2020)
+			  //mLoad_YearList(inStartYear,2020)
 			End Set
 		#tag EndSetter
 		StartYear As Integer
@@ -1664,6 +1708,14 @@ Inherits Canvas
 
 	#tag Property, Flags = &h0
 		TodaysDate_Selected As Color = &cFFFF00
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		UserSelectedEndYear As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		UserSelectedStartYear As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0

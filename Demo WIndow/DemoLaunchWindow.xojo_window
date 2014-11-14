@@ -9,7 +9,7 @@ Begin Window DemoLaunchWindow
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   604
+   Height          =   556
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
@@ -78,7 +78,7 @@ Begin Window DemoLaunchWindow
       Bold            =   False
       Caption         =   ""
       Enabled         =   True
-      Height          =   445
+      Height          =   396
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -766,160 +766,6 @@ Begin Window DemoLaunchWindow
          Visible         =   True
          Width           =   191
       End
-      Begin Label CalStartYear_Label
-         AutoDeactivate  =   True
-         Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
-         Enabled         =   True
-         Height          =   20
-         HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "GroupBox1"
-         Italic          =   False
-         Left            =   80
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Multiline       =   False
-         Scope           =   0
-         Selectable      =   False
-         TabIndex        =   45
-         TabPanelIndex   =   0
-         Text            =   "Calendar Start Year:"
-         TextAlign       =   0
-         TextColor       =   &c00000000
-         TextFont        =   "Helvetica"
-         TextSize        =   12.0
-         TextUnit        =   0
-         Top             =   537
-         Transparent     =   True
-         Underline       =   False
-         Visible         =   True
-         Width           =   127
-      End
-      Begin Label CalStartYear_Label1
-         AutoDeactivate  =   True
-         Bold            =   False
-         DataField       =   ""
-         DataSource      =   ""
-         Enabled         =   True
-         Height          =   20
-         HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "GroupBox1"
-         Italic          =   False
-         Left            =   278
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Multiline       =   False
-         Scope           =   0
-         Selectable      =   False
-         TabIndex        =   46
-         TabPanelIndex   =   0
-         Text            =   "Calendar End Year:"
-         TextAlign       =   0
-         TextColor       =   &c00000000
-         TextFont        =   "Helvetica"
-         TextSize        =   12.0
-         TextUnit        =   0
-         Top             =   537
-         Transparent     =   True
-         Underline       =   False
-         Visible         =   True
-         Width           =   127
-      End
-      Begin TextField CalStartYear_Textfield
-         AcceptTabs      =   False
-         Alignment       =   0
-         AutoDeactivate  =   True
-         AutomaticallyCheckSpelling=   False
-         BackColor       =   &cFFFFFF00
-         Bold            =   False
-         Border          =   True
-         CueText         =   ""
-         DataField       =   ""
-         DataSource      =   ""
-         Enabled         =   True
-         Format          =   ""
-         Height          =   22
-         HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "GroupBox1"
-         Italic          =   False
-         Left            =   78
-         LimitText       =   0
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Mask            =   ""
-         Password        =   False
-         ReadOnly        =   False
-         Scope           =   0
-         TabIndex        =   47
-         TabPanelIndex   =   0
-         TabStop         =   True
-         Text            =   "1904"
-         TextColor       =   &c00000000
-         TextFont        =   "Helvetica"
-         TextSize        =   12.0
-         TextUnit        =   0
-         Top             =   563
-         Underline       =   False
-         UseFocusRing    =   True
-         Visible         =   True
-         Width           =   80
-      End
-      Begin TextField CalEndYear_Textfield
-         AcceptTabs      =   False
-         Alignment       =   0
-         AutoDeactivate  =   True
-         AutomaticallyCheckSpelling=   False
-         BackColor       =   &cFFFFFF00
-         Bold            =   False
-         Border          =   True
-         CueText         =   ""
-         DataField       =   ""
-         DataSource      =   ""
-         Enabled         =   True
-         Format          =   ""
-         Height          =   22
-         HelpTag         =   ""
-         Index           =   -2147483648
-         InitialParent   =   "GroupBox1"
-         Italic          =   False
-         Left            =   278
-         LimitText       =   0
-         LockBottom      =   False
-         LockedInPosition=   False
-         LockLeft        =   True
-         LockRight       =   False
-         LockTop         =   True
-         Mask            =   ""
-         Password        =   False
-         ReadOnly        =   False
-         Scope           =   0
-         TabIndex        =   48
-         TabPanelIndex   =   0
-         TabStop         =   True
-         Text            =   "2060"
-         TextColor       =   &c00000000
-         TextFont        =   "Helvetica"
-         TextSize        =   12.0
-         TextUnit        =   0
-         Top             =   563
-         Underline       =   False
-         UseFocusRing    =   True
-         Visible         =   True
-         Width           =   80
-      End
       Begin Label UseGradientFillLabel
          AutoDeactivate  =   True
          Bold            =   False
@@ -1518,68 +1364,6 @@ End
 		  MyPicker.Show
 		  
 		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events CalStartYear_Textfield
-	#tag Event
-		Sub Open()
-		  #IF TargetMacOS Then
-		    Declare Sub setBezelStyle Lib "Cocoa" Selector "setBezelStyle:" (handle As Integer, value As Integer)
-		    setBezelStyle(Me.Handle, 1)
-		  #Endif
-		  
-		  // PreSet first Selection upon open
-		  MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.mLoad_YearList(CDbl(Me.Text),CDbl(CalEndYear_Textfield.Text))
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Function KeyDown(Key As String) As Boolean
-		  Select Case key
-		  Case Chr(32) to Chr(47)
-		    Tooltip.Show("Please enter a start year", System.MouseX, System.MouseY, True)
-		    Return True
-		    
-		  Case Chr(58) to Chr(127)
-		    Tooltip.Show("Please enter a start year", System.MouseX, System.MouseY, True)
-		    Return True
-		    
-		  End Select
-		  
-		  if Asc(Key) = 13 Then // Enter
-		    If me.text = "" Then Exit
-		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.mLoad_YearList(CDbl(Me.Text),CDbl(CalEndYear_Textfield.Text))
-		    
-		  end if
-		End Function
-	#tag EndEvent
-#tag EndEvents
-#tag Events CalEndYear_Textfield
-	#tag Event
-		Sub Open()
-		  #IF TargetMacOS Then
-		    Declare Sub setBezelStyle Lib "Cocoa" Selector "setBezelStyle:" (handle As Integer, value As Integer)
-		    setBezelStyle(Me.Handle, 1)
-		  #Endif
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Function KeyDown(Key As String) As Boolean
-		  Select Case key
-		  Case Chr(32) to Chr(47)
-		    Tooltip.Show("Please enter a start year", System.MouseX, System.MouseY, True)
-		    Return True
-		    
-		  Case Chr(58) to Chr(127)
-		    Tooltip.Show("Please enter a start year", System.MouseX, System.MouseY, True)
-		    Return True
-		    
-		  End Select
-		  
-		  if Asc(Key) = 13 Then // Enter
-		    If me.text = "" Then Exit
-		    MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.mLoad_YearList(CDbl(CalStartYear_Textfield.Text),CDbl(Me.Text))
-		  End if
-		End Function
 	#tag EndEvent
 #tag EndEvents
 #tag Events UseGradientFillLabel
