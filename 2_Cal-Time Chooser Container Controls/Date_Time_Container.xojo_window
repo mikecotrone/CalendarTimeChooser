@@ -658,23 +658,47 @@ End
 #tag Events Calendar_Container1
 	#tag Event
 		Sub SelectedDate(inSelectedDate as Date)
-		  // Use this Event to push the user's "Selected Date" to anywhere in your code.
-		  // IE.   FutureScheduleAssessment_Class.FutureScheduleAssessmentDate = inSelectedDate
+		  // THIS EVENT IS PASSED THE SELECTED DATE AS A DATE OBJECT
+		  
+		  // EXAMPLE RESULTS USAGE:
+		  //MsgBox "The selected date is: " + inSelectedDate.SQLDateTime
+		  //MsgBox "The selected date is: " + inSelectedDate.AbbreviatedDate
 		End Sub
 	#tag EndEvent
 	#tag Event
-		Sub Recurring_Selection(inSelectedMenuItem as String)
+		Sub Recurring_Selection(inSelectedRecurring as String)
+		  // USE THIS EVENT TO EXTRACT YOUR RECURRING SELECTION
 		  
+		  // EXAMPLE RESULTS USAGE:
+		  // MsgBox "Recurring Selection: " +EndOfLine + "  " + inSelectedRecurring
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events Time_Container1
 	#tag Event
 		Sub SelectedTime(inHours as String, inMinutes as String, optional inAMPM as String)
-		  // I decided to send the selected Time in separate string parts to allow for maximum control on formating.
+		  // ASSIGN TIME BACK TO SELECTEDDATE  DATE PROPERTY
+		  SelectedDate.Hour = CDbl(inHours)
+		  SelectedDate.Minute = CDbl(inMinutes)
+		  // ALSO PASSING TIME AS A STRING INTO THIS EVENT FOR MAXIMUM FLEXIBILITY
+		  Dim selectedHour as String  = inHours
+		  Dim selectedMinutes as string = inMinutes
+		  Dim selectedAMPM as string = inAMPM
 		  
-		  //Dim TmpDateFormatString as String = inHours+":"+inMinutes+" "+inAMPM
-		  //MsgBox "Selected Time: " + TmpDateFormatString
+		  
+		  // EXAMPLE RESULTS USAGE:
+		  
+		  // 24 HOUR TIME:   
+		  //Dim TimeTwentyfour as String = SelectedDate.SQLDateTime
+		  //MsgBox "Selected 24 Hour Time: " + EndOfLine +"   " + TimeTwentyfour
+		  
+		  // 12 HOUR TIME:  
+		  //Dim TimeTwelve as String  = SelectedDate.LongTime
+		  //MsgBox "Selected 12 Hour Time: " + EndOfLine +"   " + TimeTwelve
+		  
+		  // CUSTOM TIME: 
+		  // Dim CustomTime as String = "("+selectedHour+":"+selectedMinutes+"  " + selectedAMPM+")"
+		  //MsgBox "Selected Custom Time Format: " + EndOfLine +"   " +  CustomTime
 		End Sub
 	#tag EndEvent
 #tag EndEvents
