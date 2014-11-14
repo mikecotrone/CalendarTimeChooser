@@ -483,7 +483,7 @@ End
 			  Me.Calendar_Container1.Calendar1.mBuildLocalizedDayOfWeekList(mLocalizationInt)
 			  
 			  // Load the Localized Month List to the PopUp Menu
-			  Me.Calendar_Container1.Calendar1.mLoad_MonthList
+			  Me.Calendar_Container1.Calendar1.mLoad_MonthList()
 			  
 			  // Load the Localized Day of the Week Abbreviation List to the Calendar
 			  Me.Calendar_Container1.Calendar1.mBuild_LocalizedDayOfWeek_Arrays(mLocalizationInt)
@@ -492,7 +492,7 @@ End
 			  Me.mSetLocalization_ContainerTitle(mLocalizationInt)
 			  
 			  // Start Calendar on Today's Date
-			  //me.Calendar_Container1.mTakeMeToTodaysDate
+			  me.Calendar_Container1.mTakeMeToTodaysDate
 			  
 			End Set
 		#tag EndSetter
