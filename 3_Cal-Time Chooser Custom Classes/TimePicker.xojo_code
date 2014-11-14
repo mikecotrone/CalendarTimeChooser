@@ -643,6 +643,7 @@ Inherits Canvas
 		  if TmpHour = 0 Then
 		    TmpHour = 12
 		  End if
+		  
 		  Time_Container(window).Time_Hour = Str(TmpHour)
 		  Time_Container(window).TimePicker1.Invalidate(False)
 		  
@@ -720,6 +721,7 @@ Inherits Canvas
 		  Else
 		    TmpZeroPad = "0"
 		  End if
+		  
 		  // Keep within the Time Constaints (12 HourTime)
 		  Time_Container(window).Time_Minute = TmpZeroPad+Str(TmpMin)
 		  Time_Container(window).TimePicker1.Invalidate(False)
@@ -755,10 +757,11 @@ Inherits Canvas
 		    Time_Container(window).Time_Hour = TmpZeroPad+Str(TmpHour)
 		  End if
 		  
-		  Time_Container(window).TimePicker1.Invalidate(False)
 		  
+		  Time_Container(window).TimePicker1.Invalidate(False)
 		  Time_Container(window).Clock1.ClockHourValue = Time_Container(window).Clock1.ClockHourValue + .522
 		  Time_Container(window).Clock1.Invalidate(False)
+		  
 		End Sub
 	#tag EndMethod
 
@@ -790,7 +793,6 @@ Inherits Canvas
 		  
 		  
 		  Time_Container(window).TimePicker1.Invalidate(False)
-		  
 		  Time_Container(window).Clock1.ClockHourValue = Time_Container(window).Clock1.ClockHourValue + .522
 		  Time_Container(window).Clock1.Invalidate(False)
 		End Sub
@@ -813,7 +815,8 @@ Inherits Canvas
 		    TmpZeroPad = "0"
 		  End if
 		  
-		  // Keep within the Time Constaints (12 HourTime)
+		  
+		  /// Keep within the Time Constaints (12 HourTime)
 		  Time_Container(window).Time_Minute = TmpZeroPad+Str(TmpMin)
 		  Time_Container(window).TimePicker1.Invalidate(False)
 		  
@@ -838,6 +841,7 @@ Inherits Canvas
 		  Else
 		    TmpZeroPad = "0"
 		  End if
+		  
 		  // Keep within the Time Constaints (12 HourTime)
 		  Time_Container(window).Time_Minute = TmpZeroPad+Str(TmpMin)
 		  Time_Container(window).TimePicker1.Invalidate(False)
