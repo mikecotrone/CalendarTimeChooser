@@ -3,7 +3,7 @@ CalendarTimeChooser
 
 Xojo Calendar and Time Chooser Picklist
 
-Date:           August 26, 2014
+Date:           November 14, 2014
 
 Language:       Xojo 2014r2.1
 
@@ -11,7 +11,7 @@ Author:         Mike Cotrone (mikec@intelligentvisibility.com)
 
 Contributors:   Jim McKay
 
-Version:        2.0
+Version:        2.0.2
 
 
 What is this Project?
@@ -25,9 +25,16 @@ What is this Project?
   - Single or Multi Day calendar selection capability
 
   - Recurring calendar selection option
+
+Whats New in 2.0.2?
+------------------
+- Added New Feature: The ability to set a custom date for the calendar initially to open with
+- Updated documentation to reflect this new feature and added clarity to other sections
+- Bug Fixed: #8 When you select 24 Hour time the SelectedTime event doesn't reflect the correct format
+- Bug Fixed: #7 This was a bug fix that turned into a feature(see above)
   
-Whats New in 2.0?
------------------
+Whats New in 2.0.1?
+------------------
 - Added Portuguese Localization
 - Improved the separator alignment on the Date_Time_Container
 - Added Cancel and Submit buttons to the DateTimeWindow for easier implementation
