@@ -408,14 +408,14 @@ End
 #tag Events Cancel_Button
 	#tag Event
 		Sub Action()
-		  //Self.Close
+		  MsgBox "not implemented...."
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events Finished_Button
 	#tag Event
 		Sub Action()
-		  MsgBox "Thank you for choosing our project"
+		  MsgBox "Thank you for using our project!"
 		End Sub
 	#tag EndEvent
 #tag EndEvents
