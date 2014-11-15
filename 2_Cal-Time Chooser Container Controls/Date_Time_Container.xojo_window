@@ -688,15 +688,15 @@ End
 		  
 		  // EXAMPLE RESULTS USAGE:
 		  
-		  // 24 HOUR TIME:   
+		  // 24 HOUR TIME:
 		  //Dim TimeTwentyfour as String = SelectedDate.SQLDateTime
 		  //MsgBox "Selected 24 Hour Time: " + EndOfLine +"   " + TimeTwentyfour
 		  
-		  // 12 HOUR TIME:  
+		  // 12 HOUR TIME:
 		  //Dim TimeTwelve as String  = SelectedDate.LongTime
 		  //MsgBox "Selected 12 Hour Time: " + EndOfLine +"   " + TimeTwelve
 		  
-		  // CUSTOM TIME: 
+		  // CUSTOM TIME:
 		  // Dim CustomTime as String = "("+selectedHour+":"+selectedMinutes+"  " + selectedAMPM+")"
 		  //MsgBox "Selected Custom Time Format: " + EndOfLine +"   " +  CustomTime
 		End Sub

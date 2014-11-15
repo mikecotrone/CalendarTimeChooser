@@ -54,7 +54,7 @@ Begin ContainerControl Calendar_Container
       Top             =   17
       Underline       =   False
       Visible         =   True
-      Width           =   91
+      Width           =   95
    End
    Begin PopupMenu YearPopup
       AutoDeactivate  =   True
@@ -68,7 +68,7 @@ Begin ContainerControl Calendar_Container
       InitialParent   =   ""
       InitialValue    =   ""
       Italic          =   False
-      Left            =   103
+      Left            =   113
       ListIndex       =   0
       LockBottom      =   False
       LockedInPosition=   False
@@ -85,100 +85,139 @@ Begin ContainerControl Calendar_Container
       Top             =   17
       Underline       =   False
       Visible         =   True
-      Width           =   62
+      Width           =   65
    End
-   Begin PushButton PreviousMonthButton
+   Begin BevelButton PreviousMonthButton
+      AcceptFocus     =   False
       AutoDeactivate  =   True
+      BackColor       =   &c00000000
+      Bevel           =   0
       Bold            =   True
-      ButtonStyle     =   "1"
-      Cancel          =   False
-      Caption         =   "<"
-      Default         =   False
+      ButtonType      =   0
+      Caption         =   ""
+      CaptionAlign    =   0
+      CaptionDelta    =   0
+      CaptionPlacement=   0
       Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
+      HasBackColor    =   False
+      HasMenu         =   0
+      Height          =   22
+      HelpTag         =   "Previous Month"
+      Icon            =   0
+      IconAlign       =   0
+      IconDX          =   0
+      IconDY          =   0
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   93
+      Left            =   85
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   False
       LockRight       =   False
       LockTop         =   False
+      MenuValue       =   0
       Scope           =   0
       TabIndex        =   2
       TabPanelIndex   =   0
       TabStop         =   False
+      TextColor       =   &c00000000
       TextFont        =   "Helvetica"
       TextSize        =   12.0
       TextUnit        =   0
-      Top             =   218
+      Top             =   220
       Underline       =   False
+      Value           =   False
       Visible         =   True
-      Width           =   16
+      Width           =   20
    End
-   Begin PushButton CurrentMonthButton
+   Begin bevelbutton CurrentMonthButton
+      AcceptFocus     =   False
       AutoDeactivate  =   True
+      BackColor       =   &c00000000
+      Bevel           =   0
       Bold            =   False
-      ButtonStyle     =   "1"
-      Cancel          =   False
+      ButtonType      =   0
       Caption         =   ""
-      Default         =   False
+      CaptionAlign    =   0
+      CaptionDelta    =   0
+      CaptionPlacement=   0
       Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
+      HasBackColor    =   False
+      HasMenu         =   0
+      Height          =   22
+      HelpTag         =   "Today"
+      Icon            =   0
+      IconAlign       =   0
+      IconDX          =   0
+      IconDY          =   0
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   108
+      Left            =   104
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   False
       LockRight       =   False
       LockTop         =   False
+      MenuValue       =   0
       Scope           =   0
       TabIndex        =   3
       TabPanelIndex   =   0
       TabStop         =   False
+      TextColor       =   &c00000000
       TextFont        =   "Helvetica"
       TextSize        =   11.0
       TextUnit        =   0
-      Top             =   218
+      Top             =   220
       Underline       =   False
+      Value           =   False
       Visible         =   True
-      Width           =   18
+      Width           =   20
    End
-   Begin PushButton NextMonthButton
+   Begin BevelButton NextMonthButton
+      AcceptFocus     =   False
       AutoDeactivate  =   True
+      BackColor       =   &c00000000
+      Bevel           =   0
       Bold            =   True
-      ButtonStyle     =   "1"
-      Cancel          =   False
-      Caption         =   ">"
-      Default         =   False
+      ButtonType      =   0
+      Caption         =   ""
+      CaptionAlign    =   0
+      CaptionDelta    =   0
+      CaptionPlacement=   0
       Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
+      HasBackColor    =   False
+      HasMenu         =   0
+      Height          =   22
+      HelpTag         =   "Next Month"
+      Icon            =   0
+      IconAlign       =   0
+      IconDX          =   0
+      IconDY          =   0
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   125
+      Left            =   123
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   False
       LockRight       =   False
       LockTop         =   False
+      MenuValue       =   0
       Scope           =   0
       TabIndex        =   4
       TabPanelIndex   =   0
       TabStop         =   False
+      TextColor       =   &c00000000
       TextFont        =   "Helvetica"
       TextSize        =   12.0
       TextUnit        =   0
-      Top             =   218
+      Top             =   220
       Underline       =   False
+      Value           =   False
       Visible         =   True
-      Width           =   16
+      Width           =   20
    End
    Begin Calendar Calendar1
       AcceptFocus     =   False
@@ -241,6 +280,8 @@ Begin ContainerControl Calendar_Container
       Top             =   43
       Transparent     =   False
       UseFocusRing    =   True
+      UserSelectedEndYear=   0
+      UserSelectedStartYear=   0
       Visible         =   True
       Width           =   215
       YearNumber      =   0
@@ -266,65 +307,91 @@ Begin ContainerControl Calendar_Container
          Width           =   205
       End
    End
-   Begin PushButton NextYearButton
+   Begin BevelButton NextYearButton
+      AcceptFocus     =   False
       AutoDeactivate  =   True
+      BackColor       =   &c00000000
+      Bevel           =   0
       Bold            =   True
-      ButtonStyle     =   "1"
-      Cancel          =   False
-      Caption         =   ">>"
-      Default         =   False
+      ButtonType      =   0
+      Caption         =   ""
+      CaptionAlign    =   0
+      CaptionDelta    =   0
+      CaptionPlacement=   0
       Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
+      HasBackColor    =   False
+      HasMenu         =   0
+      Height          =   22
+      HelpTag         =   "Next Year"
+      Icon            =   0
+      IconAlign       =   0
+      IconDX          =   0
+      IconDY          =   0
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   140
+      Left            =   142
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   False
       LockRight       =   False
       LockTop         =   False
+      MenuValue       =   0
       Scope           =   0
       TabIndex        =   53
       TabPanelIndex   =   0
       TabStop         =   False
+      TextColor       =   &c00000000
       TextFont        =   "Helvetica"
       TextSize        =   12.0
       TextUnit        =   0
-      Top             =   218
+      Top             =   220
       Underline       =   False
+      Value           =   False
       Visible         =   True
       Width           =   20
    End
-   Begin PushButton PrevYearButton
+   Begin BevelButton PrevYearButton
+      AcceptFocus     =   False
       AutoDeactivate  =   True
+      BackColor       =   &c00000000
+      Bevel           =   0
       Bold            =   True
-      ButtonStyle     =   "1"
-      Cancel          =   False
-      Caption         =   "<<"
-      Default         =   False
+      ButtonType      =   0
+      Caption         =   ""
+      CaptionAlign    =   0
+      CaptionDelta    =   0
+      CaptionPlacement=   0
       Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
+      HasBackColor    =   False
+      HasMenu         =   0
+      Height          =   22
+      HelpTag         =   "Previous Year"
+      Icon            =   0
+      IconAlign       =   0
+      IconDX          =   0
+      IconDY          =   0
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   74
+      Left            =   66
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   False
       LockRight       =   False
       LockTop         =   False
+      MenuValue       =   0
       Scope           =   0
       TabIndex        =   54
       TabPanelIndex   =   0
       TabStop         =   False
+      TextColor       =   &c00000000
       TextFont        =   "Helvetica"
       TextSize        =   12.0
       TextUnit        =   0
-      Top             =   218
+      Top             =   220
       Underline       =   False
+      Value           =   False
       Visible         =   True
       Width           =   20
    End
@@ -588,6 +655,20 @@ End
 		  mPrevMonth
 		End Sub
 	#tag EndEvent
+	#tag Event
+		Sub Open()
+		  #if TargetMacOS Then
+		    me.Icon = SystemIcons.LeftFacingTriangleTemplate
+		    me.IconAlign = 1
+		    
+		  #Elseif TargetWin32 Then
+		    Me.TextSize = 14
+		    Me.Caption = "<"
+		    Me.CaptionAlign = 0
+		    me.CaptionDelta=4
+		  #endif
+		End Sub
+	#tag EndEvent
 #tag EndEvents
 #tag Events CurrentMonthButton
 	#tag Event
@@ -604,8 +685,18 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub Open()
-		  Me.TextSize = 30
-		  Me.Caption = Chr(8226)
+		  //Me.TextSize = 30
+		  //Me.Caption = Chr(8226)
+		  //Me.CaptionAlign = 2
+		  
+		  //#if TargetMacOS Then
+		  //me.Icon = SystemIcons.StatusAvailable
+		  //me.IconAlign = 1
+		  //
+		  //#Elseif TargetWin32 Then
+		  me.Icon = BlackDot16x16
+		  me.IconAlign = 1
+		  //#endif
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -620,6 +711,20 @@ End
 		  Me.SetFocus
 		End Function
 	#tag EndEvent
+	#tag Event
+		Sub Open()
+		  #if TargetMacOS Then
+		    me.Icon = SystemIcons.RightFacingTriangleTemplate
+		    me.IconAlign = 1
+		    
+		  #Elseif TargetWin32 Then
+		    Me.TextSize = 14
+		    Me.Caption = ">"
+		    Me.CaptionAlign = 0
+		    me.CaptionDelta=4
+		  #endif
+		End Sub
+	#tag EndEvent
 #tag EndEvents
 #tag Events NextYearButton
 	#tag Event
@@ -632,6 +737,20 @@ End
 		  Me.SetFocus
 		End Function
 	#tag EndEvent
+	#tag Event
+		Sub Open()
+		  #if TargetMacOS Then
+		    me.Icon = SystemIcons.RightFacingTriangleTemplate
+		    me.IconAlign = 1
+		    
+		  #Elseif TargetWin32 Then
+		    Me.TextSize = 14
+		    Me.Caption = ">"
+		    Me.CaptionAlign = 0
+		    me.CaptionDelta=4
+		  #endif
+		End Sub
+	#tag EndEvent
 #tag EndEvents
 #tag Events PrevYearButton
 	#tag Event
@@ -643,6 +762,20 @@ End
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
 		  Me.SetFocus
 		End Function
+	#tag EndEvent
+	#tag Event
+		Sub Open()
+		  #if TargetMacOS Then
+		    me.Icon = SystemIcons.LeftFacingTriangleTemplate
+		    me.IconAlign = 1
+		    
+		  #Elseif TargetWin32 Then
+		    Me.TextSize = 14
+		    Me.Caption = "<"
+		    Me.CaptionAlign = 0
+		    me.CaptionDelta=4
+		  #endif
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
