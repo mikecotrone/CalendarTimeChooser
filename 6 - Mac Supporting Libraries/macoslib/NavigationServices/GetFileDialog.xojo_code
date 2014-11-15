@@ -61,6 +61,90 @@ Inherits NavigationDialog
 
 	#tag ViewBehavior
 		#tag ViewProperty
+			Name="ActionButtonLabel"
+			Group="Behavior"
+			Type="String"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AddAutoTranslateItems"
+			Group="Behavior"
+			InitialValue="false"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AddRecents"
+			Group="Behavior"
+			InitialValue="true"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AddTranslateItems"
+			Group="Behavior"
+			InitialValue="false"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AllFilesInPopup"
+			Group="Behavior"
+			InitialValue="false"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AllowInvisibleFiles"
+			Group="Behavior"
+			InitialValue="false"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AllowMultipleFiles"
+			Group="Behavior"
+			InitialValue="true"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AllowOpenPackages"
+			Group="Behavior"
+			InitialValue="false"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AllowPreviews"
+			Group="Behavior"
+			InitialValue="true"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AllowStationery"
+			Group="Behavior"
+			InitialValue="true"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AutoTranslate"
+			Group="Behavior"
+			InitialValue="true"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="CancelButtonLabel"
+			Group="Behavior"
+			Type="String"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ClientName"
+			Group="Behavior"
+			Type="String"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ConfirmReplacement"
+			Group="Behavior"
+			InitialValue="true"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Index"
 			Visible=true
 			Group="ID"
@@ -75,10 +159,52 @@ Inherits NavigationDialog
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Message"
+			Group="Behavior"
+			Type="String"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
 			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="NoTypePopup"
+			Group="Behavior"
+			InitialValue="false"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="PreserveSaveFileExtension"
+			Group="Behavior"
+			InitialValue="false"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ResolveAliases"
+			Group="Behavior"
+			InitialValue="true"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="SaveFileName"
+			Group="Behavior"
+			Type="String"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="SelectAllReadableItem"
+			Group="Behavior"
+			InitialValue="false"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="SelectDefaultLocation"
+			Group="Behavior"
+			InitialValue="false"
+			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
@@ -87,11 +213,35 @@ Inherits NavigationDialog
 			Type="String"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="SupportPackages"
+			Group="Behavior"
+			InitialValue="false"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Title"
+			Group="Behavior"
+			Type="String"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Top"
 			Visible=true
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="UseCustomFrame"
+			Group="Behavior"
+			InitialValue="true"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="WindowTitle"
+			Group="Behavior"
+			Type="String"
+			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

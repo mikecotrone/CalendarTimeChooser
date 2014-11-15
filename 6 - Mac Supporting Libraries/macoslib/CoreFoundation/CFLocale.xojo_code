@@ -512,6 +512,12 @@ Inherits CFType
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Description"
+			Group="Behavior"
+			Type="String"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="GroupingSeparator"
 			Group="Behavior"
 			Type="String"

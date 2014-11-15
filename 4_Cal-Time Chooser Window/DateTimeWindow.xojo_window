@@ -44,6 +44,7 @@ Begin Window DateTimeWindow
       Height          =   252
       HelpTag         =   ""
       IncludePrevNextMonthDays=   False
+      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   0
       LocalizationInt =   0

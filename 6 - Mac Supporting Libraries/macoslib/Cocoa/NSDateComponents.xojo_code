@@ -550,6 +550,12 @@ Inherits NSObject
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Description"
+			Group="Behavior"
+			Type="String"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Era"
 			Group="Behavior"
 			Type="Integer"

@@ -314,6 +314,12 @@ Inherits NSObject
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Description"
+			Group="Behavior"
+			Type="String"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="FirstIndex"
 			Group="Behavior"
 			Type="Integer"

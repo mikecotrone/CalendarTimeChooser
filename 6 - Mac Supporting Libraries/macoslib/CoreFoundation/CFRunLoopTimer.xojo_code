@@ -243,6 +243,12 @@ Inherits CFType
 
 	#tag ViewBehavior
 		#tag ViewProperty
+			Name="Description"
+			Group="Behavior"
+			Type="String"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Enabled"
 			Group="Behavior"
 			InitialValue="0"
