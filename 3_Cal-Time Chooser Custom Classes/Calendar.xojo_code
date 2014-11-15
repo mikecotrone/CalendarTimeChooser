@@ -264,7 +264,7 @@ Inherits Canvas
 		  
 		  /// /// /// /// /// /// /
 		  /// Gregorian Math ///
-		  /// /// /// /// /// /// 
+		  /// /// /// /// /// ///
 		  
 		  // Figure out Century Number
 		  CenturyNumber = fCalcCenturyNumber(2015)
@@ -1224,7 +1224,7 @@ Inherits Canvas
 		  Calendar_Container(window).MonthPopup.AddRow Localized_December
 		  
 		  Dim TodaysMonth as New Date
-		  Dim TodaysMonthString as String 
+		  Dim TodaysMonthString as String
 		  
 		  TodaysMonthString  = fConvertMonthIntToMonthString(TodaysMonth.Month)
 		  
@@ -1371,7 +1371,7 @@ Inherits Canvas
 		  // IF THESE USER VALUES ARE NOT PRESENT WE WILL DEFAULT TO TODAY'S DATE
 		  //CurrentDate.Month = 5
 		  //CurrentDate.Day = 6
-		  //CurrentDate.Year= 2090
+		  //CurrentDate.Year= 2042
 		  
 		  
 		  // THE START AND END YEAR VALUES ARE THE YEAR BOUNDARY WITHIN YOUR CALENDAR YEAR POP UP MENU
@@ -2087,6 +2087,16 @@ Inherits Canvas
 			Group="Appearance"
 			InitialValue="True"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="UserSelectedEndYear"
+			Group="Behavior"
+			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="UserSelectedStartYear"
+			Group="Behavior"
+			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Visible"
