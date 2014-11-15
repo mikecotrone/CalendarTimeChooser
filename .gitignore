@@ -2,3 +2,5 @@
 *.xojo_uistate
 *.dylib
 /TEST/
+/CalTimeEventDoc.graffle/
+/Builds - CalendarTimeChooser.xojo_project/
