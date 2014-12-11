@@ -5,7 +5,7 @@ Xojo Calendar and Time Chooser Picklist
 
 Date:           November 14, 2014
 
-Language:       Xojo 2014r2.1
+Language:       Xojo 2014r2.1 and below ** NOTE THIS PROJECT IS NOT ADAPTED TO Xojo 2014R3 YET **
 
 Author:         Mike Cotrone (mikec@intelligentvisibility.com)
 
