@@ -3,15 +3,15 @@ CalendarTimeChooser
 
 Xojo Calendar and Time Chooser Picklist
 
-Date:           November 14, 2014
+Date:           January 28, 2015
 
-Language:       Xojo 2014r2.1 and below ** NOTE THIS PROJECT IS NOT ADAPTED TO Xojo 2014R3 YET **
+Language:       Xojo all versions
 
 Author:         Mike Cotrone (mikec@intelligentvisibility.com)
 
-Contributors:   Jim McKay
+Version:        2.0.3
 
-Version:        2.0.2
+Contributors:   Jim McKay
 
 
 What is this Project?
@@ -25,6 +25,10 @@ What is this Project?
   - Single or Multi Day calendar selection capability
 
   - Recurring calendar selection option
+
+Whats New in 2.0.3?
+------------------
+- Jim McKay fixed some new framework code and this project is now available for all Xojo versions
 
 Whats New in 2.0.2?
 ------------------
