@@ -87,6 +87,7 @@ Begin ContainerControl Time_Container
       Backdrop        =   0
       BorderColor     =   &c44444400
       ClockFaceColor  =   &cDDDDDD00
+      ClockFaceType   =   ""
       ClockHandColor  =   &c00000000
       ClockHourValue  =   0.0
       ClockMinuteValue=   0.0
@@ -419,12 +420,14 @@ End
 		Visible=true
 		Group="ID"
 		Type="String"
+		EditorType="String"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Super"
 		Visible=true
 		Group="ID"
 		Type="String"
+		EditorType="String"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="TabIndex"
