@@ -26,8 +26,7 @@ Begin ContainerControl Date_Time_Container
    Visible         =   True
    Width           =   394
    Begin Timer ClockSecondHandTimer
-      Enabled         =   True
-      Height          =   "32"
+      Height          =   32
       Index           =   -2147483648
       InitialParent   =   ""
       Left            =   0
@@ -37,8 +36,7 @@ Begin ContainerControl Date_Time_Container
       Scope           =   0
       TabPanelIndex   =   0
       Top             =   0
-      Visible         =   True
-      Width           =   "32"
+      Width           =   32
    End
    Begin Separator Separator1
       AutoDeactivate  =   True
@@ -72,7 +70,6 @@ Begin ContainerControl Date_Time_Container
       HasBackColor    =   False
       Height          =   252
       HelpTag         =   ""
-      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   0
       LockBottom      =   False
@@ -103,7 +100,6 @@ Begin ContainerControl Date_Time_Container
       Height          =   252
       HelpTag         =   ""
       HideAMPM        =   False
-      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   235
       LockBottom      =   False
@@ -623,7 +619,7 @@ End
 	#tag EndComputedProperty
 
 
-	#tag Enum, Name = ClockFaceType, Type = Integer, Flags = &h1
+	#tag Enum, Name = ClockFaceType, Type = Integer, Flags = &h0
 		Chrome
 		  Roman
 		  Standard
@@ -634,7 +630,7 @@ End
 		Antique
 	#tag EndEnum
 
-	#tag Enum, Name = PickerElements, Type = Integer, Flags = &h1
+	#tag Enum, Name = PickerElements, Type = Integer, Flags = &h0
 		CalendarOnly
 		  ClockOnly
 		CalendarAndClock
@@ -773,6 +769,22 @@ End
 		EditorType="MultiLineEditor"
 	#tag EndViewProperty
 	#tag ViewProperty
+		Name="ClockFaceType"
+		Group="Behavior"
+		Type="ClockFaceType"
+		EditorType="Enum"
+		#tag EnumValues
+			"0 - Chrome"
+			"1 - Roman"
+			"2 - Standard"
+			"3 - GoogleStyle"
+			"4 - Modern"
+			"5 - Dynamic_12hr"
+			"6 - Dynamic_24hr"
+			"7 - Antique"
+		#tag EndEnumValues
+	#tag EndViewProperty
+	#tag ViewProperty
 		Name="ClockHandColor"
 		Group="Behavior"
 		InitialValue="&c000000"
@@ -864,12 +876,14 @@ End
 		Visible=true
 		Group="ID"
 		Type="String"
+		EditorType="String"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Super"
 		Visible=true
 		Group="ID"
 		Type="String"
+		EditorType="String"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="TabIndex"
@@ -932,6 +946,17 @@ End
 		InitialValue="True"
 		Type="Boolean"
 		EditorType="Boolean"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="VisiblePickers"
+		Group="Behavior"
+		Type="Date_Time_Container.PickerElements"
+		EditorType="Enum"
+		#tag EnumValues
+			"0 - CalendarOnly"
+			"1 - ClockOnly"
+			"2 - CalendarAndClock"
+		#tag EndEnumValues
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="WeekStartsOnMonday"

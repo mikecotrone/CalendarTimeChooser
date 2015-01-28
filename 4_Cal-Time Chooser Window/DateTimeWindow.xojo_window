@@ -37,6 +37,7 @@ Begin Window DateTimeWindow
       ClockFaceHourCount=   0
       ClockFaceTextColor=   &c00000000
       ClockFaceTextFont=   ""
+      ClockFaceType   =   ""
       ClockHandColor  =   &c00000000
       Enabled         =   True
       EraseBackground =   False
@@ -63,6 +64,7 @@ Begin Window DateTimeWindow
       UseFocusRing    =   False
       UseGraphicalClockHands=   True
       Visible         =   True
+      VisiblePickers  =   ""
       WeekStartsOnMonday=   False
       Width           =   394
    End
@@ -271,7 +273,7 @@ End
 			  Date_Time_Container1.ClockFaceType=value
 			End Set
 		#tag EndSetter
-		ClockFaceType As ClockFaceType
+		ClockFaceType As Date_Time_Container.ClockFaceType
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -464,6 +466,11 @@ End
 		EditorType="MultiLineEditor"
 	#tag EndViewProperty
 	#tag ViewProperty
+		Name="ClockFaceType"
+		Group="Behavior"
+		Type="ClockFaceType"
+	#tag EndViewProperty
+	#tag ViewProperty
 		Name="ClockHandColor"
 		Group="Behavior"
 		InitialValue="&c000000"
@@ -553,6 +560,7 @@ End
 		Visible=true
 		Group="ID"
 		Type="String"
+		EditorType="String"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LiveResize"
@@ -637,6 +645,7 @@ End
 		Visible=true
 		Group="ID"
 		Type="String"
+		EditorType="String"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Placement"
@@ -666,6 +675,7 @@ End
 		Visible=true
 		Group="ID"
 		Type="String"
+		EditorType="String"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Title"
@@ -696,6 +706,11 @@ End
 		InitialValue="True"
 		Type="Boolean"
 		EditorType="Boolean"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="VisiblePickers"
+		Group="Behavior"
+		Type="Date_Time_Container.PickerElements"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="WeekStartsOnMonday"

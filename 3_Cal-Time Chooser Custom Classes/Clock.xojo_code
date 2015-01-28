@@ -410,6 +410,22 @@ Inherits Canvas
 			Type="Color"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="ClockFaceType"
+			Group="Behavior"
+			Type="Date_Time_Container.ClockFaceType"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Chrome"
+				"1 - Roman"
+				"2 - Standard"
+				"3 - GoogleStyle"
+				"4 - Modern"
+				"5 - Dynamic_12hr"
+				"6 - Dynamic_24hr"
+				"7 - Antique"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="ClockHandColor"
 			Group="Behavior"
 			InitialValue="&c000000"
@@ -486,6 +502,7 @@ Inherits Canvas
 			Visible=true
 			Group="ID"
 			Type="Integer"
+			EditorType="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="InitialParent"
@@ -527,12 +544,14 @@ Inherits Canvas
 			Visible=true
 			Group="ID"
 			Type="String"
+			EditorType="String"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
 			Type="String"
+			EditorType="String"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="TabIndex"
