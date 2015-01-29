@@ -273,7 +273,7 @@ End
 			  Date_Time_Container1.ClockFaceType=value
 			End Set
 		#tag EndSetter
-		ClockFaceType As Date_Time_Container.ClockFaceType
+		ClockFaceType As integer
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -379,7 +379,7 @@ End
 			  Date_Time_Container1.VisiblePickers=value
 			End Set
 		#tag EndSetter
-		VisiblePickers As Date_Time_Container.PickerElements
+		VisiblePickers As Integer
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -468,7 +468,7 @@ End
 	#tag ViewProperty
 		Name="ClockFaceType"
 		Group="Behavior"
-		Type="ClockFaceType"
+		Type="Date_Time_Container.ClockFaceType"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="ClockHandColor"

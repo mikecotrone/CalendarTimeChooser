@@ -135,13 +135,13 @@ End
 		  
 		  If Window IsA DateTimeWindow Then
 		    
-		    If DateTimeWindow(Window).VisiblePickers = Date_Time_Container.PickerElements.CalendarAndClock Then
+		    If DateTimeWindow(Window).VisiblePickers = Date_Time_Container.PickerElements_CalendarAndClock Then
 		      TrueWindow.Title = Localized_ChooseBothTitle_Str
 		      
-		    Elseif DateTimeWindow(Window).VisiblePickers = Date_Time_Container.PickerElements.CalendarOnly Then
+		    Elseif DateTimeWindow(Window).VisiblePickers = Date_Time_Container.PickerElements_CalendarOnly Then
 		      TrueWindow.Title = Localized_CalendarOnlyTitle_Str
 		      
-		    Elseif DateTimeWindow(Window).VisiblePickers =Date_Time_Container.PickerElements.ClockOnly Then
+		    Elseif DateTimeWindow(Window).VisiblePickers =Date_Time_Container.PickerElements_ClockOnly Then
 		      TrueWindow.Title = Localized_TimeOnlyTitle_Str
 		      
 		    End If
@@ -421,17 +421,17 @@ End
 		#tag Setter
 			Set
 			  Time_Container1.Clock1.ClockFaceType = value
-			  if value=Date_Time_Container.ClockFaceType.Dynamic_24hr then
+			  if value=Date_Time_Container.ClockFaceType_Dynamic_24hr then
 			    Time_Container1.Clock1.HourCount=24
 			    Time_Container1.TimeMode = 24
-			  elseif value=Date_Time_Container.ClockFaceType.Dynamic_12hr Then
+			  elseif value=Date_Time_Container.ClockFaceType_Dynamic_12hr Then
 			    Time_Container1.Clock1.HourCount=12
 			    Time_Container1.TimeMode = 12
 			  end if
 			  me.Invalidate(false)
 			End Set
 		#tag EndSetter
-		ClockFaceType As ClockFaceType
+		ClockFaceType As integer
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -508,7 +508,7 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
-		Private mVisiblePickers As Date_Time_Container.PickerElements
+		Private mVisiblePickers As integer
 	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -587,17 +587,17 @@ End
 			Set
 			  mVisiblePickers = value
 			  select case value
-			  case PickerElements.CalendarAndClock
+			  case PickerElements_CalendarAndClock
 			    mSetupForBothPickers
-			  case PickerElements.CalendarOnly
+			  case PickerElements_CalendarOnly
 			    mSetupForCalendarPickerOnly
-			  case PickerElements.ClockOnly
+			  case PickerElements_ClockOnly
 			    mSetupForTimePickerOnly
 			  end Select
 			  self.Invalidate(false)
 			End Set
 		#tag EndSetter
-		VisiblePickers As Date_Time_Container.PickerElements
+		VisiblePickers As integer
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -619,22 +619,38 @@ End
 	#tag EndComputedProperty
 
 
-	#tag Enum, Name = ClockFaceType, Type = Integer, Flags = &h0
-		Chrome
-		  Roman
-		  Standard
-		  GoogleStyle
-		  Modern
-		  Dynamic_12hr
-		  Dynamic_24hr
-		Antique
-	#tag EndEnum
+	#tag Constant, Name = ClockFaceType_Antique, Type = Double, Dynamic = False, Default = \"7", Scope = Public
+	#tag EndConstant
 
-	#tag Enum, Name = PickerElements, Type = Integer, Flags = &h0
-		CalendarOnly
-		  ClockOnly
-		CalendarAndClock
-	#tag EndEnum
+	#tag Constant, Name = ClockFaceType_Chrome, Type = Double, Dynamic = False, Default = \"0", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = ClockFaceType_Dynamic_12hr, Type = Double, Dynamic = False, Default = \"6", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = ClockFaceType_Dynamic_24hr, Type = Double, Dynamic = False, Default = \"5", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = ClockFaceType_GoogleStyle, Type = Double, Dynamic = False, Default = \"3", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = ClockFaceType_Modern, Type = Double, Dynamic = False, Default = \"4", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = ClockFaceType_Roman, Type = Double, Dynamic = False, Default = \"1", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = ClockFaceType_Standard, Type = Double, Dynamic = False, Default = \"2", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = PickerElements_CalendarAndClock, Type = Double, Dynamic = False, Default = \"0", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = PickerElements_CalendarOnly, Type = Double, Dynamic = False, Default = \"1", Scope = Public
+	#tag EndConstant
+
+	#tag Constant, Name = PickerElements_ClockOnly, Type = Double, Dynamic = False, Default = \"2", Scope = Public
+	#tag EndConstant
 
 
 #tag EndWindowCode
@@ -771,7 +787,7 @@ End
 	#tag ViewProperty
 		Name="ClockFaceType"
 		Group="Behavior"
-		Type="ClockFaceType"
+		Type="integer"
 		EditorType="Enum"
 		#tag EnumValues
 			"0 - Chrome"
@@ -950,7 +966,7 @@ End
 	#tag ViewProperty
 		Name="VisiblePickers"
 		Group="Behavior"
-		Type="Date_Time_Container.PickerElements"
+		Type="integer"
 		EditorType="Enum"
 		#tag EnumValues
 			"0 - CalendarOnly"

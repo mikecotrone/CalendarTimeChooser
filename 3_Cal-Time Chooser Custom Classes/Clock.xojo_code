@@ -52,21 +52,21 @@ Inherits Canvas
 		  
 		  // Draw Clock Image
 		  Select Case Date_Time_Container(Time_Container(window).window).ClockFaceType
-		  Case Date_Time_Container.ClockFaceType.Chrome
+		  Case Date_Time_Container.ClockFaceType_Chrome
 		    g.DrawPicture(ClockFace_Chrome130x130,0,0)
-		  Case Date_Time_Container.ClockFaceType.Roman
+		  Case Date_Time_Container.ClockFaceType_Roman
 		    g.DrawPicture(ClockFace_Roman130x130,0,0)
-		  Case Date_Time_Container.ClockFaceType.Standard
+		  Case Date_Time_Container.ClockFaceType_Standard
 		    g.DrawPicture(clock_dial130x130,0,0)
-		  Case Date_Time_Container.ClockFaceType.GoogleStyle
+		  Case Date_Time_Container.ClockFaceType_GoogleStyle
 		    g.DrawPicture(ClockFaceGoogle130x130,0,0)
-		  Case Date_Time_Container.ClockFaceType.Modern
+		  Case Date_Time_Container.ClockFaceType_Modern
 		    g.DrawPicture(Clock_Retro130x130,0,0)
-		  Case Date_Time_Container.ClockFaceType.Dynamic_12hr
+		  Case Date_Time_Container.ClockFaceType_Dynamic_12hr
 		    mDrawClockFace (g)
-		  Case Date_Time_Container.ClockFaceType.Dynamic_24hr
+		  Case Date_Time_Container.ClockFaceType_Dynamic_24hr
 		    mDrawClockFace (g)
-		  Case Date_Time_Container.ClockFaceType.Antique
+		  Case Date_Time_Container.ClockFaceType_Antique
 		    g.DrawPicture(Antique130x130,0,0)
 		  End Select
 		  
@@ -325,7 +325,7 @@ Inherits Canvas
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		ClockFaceType As Date_Time_Container.ClockFaceType
+		ClockFaceType As integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -412,7 +412,7 @@ Inherits Canvas
 		#tag ViewProperty
 			Name="ClockFaceType"
 			Group="Behavior"
-			Type="Date_Time_Container.ClockFaceType"
+			Type="integer"
 			EditorType="Enum"
 			#tag EnumValues
 				"0 - Chrome"
