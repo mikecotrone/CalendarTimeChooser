@@ -17,41 +17,6 @@ Protected Module KeychainServices
 	#tag EndMethod
 
 
-	#tag ComputedProperty, Flags = &h1
-		#tag Getter
-			Get
-			  #if targetMacOS
-			    declare function SecKeychainGetUserInteractionAllowed lib KeychainServices.framework (ByRef state as Boolean) as Integer
-			    
-			    dim state as Boolean
-			    dim err as Integer = SecKeychainGetUserInteractionAllowed(state)
-			    if err = noErr then
-			      return state
-			    else
-			      raise new KeychainServices.Error(err)
-			    end if
-			  #endif
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  #if targetMacOS
-			    declare function SecKeychainSetUserInteractionAllowed lib KeychainServices.framework (state as Boolean) as Integer
-			    
-			    dim err as Integer = SecKeychainSetUserInteractionAllowed(value)
-			    if err <> noErr then
-			      raise new KeychainServices.Error(err)
-			    end if
-			    
-			  #else
-			    #pragma unused value
-			  #endif
-			End Set
-		#tag EndSetter
-		Protected UserInteractionAllowed As Boolean
-	#tag EndComputedProperty
-
-
 	#tag Constant, Name = Attribute_Account, Type = Double, Dynamic = False, Default = \"\'acct\'", Scope = Protected
 	#tag EndConstant
 

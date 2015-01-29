@@ -253,7 +253,9 @@ Inherits Canvas
 		  // Date Instantiations
 		  CurrentDate = new Date
 		  
-		  // ------- MODIFY THE VALUES IN THIS METHOD IF YOU WANT A CUSTOM CALENDAR START DATE UPON OPENING
+		  // ------- SetCustomCalendarStartDate() ACCEPTS THE FOLLOWING OPTIONAL PARAMETERS BELOW (NOTE: IF YOU DON'T PASS ANY PARAMETERS THE CALENDAR USES
+		  // ------- TODAYS DATE AND YEAR
+		  // ------- (optional inPassedDate as Date, optional inPassedStartYear as Integer, optional inPassedEndYear as Integer)
 		  SetCustomCalendarStartDate()
 		  
 		  // LOAD THE YEAR POP UP MENU WITH THE PROPER SELECTION
@@ -1364,20 +1366,24 @@ Inherits Canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h1
-		Protected Sub SetCustomCalendarStartDate()
+		Protected Sub SetCustomCalendarStartDate(optional inPassedDate as Date, optional inPassedStartYear as Integer, optional inPassedEndYear as Integer)
 		  // ------- SET THESE VALUES IF YOU WOULD LIKE A CUSTOM CALENDAR START DATE
 		  
-		  
-		  // IF THESE USER VALUES ARE NOT PRESENT WE WILL DEFAULT TO TODAY'S DATE
-		  //CurrentDate.Month = 5
-		  //CurrentDate.Day = 6
-		  //CurrentDate.Year= 2042
+		  // USE PASSED PARAMETERS TO SET DATE/TIME PROGRAMATICALLY
+		  If inPassedDate <> NIL THEN
+		    CurrentDate.Month = inPassedDate.Month
+		    CurrentDate.Day = inPassedDate.Day
+		    CurrentDate.Year= inPassedDate.Year
+		  End If
 		  
 		  
 		  // THE START AND END YEAR VALUES ARE THE YEAR BOUNDARY WITHIN YOUR CALENDAR YEAR POP UP MENU
 		  // IF THESE USER VALUES ARE NOT PRESENT WE WILL DEFAULT TO StartYear: 1905 EndYear: 2061
-		  //UserSelectedStartYear = 1000
-		  //UserSelectedEndYear = 2100
+		  // USE PROGRAMATICALLY 
+		  IF UserSelectedStartYear <> 0 THEN
+		    UserSelectedStartYear = inPassedStartYear
+		    UserSelectedEndYear = inPassedEndYear
+		  END IF
 		  
 		  
 		End Sub
@@ -1819,6 +1825,7 @@ Inherits Canvas
 			Visible=true
 			Group="ID"
 			Type="Integer"
+			EditorType="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="InitialParent"
@@ -1978,6 +1985,7 @@ Inherits Canvas
 			Visible=true
 			Group="ID"
 			Type="String"
+			EditorType="String"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="NextMonth"
@@ -2034,6 +2042,7 @@ Inherits Canvas
 			Visible=true
 			Group="ID"
 			Type="String"
+			EditorType="String"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="TabIndex"
