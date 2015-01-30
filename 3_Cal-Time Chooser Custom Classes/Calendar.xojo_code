@@ -1365,8 +1365,8 @@ Inherits Canvas
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h1
-		Protected Sub SetCustomCalendarStartDate(optional inPassedDate as Date, optional inPassedStartYear as Integer, optional inPassedEndYear as Integer)
+	#tag Method, Flags = &h0
+		Sub SetCustomCalendarStartDate(optional inPassedDate as Date, optional inPassedStartYear as Integer, optional inPassedEndYear as Integer)
 		  // ------- SET THESE VALUES IF YOU WOULD LIKE A CUSTOM CALENDAR START DATE
 		  
 		  // USE PASSED PARAMETERS TO SET DATE/TIME PROGRAMATICALLY
@@ -1379,10 +1379,13 @@ Inherits Canvas
 		  
 		  // THE START AND END YEAR VALUES ARE THE YEAR BOUNDARY WITHIN YOUR CALENDAR YEAR POP UP MENU
 		  // IF THESE USER VALUES ARE NOT PRESENT WE WILL DEFAULT TO StartYear: 1905 EndYear: 2061
-		  // USE PROGRAMATICALLY 
-		  IF UserSelectedStartYear <> 0 THEN
+		  // USE PROGRAMATICALLY
+		  IF inPassedStartYear <> 0 THEN
 		    UserSelectedStartYear = inPassedStartYear
 		    UserSelectedEndYear = inPassedEndYear
+		    // LOAD THE YEAR POP UP MENU WITH THE PROPER SELECTION
+		    mLoad_YearList(UserSelectedStartYear,UserSelectedEndYear,CurrentDate.Year)
+		    Calendar_Container(Window).mTakeMeToTodaysDate
 		  END IF
 		  
 		  
