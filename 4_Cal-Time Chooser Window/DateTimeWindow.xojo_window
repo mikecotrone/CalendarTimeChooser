@@ -37,7 +37,7 @@ Begin Window DateTimeWindow
       ClockFaceHourCount=   0
       ClockFaceTextColor=   &c00000000
       ClockFaceTextFont=   ""
-      ClockFaceType   =   ""
+      ClockFaceType   =   0
       ClockHandColor  =   &c00000000
       Enabled         =   True
       EraseBackground =   False
@@ -64,7 +64,7 @@ Begin Window DateTimeWindow
       UseFocusRing    =   False
       UseGraphicalClockHands=   True
       Visible         =   True
-      VisiblePickers  =   ""
+      VisiblePickers  =   0
       WeekStartsOnMonday=   False
       Width           =   394
    End
@@ -468,7 +468,7 @@ End
 	#tag ViewProperty
 		Name="ClockFaceType"
 		Group="Behavior"
-		Type="Date_Time_Container.ClockFaceType"
+		Type="integer"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="ClockHandColor"
@@ -710,7 +710,7 @@ End
 	#tag ViewProperty
 		Name="VisiblePickers"
 		Group="Behavior"
-		Type="Date_Time_Container.PickerElements"
+		Type="Integer"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="WeekStartsOnMonday"

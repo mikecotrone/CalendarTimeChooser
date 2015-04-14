@@ -392,6 +392,11 @@ Inherits NSObject
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="FirstAttribute"
+			Group="Behavior"
+			Type="NSLayoutAttribute"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Index"
 			Visible=true
 			Group="ID"
@@ -415,6 +420,21 @@ Inherits NSObject
 			Visible=true
 			Group="ID"
 			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Priority"
+			Group="Behavior"
+			Type="NSLayoutPriority"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Relation"
+			Group="Behavior"
+			Type="NSLayoutRelation"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="SecondAttribute"
+			Group="Behavior"
+			Type="NSLayoutAttribute"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ShouldBeArchived"

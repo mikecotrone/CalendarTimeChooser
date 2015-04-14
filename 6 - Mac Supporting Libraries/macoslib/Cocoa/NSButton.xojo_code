@@ -804,6 +804,12 @@ Inherits NSControl
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Alignment"
+			Group="Behavior"
+			Type="NSTextAlignment"
+			EditorType="Enum"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="AllowsExpansionToolTips"
 			Group="Behavior"
 			Type="Boolean"
@@ -848,6 +854,29 @@ Inherits NSControl
 			EditorType="Picture"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="BezelStyle"
+			Group="Behavior"
+			Type="NSBezelStyle"
+			EditorType="Enum"
+			#tag EnumValues
+				"1 - NSRoundedBezelStyle"
+				"2 - NSRegularSquareBezelStyle"
+				"3 - NSThickSquareBezelStyle"
+				"4 - NSThickerSquareBezelStyle"
+				"5 - NSDisclosureBezelStyle"
+				"6 - NSShadowlessSquareBezelStyle"
+				"7 - NSCircularBezelStyle"
+				"8 - NSTexturedSquareBezelStyle"
+				"9 - NSHelpButtonBezelStyle"
+				"10 - NSSmallSquareBezelStyle"
+				"11 - NSTexturedRoundedBezelStyle"
+				"12 - NSRoundRectBezelStyle"
+				"13 - NSRecessedBezelStyle"
+				"14 - NSRoundedDisclosureBezelStyle"
+				"15 - NSInlineBezelStyle"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Bold"
 			Visible=true
 			Group="Behavior"
@@ -865,6 +894,22 @@ Inherits NSControl
 			Group="NSProperties"
 			InitialValue="True"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ButtonType"
+			Group="Behavior"
+			Type="NSButtonType"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - NSMomentaryLightButton"
+				"1 - NSPushOnPushOffButton"
+				"2 - NSToggleButton"
+				"3 - NSSwitchButton"
+				"4 - NSRadioButton"
+				"5 - NSMomentaryChangeButton"
+				"6 - NSOnOffButton"
+				"7 - NSMomentaryPushInButton"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Description"
@@ -946,6 +991,7 @@ Inherits NSControl
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="InitialParent"
@@ -1004,6 +1050,22 @@ Inherits NSControl
 			Visible=true
 			Group="ID"
 			Type="String"
+			EditorType="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="NativeImagePosition"
+			Group="Behavior"
+			Type="NSImagePosition"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - NSNoImage"
+				"1 - NSImageOnly"
+				"2 - NSImageLeft"
+				"3 - NSImageRight"
+				"4 - NSImageBelow"
+				"5 - NSImageAbove"
+				"6 - NSImageOverlaps"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ShowsBorderOnlyWhileMouseInside"
@@ -1061,6 +1123,7 @@ Inherits NSControl
 			Visible=true
 			Group="ID"
 			Type="String"
+			EditorType="String"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="TabIndex"

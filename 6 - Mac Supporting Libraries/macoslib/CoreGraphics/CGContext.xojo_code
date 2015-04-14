@@ -1167,6 +1167,18 @@ Inherits CFType
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="InterpolationQuality"
+			Group="Behavior"
+			Type="CGInterpolationQuality"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Default"
+				"1 - None"
+				"2 - Low"
+				"3 - High"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Left"
 			Visible=true
 			Group="Position"

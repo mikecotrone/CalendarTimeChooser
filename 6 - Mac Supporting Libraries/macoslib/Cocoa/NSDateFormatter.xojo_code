@@ -1338,6 +1338,11 @@ Inherits NSObject
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="DateStyle"
+			Group="Behavior"
+			Type="NSDateFormatterStyle"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Description"
 			Group="Behavior"
 			Type="String"
@@ -1347,6 +1352,11 @@ Inherits NSObject
 			Name="DoesRelativeDateFormatting"
 			Group="Behavior"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="FormatterBehavior"
+			Group="Behavior"
+			Type="NSDateFormatterBehavior"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
@@ -1384,6 +1394,11 @@ Inherits NSObject
 			Visible=true
 			Group="ID"
 			Type="String"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="TimeStyle"
+			Group="Behavior"
+			Type="NSDateFormatterStyle"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"

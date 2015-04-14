@@ -886,6 +886,11 @@ Inherits NSObject
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="State"
+			Group="Behavior"
+			Type="NSCellStateValue"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"

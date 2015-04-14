@@ -508,6 +508,16 @@ Inherits NSResponder
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Appearance"
+			Group="Behavior"
+			Type="NSPopoverAppearance"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Behavior"
+			Group="Behavior"
+			Type="NSPopoverBehavior"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Description"
 			Group="Behavior"
 			Type="String"

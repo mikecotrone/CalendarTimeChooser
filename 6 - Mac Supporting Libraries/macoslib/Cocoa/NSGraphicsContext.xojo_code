@@ -565,6 +565,11 @@ Inherits NSObject
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="ColorRenderingIntent"
+			Group="Behavior"
+			Type="NSColorRenderingIntent"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Description"
 			Group="Behavior"
 			Type="String"
@@ -579,6 +584,11 @@ Inherits NSObject
 			Name="Flipped"
 			Group="Behavior"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ImageInterpolation"
+			Group="Behavior"
+			Type="NSImageInterpolation"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"

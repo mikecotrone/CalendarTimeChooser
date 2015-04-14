@@ -2079,6 +2079,11 @@ Inherits NSResponder
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="FocusRingType"
+			Group="Behavior"
+			Type="NSFocusRingType"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="FrameRotation"
 			Group="Behavior"
 			Type="Single"

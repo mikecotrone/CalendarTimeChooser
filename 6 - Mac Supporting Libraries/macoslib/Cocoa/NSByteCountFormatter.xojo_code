@@ -285,6 +285,11 @@ Inherits NSFormatter
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="CountStyle"
+			Group="Behavior"
+			Type="CountStyle"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Description"
 			Group="Behavior"
 			Type="String"

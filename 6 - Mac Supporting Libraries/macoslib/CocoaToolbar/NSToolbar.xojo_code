@@ -1164,6 +1164,11 @@ Inherits NSObject
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="DisplayMode"
+			Group="Behavior"
+			Type="NSToolbarDisplayMode"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Index"
 			Visible=true
 			Group="ID"
@@ -1193,6 +1198,11 @@ Inherits NSObject
 			Name="ShowsBaselineSeparator"
 			Group="Behavior"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="SizeMode"
+			Group="Behavior"
+			Type="NSToolbarSizeMode"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"

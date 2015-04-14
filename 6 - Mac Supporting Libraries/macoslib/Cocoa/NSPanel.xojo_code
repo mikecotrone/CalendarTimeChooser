@@ -147,6 +147,11 @@ Inherits NSWindow
 			Type="Single"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="AnimationBehavior"
+			Group="Behavior"
+			Type="NSWindowAnimationBehavior"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="AreCursorRectsEnabled"
 			Group="Behavior"
 			Type="Boolean"
@@ -162,9 +167,19 @@ Inherits NSWindow
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="BackingLocation"
+			Group="Behavior"
+			Type="NSWindowBackingLocation"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="BackingScaleFactor"
 			Group="Behavior"
 			Type="Single"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="BackingType"
+			Group="Behavior"
+			Type="NSBackingStoreType"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="BecomesKeyOnlyIfNeeded"
@@ -372,6 +387,11 @@ Inherits NSWindow
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="KeyViewSelectionDirection"
+			Group="Behavior"
+			Type="NSSelectionDirection"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Left"
 			Visible=true
 			Group="Position"
@@ -416,6 +436,11 @@ Inherits NSWindow
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="PreferredBackingLocation"
+			Group="Behavior"
+			Type="NSWindowBackingLocation"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="PreservesContentDuringLiveResize"
 			Group="Behavior"
 			Type="Boolean"
@@ -430,6 +455,11 @@ Inherits NSWindow
 			Group="Behavior"
 			Type="String"
 			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="SharingType"
+			Group="Behavior"
+			Type="NSWindowSharingType"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ShowsResizeIndicator"
@@ -474,6 +504,11 @@ Inherits NSWindow
 			Name="ViewsNeedDisplay"
 			Group="Behavior"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="WindowLevel"
+			Group="Behavior"
+			Type="NSWindowLevel"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="WindowNumber"

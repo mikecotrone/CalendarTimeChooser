@@ -193,6 +193,17 @@ Inherits Cocoa.CanvasForNSView
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="FocusRingType"
+			Group="Behavior"
+			Type="NSFocusRingType"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Default"
+				"1 - None"
+				"2 - Exterior"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="FrameRotation"
 			Group="Behavior"
 			Type="Single"
@@ -226,6 +237,7 @@ Inherits Cocoa.CanvasForNSView
 			Visible=true
 			Group="ID"
 			Type="Integer"
+			EditorType="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="InitialParent"
@@ -296,6 +308,7 @@ Inherits Cocoa.CanvasForNSView
 			Visible=true
 			Group="ID"
 			Type="String"
+			EditorType="String"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="NeedsDisplay"
@@ -327,6 +340,7 @@ Inherits Cocoa.CanvasForNSView
 			Visible=true
 			Group="ID"
 			Type="String"
+			EditorType="String"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="TabIndex"

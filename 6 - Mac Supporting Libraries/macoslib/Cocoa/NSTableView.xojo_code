@@ -592,6 +592,19 @@ Inherits NSControl
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Alignment"
+			Group="Behavior"
+			Type="NSTextAlignment"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Left"
+				"1 - Right"
+				"2 - Center"
+				"3 - Justified"
+				"4 - Natural"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="AllowColumnReordering"
 			Group="Behavior"
 			Type="Boolean"
@@ -700,6 +713,17 @@ Inherits NSControl
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="HighlightStyle"
+			Group="Behavior"
+			Type="SelectionHighlightStyle"
+			EditorType="Enum"
+			#tag EnumValues
+				"-1 - None"
+				"0 - Regular"
+				"1 - SourceList"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="HorizontalGrid"
 			Group="Behavior"
 			Type="Boolean"
@@ -709,6 +733,7 @@ Inherits NSControl
 			Visible=true
 			Group="ID"
 			Type="Integer"
+			EditorType="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="InitialParent"
@@ -766,6 +791,7 @@ Inherits NSControl
 			Visible=true
 			Group="ID"
 			Type="String"
+			EditorType="String"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="RowHeight"
@@ -783,6 +809,7 @@ Inherits NSControl
 			Visible=true
 			Group="ID"
 			Type="String"
+			EditorType="String"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="TabIndex"

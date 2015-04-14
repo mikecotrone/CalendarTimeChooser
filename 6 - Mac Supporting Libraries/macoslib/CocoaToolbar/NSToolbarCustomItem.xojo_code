@@ -342,6 +342,18 @@ Implements NSToolbarItemInterface
 			InitialValue="0"
 			Type="Integer"
 		#tag EndViewProperty
+		#tag ViewProperty
+			Name="VisibilityPriority"
+			Group="Behavior"
+			Type="NSToolbarItemVisibilityPriority"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - NSToolbarItemVisibilityPriorityStandard"
+				"-1000 - NSToolbarItemVisibilityPriorityLow"
+				"1000 - NSToolbarItemVisibilityPriorityHigh"
+				"2000 - NSToolbarItemVisibilityPriorityUser"
+			#tag EndEnumValues
+		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class
 #tag EndClass

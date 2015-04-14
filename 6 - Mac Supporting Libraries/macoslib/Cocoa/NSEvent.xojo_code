@@ -317,6 +317,11 @@ Inherits NSObject
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Type"
+			Group="Behavior"
+			Type="EventType"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="WindowNumber"
 			Group="Behavior"
 			Type="Integer"

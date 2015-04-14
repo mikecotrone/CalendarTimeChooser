@@ -234,6 +234,11 @@ Inherits CGContext
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="InterpolationQuality"
+			Group="Behavior"
+			Type="CGInterpolationQuality"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Left"
 			Visible=true
 			Group="Position"

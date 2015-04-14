@@ -87,7 +87,7 @@ Begin ContainerControl Time_Container
       Backdrop        =   0
       BorderColor     =   &c44444400
       ClockFaceColor  =   &cDDDDDD00
-      ClockFaceType   =   ""
+      ClockFaceType   =   0
       ClockHandColor  =   &c00000000
       ClockHourValue  =   0.0
       ClockMinuteValue=   0.0

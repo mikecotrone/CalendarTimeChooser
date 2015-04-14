@@ -276,6 +276,11 @@ Inherits NSObject
 
 	#tag ViewBehavior
 		#tag ViewProperty
+			Name="ColorSpaceModel"
+			Group="Behavior"
+			Type="NSColorSpaceModel"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Description"
 			Group="Behavior"
 			Type="String"

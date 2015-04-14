@@ -655,6 +655,18 @@ Class MacDeviceItem
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="MountStatus"
+			Group="Behavior"
+			Type="MountType"
+			EditorType="Enum"
+			#tag EnumValues
+				"-2 - Unknown"
+				"-1 - NotApplicable"
+				"0 - Unmounted"
+				"1 - Mounted"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"

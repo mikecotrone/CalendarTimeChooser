@@ -4628,6 +4628,19 @@ Inherits NSResponder
 			Type="Single"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="AnimationBehavior"
+			Group="Behavior"
+			Type="NSWindowAnimationBehavior"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - NSWindowAnimationBehaviorDefault"
+				"2 - NSWindowAnimationBehaviorNone"
+				"3 - NSWindowAnimationBehaviorDocumentWindow"
+				"4 - NSWindowAnimationBehaviorUtilityWindow"
+				"5 - NSWindowAnimationBehaviorAlertPanel"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="AreCursorRectsEnabled"
 			Group="Behavior"
 			Type="Boolean"
@@ -4643,9 +4656,31 @@ Inherits NSResponder
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="BackingLocation"
+			Group="Behavior"
+			Type="NSWindowBackingLocation"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - NSWindowBackingLocationDefault"
+				"1 - NSWindowBackingLocationVideoMemory"
+				"2 - NSWindowBackingLocationMainMemory"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="BackingScaleFactor"
 			Group="Behavior"
 			Type="Single"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="BackingType"
+			Group="Behavior"
+			Type="NSBackingStoreType"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - NSBackingStoreRetained"
+				"1 - NSBackingStoreNonretained"
+				"2 - NSBackingStoreBuffered"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CanBecomeKeyWindow"
@@ -4843,6 +4878,17 @@ Inherits NSResponder
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="KeyViewSelectionDirection"
+			Group="Behavior"
+			Type="NSSelectionDirection"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - NSDirectSelection"
+				"1 - NSSelectingNext"
+				"2 - NSSelectingPrevious"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Left"
 			Visible=true
 			Group="Position"
@@ -4887,6 +4933,17 @@ Inherits NSResponder
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="PreferredBackingLocation"
+			Group="Behavior"
+			Type="NSWindowBackingLocation"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - NSWindowBackingLocationDefault"
+				"1 - NSWindowBackingLocationVideoMemory"
+				"2 - NSWindowBackingLocationMainMemory"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="PreservesContentDuringLiveResize"
 			Group="Behavior"
 			Type="Boolean"
@@ -4901,6 +4958,17 @@ Inherits NSResponder
 			Group="Behavior"
 			Type="String"
 			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="SharingType"
+			Group="Behavior"
+			Type="NSWindowSharingType"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - NSWindowSharingNone"
+				"1 - NSWindowSharingReadOnly"
+				"2 - NSWindowSharingReadWrite"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="ShowsResizeIndicator"
@@ -4945,6 +5013,23 @@ Inherits NSResponder
 			Name="ViewsNeedDisplay"
 			Group="Behavior"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="WindowLevel"
+			Group="Behavior"
+			Type="NSWindowLevel"
+			EditorType="Enum"
+			#tag EnumValues
+				"4 - NSNormalWindowLevel"
+				"5 - NSFloatingWindowLevel"
+				"6 - NSSubmenuWindowLevel"
+				"6 - NSTornOffMenuWindowLevel"
+				"8 - NSMainMenuWindowLevel"
+				"9 - NSStatusWindowLevel"
+				"10 - NSModalPanelWindowLevel"
+				"11 - NSPopUpMenuWindowLevel"
+				"13 - NSScreenSaverWindowLevel"
+			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="WindowNumber"

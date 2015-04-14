@@ -30,6 +30,19 @@ Inherits NSSlider
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Alignment"
+			Group="Behavior"
+			Type="NSTextAlignment"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - Left"
+				"1 - Right"
+				"2 - Center"
+				"3 - Justified"
+				"4 - Natural"
+			#tag EndEnumValues
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="AllowsExpansionToolTips"
 			Group="Behavior"
 			Type="Boolean"
@@ -70,6 +83,12 @@ Inherits NSSlider
 			Group="Behavior"
 			InitialValue="false"
 			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="ControlSize"
+			Group="Behavior"
+			Type="NSControlSize"
+			EditorType="Enum"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Description"
@@ -128,6 +147,7 @@ Inherits NSSlider
 			Group="ID"
 			InitialValue="-2147483648"
 			Type="Integer"
+			EditorType="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="InitialParent"
@@ -200,6 +220,7 @@ Inherits NSSlider
 			Visible=true
 			Group="ID"
 			Type="String"
+			EditorType="String"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="NumberOfTickMarks"
@@ -222,6 +243,12 @@ Inherits NSSlider
 			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="SliderType"
+			Group="Behavior"
+			Type="NSSliderType"
+			EditorType="Enum"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="StringValue"
 			Group="Behavior"
 			Type="String"
@@ -232,6 +259,7 @@ Inherits NSSlider
 			Visible=true
 			Group="ID"
 			Type="String"
+			EditorType="String"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="TabIndex"
@@ -267,6 +295,12 @@ Inherits NSSlider
 			Group="Behavior"
 			InitialValue="0.0"
 			Type="double"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="TickMarkPosition"
+			Group="Behavior"
+			Type="NSTickMarkPosition"
+			EditorType="Enum"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="TickPosition"

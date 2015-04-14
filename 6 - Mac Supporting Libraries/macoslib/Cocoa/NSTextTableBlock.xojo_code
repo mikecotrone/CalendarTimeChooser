@@ -179,6 +179,18 @@ Inherits NSTextBlock
 			InitialValue="0"
 			Type="Integer"
 		#tag EndViewProperty
+		#tag ViewProperty
+			Name="VerticalAlignment"
+			Group="Behavior"
+			Type="NSTextBlockVerticalAlignment"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - NSTextBlockTopAlignment"
+				"1 - NSTextBlockMiddleAlignment"
+				"2 - NSTextBlockBottomAlignment"
+				"3 - NSTextBlockBaselineAlignment"
+			#tag EndEnumValues
+		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class
 #tag EndClass

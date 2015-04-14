@@ -308,7 +308,9 @@ Inherits Canvas
 
 	#tag Method, Flags = &h0
 		Function fCalcLeapYear(inYear as Integer) As boolean
-		  Return (inYear MOD 4) = 0 AND (((inYear MOD 100) <> 0) OR ((inYear MOD 400) = 0))
+		  Return (inYear MOD 4) = 0 AND (((inYear MOD 100) = 0) OR ((inYear MOD 400) = 0))
+		  
+		  
 		End Function
 	#tag EndMethod
 

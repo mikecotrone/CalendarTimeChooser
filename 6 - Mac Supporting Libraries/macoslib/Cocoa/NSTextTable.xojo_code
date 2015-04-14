@@ -252,6 +252,11 @@ Inherits NSTextBlock
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="LayoutAlgorithm"
+			Group="Behavior"
+			Type="NSTextTableLayoutAlgorithm"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Left"
 			Visible=true
 			Group="Position"
@@ -276,6 +281,18 @@ Inherits NSTextBlock
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="VerticalAlignment"
+			Group="Behavior"
+			Type="NSTextBlockVerticalAlignment"
+			EditorType="Enum"
+			#tag EnumValues
+				"0 - NSTextBlockTopAlignment"
+				"1 - NSTextBlockMiddleAlignment"
+				"2 - NSTextBlockBottomAlignment"
+				"3 - NSTextBlockBaselineAlignment"
+			#tag EndEnumValues
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

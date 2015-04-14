@@ -396,6 +396,11 @@ Inherits NSObject
 
 	#tag ViewBehavior
 		#tag ViewProperty
+			Name="ActivationPolicy"
+			Group="Behavior"
+			Type="NSApplicationActivationPolicy"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="Active"
 			Group="Behavior"
 			Type="Boolean"

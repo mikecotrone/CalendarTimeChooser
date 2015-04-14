@@ -1883,6 +1883,11 @@ Protected Class MacPListBrowser
 			Type="Integer"
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Type"
+			Group="Behavior"
+			Type="ValueType"
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="XMLValue"
 			Group="Behavior"
 			Type="String"
