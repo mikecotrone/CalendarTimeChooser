@@ -22,13 +22,13 @@ Inherits Canvas
 
 	#tag Event
 		Sub MouseUp(X As Integer, Y As Integer)
-		  mAddMenuItems
+		  addMenuItems()
 		  dim result As MenuItem=myMenu.PopUp
 		  if result<>nil then
 		    RecurringMode=result.Tag
 		    
 		    // Raise User Defined Event
-		    Calendar_Container(window).mRaiseEvent_Recurring(result.Text)
+		    Calendar_Container(window).raiseRecurringEvent(result.Text)
 		  end if
 		  
 		  
@@ -49,34 +49,12 @@ Inherits Canvas
 
 
 	#tag Method, Flags = &h21
-		Private Function fConvertDayOfWeek_Int_to_Str(inDayofWeek_Int as Integer) As String
-		  Select Case inDayofWeek_Int
-		    
-		  Case 1
-		    Return Calendar_Container(window).Calendar1.Localized_Sunday
-		  Case 2
-		    Return Calendar_Container(window).Calendar1.Localized_Monday
-		  Case 3
-		    Return Calendar_Container(window).Calendar1.Localized_Tuesday
-		  Case 4
-		    Return Calendar_Container(window).Calendar1.Localized_Wednesday
-		  Case 5
-		    Return Calendar_Container(window).Calendar1.Localized_Thursday
-		  Case 6
-		    Return Calendar_Container(window).Calendar1.Localized_Friday
-		  Case 7
-		    Return Calendar_Container(window).Calendar1.Localized_Saturday
-		  End Select
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub mAddMenuItems()
+		Private Sub addMenuItems()
 		  myMenu=new MenuItem
 		  // Get Realtime User Selected Month
 		  dim OTF_DayOfMonth_String as string = Calendar_Container(window).Calendar1.SelectedMonth
 		  // Get Realtime User Selected Day of the Week
-		  Dim DayofWeekString as String = fConvertDayOfWeek_Int_to_Str(Calendar_Container(window).Calendar1.SelectedDate.DayOfWeek)
+		  Dim DayofWeekString as String = convertDayOfWeek_Int_to_Str(Calendar_Container(window).Calendar1.SelectedDate.DayOfWeek)
 		  dim OTF_DayOfWeek_String as string =DayofWeekString
 		  
 		  // Get User Selected Day
@@ -99,6 +77,28 @@ Inherits Canvas
 		  
 		  
 		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Function convertDayOfWeek_Int_to_Str(inDayofWeek_Int as Integer) As String
+		  Select Case inDayofWeek_Int
+		    
+		  Case 1
+		    Return Calendar_Container(window).Calendar1.Localized_Sunday
+		  Case 2
+		    Return Calendar_Container(window).Calendar1.Localized_Monday
+		  Case 3
+		    Return Calendar_Container(window).Calendar1.Localized_Tuesday
+		  Case 4
+		    Return Calendar_Container(window).Calendar1.Localized_Wednesday
+		  Case 5
+		    Return Calendar_Container(window).Calendar1.Localized_Thursday
+		  Case 6
+		    Return Calendar_Container(window).Calendar1.Localized_Friday
+		  Case 7
+		    Return Calendar_Container(window).Calendar1.Localized_Saturday
+		  End Select
+		End Function
 	#tag EndMethod
 
 

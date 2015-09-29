@@ -39,15 +39,10 @@ Inherits Canvas
 		    if UseGradientFill = False Then
 		      g.ForeColor=Date_Time_Container(Time_Container(window).Window).BackColor
 		      g.FillRect(0,0,g.Width,g.Height)
-		    Elseif UseGradientFill = True Then
-		      //
 		    end if
-		    
-		    
 		  #ELSEIF TargetWin32 Then
 		    g.ForeColor=Date_Time_Container(Time_Container(window).Window).BackColor
 		    g.FillRect(0,0,g.Width,g.Height)
-		    
 		  #ENDIF
 		  
 		  // Draw Clock Image
@@ -63,20 +58,20 @@ Inherits Canvas
 		  Case Date_Time_Container.ClockFaceType_Modern
 		    g.DrawPicture(Clock_Retro130x130,0,0)
 		  Case Date_Time_Container.ClockFaceType_Dynamic_12hr
-		    mDrawClockFace (g)
+		    drawClockFace (g)
 		  Case Date_Time_Container.ClockFaceType_Dynamic_24hr
-		    mDrawClockFace (g)
+		    drawClockFace (g)
 		  Case Date_Time_Container.ClockFaceType_Antique
 		    g.DrawPicture(Antique130x130,0,0)
 		  End Select
 		  
 		  dim buffer As new Picture(g.Width*2,g.Height*2)
 		  // Minute Hand
-		  mDrawClockMinuteHand (buffer.Graphics)
+		  drawClockMinuteHand (buffer.Graphics)
 		  // Hour Hand
-		  mDrawClockHourHand (buffer.Graphics)
+		  drawClockHourHand (buffer.Graphics)
 		  // Draw Second hand
-		  mDrawClockSecondHand (buffer.Graphics)
+		  drawClockSecondHand (buffer.Graphics)
 		  
 		  
 		  // Draw Center Dot on the Clock Image
@@ -108,8 +103,8 @@ Inherits Canvas
 	#tag EndEvent
 
 
-	#tag Method, Flags = &h0
-		Sub mDrawAMPM_OnClock(g as Graphics, inTextSize as Integer, inTextFont as String, inForecolor as color, inString as String)
+	#tag Method, Flags = &h21
+		Private Sub drawAMPM_OnClock(g as Graphics, inTextSize as Integer, inTextFont as String, inForecolor as color, inString as String)
 		  g.TextSize = inTextSize
 		  g.TextFont = inTextFont
 		  g.ForeColor = inForecolor
@@ -117,8 +112,8 @@ Inherits Canvas
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
-		Sub mDrawClockFace(g As Graphics)
+	#tag Method, Flags = &h21
+		Private Sub drawClockFace(g As Graphics)
 		  static buffer As picture= new Picture(g.Width*4,g.Height*4)
 		  buffer.Graphics.ClearRect(0,0,buffer.Width,buffer.Height)
 		  dim hr,sec,x,y,radius,tickInset As integer
@@ -223,8 +218,8 @@ Inherits Canvas
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
-		Sub mDrawClockHourHand(g as Graphics)
+	#tag Method, Flags = &h21
+		Private Sub drawClockHourHand(g as Graphics)
 		  Dim HourHand as Object2D
 		  
 		  Dim CurrentHour as integer=val(Time_Container(window).Time_Hour)
@@ -250,7 +245,6 @@ Inherits Canvas
 		    HourHand = New CurveShape
 		    CurveShape(HourHand).Border = 100
 		    CurveShape(HourHand).BorderWidth = 4
-		    
 		    CurveShape(HourHand).BorderColor = &c0000FF
 		    CurveShape(HourHand).X = 1
 		    CurveShape(HourHand).Y  = 1
@@ -264,8 +258,8 @@ Inherits Canvas
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
-		Sub mDrawClockMinuteHand(g as Graphics)
+	#tag Method, Flags = &h21
+		Private Sub drawClockMinuteHand(g as Graphics)
 		  Dim MinHand as Object2D
 		  
 		  if UseGraphicalClockHands = True then
@@ -292,8 +286,8 @@ Inherits Canvas
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
-		Sub mDrawClockSecondHand(g as Graphics)
+	#tag Method, Flags = &h21
+		Private Sub drawClockSecondHand(g as Graphics)
 		  Dim SecondHand as Object2D
 		  
 		  if UseGraphicalClockHands then  //use graphical version

@@ -38,12 +38,12 @@ Begin Window DemoLaunchWindow
       DataSource      =   ""
       Enabled         =   True
       Format          =   ""
-      Height          =   130
+      Height          =   137
       HelpTag         =   ""
       HideSelection   =   True
       Index           =   -2147483648
       Italic          =   False
-      Left            =   10
+      Left            =   0
       LimitText       =   0
       LineHeight      =   0.0
       LineSpacing     =   1.0
@@ -67,11 +67,11 @@ Begin Window DemoLaunchWindow
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   10
+      Top             =   0
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   468
+      Width           =   489
    End
    Begin GroupBox GroupBox1
       AutoDeactivate  =   True
@@ -122,7 +122,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   5
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Select Chooser Type:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -188,7 +187,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   7
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Change Window Back Color:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -254,7 +252,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   21
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Change Clock Face:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -376,7 +373,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   29
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Select Time Mode Format:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -442,7 +438,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   31
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Select Clock Hand Type:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -508,7 +503,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   35
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Week Start Type:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -571,7 +565,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   37
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Calendar Localization:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -668,7 +661,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   41
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "h00000000"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -731,7 +723,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   43
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Allow Multiple Date Selections:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -797,7 +788,6 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   49
          TabPanelIndex   =   0
-         TabStop         =   True
          Text            =   "Use Gradient Fill:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -962,7 +952,6 @@ Begin Window DemoLaunchWindow
       Selectable      =   False
       TabIndex        =   17
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Include Previous/Next Month Days:"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -997,7 +986,6 @@ Begin Window DemoLaunchWindow
       Selectable      =   False
       TabIndex        =   18
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Choose Clock Hand Color:"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -1072,12 +1060,14 @@ End
 #tag Events TextArea1
 	#tag Event
 		Sub Open()
+		  Me.Text = "Welcome to the ""Calendar and Time Chooser Project (Desktop Edition)"""+EndOfLine+EndOfLine
 		  
-		  Me.Text = "Welcome to the open source ""Calendar and Time Chooser Project""! "+EndOfLine+EndOfLine
+		  Me.AppendText "This project has been tested with Xojo "+ XojoVersionString + EndOfLine+_
+		   "Please feel free to use this project in your commercial and/or open source software."+EndOfLine+EndOfLine+_
+		  "If you have any questions please check the ""Quick Start App Note"" or "+_
+		  "email us at support@intelligentvisibility.com."+EndOfLine
 		  
-		  Me.AppendText "This project is written using Xojo 2014r2.1 and is free to use in your commercial and/or open source software."+EndOfLine+EndOfLine+_
-		  "Please read the ""Quick Start App Note"" and If you have any questions "+_
-		  "please email me at mikec@intelligentvisibility.com."+EndOfLine
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents

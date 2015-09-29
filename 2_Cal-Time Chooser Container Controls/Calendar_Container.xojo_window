@@ -125,7 +125,7 @@ Begin ContainerControl Calendar_Container
       TextFont        =   "Helvetica"
       TextSize        =   12.0
       TextUnit        =   0
-      Top             =   220
+      Top             =   278
       Underline       =   False
       Value           =   False
       Visible         =   True
@@ -169,7 +169,7 @@ Begin ContainerControl Calendar_Container
       TextFont        =   "Helvetica"
       TextSize        =   11.0
       TextUnit        =   0
-      Top             =   220
+      Top             =   278
       Underline       =   False
       Value           =   False
       Visible         =   True
@@ -213,7 +213,7 @@ Begin ContainerControl Calendar_Container
       TextFont        =   "Helvetica"
       TextSize        =   12.0
       TextUnit        =   0
-      Top             =   220
+      Top             =   278
       Underline       =   False
       Value           =   False
       Visible         =   True
@@ -345,7 +345,7 @@ Begin ContainerControl Calendar_Container
       TextFont        =   "Helvetica"
       TextSize        =   12.0
       TextUnit        =   0
-      Top             =   220
+      Top             =   278
       Underline       =   False
       Value           =   False
       Visible         =   True
@@ -389,7 +389,7 @@ Begin ContainerControl Calendar_Container
       TextFont        =   "Helvetica"
       TextSize        =   12.0
       TextUnit        =   0
-      Top             =   220
+      Top             =   278
       Underline       =   False
       Value           =   False
       Visible         =   True
@@ -417,7 +417,6 @@ Begin ContainerControl Calendar_Container
       Selectable      =   False
       TabIndex        =   57
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Recurrence"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -459,14 +458,34 @@ Begin ContainerControl Calendar_Container
       Visible         =   True
       Width           =   20
    End
+   BeginSegmented SegmentedControl calControlSegmentedControl
+      Enabled         =   True
+      Height          =   24
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   66
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      MacControlStyle =   6
+      Scope           =   0
+      Segments        =   "\n\nFalse\r\n\nFalse\r\n\nFalse\r\n\nFalse\r\n\nFalse"
+      SelectionType   =   2
+      TabPanelIndex   =   0
+      Top             =   220
+      Visible         =   True
+      Width           =   104
+   End
 End
 #tag EndWindow
 
 #tag WindowCode
 	#tag Method, Flags = &h21
-		Private Sub mNextMonth()
+		Private Sub goNextMonth()
 		  // Need a Check to See about Incrementing Year or not
-		  Calendar1.mDeselectAll
+		  Calendar1.deselectAll()
 		  if Calendar1.NextMonth = Calendar1.Localized_January then
 		    // Need to increment Year
 		    Calendar1.NextYear = CDbl(YearPopup.Text)+1
@@ -490,8 +509,8 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub mNextYear()
-		  Calendar1.mDeselectAll
+		Private Sub goNextYear()
+		  Calendar1.deselectAll()
 		  
 		  Calendar1.NextYear = CDbl(YearPopup.Text)+1
 		  for i as integer = 0 to YearPopup.ListCount-1
@@ -507,9 +526,9 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub mPrevMonth()
+		Private Sub goPrevMonth()
 		  // Need a Check to See about Decrementing Year or not
-		  Calendar1.mDeselectAll
+		  Calendar1.deselectAll()
 		  if Calendar1.PreviousMonth = Calendar1.Localized_December then
 		    // Need to increment Year
 		    Calendar1.PrevYear = CDbl(YearPopup.Text)-1
@@ -532,8 +551,8 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub mPrevYear()
-		  Calendar1.mDeselectAll
+		Private Sub goPrevYear()
+		  Calendar1.deselectAll()
 		  
 		  Calendar1.NextYear = CDbl(YearPopup.Text)-1
 		  for i as integer = 0 to YearPopup.ListCount-1
@@ -549,7 +568,13 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub mRaiseEvent(inSelectedDate as Date)
+		Sub raiseRecurringEvent(inSelectedMenuItem as String)
+		  RaiseEvent Recurring_Selection(inSelectedMenuItem)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub raiseThisEvent(inSelectedDate as Date)
 		  RaiseEvent SelectedDate(inSelectedDate)
 		  
 		  
@@ -557,16 +582,10 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub mRaiseEvent_Recurring(inSelectedMenuItem as String)
-		  RaiseEvent Recurring_Selection(inSelectedMenuItem)
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub mTakeMeToTodaysDate()
+		Sub takeMeToTodaysDate()
 		  
 		  // Bring Us Back to Today's Month
-		  Dim CurrentDateMonthString as String = Calendar1.fConvertMonthIntToMonthString(Calendar1.CurrentDate.Month)
+		  Dim CurrentDateMonthString as String = Calendar1.convertMonthIntToMonthString(Calendar1.CurrentDate.Month)
 		  for i as integer = 0 to MonthPopup.ListCount-1
 		    if CurrentDateMonthString = MonthPopup.List(i) Then
 		      MonthPopup.ListIndex = i
@@ -582,7 +601,7 @@ End
 		  next i
 		  
 		  //Select Todays Date
-		  Calendar1.mDeselectAll
+		  Calendar1.deselectAll()
 		  for i as integer = 7 to UBound(Calendar1.CalendarButtonClassArray) // Only begin at 7 Since 0-6 Are reserved for Day Of Week Titles
 		    if Calendar1.CalendarButtonClassArray(i).MyDate <> Nil Then
 		      if Calendar1.CalendarButtonClassArray(i).MyDate.Month = Calendar1.CurrentDate.Month AND  Calendar1.CalendarButtonClassArray(i).MyDate.Day = Calendar1.CurrentDate.Day Then
@@ -613,10 +632,10 @@ End
 	#tag Event
 		Sub Change()
 		  Calendar1.SelectedMonth = Me.Text
-		  Calendar1.mCalculateMonth(Me.Text)
-		  Calendar1.UPDATE_MonthDays
-		  Calendar1.UPDATE_MapDaysToCalSlots
-		  Calendar1.mDeselectAll
+		  Calendar1.calculateMonth(Me.Text)
+		  Calendar1.UPDATE_MonthDays()
+		  Calendar1.UPDATE_MapDaysToCalSlots()
+		  Calendar1.deselectAll()
 		  
 		End Sub
 	#tag EndEvent
@@ -630,10 +649,10 @@ End
 	#tag Event
 		Sub Change()
 		  Calendar1.SelectedYear = Me.Text
-		  Calendar1.mCalculateYear(Me.Text)
-		  Calendar1.UPDATE_MonthDays
-		  Calendar1.UPDATE_MapDaysToCalSlots
-		  Calendar1.mDeselectAll
+		  Calendar1.calculateYear(Me.Text)
+		  Calendar1.UPDATE_MonthDays()
+		  Calendar1.UPDATE_MapDaysToCalSlots()
+		  Calendar1.deselectAll()
 		  
 		End Sub
 	#tag EndEvent
@@ -653,18 +672,19 @@ End
 #tag Events PreviousMonthButton
 	#tag Event
 		Sub Action()
-		  mPrevMonth
+		  goPrevMonth()
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub Open()
 		  #if TargetMacOS Then
-		    me.Icon = SystemIcons.LeftFacingTriangleTemplate
+		    //me.Icon = SystemIcons.LeftFacingTriangleTemplate
+		    Me.Caption = " <"
 		    me.IconAlign = 1
 		    
 		  #Elseif TargetWin32 Then
 		    Me.TextSize = 14
-		    Me.Caption = "<"
+		    Me.Caption = " <"
 		    Me.CaptionAlign = 0
 		    me.CaptionDelta=4
 		  #endif
@@ -674,7 +694,7 @@ End
 #tag Events CurrentMonthButton
 	#tag Event
 		Sub Action()
-		  mTakeMeToTodaysDate
+		  takeMeToTodaysDate()
 		  
 		  
 		End Sub
@@ -704,7 +724,7 @@ End
 #tag Events NextMonthButton
 	#tag Event
 		Sub Action()
-		  mNextMonth
+		  goNextMonth()
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -715,12 +735,13 @@ End
 	#tag Event
 		Sub Open()
 		  #if TargetMacOS Then
-		    me.Icon = SystemIcons.RightFacingTriangleTemplate
+		    //me.Icon = SystemIcons.RightFacingTriangleTemplate
+		    Me.Caption = " >"
 		    me.IconAlign = 1
 		    
 		  #Elseif TargetWin32 Then
 		    Me.TextSize = 14
-		    Me.Caption = ">"
+		    Me.Caption = " >"
 		    Me.CaptionAlign = 0
 		    me.CaptionDelta=4
 		  #endif
@@ -730,7 +751,7 @@ End
 #tag Events NextYearButton
 	#tag Event
 		Sub Action()
-		  mNextYear
+		  goNextYear()
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -741,12 +762,13 @@ End
 	#tag Event
 		Sub Open()
 		  #if TargetMacOS Then
-		    me.Icon = SystemIcons.RightFacingTriangleTemplate
+		    //me.Icon = SystemIcons.RightFacingTriangleTemplate
+		    Me.Caption = " >"
 		    me.IconAlign = 1
 		    
 		  #Elseif TargetWin32 Then
 		    Me.TextSize = 14
-		    Me.Caption = ">"
+		    Me.Caption = " >"
 		    Me.CaptionAlign = 0
 		    me.CaptionDelta=4
 		  #endif
@@ -756,7 +778,7 @@ End
 #tag Events PrevYearButton
 	#tag Event
 		Sub Action()
-		  mPrevYear
+		  goPrevYear()
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -767,15 +789,51 @@ End
 	#tag Event
 		Sub Open()
 		  #if TargetMacOS Then
-		    me.Icon = SystemIcons.LeftFacingTriangleTemplate
+		    Me.Caption = " <"
 		    me.IconAlign = 1
 		    
 		  #Elseif TargetWin32 Then
 		    Me.TextSize = 14
-		    Me.Caption = "<"
+		    Me.Caption = " <"
 		    Me.CaptionAlign = 0
 		    me.CaptionDelta=4
 		  #endif
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events calControlSegmentedControl
+	#tag Event
+		Sub Action(itemIndex as integer)
+		  Select Case itemIndex
+		  Case 0
+		    // PREVIOUS YEAR
+		    goPrevYear()
+		  Case 1
+		    // PREVIOUS MONTH
+		    goPrevMonth()
+		    
+		  Case 2
+		    // TODAY'S DATE
+		    takeMeToTodaysDate()
+		    
+		  Case 3
+		    // NEXT MONTH
+		    goNextMonth()
+		    
+		  Case 4
+		    // NEXT YEAR
+		    goNextYear()
+		    
+		  End Select
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Open()
+		  me.Items( 0 ).Title = "<<"
+		  me.Items( 1 ).Title = "<"
+		  me.Items( 2 ).icon = BlackDot16x16
+		  me.Items( 3 ).Title = ">"
+		  me.Items( 4 ).Title = ">>"
 		End Sub
 	#tag EndEvent
 #tag EndEvents

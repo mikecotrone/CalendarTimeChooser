@@ -132,7 +132,7 @@ End
 
 
 	#tag Method, Flags = &h0
-		Sub mRaiseEvent_SelectedTime()
+		Sub raiseEventSelectedTime()
 		  RaiseEvent SelectedTime(Time_Hour, Time_Minute, Time_AMPM)
 		  
 		End Sub
@@ -169,10 +169,10 @@ End
 			  Select Case mTimeMode
 			  Case 12
 			    if TimeModeFirstRunBool = False Then
-			      Me.TimePicker1.mOneTimeConversion24to12
+			      Me.TimePicker1.oneTimeConversion24to12
 			    End if
 			  Case 24
-			    Me.TimePicker1.mOneTimeConversion12to24
+			    Me.TimePicker1.oneTimeConversion12to24
 			    TimeModeFirstRunBool = False
 			    
 			  End Select
@@ -224,9 +224,9 @@ End
 		  Select Case TimePicker1.Draw_Hour_Selected
 		  Case True
 		    if TimeMode = 12 Then
-		      TimePicker1.mMove12HourDown
+		      TimePicker1.move12HourDown
 		    Elseif TimeMode = 24 Then
-		      TimePicker1.mMove24HourDown
+		      TimePicker1.move24HourDown
 		    end if
 		  End Select
 		  
@@ -234,19 +234,19 @@ End
 		  Select Case TimePicker1.Draw_Minute_Selected
 		  Case True
 		    if TimeMode = 12 Then
-		      TimePicker1.mMove12MinDown
+		      TimePicker1.move12MinDown
 		    Elseif TimeMode = 24 Then
-		      TimePicker1.mMove24MinDown
+		      TimePicker1.move24MinDown
 		    End If
 		  End Select
 		  
 		  // Change AM / PM
 		  Select Case TimePicker1.Draw_AMPM_Selected
 		  Case True
-		    TimePicker1.mMoveAMPM
+		    TimePicker1.moveAMPM
 		  End Select
 		  
-		  mRaiseEvent_SelectedTime
+		  raiseEventSelectedTime()
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -260,9 +260,9 @@ End
 		  Select Case TimePicker1.Draw_Hour_Selected
 		  Case True
 		    if TimeMode = 12 Then
-		      TimePicker1.mMove12HourUp
+		      TimePicker1.move12HourUp
 		    Elseif TimeMode = 24 Then
-		      TimePicker1.mMove24HourUp
+		      TimePicker1.move24HourUp
 		    end if
 		  End Select
 		  
@@ -270,19 +270,19 @@ End
 		  Select Case TimePicker1.Draw_Minute_Selected
 		  Case True
 		    if TimeMode = 12 Then
-		      TimePicker1.mMove12MinUp
+		      TimePicker1.move12MinUp
 		    Elseif TimeMode = 24 Then
-		      TimePicker1.mMove24MinUp
+		      TimePicker1.move24MinUp
 		    end if
 		  End Select
 		  
 		  // Change AM / PM
 		  Select Case TimePicker1.Draw_AMPM_Selected
 		  Case True
-		    TimePicker1.mMoveAMPM
+		    TimePicker1.moveAMPM
 		  End Select
 		  
-		  mRaiseEvent_SelectedTime
+		  raiseEventSelectedTime()
 		End Sub
 	#tag EndEvent
 	#tag Event

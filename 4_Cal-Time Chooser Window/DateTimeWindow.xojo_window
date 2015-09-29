@@ -45,7 +45,6 @@ Begin Window DateTimeWindow
       Height          =   252
       HelpTag         =   ""
       IncludePrevNextMonthDays=   False
-      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   0
       LocalizationInt =   0
@@ -168,7 +167,7 @@ End
 
 
 	#tag Method, Flags = &h21
-		Private Sub mDrawGradientBackfill(g as graphics)
+		Private Sub drawGradientBackfill(g as graphics)
 		  // Awesome Gradient Fill
 		  dim i as integer, ratio, endratio as Double
 		  dim StartColor, EndColor as Color
@@ -403,7 +402,7 @@ End
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
 		  if UseGradientFillWindow = True Then
-		    mDrawGradientBackfill(g)
+		    drawGradientBackfill(g)
 		  End
 		End Sub
 	#tag EndEvent
@@ -411,14 +410,14 @@ End
 #tag Events Cancel_Button
 	#tag Event
 		Sub Action()
-		  MsgBox "not implemented...."
+		  MsgBox "Cancel Button Pressed! (not implemented)"
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events Finished_Button
 	#tag Event
 		Sub Action()
-		  MsgBox "Thank you for using our project!"
+		  MsgBox "Submit Button Pressed! (not implemented)"
 		End Sub
 	#tag EndEvent
 #tag EndEvents

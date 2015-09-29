@@ -26,8 +26,7 @@ Begin ContainerControl Date_Time_Container
    Visible         =   True
    Width           =   394
    Begin Timer ClockSecondHandTimer
-      Enabled         =   True
-      Height          =   "32"
+      Height          =   32
       Index           =   -2147483648
       InitialParent   =   ""
       Left            =   0
@@ -37,8 +36,7 @@ Begin ContainerControl Date_Time_Container
       Scope           =   0
       TabPanelIndex   =   0
       Top             =   0
-      Visible         =   True
-      Width           =   "32"
+      Width           =   32
    End
    Begin Separator Separator1
       AutoDeactivate  =   True
@@ -72,7 +70,6 @@ Begin ContainerControl Date_Time_Container
       HasBackColor    =   False
       Height          =   252
       HelpTag         =   ""
-      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   0
       LockBottom      =   False
@@ -103,7 +100,6 @@ Begin ContainerControl Date_Time_Container
       Height          =   252
       HelpTag         =   ""
       HideAMPM        =   False
-      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   235
       LockBottom      =   False
@@ -134,7 +130,7 @@ End
 
 #tag WindowCode
 	#tag Method, Flags = &h21
-		Private Sub mChangeLocalizedWindowTitle()
+		Private Sub changeLocalizedWindowTitle()
 		  // ** MUST DETACH FROM DEMO WINDOW
 		  
 		  If Window IsA DateTimeWindow Then
@@ -156,8 +152,8 @@ End
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
-		Sub mSetLocalization_ContainerTitle(inLocalizationInt as Integer)
+	#tag Method, Flags = &h21
+		Private Sub setLocalization_ContainerTitle(inLocalizationInt as Integer)
 		  Select Case inLocalizationInt
 		  Case 0 // English
 		    Localized_CalendarOnlyTitle_Str = "Choose Date"
@@ -251,12 +247,12 @@ End
 		    
 		  End Select
 		  
-		  mChangeLocalizedWindowTitle
+		  changeLocalizedWindowTitle()
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub mSetupForBothPickers()
+		Private Sub setupForBothPickers()
 		  if Window isa DateTimeWindow then
 		    window.Width = 394
 		    window.Height = 286
@@ -286,7 +282,7 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub mSetupForCalendarPickerOnly()
+		Private Sub setupForCalendarPickerOnly()
 		  if window isa DateTimeWindow then
 		    window.Width = 236
 		    window.Height = 286
@@ -312,7 +308,7 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub mSetupForTimePickerOnly()
+		Private Sub setupForTimePickerOnly()
 		  if window isa DateTimeWindow then
 		    window.Width = 236
 		    window.Height = 286
@@ -482,21 +478,21 @@ End
 			  mLocalizationInt = value
 			  
 			  // Create the Localized Month List
-			  Me.Calendar_Container1.Calendar1.mBuildLocalizedMonthList(mLocalizationInt)
+			  Me.Calendar_Container1.Calendar1.buildLocalizedMonthList(mLocalizationInt)
 			  // Create the Localized Day of the Week List
-			  Me.Calendar_Container1.Calendar1.mBuildLocalizedDayOfWeekList(mLocalizationInt)
+			  Me.Calendar_Container1.Calendar1.buildLocalizedDayOfWeekList(mLocalizationInt)
 			  
 			  // Load the Localized Month List to the PopUp Menu
-			  Me.Calendar_Container1.Calendar1.mLoad_MonthList()
+			  Me.Calendar_Container1.Calendar1.loadMonthList()
 			  
 			  // Load the Localized Day of the Week Abbreviation List to the Calendar
-			  Me.Calendar_Container1.Calendar1.mBuild_LocalizedDayOfWeek_Arrays(mLocalizationInt)
+			  Me.Calendar_Container1.Calendar1.buildLocalizedDayOfWeek_Arrays(mLocalizationInt)
 			  
 			  // Create the Localized Window/Container Title's
-			  Me.mSetLocalization_ContainerTitle(mLocalizationInt)
+			  Me.setLocalization_ContainerTitle(mLocalizationInt)
 			  
 			  // Start Calendar on Today's Date
-			  me.Calendar_Container1.mTakeMeToTodaysDate
+			  me.Calendar_Container1.takeMeToTodaysDate()
 			  
 			End Set
 		#tag EndSetter
@@ -592,11 +588,11 @@ End
 			  mVisiblePickers = value
 			  select case value
 			  case PickerElements_CalendarAndClock
-			    mSetupForBothPickers
+			    setupForBothPickers()
 			  case PickerElements_CalendarOnly
-			    mSetupForCalendarPickerOnly
+			    setupForCalendarPickerOnly()
 			  case PickerElements_ClockOnly
-			    mSetupForTimePickerOnly
+			    setupForTimePickerOnly()
 			  end Select
 			  self.Invalidate(false)
 			End Set

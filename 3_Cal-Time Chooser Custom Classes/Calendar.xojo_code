@@ -21,39 +21,39 @@ Inherits Canvas
 		          SelectedDate = New Date
 		          // Set the correct month
 		          if CalendarButtonClassArray(i).NextMonthMark = True Then
-		            SelectedDate.Month = fConvertMonthStringToMonthNumber(NextMonth)
+		            SelectedDate.Month = convertMonthStringToMonthNumber(NextMonth)
 		          Elseif CalendarButtonClassArray(i).PrevMonthMark = True Then
-		            SelectedDate.Month = fConvertMonthStringToMonthNumber(PreviousMonth)
+		            SelectedDate.Month = convertMonthStringToMonthNumber(PreviousMonth)
 		          end if
-		          SelectedDate.Month = fConvertMonthStringToMonthNumber(SelectedMonth)
+		          SelectedDate.Month = convertMonthStringToMonthNumber(SelectedMonth)
 		          SelectedDate.Year = CDbl(SelectedYear)
 		          SelectedDate.Day = CalendarButtonClassArray(i).Day
 		          CalendarButtonClassArray(i).SelectedDate = SelectedDate
-		          Calendar_Container(window).mRaiseEvent(CalendarButtonClassArray(i).SelectedDate)
+		          Calendar_Container(window).raiseThisEvent(CalendarButtonClassArray(i).SelectedDate)
 		          Me.Invalidate(False)
 		        end if
 		      end if
 		      
 		    Elseif Keyboard.ShiftKey = False Then // Single Selection
 		      if X >= CalendarButtonClassArray(i).LeftX AND X <= CalendarButtonClassArray(i).RightX AND Y >= CalendarButtonClassArray(i).TopY AND Y <= CalendarButtonClassArray(i).BottomY Then
-		        mDeselectAll
+		        deselectAll()
 		        CalendarButtonClassArray(i).Selected = True
 		        SelectedDate = New Date
 		        // Set the correct month
 		        Dim MonthToAdvance as String
 		        if CalendarButtonClassArray(i).NextMonthMark = True Then
-		          SelectedDate.Month = fConvertMonthStringToMonthNumber(NextMonth)
+		          SelectedDate.Month = convertMonthStringToMonthNumber(NextMonth)
 		          MonthToAdvance = "Next"
 		        Elseif CalendarButtonClassArray(i).PrevMonthMark = True Then
-		          SelectedDate.Month = fConvertMonthStringToMonthNumber(PreviousMonth)
+		          SelectedDate.Month = convertMonthStringToMonthNumber(PreviousMonth)
 		          MonthToAdvance = "Prev"
 		        end if
 		        SelectedDate.Year = CDbl(SelectedYear)
 		        CalendarButtonClassArray(i).SelectedDate = SelectedDate
 		        if MonthToAdvance = "Next" or MonthToAdvance = "Prev" Then
 		          // Converting here
-		          mTakeUsToMonth(MonthToAdvance, SelectedDate)
-		          Calendar_Container(window).mRaiseEvent(SelectedDate)
+		          takeUsToMonth(MonthToAdvance, SelectedDate)
+		          Calendar_Container(window).raiseThisEvent(SelectedDate)
 		          //
 		          
 		          for ii as integer = 0 to UBound(CalendarButtonClassArray)
@@ -65,12 +65,12 @@ Inherits Canvas
 		            End if
 		            
 		          next ii
-		          mDeselectAll
-		          mRemapSelectedToSlot
+		          deselectAll()
+		          remapSelectedToSlot()
 		        Else
-		          SelectedDate.Month = fConvertMonthStringToMonthNumber(SelectedMonth)
+		          SelectedDate.Month = convertMonthStringToMonthNumber(SelectedMonth)
 		          SelectedDate.Day = CalendarButtonClassArray(i).Day
-		          Calendar_Container(window).mRaiseEvent(SelectedDate)
+		          Calendar_Container(window).raiseThisEvent(SelectedDate)
 		          
 		        End if
 		        Me.Invalidate(False)
@@ -184,7 +184,7 @@ Inherits Canvas
 		    
 		  End if
 		  
-		  Dim SelectMonthInt as Integer = fConvertMonthStringToMonthNumber(SelectedMonth)
+		  Dim SelectMonthInt as Integer = convertMonthStringToMonthNumber(SelectedMonth)
 		  // Draw Day Values in Calendar Spaces
 		  for i as integer = 7 to UBound(CalendarButtonClassArray)
 		    if CalendarButtonClassArray(i).Selected = True Then
@@ -242,416 +242,8 @@ Inherits Canvas
 	#tag EndEvent
 
 
-	#tag Method, Flags = &h1000
-		Sub Constructor()
-		  // Calling the overridden superclass constructor.
-		  Super.Constructor
-		  
-		  // Assign Calendar Spaces
-		  mInitialAssignmentCalendarButtons(36)
-		  
-		  // Date Instantiations
-		  CurrentDate = new Date
-		  
-		  // ------- SetCustomCalendarStartDate() ACCEPTS THE FOLLOWING OPTIONAL PARAMETERS BELOW (NOTE: IF YOU DON'T PASS ANY PARAMETERS THE CALENDAR USES
-		  // ------- TODAYS DATE AND YEAR
-		  // ------- (optional inPassedDate as Date, optional inPassedStartYear as Integer, optional inPassedEndYear as Integer)
-		  SetCustomCalendarStartDate()
-		  
-		  // LOAD THE YEAR POP UP MENU WITH THE PROPER SELECTION
-		  mLoad_YearList(UserSelectedStartYear,UserSelectedEndYear,CurrentDate.Year)
-		  
-		  // Load the Localized Day of the Week Abbreviation List to the Calendar
-		  mBuild_LocalizedDayOfWeek_Arrays(0)
-		  
-		  /// /// /// /// /// /// /
-		  /// Gregorian Math ///
-		  /// /// /// /// /// ///
-		  
-		  // Figure out Century Number
-		  CenturyNumber = fCalcCenturyNumber(2015)
-		  
-		  
-		  
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Function fCalcCenturyNumber(inYear as Integer) As Integer
-		  // Map Century Number
-		  Select Case inYear
-		  Case 1900 to 1999
-		    Return 0
-		  Case 2000 to 2099
-		    Return 1
-		  Case 2100 to 2199
-		    Return 3
-		  Case 2200 to 2299
-		    Return 5
-		  End Select
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Function fCalcHowManyCalSlotsAvailable(inStartingSlot as Integer, inEndingSlot as Integer, inSpacesAvailable as Integer) As Integer
-		  // This will calculate how many available Spaces we have for next or previous month Calendar day assignments
-		  for x as integer = inStartingSlot to inEndingSlot
-		    if CalendarButtonClassArray(x).Day = 0 Then
-		      inSpacesAvailable = inSpacesAvailable + 1
-		    end if
-		  next x
-		  
-		  Return inSpacesAvailable
-		End Function
-	#tag EndMethod
-
 	#tag Method, Flags = &h0
-		Function fCalcLeapYear(inYear as Integer) As boolean
-		  Return (((inYear MOD 4)=0) AND ((inYear MOD 100)<>0)) OR (inYear MOD 400)=0
-		  
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Function fCalcMonthNumber(inMonth as String, inLeapYear as Boolean) As Integer
-		  If inMonth = Localized_February AND inLeapYear = True  OR inMonth = Localized_August Then
-		    Return 0
-		  Elseif inMonth = Localized_February AND inLeapYear = False OR inMonth = Localized_March or inMonth = Localized_November Then
-		    Return 1
-		  Elseif inMonth = Localized_June Then
-		    Return 2
-		  ElseIf inMonth = Localized_September OR inMonth = Localized_December Then
-		    Return 3
-		  ElseIf inMonth = Localized_January AND inLeapYear = True OR inMonth = Localized_April OR inMonth = Localized_July Then
-		    Return 4
-		  Elseif inMonth = Localized_January AND inLeapYear = False OR inMonth = Localized_October Then
-		    Return 5
-		  Elseif inMonth = Localized_May Then
-		    Return 6
-		  End if
-		  
-		  
-		  
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function fCalculate1stDayOfMonth() As String
-		  // Need to Find out which Day of the Week this Month's 1st Day starts on
-		  
-		  // Calculate to get Weekday Number
-		  Dim WeekdayNum as Integer = (CenturyNumber + YearNumber + MonthNumber + 1)
-		  
-		  DIM CalcWeekDayNum as Integer = WeekdayNum Mod 7
-		  
-		  // Map Weekday Number to Weekday String
-		  FirstWeekday = fGetDayOfWeekString(CalcWeekDayNum)
-		  
-		  Return FirstWeekday
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Function fCalcYearNumber(inYear as String) As Integer
-		  Dim TrimFirstTwoDigits as String = inYear.Right(2)
-		  Dim Year as Integer = CDbl(TrimFirstTwoDigits)
-		  
-		  Dim CalcYearNum as Integer
-		  CalcYearNum  = Year + Year / 4
-		  
-		  Dim CalcYearFinal as integer
-		  CalcYearFinal = CalcYearNum mod 7
-		  
-		  Return CalcYearFinal
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function fConvertMonthIntToMonthString(inMonthInt as Integer) As String
-		  Select Case inMonthInt
-		    
-		  Case 1
-		    Return Localized_January
-		  Case 2
-		    Return Localized_February
-		  Case 3
-		    Return Localized_March
-		  Case 4
-		    Return Localized_April
-		  Case 5
-		    Return Localized_May
-		  Case 6
-		    Return Localized_June
-		  Case 7
-		    Return Localized_July
-		  Case 8
-		    Return Localized_August
-		  Case 9
-		    Return Localized_September
-		  Case 10
-		    Return Localized_October
-		  Case 11
-		    Return Localized_November
-		  Case 12
-		    Return Localized_December
-		  End Select
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Function fConvertMonthStringToMonthNumber(inMonth as String) As Integer
-		  Select Case inMonth
-		    
-		  Case Localized_January
-		    Return 1
-		  Case Localized_February
-		    Return 2
-		  Case Localized_March
-		    Return 3
-		  Case Localized_April
-		    Return 4
-		  Case Localized_May
-		    Return 5
-		  Case Localized_June
-		    Return 6
-		  Case Localized_July
-		    Return 7
-		  Case Localized_August
-		    Return 8
-		  Case Localized_September
-		    Return 9
-		  Case Localized_October
-		    Return 10
-		  Case Localized_November
-		    Return 11
-		  Case Localized_December
-		    Return 12
-		  End Select
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Function fGetDayOfWeekString(inDayOfWeekNum as Integer) As String
-		  Select Case inDayOfWeekNum
-		  Case 0
-		    Return Localized_Sunday
-		  Case 1
-		    Return Localized_Monday
-		  Case 2
-		    Return Localized_Tuesday
-		  Case 3
-		    Return Localized_Wednesday
-		  Case 4
-		    Return Localized_Thursday
-		  Case 5
-		    Return Localized_Friday
-		  Case 6
-		    Return Localized_Saturday
-		  End Select
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Function fGetFirstDayOfWeekCalSlotNumber(inDayofWeekString as String, inCalMonFirstDayOfWeekBool as Boolean) As Integer
-		  if inCalMonFirstDayOfWeekBool = False Then
-		    // Sunday is the First Day of the Week Calendar Labeling Wise
-		    Select Case FirstWeekDay
-		    Case Localized_Sunday
-		      Return 7 // 0 Based
-		    Case Localized_Monday
-		      Return 8
-		    Case Localized_Tuesday
-		      Return 9
-		    Case Localized_Wednesday
-		      Return 10
-		    Case Localized_Thursday
-		      Return 11
-		    Case Localized_Friday
-		      Return 12
-		    Case Localized_Saturday
-		      Return 13
-		    End Select
-		    
-		  Elseif inCalMonFirstDayOfWeekBool = True Then
-		    // Monday is the First Day of the Week Calendar Labeling Wise
-		    Select Case FirstWeekDay
-		    Case Localized_Monday
-		      Return 7 // 0 Based
-		    Case Localized_Tuesday
-		      Return 8
-		    Case Localized_Wednesday
-		      Return 9
-		    Case Localized_Thursday
-		      Return 10
-		    Case Localized_Friday
-		      Return 11
-		    Case Localized_Saturday
-		      Return 12
-		    Case Localized_Sunday
-		      Return 13
-		    End Select
-		  End if
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Function fGetNextMonthString(inSelectedMonth as String) As String
-		  Select Case inSelectedMonth
-		    
-		  Case Localized_December
-		    Return  Localized_January
-		    
-		  Case Localized_January
-		    Return Localized_February
-		    
-		  Case Localized_February
-		    Return Localized_March
-		    
-		  Case Localized_March
-		    Return Localized_April
-		    
-		  Case  Localized_April
-		    Return  Localized_May
-		    
-		  Case Localized_May
-		    Return  Localized_June
-		    
-		  Case Localized_June
-		    Return Localized_July
-		    
-		  Case Localized_July
-		    Return Localized_August
-		    
-		  Case Localized_August
-		    Return Localized_September
-		    
-		  Case Localized_September
-		    Return Localized_October
-		    
-		  Case Localized_October
-		    Return Localized_November
-		    
-		  Case Localized_November
-		    Return Localized_December
-		  End Select
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Function fGetPrevMonthString(inSelectedMonth as String) As String
-		  Select Case inSelectedMonth
-		    
-		  Case Localized_January
-		    Return Localized_December
-		    
-		  Case Localized_February
-		    Return Localized_January
-		    
-		  Case Localized_March
-		    Return Localized_February
-		    
-		  Case Localized_April
-		    Return Localized_March
-		    
-		  Case Localized_May
-		    Return  Localized_April
-		    
-		  Case Localized_June
-		    Return Localized_May
-		    
-		  Case Localized_July
-		    Return Localized_June
-		    
-		  Case Localized_August
-		    Return Localized_July
-		    
-		  Case Localized_September
-		    Return Localized_August
-		    
-		  Case Localized_October
-		    Return Localized_September
-		    
-		  Case Localized_November
-		    Return Localized_October
-		    
-		  Case Localized_December
-		    Return Localized_November
-		  End Select
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h21
-		Private Function fNumOfDaysInMonth(inMonth as String) As Integer
-		  // Jan - 31
-		  // Feb (non leap year = 28, leap year = 29)
-		  // Mar - 31
-		  // Apr - 30
-		  // May - 31
-		  // Jun - 30
-		  // Jul - 31
-		  // Aug - 31
-		  // Sept - 30
-		  // Oct - 31
-		  // Nov - 30
-		  // Dec - 31
-		  
-		  Select Case inMonth
-		  Case Localized_January
-		    Return 31
-		    
-		  Case Localized_February
-		    if LeapYearBool = True Then
-		      Return 29
-		    Elseif LeapYearBool = False Then
-		      Return 28
-		    End if
-		    
-		  Case Localized_March
-		    Return 31
-		    
-		  Case Localized_April
-		    Return 30
-		    
-		  Case Localized_May
-		    Return 31
-		    
-		  Case Localized_June
-		    Return 30
-		    
-		  Case Localized_July
-		    Return 31
-		    
-		  Case Localized_August
-		    Return 31
-		    
-		  Case Localized_September
-		    Return 30
-		    
-		  Case Localized_October
-		    Return 31
-		    
-		  Case Localized_November
-		    Return 30
-		    
-		  Case Localized_December
-		    Return 31
-		    
-		  End Select
-		  
-		  
-		  
-		  
-		  
-		  
-		End Function
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub mBuildLocalizedDayOfWeekList(inLocalizationInt as Integer)
+		Sub buildLocalizedDayOfWeekList(inLocalizationInt as Integer)
 		  Select Case inLocalizationInt
 		    
 		  Case 0
@@ -750,157 +342,7 @@ Inherits Canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub mBuildLocalizedMonthList(inLocalizationInt as Integer)
-		  Select Case inLocalizationInt
-		    
-		  Case 0
-		    Localized_January = "January"
-		    Localized_February = "February"
-		    Localized_March = "March"
-		    Localized_April = "April"
-		    Localized_May = "May"
-		    Localized_June = "June"
-		    Localized_July = "July"
-		    Localized_August = "August"
-		    Localized_September = "September"
-		    Localized_October = "October"
-		    Localized_November = "November"
-		    Localized_December = "December"
-		    
-		  Case 1  // French
-		    Localized_January = "Janvier"
-		    Localized_February = "Février"
-		    Localized_March = "Mars"
-		    Localized_April = "Avril"
-		    Localized_May = "Mai"
-		    Localized_June = "Juin"
-		    Localized_July = "Juillet"
-		    Localized_August = "Août"
-		    Localized_September = "Septembre"
-		    Localized_October = "Octobre"
-		    Localized_November = "Novembre"
-		    Localized_December = "Décembre"
-		    
-		  Case 2 // Swedish
-		    Localized_January = "Januari"
-		    Localized_February = "Februari"
-		    Localized_March = "Mars"
-		    Localized_April = "April"
-		    Localized_May = "Maj"
-		    Localized_June = "Juni"
-		    Localized_July = "Juli"
-		    Localized_August = "Augusti"
-		    Localized_September = "September"
-		    Localized_October = "Oktober"
-		    Localized_November = "November"
-		    Localized_December = "December"
-		    
-		  Case 3 // Italian
-		    Localized_January = "Gennaio"
-		    Localized_February = "Febbraio"
-		    Localized_March = "Marzo"
-		    Localized_April = "Aprile"
-		    Localized_May = "Maggio"
-		    Localized_June = "Giugno"
-		    Localized_July = "Luglio"
-		    Localized_August = "Agosto"
-		    Localized_September = "Settembre"
-		    Localized_October = "Ottobre"
-		    Localized_November = "Novembre"
-		    Localized_December = "Dicembre"
-		    
-		  Case 4 // Spanish
-		    Localized_January = "Enero"
-		    Localized_February = "Febrero"
-		    Localized_March = "Marzo"
-		    Localized_April = "Abril"
-		    Localized_May = "Mayo"
-		    Localized_June = "Junio"
-		    Localized_July = "Julio"
-		    Localized_August = "Agosto"
-		    Localized_September = "Septiembre"
-		    Localized_October = "Octubre"
-		    Localized_November = "Noviembre"
-		    Localized_December = "Diciembre"
-		    
-		  Case 5 // Dutch
-		    Localized_January = "Januari"
-		    Localized_February = "Februari"
-		    Localized_March = "Maart"
-		    Localized_April = "April"
-		    Localized_May = "Mei"
-		    Localized_June = "Juni"
-		    Localized_July = "Juli"
-		    Localized_August = "Augustus"
-		    Localized_September = "September"
-		    Localized_October = "Oktober"
-		    Localized_November = "November"
-		    Localized_December = "December"
-		    
-		  Case 6 // German
-		    Localized_January = "Januar"
-		    Localized_February = "Februar"
-		    Localized_March = "März"
-		    Localized_April = "April"
-		    Localized_May = "Mai"
-		    Localized_June = "Juni"
-		    Localized_July = "Juli"
-		    Localized_August = "August"
-		    Localized_September = "September"
-		    Localized_October = "Oktober"
-		    Localized_November = "November"
-		    Localized_December = "Dezember"
-		    
-		  Case 7 // Afrikaans
-		    Localized_January = "Januarie"
-		    Localized_February = "Februarie"
-		    Localized_March = "Maart"
-		    Localized_April = "April"
-		    Localized_May = "Mei"
-		    Localized_June = "Junie"
-		    Localized_July = "Julie"
-		    Localized_August = "Augustus"
-		    Localized_September = "September"
-		    Localized_October = "Oktober"
-		    Localized_November = "November"
-		    Localized_December = "Desember"
-		    
-		  Case 8 // Polish
-		    Localized_January = "Styczeń"
-		    Localized_February = "Luty"
-		    Localized_March = "Marzec"
-		    Localized_April = "Kwiecień"
-		    Localized_May = "Maj"
-		    Localized_June = "Czerwiec"
-		    Localized_July = "Lipiec"
-		    Localized_August = "Sierpień"
-		    Localized_September = "Wrzesień"
-		    Localized_October = "Październik"
-		    Localized_November = "Listopad"
-		    Localized_December = "Grudzień"
-		    
-		  Case 9 // Portuguese
-		    Localized_January = "Janeiro"
-		    Localized_February = "Fevereiro"
-		    Localized_March = "Março"
-		    Localized_April = "Abril"
-		    Localized_May = "Maio"
-		    Localized_June = "Junho"
-		    Localized_July = "Julho"
-		    Localized_August = "Agosto"
-		    Localized_September = "Setembro"
-		    Localized_October = "Outubro"
-		    Localized_November = "Novembro"
-		    Localized_December = "Dezembro"
-		    
-		  End Select
-		  
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Sub mBuild_LocalizedDayOfWeek_Arrays(inLocalizationInt as Integer)
+		Sub buildLocalizedDayOfWeek_Arrays(inLocalizationInt as Integer)
 		  Select Case inLocalizationInt
 		    
 		  Case 0
@@ -1108,9 +550,236 @@ Inherits Canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub mCalculateMonth(inMonth as String)
+		Sub buildLocalizedMonthList(inLocalizationInt as Integer)
+		  Select Case inLocalizationInt
+		    
+		  Case 0
+		    Localized_January = "January"
+		    Localized_February = "February"
+		    Localized_March = "March"
+		    Localized_April = "April"
+		    Localized_May = "May"
+		    Localized_June = "June"
+		    Localized_July = "July"
+		    Localized_August = "August"
+		    Localized_September = "September"
+		    Localized_October = "October"
+		    Localized_November = "November"
+		    Localized_December = "December"
+		    
+		  Case 1  // French
+		    Localized_January = "Janvier"
+		    Localized_February = "Février"
+		    Localized_March = "Mars"
+		    Localized_April = "Avril"
+		    Localized_May = "Mai"
+		    Localized_June = "Juin"
+		    Localized_July = "Juillet"
+		    Localized_August = "Août"
+		    Localized_September = "Septembre"
+		    Localized_October = "Octobre"
+		    Localized_November = "Novembre"
+		    Localized_December = "Décembre"
+		    
+		  Case 2 // Swedish
+		    Localized_January = "Januari"
+		    Localized_February = "Februari"
+		    Localized_March = "Mars"
+		    Localized_April = "April"
+		    Localized_May = "Maj"
+		    Localized_June = "Juni"
+		    Localized_July = "Juli"
+		    Localized_August = "Augusti"
+		    Localized_September = "September"
+		    Localized_October = "Oktober"
+		    Localized_November = "November"
+		    Localized_December = "December"
+		    
+		  Case 3 // Italian
+		    Localized_January = "Gennaio"
+		    Localized_February = "Febbraio"
+		    Localized_March = "Marzo"
+		    Localized_April = "Aprile"
+		    Localized_May = "Maggio"
+		    Localized_June = "Giugno"
+		    Localized_July = "Luglio"
+		    Localized_August = "Agosto"
+		    Localized_September = "Settembre"
+		    Localized_October = "Ottobre"
+		    Localized_November = "Novembre"
+		    Localized_December = "Dicembre"
+		    
+		  Case 4 // Spanish
+		    Localized_January = "Enero"
+		    Localized_February = "Febrero"
+		    Localized_March = "Marzo"
+		    Localized_April = "Abril"
+		    Localized_May = "Mayo"
+		    Localized_June = "Junio"
+		    Localized_July = "Julio"
+		    Localized_August = "Agosto"
+		    Localized_September = "Septiembre"
+		    Localized_October = "Octubre"
+		    Localized_November = "Noviembre"
+		    Localized_December = "Diciembre"
+		    
+		  Case 5 // Dutch
+		    Localized_January = "Januari"
+		    Localized_February = "Februari"
+		    Localized_March = "Maart"
+		    Localized_April = "April"
+		    Localized_May = "Mei"
+		    Localized_June = "Juni"
+		    Localized_July = "Juli"
+		    Localized_August = "Augustus"
+		    Localized_September = "September"
+		    Localized_October = "Oktober"
+		    Localized_November = "November"
+		    Localized_December = "December"
+		    
+		  Case 6 // German
+		    Localized_January = "Januar"
+		    Localized_February = "Februar"
+		    Localized_March = "März"
+		    Localized_April = "April"
+		    Localized_May = "Mai"
+		    Localized_June = "Juni"
+		    Localized_July = "Juli"
+		    Localized_August = "August"
+		    Localized_September = "September"
+		    Localized_October = "Oktober"
+		    Localized_November = "November"
+		    Localized_December = "Dezember"
+		    
+		  Case 7 // Afrikaans
+		    Localized_January = "Januarie"
+		    Localized_February = "Februarie"
+		    Localized_March = "Maart"
+		    Localized_April = "April"
+		    Localized_May = "Mei"
+		    Localized_June = "Junie"
+		    Localized_July = "Julie"
+		    Localized_August = "Augustus"
+		    Localized_September = "September"
+		    Localized_October = "Oktober"
+		    Localized_November = "November"
+		    Localized_December = "Desember"
+		    
+		  Case 8 // Polish
+		    Localized_January = "Styczeń"
+		    Localized_February = "Luty"
+		    Localized_March = "Marzec"
+		    Localized_April = "Kwiecień"
+		    Localized_May = "Maj"
+		    Localized_June = "Czerwiec"
+		    Localized_July = "Lipiec"
+		    Localized_August = "Sierpień"
+		    Localized_September = "Wrzesień"
+		    Localized_October = "Październik"
+		    Localized_November = "Listopad"
+		    Localized_December = "Grudzień"
+		    
+		  Case 9 // Portuguese
+		    Localized_January = "Janeiro"
+		    Localized_February = "Fevereiro"
+		    Localized_March = "Março"
+		    Localized_April = "Abril"
+		    Localized_May = "Maio"
+		    Localized_June = "Junho"
+		    Localized_July = "Julho"
+		    Localized_August = "Agosto"
+		    Localized_September = "Setembro"
+		    Localized_October = "Outubro"
+		    Localized_November = "Novembro"
+		    Localized_December = "Dezembro"
+		    
+		  End Select
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Function calcCenturyNumber(inYear as Integer) As Integer
+		  // Map Century Number
+		  Select Case inYear
+		  Case 1900 to 1999
+		    Return 0
+		  Case 2000 to 2099
+		    Return 1
+		  Case 2100 to 2199
+		    Return 3
+		  Case 2200 to 2299
+		    Return 5
+		  End Select
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Function calcHowManyCalSlotsAvailable(inStartingSlot as Integer, inEndingSlot as Integer, inSpacesAvailable as Integer) As Integer
+		  // This will calculate how many available Spaces we have for next or previous month Calendar day assignments
+		  for x as integer = inStartingSlot to inEndingSlot
+		    if CalendarButtonClassArray(x).Day = 0 Then
+		      inSpacesAvailable = inSpacesAvailable + 1
+		    end if
+		  next x
+		  
+		  Return inSpacesAvailable
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function calcLeapYear(inYear as Integer) As boolean
+		  Return (((inYear MOD 4)=0) AND ((inYear MOD 100)<>0)) OR (inYear MOD 400)=0
+		  
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Function calcMonthNumber(inMonth as String, inLeapYear as Boolean) As Integer
+		  If inMonth = Localized_February AND inLeapYear = True  OR inMonth = Localized_August Then
+		    Return 0
+		  Elseif inMonth = Localized_February AND inLeapYear = False OR inMonth = Localized_March or inMonth = Localized_November Then
+		    Return 1
+		  Elseif inMonth = Localized_June Then
+		    Return 2
+		  ElseIf inMonth = Localized_September OR inMonth = Localized_December Then
+		    Return 3
+		  ElseIf inMonth = Localized_January AND inLeapYear = True OR inMonth = Localized_April OR inMonth = Localized_July Then
+		    Return 4
+		  Elseif inMonth = Localized_January AND inLeapYear = False OR inMonth = Localized_October Then
+		    Return 5
+		  Elseif inMonth = Localized_May Then
+		    Return 6
+		  End if
+		  
+		  
+		  
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Function calculate1stDayOfMonth() As String
+		  // Need to Find out which Day of the Week this Month's 1st Day starts on
+		  
+		  // Calculate to get Weekday Number
+		  Dim WeekdayNum as Integer = (CenturyNumber + YearNumber + MonthNumber + 1)
+		  
+		  DIM CalcWeekDayNum as Integer = WeekdayNum Mod 7
+		  
+		  // Map Weekday Number to Weekday String
+		  FirstWeekday = getDayOfWeekString(CalcWeekDayNum)
+		  
+		  Return FirstWeekday
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub calculateMonth(inMonth as String)
 		  // Get Month Number
-		  MonthNumber = fCalcMonthNumber(inMonth,LeapYearBool)
+		  MonthNumber = calcMonthNumber(inMonth,LeapYearBool)
 		  
 		  
 		  
@@ -1118,27 +787,137 @@ Inherits Canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub mCalculateYear(inYear as String)
+		Sub calculateYear(inYear as String)
 		  // Expect STring from PopUp Menu but needs to convert to Integer
 		  Dim InYearInt as Integer = CDbl(inYear)
-		  LeapYearBool = fCalcLeapYear(InYearInt)
+		  LeapYearBool = calcLeapYear(InYearInt)
 		  
 		  // Year Number
-		  YearNumber = fCalcYearNumber(inYear)
+		  YearNumber = calcYearNumber(inYear)
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub mClearDays()
+		Private Function calcYearNumber(inYear as String) As Integer
+		  Dim TrimFirstTwoDigits as String = inYear.Right(2)
+		  Dim Year as Integer = CDbl(TrimFirstTwoDigits)
+		  
+		  Dim CalcYearNum as Integer
+		  CalcYearNum  = Year + Year / 4
+		  
+		  Dim CalcYearFinal as integer
+		  CalcYearFinal = CalcYearNum mod 7
+		  
+		  Return CalcYearFinal
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub clearDays()
 		  for i as integer = 0 to UBound(CalendarButtonClassArray)
 		    CalendarButtonClassArray(i).Day = 0
 		  next i
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h1000
+		Sub Constructor()
+		  // Calling the overridden superclass constructor.
+		  Super.Constructor
+		  
+		  // Assign Calendar Spaces
+		  initialAssignmentCalendarButtons(36)
+		  
+		  // Date Instantiations
+		  CurrentDate = new Date
+		  
+		  // ------- SetCustomCalendarStartDate() ACCEPTS THE FOLLOWING OPTIONAL PARAMETERS BELOW (NOTE: IF YOU DON'T PASS ANY PARAMETERS THE CALENDAR USES
+		  // ------- TODAYS DATE AND YEAR
+		  // ------- (optional inPassedDate as Date, optional inPassedStartYear as Integer, optional inPassedEndYear as Integer)
+		  SetCustomCalendarStartDate()
+		  
+		  // LOAD THE YEAR POP UP MENU WITH THE PROPER SELECTION
+		  loadYearList(UserSelectedStartYear,UserSelectedEndYear,CurrentDate.Year)
+		  
+		  // Load the Localized Day of the Week Abbreviation List to the Calendar
+		  buildLocalizedDayOfWeek_Arrays(0)
+		  
+		  // Figure out Century Number
+		  CenturyNumber = calcCenturyNumber(YearNumber)
+		  
+		  
+		  
+		  
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
-		Sub mDeselectAll()
+		Function convertMonthIntToMonthString(inMonthInt as Integer) As String
+		  Select Case inMonthInt
+		    
+		  Case 1
+		    Return Localized_January
+		  Case 2
+		    Return Localized_February
+		  Case 3
+		    Return Localized_March
+		  Case 4
+		    Return Localized_April
+		  Case 5
+		    Return Localized_May
+		  Case 6
+		    Return Localized_June
+		  Case 7
+		    Return Localized_July
+		  Case 8
+		    Return Localized_August
+		  Case 9
+		    Return Localized_September
+		  Case 10
+		    Return Localized_October
+		  Case 11
+		    Return Localized_November
+		  Case 12
+		    Return Localized_December
+		  End Select
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Function convertMonthStringToMonthNumber(inMonth as String) As Integer
+		  Select Case inMonth
+		    
+		  Case Localized_January
+		    Return 1
+		  Case Localized_February
+		    Return 2
+		  Case Localized_March
+		    Return 3
+		  Case Localized_April
+		    Return 4
+		  Case Localized_May
+		    Return 5
+		  Case Localized_June
+		    Return 6
+		  Case Localized_July
+		    Return 7
+		  Case Localized_August
+		    Return 8
+		  Case Localized_September
+		    Return 9
+		  Case Localized_October
+		    Return 10
+		  Case Localized_November
+		    Return 11
+		  Case Localized_December
+		    Return 12
+		  End Select
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub deselectAll()
 		  for i as integer = 0 to UBound(CalendarButtonClassArray)
 		    CalendarButtonClassArray(i).Selected = False
 		  next i
@@ -1146,7 +925,158 @@ Inherits Canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub mInitialAssignmentCalendarButtons(inNumOfSpaces as Integer)
+		Private Function getDayOfWeekString(inDayOfWeekNum as Integer) As String
+		  Select Case inDayOfWeekNum
+		  Case 0
+		    Return Localized_Sunday
+		  Case 1
+		    Return Localized_Monday
+		  Case 2
+		    Return Localized_Tuesday
+		  Case 3
+		    Return Localized_Wednesday
+		  Case 4
+		    Return Localized_Thursday
+		  Case 5
+		    Return Localized_Friday
+		  Case 6
+		    Return Localized_Saturday
+		  End Select
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Function getFirstDayOfWeekCalSlotNumber(inDayofWeekString as String, inCalMonFirstDayOfWeekBool as Boolean) As Integer
+		  if inCalMonFirstDayOfWeekBool = False Then
+		    // Sunday is the First Day of the Week Calendar Labeling Wise
+		    Select Case FirstWeekDay
+		    Case Localized_Sunday
+		      Return 7 // 0 Based
+		    Case Localized_Monday
+		      Return 8
+		    Case Localized_Tuesday
+		      Return 9
+		    Case Localized_Wednesday
+		      Return 10
+		    Case Localized_Thursday
+		      Return 11
+		    Case Localized_Friday
+		      Return 12
+		    Case Localized_Saturday
+		      Return 13
+		    End Select
+		    
+		  Elseif inCalMonFirstDayOfWeekBool = True Then
+		    // Monday is the First Day of the Week Calendar Labeling Wise
+		    Select Case FirstWeekDay
+		    Case Localized_Monday
+		      Return 7 // 0 Based
+		    Case Localized_Tuesday
+		      Return 8
+		    Case Localized_Wednesday
+		      Return 9
+		    Case Localized_Thursday
+		      Return 10
+		    Case Localized_Friday
+		      Return 11
+		    Case Localized_Saturday
+		      Return 12
+		    Case Localized_Sunday
+		      Return 13
+		    End Select
+		  End if
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Function getNextMonthString(inSelectedMonth as String) As String
+		  Select Case inSelectedMonth
+		    
+		  Case Localized_December
+		    Return  Localized_January
+		    
+		  Case Localized_January
+		    Return Localized_February
+		    
+		  Case Localized_February
+		    Return Localized_March
+		    
+		  Case Localized_March
+		    Return Localized_April
+		    
+		  Case  Localized_April
+		    Return  Localized_May
+		    
+		  Case Localized_May
+		    Return  Localized_June
+		    
+		  Case Localized_June
+		    Return Localized_July
+		    
+		  Case Localized_July
+		    Return Localized_August
+		    
+		  Case Localized_August
+		    Return Localized_September
+		    
+		  Case Localized_September
+		    Return Localized_October
+		    
+		  Case Localized_October
+		    Return Localized_November
+		    
+		  Case Localized_November
+		    Return Localized_December
+		  End Select
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Function getPrevMonthString(inSelectedMonth as String) As String
+		  Select Case inSelectedMonth
+		    
+		  Case Localized_January
+		    Return Localized_December
+		    
+		  Case Localized_February
+		    Return Localized_January
+		    
+		  Case Localized_March
+		    Return Localized_February
+		    
+		  Case Localized_April
+		    Return Localized_March
+		    
+		  Case Localized_May
+		    Return  Localized_April
+		    
+		  Case Localized_June
+		    Return Localized_May
+		    
+		  Case Localized_July
+		    Return Localized_June
+		    
+		  Case Localized_August
+		    Return Localized_July
+		    
+		  Case Localized_September
+		    Return Localized_August
+		    
+		  Case Localized_October
+		    Return Localized_September
+		    
+		  Case Localized_November
+		    Return Localized_October
+		    
+		  Case Localized_December
+		    Return Localized_November
+		  End Select
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub initialAssignmentCalendarButtons(inNumOfSpaces as Integer)
 		  // Classes are 1 based
 		  Dim row, col as integer
 		  
@@ -1212,7 +1142,7 @@ Inherits Canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub mLoad_MonthList()
+		Sub loadMonthList()
 		  Calendar_Container(window).MonthPopup.DeleteAllRows
 		  Calendar_Container(window).MonthPopup.AddRow Localized_January
 		  Calendar_Container(window).MonthPopup.AddRow Localized_February
@@ -1230,7 +1160,7 @@ Inherits Canvas
 		  Dim TodaysMonth as New Date
 		  Dim TodaysMonthString as String
 		  
-		  TodaysMonthString  = fConvertMonthIntToMonthString(TodaysMonth.Month)
+		  TodaysMonthString  = convertMonthIntToMonthString(TodaysMonth.Month)
 		  
 		  for i as integer = 0 to Calendar_Container(Window).MonthPopup.ListCount-1
 		    if TodaysMonthString = Calendar_Container(Window).MonthPopup.List(i) Then
@@ -1241,7 +1171,7 @@ Inherits Canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub mLoad_YearList(inStartYear as integer, inEndYear as Integer, optional inSelectedYear as Integer)
+		Sub loadYearList(inStartYear as integer, inEndYear as Integer, optional inSelectedYear as Integer)
 		  // Load the Year Pop Up Menu on the Calendar Container
 		  
 		  if inStartYear = 0 OR inEndYear = 0 Then
@@ -1282,7 +1212,73 @@ Inherits Canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Sub mRemapSelectedToSlot()
+		Private Function numOfDaysInMonth(inMonth as String) As Integer
+		  // Jan - 31
+		  // Feb (non leap year = 28, leap year = 29)
+		  // Mar - 31
+		  // Apr - 30
+		  // May - 31
+		  // Jun - 30
+		  // Jul - 31
+		  // Aug - 31
+		  // Sept - 30
+		  // Oct - 31
+		  // Nov - 30
+		  // Dec - 31
+		  
+		  Select Case inMonth
+		  Case Localized_January
+		    Return 31
+		    
+		  Case Localized_February
+		    if LeapYearBool = True Then
+		      Return 29
+		    Elseif LeapYearBool = False Then
+		      Return 28
+		    End if
+		    
+		  Case Localized_March
+		    Return 31
+		    
+		  Case Localized_April
+		    Return 30
+		    
+		  Case Localized_May
+		    Return 31
+		    
+		  Case Localized_June
+		    Return 30
+		    
+		  Case Localized_July
+		    Return 31
+		    
+		  Case Localized_August
+		    Return 31
+		    
+		  Case Localized_September
+		    Return 30
+		    
+		  Case Localized_October
+		    Return 31
+		    
+		  Case Localized_November
+		    Return 30
+		    
+		  Case Localized_December
+		    Return 31
+		    
+		  End Select
+		  
+		  
+		  
+		  
+		  
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub remapSelectedToSlot()
 		  for i as integer = 0 to UBound(CalendarButtonClassArray)
 		    
 		    if CalendarButtonClassArray(i).SelectedDate= CalendarButtonClassArray(i).MyDate Then
@@ -1296,7 +1292,7 @@ Inherits Canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub mSelectDayToHighlight(inDate as Date)
+		Sub selectDayToHighlight(inDate as Date)
 		  for i as integer = 0 to UBound(CalendarButtonClassArray)
 		    
 		    SelectedDate = New Date
@@ -1313,8 +1309,35 @@ Inherits Canvas
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub SetCustomCalendarStartDate(optional inPassedDate as Date, optional inPassedStartYear as Integer, optional inPassedEndYear as Integer)
+		  // ------- SET THESE VALUES IF YOU WOULD LIKE A CUSTOM CALENDAR START DATE
+		  
+		  // USE PASSED PARAMETERS TO SET DATE/TIME PROGRAMATICALLY
+		  If inPassedDate <> NIL THEN
+		    CurrentDate.Month = inPassedDate.Month
+		    CurrentDate.Day = inPassedDate.Day
+		    CurrentDate.Year= inPassedDate.Year
+		  End If
+		  
+		  
+		  // THE START AND END YEAR VALUES ARE THE YEAR BOUNDARY WITHIN YOUR CALENDAR YEAR POP UP MENU
+		  // IF THESE USER VALUES ARE NOT PRESENT WE WILL DEFAULT TO StartYear: 1905 EndYear: 2061
+		  // USE PROGRAMATICALLY
+		  IF inPassedStartYear <> 0 THEN
+		    UserSelectedStartYear = inPassedStartYear
+		    UserSelectedEndYear = inPassedEndYear
+		    // LOAD THE YEAR POP UP MENU WITH THE PROPER SELECTION
+		    loadYearList(UserSelectedStartYear,UserSelectedEndYear,CurrentDate.Year)
+		    Calendar_Container(Window).takeMeToTodaysDate()
+		  END IF
+		  
+		  
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h21
-		Private Sub mTakeUsToMonth(inMonth as String, inSelectedDate as Date)
+		Private Sub takeUsToMonth(inMonth as String, inSelectedDate as Date)
 		  Select Case inMonth
 		  Case "Next"
 		    // Need a Check to See about Incrementing Year or not
@@ -1368,42 +1391,15 @@ Inherits Canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub SetCustomCalendarStartDate(optional inPassedDate as Date, optional inPassedStartYear as Integer, optional inPassedEndYear as Integer)
-		  // ------- SET THESE VALUES IF YOU WOULD LIKE A CUSTOM CALENDAR START DATE
-		  
-		  // USE PASSED PARAMETERS TO SET DATE/TIME PROGRAMATICALLY
-		  If inPassedDate <> NIL THEN
-		    CurrentDate.Month = inPassedDate.Month
-		    CurrentDate.Day = inPassedDate.Day
-		    CurrentDate.Year= inPassedDate.Year
-		  End If
-		  
-		  
-		  // THE START AND END YEAR VALUES ARE THE YEAR BOUNDARY WITHIN YOUR CALENDAR YEAR POP UP MENU
-		  // IF THESE USER VALUES ARE NOT PRESENT WE WILL DEFAULT TO StartYear: 1905 EndYear: 2061
-		  // USE PROGRAMATICALLY
-		  IF inPassedStartYear <> 0 THEN
-		    UserSelectedStartYear = inPassedStartYear
-		    UserSelectedEndYear = inPassedEndYear
-		    // LOAD THE YEAR POP UP MENU WITH THE PROPER SELECTION
-		    mLoad_YearList(UserSelectedStartYear,UserSelectedEndYear,CurrentDate.Year)
-		    Calendar_Container(Window).mTakeMeToTodaysDate
-		  END IF
-		  
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
 		Sub UPDATE_MapDaysToCalSlots()
-		  Dim NumOfDaysInMonth as Integer  = fNumOfDaysInMonth(SelectedMonth)
+		  Dim NumOfDaysInMonth as Integer  = numOfDaysInMonth(SelectedMonth)
 		  Dim FirstCalSlot as Integer
 		  
 		  // Calendar Slot Mappings for Selected Month
-		  FirstCalSlot = fGetFirstDayOfWeekCalSlotNumber(FirstWeekDay,CalMonFirstDayOfWeekBool)
+		  FirstCalSlot = getFirstDayOfWeekCalSlotNumber(FirstWeekDay,CalMonFirstDayOfWeekBool)
 		  
 		  // Clear the Class' day values
-		  mClearDays
+		  clearDays()
 		  // Map the Calendar Slots to Correct Month Days
 		  Dim DayCounter as Integer  = 1
 		  Dim i  as integer
@@ -1417,7 +1413,7 @@ Inherits Canvas
 		    
 		    // Set MYDate for Current Month
 		    Dim TmpDate as New Date
-		    TmpDate.Month = fConvertMonthStringToMonthNumber(SelectedMonth)
+		    TmpDate.Month = convertMonthStringToMonthNumber(SelectedMonth)
 		    TmpDate.Day = DayCounter
 		    TmpDate.Year = CDbl(SelectedYear)
 		    CalendarButtonClassArray(i).MyDate = TmpDate
@@ -1428,16 +1424,16 @@ Inherits Canvas
 		  
 		  
 		  // Need to Calculate How many Available Spaces for the previous month's worth of Calendar Days
-		  Dim CalPrevMonthSpacesAvailable as Integer = fCalcHowManyCalSlotsAvailable(7,13,1)
+		  Dim CalPrevMonthSpacesAvailable as Integer = calcHowManyCalSlotsAvailable(7,13,1)
 		  // Need to Calculate How many Available Spaces for the next month's worth of Calendar Days
-		  Dim CalNextMonthSpacesAvailable as Integer = fCalcHowManyCalSlotsAvailable(38,48,0)
+		  Dim CalNextMonthSpacesAvailable as Integer = calcHowManyCalSlotsAvailable(38,48,0)
 		  
 		  // Figure Out which Months are Previous and Next
-		  PreviousMonth = fGetPrevMonthString(SelectedMonth)
-		  NextMonth = fGetNextMonthString(SelectedMonth)
+		  PreviousMonth = getPrevMonthString(SelectedMonth)
+		  NextMonth = getNextMonthString(SelectedMonth)
 		  // Figure Out How Many Days are in the Previous and Next Month
-		  Dim PrevMonthNumOfDays as Integer = fNumOfDaysInMonth(PreviousMonth)
-		  Dim NextMonthNumOfDays as Integer = fNumOfDaysInMonth(NextMonth)
+		  Dim PrevMonthNumOfDays as Integer = numOfDaysInMonth(PreviousMonth)
+		  Dim NextMonthNumOfDays as Integer = numOfDaysInMonth(NextMonth)
 		  
 		  if Calendar_Container(window).Calendar1.IncludePrevNextMonthDaysBool = True Then
 		    // Now Map the Previous Available Slots with the appropriate Previous Month's Ending Calendar Days
@@ -1448,7 +1444,7 @@ Inherits Canvas
 		      
 		      Dim TmpDate as New Date
 		      TmpDate.Year = CDbl(SelectedYear)
-		      TmpDate.Month = fConvertMonthStringToMonthNumber(PreviousMonth)
+		      TmpDate.Month = convertMonthStringToMonthNumber(PreviousMonth)
 		      TmpDate.Day = PrevDayCounter
 		      CalendarButtonClassArray(ii).MyDate = TmpDate
 		      
@@ -1466,7 +1462,7 @@ Inherits Canvas
 		      
 		      Dim TmpDate as New Date
 		      TmpDate.Year = CDbl(SelectedYear)
-		      TmpDate.Month = fConvertMonthStringToMonthNumber(NextMonth)
+		      TmpDate.Month = convertMonthStringToMonthNumber(NextMonth)
 		      TmpDate.Day = NextDayCounter
 		      CalendarButtonClassArray(xx).MyDate = TmpDate
 		      
@@ -1482,7 +1478,7 @@ Inherits Canvas
 	#tag Method, Flags = &h0
 		Sub UPDATE_MonthDays()
 		  // This is the Day of Week the 1st day of the Selected Month is
-		  Dim DayOfWeekFor1stDayOfMonth as String = fCalculate1stDayOfMonth
+		  Dim DayOfWeekFor1stDayOfMonth as String = calculate1stDayOfMonth
 		End Sub
 	#tag EndMethod
 
