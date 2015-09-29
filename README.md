@@ -3,13 +3,13 @@ CalendarTimeChooser
 
 Xojo Calendar and Time Chooser Picklist
 
-Date:           January 28, 2015
+Date:           September 29, 2015
 
 Language:       Xojo all versions
 
 Author:         Mike Cotrone (mikec@intelligentvisibility.com)
 
-Version:        2.0.3
+Version:        3.0.1
 
 Contributors:   Jim McKay
 
@@ -25,6 +25,11 @@ What is this Project?
   - Single or Multi Day calendar selection capability
 
   - Recurring calendar selection option
+  
+Whats New in 3.0.1?
+- New numbering train to indicate refactoring changes
+- Cleaned up code base removing all instance dependancy from MacOSlib
+- Converted all function names using camelback naming convention
 
 Whats New in 2.0.3?
 ------------------
