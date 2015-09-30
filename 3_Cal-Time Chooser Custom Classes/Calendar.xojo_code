@@ -133,18 +133,24 @@ Inherits Canvas
 		    SelectTodayRunOnce = True
 		  end if
 		  
-		  // Draw Highlight If Selected
+		  // HIGHLIGHT CALENDAR DAY SLOT WHEN SELECTED
 		  for i as integer = 0 to UBound(CalendarButtonClassArray)
 		    if CalendarButtonClassArray(i).Selected = True Then
-		      if CalendarButtonClassArray(i).Day = 0 Then
-		        // We don't want a user to be able to Select a Day that is hidden
-		      Else
+		      if CalendarButtonClassArray(i).Day <> 0 Then
 		        // Capture Selected Date in Date format for Custom Event
 		        g.ForeColor = RGB(0,127,230)
 		        #IF TargetMacOS Then
-		          g.FillRoundRect(CalendarButtonClassArray(i).LeftX+OffSet+1, CalendarButtonClassArray(i).TopY+OffSet,CalendarButtonClassArray(i).Width-TwoOffset,CalendarButtonClassArray(i).Height-TwoOffset,CurveSize,CurveSize)
+		          Dim theLeft as Integer = CalendarButtonClassArray(i).LeftX+OffSet
+		          Dim theTop as Integer = CalendarButtonClassArray(i).TopY+OffSet
+		          Dim theWidth as Integer = CalendarButtonClassArray(i).Width-TwoOffset
+		          Dim theHeight as Integer = (CalendarButtonClassArray(i).Height-TwoOffset)+1
+		          g.FillRoundRect(theLeft, theTop,theWidth,theHeight,CurveSize,CurveSize)
 		        #ELSEIF TargetWin32 Then
-		          g.FillRoundRect(CalendarButtonClassArray(i).LeftX+OffSet+1, CalendarButtonClassArray(i).TopY+OffSet,CalendarButtonClassArray(i).Width-TwoOffset,CalendarButtonClassArray(i).Height-TwoOffset,0,0)
+		          Dim theLeft as Integer = CalendarButtonClassArray(i).LeftX+OffSet+1
+		          Dim theTop as Integer = CalendarButtonClassArray(i).TopY+OffSet
+		          Dim theWidth as Integer = CalendarButtonClassArray(i).Width-TwoOffset
+		          Dim theHeight as Integer = CalendarButtonClassArray(i).Height-TwoOffset
+		          g.FillRoundRect(theLeft, theTop,theWidth,theHeight,0,0)
 		        #ENDIF
 		      End if
 		    End if
@@ -160,11 +166,14 @@ Inherits Canvas
 		  // Measure the size of the Abbreviated Day Of Week so we may center it properly
 		  Dim xPos as Integer
 		  Dim DoWAbrvLen as Integer = DayOfWeekArray_SS(0).Len
-		  if DoWAbrvLen = 1 Then // One Letter Abbreviation (Not Implemented yet)
+		  if DoWAbrvLen = 1 Then 
+		    // One Letter Abbreviation (Not Implemented yet)
 		    xPos = 2
-		  Elseif DoWAbrvLen = 2 Then // Two Letter Abbreviation Spacing
+		  Elseif DoWAbrvLen = 2 Then 
+		    // Two Letter Abbreviation Spacing
 		    xPos = 11
-		  Elseif DoWAbrvLen = 3 Then // Three Letter Abbreviation Spacing
+		  Elseif DoWAbrvLen = 3 Then 
+		    // Three Letter Abbreviation Spacing
 		    xPos = 8
 		  Else // Default to two letter abbreviations
 		    xPos = 11
