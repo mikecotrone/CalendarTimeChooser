@@ -9,7 +9,7 @@ Language:       Xojo all versions
 
 Author:         Mike Cotrone (mikec@intelligentvisibility.com)
 
-Version:        3.0.1
+Version:        3.0.2
 
 Contributors:   Jim McKay
 
@@ -26,6 +26,11 @@ What is this Project?
 
   - Recurring calendar selection option
   
+
+Whats New in 3.0.2?
+- Added the ability to have the clock start up using a custom time
+- Updated documentation
+
 Whats New in 3.0.1?
 - New numbering train to indicate refactoring changes
 - Cleaned up code base removing all instance dependancy from MacOSlib
