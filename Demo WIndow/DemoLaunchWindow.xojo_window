@@ -332,7 +332,7 @@ Begin Window DemoLaunchWindow
          InitialParent   =   "GroupBox1"
          InitialValue    =   ""
          Italic          =   False
-         Left            =   78
+         Left            =   79
          ListIndex       =   0
          LockBottom      =   False
          LockedInPosition=   False
@@ -346,7 +346,7 @@ Begin Window DemoLaunchWindow
          TextFont        =   "System"
          TextSize        =   0.0
          TextUnit        =   0
-         Top             =   336
+         Top             =   337
          Underline       =   False
          Visible         =   True
          Width           =   188
