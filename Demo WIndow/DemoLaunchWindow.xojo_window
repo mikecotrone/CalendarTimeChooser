@@ -1063,7 +1063,7 @@ End
 		  Me.Text = "Welcome to the ""Calendar and Time Chooser Project (Desktop Edition)"""+EndOfLine+EndOfLine
 		  
 		  Me.AppendText "This project has been tested with Xojo "+ XojoVersionString + EndOfLine+_
-		   "Please feel free to use this project in your commercial and/or open source software."+EndOfLine+EndOfLine+_
+		  "Please feel free to use this project in your commercial and/or open source software."+EndOfLine+EndOfLine+_
 		  "If you have any questions please check the ""Quick Start App Note"" or "+_
 		  "email us at support@intelligentvisibility.com."+EndOfLine
 		  

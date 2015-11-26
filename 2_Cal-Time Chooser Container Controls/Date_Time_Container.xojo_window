@@ -696,6 +696,7 @@ End
 		  // ASSIGN TIME BACK TO SELECTEDDATE  DATE PROPERTY
 		  SelectedDate.Hour = CDbl(inHours)
 		  SelectedDate.Minute = CDbl(inMinutes)
+		  
 		  // ALSO PASSING TIME AS A STRING INTO THIS EVENT FOR MAXIMUM FLEXIBILITY
 		  Dim selectedHour as String  = inHours
 		  Dim selectedMinutes as string = inMinutes

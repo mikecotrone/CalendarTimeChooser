@@ -9,23 +9,18 @@ Inherits Canvas
 		    EraseBackground = true
 		  #ENDIF
 		  
-		  dim d As new date
-		  Time_Container(window).Time_Minute=Format(d.Minute,"00")
-		  if d.Hour<12 then
-		    Time_Container(window).Time_AMPM="AM"
-		    if d.Hour=0 then
-		      Time_Container(window).Time_Hour="12"
-		    else
-		      Time_Container(window).Time_Hour=str(d.Hour)
-		    end if
-		  else
-		    Time_Container(window).Time_AMPM="PM"
-		    if d.Hour>12 then
-		      Time_Container(window).Time_Hour=str(d.Hour-12)
-		    Else
-		      Time_Container(window).Time_Hour="12"
-		    end if
-		  end if
+		  // ------- SET THESE VALUES IF YOU WOULD LIKE A CUSTOM TIME ON START
+		  // ------- 24 HOUR OR 12 HOUR SUPPORTED
+		  
+		  // DEFAULT: USE THE CURRENT TIME
+		  SetCustomTime()
+		  
+		  // EXAMPLE: SET 24 HOUR TIME TO 22:30
+		  ' SetCustomTime(22,30)
+		  
+		  // EXAMPLE: SET 12 HOUR TIME TO 6:40 AM'
+		  ' SetCustomTime(6,40, "am")
+		  
 		  
 		End Sub
 	#tag EndEvent
@@ -306,6 +301,73 @@ Inherits Canvas
 		  //rotation is based on radians/seconds per minute * current second.
 		  SecondHand.Rotation=(pi*2/60*Time_Container(window).ClockSecondsCounter)+.01
 		  g.DrawObject SecondHand,g.Width/2,g.Height/2
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Protected Sub SetCustomTime(optional inHour as Integer, optional inMinute as Integer, optional inAMPM as String)
+		  // ------- SET THESE VALUES IF YOU WOULD LIKE A CUSTOM TIME ON START
+		  If inHour = 0 Or inMinute = 0  Then
+		    // DEFAULT USE CURRENT TIME
+		    Dim d As New date
+		    Time_Container(Window).Time_Minute=Format(d.Minute,"00")
+		    If d.Hour<12 Then
+		      Time_Container(Window).Time_AMPM="AM"
+		      If d.Hour=0 Then
+		        Time_Container(Window).Time_Hour="12"
+		      Else
+		        Time_Container(Window).Time_Hour=Str(d.Hour)
+		      End If
+		    Else
+		      Time_Container(Window).Time_AMPM="PM"
+		      If d.Hour>12 Then
+		        Time_Container(Window).Time_Hour=Str(d.Hour-12)
+		      Else
+		        Time_Container(Window).Time_Hour="12"
+		      End If
+		    End If
+		    
+		  Else
+		    // CUSTOM TIME  SECTION
+		    
+		    Time_Container(Window).TimeMode = 12
+		    Self.Invalidate(False)
+		    
+		    Dim thisAMPM as String = Uppercase(inAMPM)
+		    Time_Container(Window).Time_Minute=Format(inMinute,"00")
+		    
+		    If inHour < 12 Then
+		      Time_Container(Window).Time_AMPM = "AM"
+		      If inHour =0 Then
+		        Time_Container(Window).Time_Hour = "12"
+		      Else
+		        Time_Container(Window).Time_Hour=Str(inHour)
+		      End If
+		      
+		    Else
+		      Time_Container(Window).Time_AMPM = "PM"
+		      If inHour >12 Then
+		        Time_Container(Window).Time_Hour=Str(inHour-12)
+		      Else
+		        Time_Container(Window).Time_Hour="12"
+		      End If
+		    End If
+		    
+		    // CONVERT TO 24 HOUR OR 12 HOUR
+		    If inAMPM = "" Then
+		      // 24 HOUR
+		      Time_Container(Window).TimeMode = 24
+		    Else
+		      // 12 HOUR
+		      Dim formattedAMPM as String = Uppercase(inAMPM)
+		      Time_Container(Window).TimeMode = 12
+		      Time_Container(Window).Time_AMPM = formattedAMPM
+		    End If
+		    
+		    
+		    
+		  End If
+		  
 		End Sub
 	#tag EndMethod
 
