@@ -1,7 +1,7 @@
 CalendarTimeChooser
 ===================
 
-Xojo Calendar and Time Chooser Picklist
+Xojo Calendar and Time Chooser Project
 
 Date:           November 25, 2015
 
