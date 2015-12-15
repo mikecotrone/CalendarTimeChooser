@@ -11,10 +11,11 @@ Author:         Mike Cotrone (mikec@intelligentvisibility.com)
 
 Version:        3.0.2
 
-Contributors:   Jim McKay
+Contributors:   Mike Cotrone, Jim McKay
 
 
 What is this Project?
+------------------
 
   - This project came out of a need for a professional calendar and time chooser for scheduling
   
@@ -28,10 +29,12 @@ What is this Project?
   
 
 Whats New in 3.0.2?
+------------------
 - Added the ability to have the clock start up using a custom time
 - Updated documentation
 
 Whats New in 3.0.1?
+------------------
 - New numbering train to indicate refactoring changes
 - Cleaned up code base removing all instance dependancy from MacOSlib
 - Converted all function names using camelback naming convention
