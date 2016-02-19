@@ -417,7 +417,6 @@ Begin ContainerControl Calendar_Container
       Selectable      =   False
       TabIndex        =   57
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Recurrence"
       TextAlign       =   0
       TextColor       =   &c00000000

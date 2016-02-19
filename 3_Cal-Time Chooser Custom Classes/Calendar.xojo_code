@@ -841,8 +841,7 @@ Inherits Canvas
 		  // Date Instantiations
 		  CurrentDate = new Date
 		  
-		  // ------- SetCustomCalendarStartDate() ACCEPTS THE FOLLOWING OPTIONAL PARAMETERS BELOW (NOTE: IF YOU DON'T PASS ANY PARAMETERS THE CALENDAR USES
-		  // ------- TODAYS DATE AND YEAR
+		  // ------- SetCustomCalendarStartDate() ACCEPTS THE FOLLOWING OPTIONAL PARAMETERS BELOW (NOTE: IF YOU DON'T PASS ANY PARAMETERS THE CALENDAR USES TODAYS DATE AND YEAR
 		  // ------- (optional inPassedDate as Date, optional inPassedStartYear as Integer, optional inPassedEndYear as Integer)
 		  SetCustomCalendarStartDate()
 		  
@@ -1333,7 +1332,7 @@ Inherits Canvas
 		  // THE START AND END YEAR VALUES ARE THE YEAR BOUNDARY WITHIN YOUR CALENDAR YEAR POP UP MENU
 		  // IF THESE USER VALUES ARE NOT PRESENT WE WILL DEFAULT TO StartYear: 1905 EndYear: 2061
 		  // USE PROGRAMATICALLY
-		  IF inPassedStartYear <> 0 THEN
+		  IF inPassedStartYear <> 0 OR inPassedDate <> NIL THEN
 		    UserSelectedStartYear = inPassedStartYear
 		    UserSelectedEndYear = inPassedEndYear
 		    // LOAD THE YEAR POP UP MENU WITH THE PROPER SELECTION
