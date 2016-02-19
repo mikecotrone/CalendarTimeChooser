@@ -417,6 +417,7 @@ Begin ContainerControl Calendar_Container
       Selectable      =   False
       TabIndex        =   57
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Recurrence"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -677,7 +678,7 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub Open()
-		  #if TargetMacOS Then
+		  #IF TargetMacOS OR TargetLinux Then
 		    //me.Icon = SystemIcons.LeftFacingTriangleTemplate
 		    Me.Caption = " <"
 		    me.IconAlign = 1
@@ -710,7 +711,7 @@ End
 		  //Me.Caption = Chr(8226)
 		  //Me.CaptionAlign = 2
 		  
-		  //#if TargetMacOS Then
+		  //#IF TargetMacOS OR TargetLinux Then
 		  //me.Icon = SystemIcons.StatusAvailable
 		  //me.IconAlign = 1
 		  //
@@ -734,7 +735,7 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub Open()
-		  #if TargetMacOS Then
+		  #IF TargetMacOS OR TargetLinux Then
 		    //me.Icon = SystemIcons.RightFacingTriangleTemplate
 		    Me.Caption = " >"
 		    me.IconAlign = 1
@@ -761,7 +762,7 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub Open()
-		  #if TargetMacOS Then
+		  #IF TargetMacOS OR TargetLinux Then
 		    //me.Icon = SystemIcons.RightFacingTriangleTemplate
 		    Me.Caption = " >"
 		    me.IconAlign = 1
@@ -788,7 +789,7 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub Open()
-		  #if TargetMacOS Then
+		  #IF TargetMacOS OR TargetLinux Then
 		    Me.Caption = " <"
 		    me.IconAlign = 1
 		    

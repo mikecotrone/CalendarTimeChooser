@@ -139,7 +139,7 @@ Inherits Canvas
 		      if CalendarButtonClassArray(i).Day <> 0 Then
 		        // Capture Selected Date in Date format for Custom Event
 		        g.ForeColor = RGB(0,127,230)
-		        #IF TargetMacOS Then
+		        #IF TargetMacOS OR TargetLinux Then
 		          Dim theLeft as Integer = CalendarButtonClassArray(i).LeftX+OffSet
 		          Dim theTop as Integer = CalendarButtonClassArray(i).TopY+OffSet
 		          Dim theWidth as Integer = CalendarButtonClassArray(i).Width-TwoOffset
