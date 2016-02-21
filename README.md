@@ -3,13 +3,13 @@ CalendarTimeChooser
 
 Xojo Calendar and Time Chooser Project
 
-Date:           November 25, 2015
+Date:           February, 2016
 
 Language:       Xojo all versions
 
 Author:         Mike Cotrone (mikec@intelligentvisibility.com)
 
-Version:        3.0.2
+Version:        3.0.3
 
 Contributors:   Mike Cotrone, Jim McKay
 
@@ -27,6 +27,11 @@ What is this Project?
 
   - Recurring calendar selection option
   
+
+Whats New in 3.0.3?
+------------------
+- Fixed Issues #14 & #13
+- Added new aesthetic feature for optional calendar column separator lines
 
 Whats New in 3.0.2?
 ------------------
