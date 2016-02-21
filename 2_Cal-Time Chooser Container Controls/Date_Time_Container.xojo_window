@@ -237,6 +237,8 @@ End
 	#tag Method, Flags = &h21
 		Private Sub setupForBothPickers()
 		  if Window isa DateTimeWindow then
+		    window.Width = 416
+		    window.Height = 272
 		    TrueWindow.Title = Localized_ChooseBothTitle_Str
 		  end if
 		  
@@ -244,6 +246,8 @@ End
 		  Calendar_Container1.Visible = True
 		  Time_Container1.Enabled = True
 		  Time_Container1.Visible = True
+		  Time_Container1.Left = 250
+		  Time_Container1.Top = 10
 		  
 		  
 		  
@@ -255,8 +259,7 @@ End
 	#tag Method, Flags = &h21
 		Private Sub setupForCalendarPickerOnly()
 		  if window isa DateTimeWindow then
-		    window.Width = 236
-		    window.Height = 286
+		    window.Width = 250
 		    TrueWindow.Title = Localized_CalendarOnlyTitle_Str
 		  end if
 		  
@@ -272,15 +275,16 @@ End
 	#tag Method, Flags = &h21
 		Private Sub setupForTimePickerOnly()
 		  if window isa DateTimeWindow then
-		    window.Width = 236
-		    window.Height = 286
+		    window.Width = 176
+		    window.Height = 272
 		    TrueWindow.Title = Localized_TimeOnlyTitle_Str
 		  end if
 		  
 		  Time_Container1.Enabled = True
 		  Time_Container1.Visible = True
-		  Time_Container1.Left = DateTimeWindow(Window).Width/2-Time_Container1.Width/2
-		  //
+		  Time_Container1.Left = 10
+		  Time_Container1.Top = 10
+		  
 		  Calendar_Container1.Enabled = False
 		  Calendar_Container1.Visible = False
 		  
