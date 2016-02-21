@@ -112,11 +112,45 @@ Begin ContainerControl Time_Container
       TabPanelIndex   =   0
       TabStop         =   True
       TextColor       =   &c08020200
-      Top             =   59
+      Top             =   67
       Transparent     =   True
       UseFocusRing    =   True
       UseGradientFill =   False
       UseGraphicalClockHands=   True
+      Visible         =   True
+      Width           =   130
+   End
+   Begin Label TimeZoneLabel
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   13
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   2
+      Selectable      =   False
+      TabIndex        =   3
+      TabPanelIndex   =   0
+      Text            =   ""
+      TextAlign       =   1
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   12.0
+      TextUnit        =   0
+      Top             =   221
+      Transparent     =   True
+      Underline       =   False
       Visible         =   True
       Width           =   130
    End
@@ -299,6 +333,20 @@ End
 		    Me.Left = 125
 		    Me.Top =  13
 		  #ENDIF
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events TimeZoneLabel
+	#tag Event
+		Sub Open()
+		  Using Xojo.Core
+		  Dim thisDate as Xojo.Core.Date
+		  Dim tz as TimeZone = TimeZone.Current
+		  
+		  Dim thisText as Text = tz.Abbreviation
+		  
+		  Me.Text = thisText
 		  
 		End Sub
 	#tag EndEvent
