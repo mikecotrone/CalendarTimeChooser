@@ -23,11 +23,11 @@ Inherits Canvas
 		Sub MouseUp(X As Integer, Y As Integer)
 		  addMenuItems()
 		  
-		  dim result As MenuItem=myMenu.PopUp
+		  dim result As MenuItem = myMenu.PopUp
 		  
 		  if result<>nil then
 		    
-		    RecurringMode=result.Tag
+		    RecurringMode = result.Tag
 		    RecurringMode = RecurringMode + 1
 		    
 		    // Raise User Defined Event
@@ -82,7 +82,12 @@ Inherits Canvas
 		  
 		  // HANDLE CHECK MARK
 		  if RecurringMode > -1 then 
-		    myMenu.Item(RecurringMode).Checked=true
+		    If RecurringMode = 1 Then
+		      myMenu.Item(RecurringMode-1).Checked=true
+		    Else
+		      myMenu.Item(RecurringMode).Checked=true
+		    end if
+		    
 		  end if
 		  
 		  

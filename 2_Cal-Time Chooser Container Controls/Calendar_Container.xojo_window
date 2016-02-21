@@ -95,6 +95,7 @@ Begin ContainerControl Calendar_Container
       Backdrop        =   0
       CalMonFirstDayOfWeekBool=   False
       DoubleBuffer    =   False
+      drawColumnLines =   False
       Enabled         =   True
       EndYear         =   0
       EraseBackground =   False
