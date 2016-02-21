@@ -506,7 +506,7 @@ Inherits Canvas
 		  
 		  Dim xPOS as Integer = Indent+Time_Container(window).Time_Hour_Len+Colon_Width
 		  Dim yPOS as Integer = 1
-		  Dim thisWidth as Integer = inTimeMinuteLen + 3
+		  Dim thisWidth as Integer = inTimeMinuteLen + 2
 		  Dim thisHeight as Integer = me.Height-2
 		  
 		  g.FillRect(xPOS, yPOS, thisWidth, thisHeight)
