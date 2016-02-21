@@ -9,7 +9,7 @@ Begin ContainerControl Time_Container
    Enabled         =   True
    EraseBackground =   True
    HasBackColor    =   False
-   Height          =   286
+   Height          =   252
    HelpTag         =   ""
    InitialParent   =   ""
    Left            =   0
@@ -42,7 +42,7 @@ Begin ContainerControl Time_Container
       Index           =   -2147483648
       InitialParent   =   ""
       KeyBuffer       =   ""
-      Left            =   38
+      Left            =   37
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -56,7 +56,7 @@ Begin ContainerControl Time_Container
       Transparent     =   True
       UseFocusRing    =   False
       Visible         =   True
-      Width           =   81
+      Width           =   82
    End
    Begin UpDownArrows Time_Nav
       AcceptFocus     =   False
@@ -101,7 +101,7 @@ Begin ContainerControl Time_Container
       HourCount       =   12
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   16
+      Left            =   13
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -127,6 +127,13 @@ End
 	#tag Event
 		Sub Open()
 		  
+		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		  g.ForeColor = RGB(200,200,200)
+		  g.FillRoundRect(0,0,me.Width,me.Height, 8, 8)
 		End Sub
 	#tag EndEvent
 

@@ -9,13 +9,13 @@ Begin Window DateTimeWindow
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   286
+   Height          =   272
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
    MaxHeight       =   286
    MaximizeButton  =   True
-   MaxWidth        =   394
+   MaxWidth        =   500
    MenuBar         =   0
    MenuBarVisible  =   True
    MinHeight       =   286
@@ -25,7 +25,7 @@ Begin Window DateTimeWindow
    Resizeable      =   False
    Title           =   ""
    Visible         =   True
-   Width           =   394
+   Width           =   416
    Begin Date_Time_Container Date_Time_Container1
       AcceptFocus     =   False
       AcceptTabs      =   True
@@ -42,22 +42,21 @@ Begin Window DateTimeWindow
       Enabled         =   True
       EraseBackground =   False
       HasBackColor    =   True
-      Height          =   252
+      Height          =   272
       HelpTag         =   ""
       IncludePrevNextMonthDays=   False
       InitialParent   =   ""
       Left            =   0
       LocalizationInt =   0
-      LockBottom      =   False
+      LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
-      LockRight       =   False
+      LockRight       =   True
       LockTop         =   True
       Scope           =   0
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
-      TEST            =   ""
       Top             =   0
       Transparent     =   True
       UseFocusRing    =   False
@@ -65,90 +64,7 @@ Begin Window DateTimeWindow
       Visible         =   True
       VisiblePickers  =   0
       WeekStartsOnMonday=   False
-      Width           =   394
-   End
-   Begin PushButton Cancel_Button
-      AutoDeactivate  =   True
-      Bold            =   False
-      ButtonStyle     =   "0"
-      Cancel          =   True
-      Caption         =   "Cancel"
-      Default         =   False
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   126
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   1
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "Helvetica"
-      TextSize        =   12.0
-      TextUnit        =   0
-      Top             =   259
-      Underline       =   False
-      Visible         =   True
-      Width           =   69
-   End
-   Begin PushButton Finished_Button
-      AutoDeactivate  =   True
-      Bold            =   False
-      ButtonStyle     =   "0"
-      Cancel          =   True
-      Caption         =   "Submit"
-      Default         =   False
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   200
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   2
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "Helvetica"
-      TextSize        =   12.0
-      TextUnit        =   0
-      Top             =   259
-      Underline       =   False
-      Visible         =   True
-      Width           =   69
-   End
-   Begin Separator Separator1
-      AutoDeactivate  =   True
-      Enabled         =   True
-      Height          =   1
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   0
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   3
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Top             =   252
-      Visible         =   True
-      Width           =   401
+      Width           =   416
    End
 End
 #tag EndWindow
@@ -164,30 +80,6 @@ End
 		  //end
 		End Function
 	#tag EndEvent
-
-
-	#tag Method, Flags = &h21
-		Private Sub drawGradientBackfill(g as graphics)
-		  // Awesome Gradient Fill
-		  dim i as integer, ratio, endratio as Double
-		  dim StartColor, EndColor as Color
-		  
-		  // Gradient
-		  StartColor = RGB(255, 255, 255)
-		  EndColor = Date_Time_Container1.BackColor
-		  
-		  // Draw The Gradient
-		  for i = g.Height DownTo 0
-		    // Need our ratios of start / end
-		    ratio = (i/g.Height)
-		    endratio = ((g.Height-i)/g.Height)
-		    // Determine the Color
-		    g.ForeColor = RGB(StartColor.Red * endratio + EndColor.Red * ratio, StartColor.Green * endratio + EndColor.Green * ratio, StartColor.Blue * endratio + EndColor.Blue * ratio)
-		    // Draw the current line
-		    g.DrawLine 0, i, g.Width, i
-		  next
-		End Sub
-	#tag EndMethod
 
 
 	#tag ComputedProperty, Flags = &h0
@@ -336,24 +228,6 @@ End
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return Date_Time_Container1.Time_Container1.Clock1.UseGradientFill
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  Date_Time_Container1.Time_Container1.Clock1.UseGradientFill  = value
-			End Set
-		#tag EndSetter
-		UseGradientFillClock As Boolean
-	#tag EndComputedProperty
-
-	#tag Property, Flags = &h0
-		UseGradientFillWindow As Boolean
-	#tag EndProperty
-
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
 			  Return Date_Time_Container1.UseGraphicalClockHands
 			End Get
 		#tag EndGetter
@@ -399,27 +273,6 @@ End
 #tag EndWindowCode
 
 #tag Events Date_Time_Container1
-	#tag Event
-		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
-		  if UseGradientFillWindow = True Then
-		    drawGradientBackfill(g)
-		  End
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events Cancel_Button
-	#tag Event
-		Sub Action()
-		  MsgBox "Cancel Button Pressed! (not implemented)"
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events Finished_Button
-	#tag Event
-		Sub Action()
-		  MsgBox "Submit Button Pressed! (not implemented)"
-		End Sub
-	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty

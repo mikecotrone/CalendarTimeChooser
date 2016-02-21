@@ -31,7 +31,7 @@ Begin ContainerControl Calendar_Container
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
-      Height          =   16
+      Height          =   13
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -51,10 +51,10 @@ Begin ContainerControl Calendar_Container
       TextFont        =   "Helvetica"
       TextSize        =   13.0
       TextUnit        =   0
-      Top             =   17
+      Top             =   20
       Underline       =   False
       Visible         =   True
-      Width           =   95
+      Width           =   107
    End
    Begin PopupMenu YearPopup
       AutoDeactivate  =   True
@@ -68,7 +68,7 @@ Begin ContainerControl Calendar_Container
       InitialParent   =   ""
       InitialValue    =   ""
       Italic          =   False
-      Left            =   113
+      Left            =   128
       ListIndex       =   0
       LockBottom      =   False
       LockedInPosition=   False
@@ -86,138 +86,6 @@ Begin ContainerControl Calendar_Container
       Underline       =   False
       Visible         =   True
       Width           =   65
-   End
-   Begin BevelButton PreviousMonthButton
-      AcceptFocus     =   False
-      AutoDeactivate  =   True
-      BackColor       =   &c00000000
-      Bevel           =   0
-      Bold            =   True
-      ButtonType      =   0
-      Caption         =   ""
-      CaptionAlign    =   0
-      CaptionDelta    =   0
-      CaptionPlacement=   0
-      Enabled         =   True
-      HasBackColor    =   False
-      HasMenu         =   0
-      Height          =   22
-      HelpTag         =   "Previous Month"
-      Icon            =   0
-      IconAlign       =   0
-      IconDX          =   0
-      IconDY          =   0
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   85
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   False
-      LockTop         =   False
-      MenuValue       =   0
-      Scope           =   0
-      TabIndex        =   2
-      TabPanelIndex   =   0
-      TabStop         =   False
-      TextColor       =   &c00000000
-      TextFont        =   "Helvetica"
-      TextSize        =   12.0
-      TextUnit        =   0
-      Top             =   278
-      Underline       =   False
-      Value           =   False
-      Visible         =   True
-      Width           =   20
-   End
-   Begin bevelbutton CurrentMonthButton
-      AcceptFocus     =   False
-      AutoDeactivate  =   True
-      BackColor       =   &c00000000
-      Bevel           =   0
-      Bold            =   False
-      ButtonType      =   0
-      Caption         =   ""
-      CaptionAlign    =   0
-      CaptionDelta    =   0
-      CaptionPlacement=   0
-      Enabled         =   True
-      HasBackColor    =   False
-      HasMenu         =   0
-      Height          =   22
-      HelpTag         =   "Today"
-      Icon            =   0
-      IconAlign       =   0
-      IconDX          =   0
-      IconDY          =   0
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   104
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   False
-      LockTop         =   False
-      MenuValue       =   0
-      Scope           =   0
-      TabIndex        =   3
-      TabPanelIndex   =   0
-      TabStop         =   False
-      TextColor       =   &c00000000
-      TextFont        =   "Helvetica"
-      TextSize        =   11.0
-      TextUnit        =   0
-      Top             =   278
-      Underline       =   False
-      Value           =   False
-      Visible         =   True
-      Width           =   20
-   End
-   Begin BevelButton NextMonthButton
-      AcceptFocus     =   False
-      AutoDeactivate  =   True
-      BackColor       =   &c00000000
-      Bevel           =   0
-      Bold            =   True
-      ButtonType      =   0
-      Caption         =   ""
-      CaptionAlign    =   0
-      CaptionDelta    =   0
-      CaptionPlacement=   0
-      Enabled         =   True
-      HasBackColor    =   False
-      HasMenu         =   0
-      Height          =   22
-      HelpTag         =   "Next Month"
-      Icon            =   0
-      IconAlign       =   0
-      IconDX          =   0
-      IconDY          =   0
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   123
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   False
-      LockTop         =   False
-      MenuValue       =   0
-      Scope           =   0
-      TabIndex        =   4
-      TabPanelIndex   =   0
-      TabStop         =   False
-      TextColor       =   &c00000000
-      TextFont        =   "Helvetica"
-      TextSize        =   12.0
-      TextUnit        =   0
-      Top             =   278
-      Underline       =   False
-      Value           =   False
-      Visible         =   True
-      Width           =   20
    End
    Begin Calendar Calendar1
       AcceptFocus     =   False
@@ -307,94 +175,6 @@ Begin ContainerControl Calendar_Container
          Width           =   205
       End
    End
-   Begin BevelButton NextYearButton
-      AcceptFocus     =   False
-      AutoDeactivate  =   True
-      BackColor       =   &c00000000
-      Bevel           =   0
-      Bold            =   True
-      ButtonType      =   0
-      Caption         =   ""
-      CaptionAlign    =   0
-      CaptionDelta    =   0
-      CaptionPlacement=   0
-      Enabled         =   True
-      HasBackColor    =   False
-      HasMenu         =   0
-      Height          =   22
-      HelpTag         =   "Next Year"
-      Icon            =   0
-      IconAlign       =   0
-      IconDX          =   0
-      IconDY          =   0
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   142
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   False
-      LockTop         =   False
-      MenuValue       =   0
-      Scope           =   0
-      TabIndex        =   53
-      TabPanelIndex   =   0
-      TabStop         =   False
-      TextColor       =   &c00000000
-      TextFont        =   "Helvetica"
-      TextSize        =   12.0
-      TextUnit        =   0
-      Top             =   278
-      Underline       =   False
-      Value           =   False
-      Visible         =   True
-      Width           =   20
-   End
-   Begin BevelButton PrevYearButton
-      AcceptFocus     =   False
-      AutoDeactivate  =   True
-      BackColor       =   &c00000000
-      Bevel           =   0
-      Bold            =   True
-      ButtonType      =   0
-      Caption         =   ""
-      CaptionAlign    =   0
-      CaptionDelta    =   0
-      CaptionPlacement=   0
-      Enabled         =   True
-      HasBackColor    =   False
-      HasMenu         =   0
-      Height          =   22
-      HelpTag         =   "Previous Year"
-      Icon            =   0
-      IconAlign       =   0
-      IconDX          =   0
-      IconDY          =   0
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   66
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   False
-      LockTop         =   False
-      MenuValue       =   0
-      Scope           =   0
-      TabIndex        =   54
-      TabPanelIndex   =   0
-      TabStop         =   False
-      TextColor       =   &c00000000
-      TextFont        =   "Helvetica"
-      TextSize        =   12.0
-      TextUnit        =   0
-      Top             =   278
-      Underline       =   False
-      Value           =   False
-      Visible         =   True
-      Width           =   20
-   End
    Begin Label RecurrenceLabel
       AutoDeactivate  =   True
       Bold            =   False
@@ -482,6 +262,14 @@ End
 #tag EndWindow
 
 #tag WindowCode
+	#tag Event
+		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		  g.ForeColor = RGB(200,200,200)
+		  g.FillRoundRect(0,0,me.Width,me.Height, 8, 8)
+		End Sub
+	#tag EndEvent
+
+
 	#tag Method, Flags = &h21
 		Private Sub goNextMonth()
 		  // Need a Check to See about Incrementing Year or not
@@ -687,138 +475,6 @@ End
 		      Me.ListIndex = i
 		    End if
 		  next i
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events PreviousMonthButton
-	#tag Event
-		Sub Action()
-		  goPrevMonth()
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub Open()
-		  #IF TargetMacOS OR TargetLinux Then
-		    //me.Icon = SystemIcons.LeftFacingTriangleTemplate
-		    Me.Caption = " <"
-		    me.IconAlign = 1
-		    
-		  #Elseif TargetWin32 Then
-		    Me.TextSize = 14
-		    Me.Caption = " <"
-		    Me.CaptionAlign = 0
-		    me.CaptionDelta=4
-		  #endif
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events CurrentMonthButton
-	#tag Event
-		Sub Action()
-		  takeMeToTodaysDate()
-		  
-		  
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  
-		End Function
-	#tag EndEvent
-	#tag Event
-		Sub Open()
-		  //Me.TextSize = 30
-		  //Me.Caption = Chr(8226)
-		  //Me.CaptionAlign = 2
-		  
-		  //#IF TargetMacOS OR TargetLinux Then
-		  //me.Icon = SystemIcons.StatusAvailable
-		  //me.IconAlign = 1
-		  //
-		  //#Elseif TargetWin32 Then
-		  me.Icon = BlackDot16x16
-		  me.IconAlign = 1
-		  //#endif
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events NextMonthButton
-	#tag Event
-		Sub Action()
-		  goNextMonth()
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  Me.SetFocus
-		End Function
-	#tag EndEvent
-	#tag Event
-		Sub Open()
-		  #IF TargetMacOS OR TargetLinux Then
-		    //me.Icon = SystemIcons.RightFacingTriangleTemplate
-		    Me.Caption = " >"
-		    me.IconAlign = 1
-		    
-		  #Elseif TargetWin32 Then
-		    Me.TextSize = 14
-		    Me.Caption = " >"
-		    Me.CaptionAlign = 0
-		    me.CaptionDelta=4
-		  #endif
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events NextYearButton
-	#tag Event
-		Sub Action()
-		  goNextYear()
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  Me.SetFocus
-		End Function
-	#tag EndEvent
-	#tag Event
-		Sub Open()
-		  #IF TargetMacOS OR TargetLinux Then
-		    //me.Icon = SystemIcons.RightFacingTriangleTemplate
-		    Me.Caption = " >"
-		    me.IconAlign = 1
-		    
-		  #Elseif TargetWin32 Then
-		    Me.TextSize = 14
-		    Me.Caption = " >"
-		    Me.CaptionAlign = 0
-		    me.CaptionDelta=4
-		  #endif
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events PrevYearButton
-	#tag Event
-		Sub Action()
-		  goPrevYear()
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  Me.SetFocus
-		End Function
-	#tag EndEvent
-	#tag Event
-		Sub Open()
-		  #IF TargetMacOS OR TargetLinux Then
-		    Me.Caption = " <"
-		    me.IconAlign = 1
-		    
-		  #Elseif TargetWin32 Then
-		    Me.TextSize = 14
-		    Me.Caption = " <"
-		    Me.CaptionAlign = 0
-		    me.CaptionDelta=4
-		  #endif
 		End Sub
 	#tag EndEvent
 #tag EndEvents

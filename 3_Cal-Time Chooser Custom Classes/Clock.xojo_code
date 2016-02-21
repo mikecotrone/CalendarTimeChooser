@@ -28,17 +28,6 @@ Inherits Canvas
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
 		  g.AntiAlias = True
-		  // Control the use of the Gradient Fill or Normal Background color
-		  
-		  #IF TargetMacOS OR TargetLinux Then
-		    if UseGradientFill = False Then
-		      g.ForeColor=Date_Time_Container(Time_Container(window).Window).BackColor
-		      g.FillRect(0,0,g.Width,g.Height)
-		    end if
-		  #ELSEIF TargetWin32 Then
-		    g.ForeColor=Date_Time_Container(Time_Container(window).Window).BackColor
-		    g.FillRect(0,0,g.Width,g.Height)
-		  #ENDIF
 		  
 		  // Draw Clock Image
 		  Select Case Date_Time_Container(Time_Container(window).window).ClockFaceType

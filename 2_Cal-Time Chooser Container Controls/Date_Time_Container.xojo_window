@@ -9,7 +9,7 @@ Begin ContainerControl Date_Time_Container
    Enabled         =   True
    EraseBackground =   False
    HasBackColor    =   True
-   Height          =   286
+   Height          =   272
    HelpTag         =   ""
    InitialParent   =   ""
    Left            =   0
@@ -24,7 +24,7 @@ Begin ContainerControl Date_Time_Container
    Transparent     =   True
    UseFocusRing    =   False
    Visible         =   True
-   Width           =   394
+   Width           =   416
    Begin Timer ClockSecondHandTimer
       Index           =   -2147483648
       InitialParent   =   ""
@@ -33,27 +33,6 @@ Begin ContainerControl Date_Time_Container
       Period          =   1000
       Scope           =   0
       TabPanelIndex   =   0
-   End
-   Begin Separator Separator1
-      AutoDeactivate  =   True
-      Enabled         =   True
-      Height          =   255
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   236
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   97
-      TabPanelIndex   =   0
-      TabStop         =   True
-      Top             =   -1
-      Visible         =   True
-      Width           =   4
    End
    Begin Calendar_Container Calendar_Container1
       AcceptFocus     =   True
@@ -67,7 +46,7 @@ Begin ContainerControl Date_Time_Container
       Height          =   252
       HelpTag         =   ""
       InitialParent   =   ""
-      Left            =   0
+      Left            =   10
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -77,7 +56,7 @@ Begin ContainerControl Date_Time_Container
       TabIndex        =   100
       TabPanelIndex   =   0
       TabStop         =   True
-      Top             =   0
+      Top             =   10
       Transparent     =   True
       UseFocusRing    =   False
       Visible         =   True
@@ -97,7 +76,7 @@ Begin ContainerControl Date_Time_Container
       HelpTag         =   ""
       HideAMPM        =   False
       InitialParent   =   ""
-      Left            =   235
+      Left            =   250
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -115,7 +94,7 @@ Begin ContainerControl Date_Time_Container
       Time_Hour_Len   =   0
       Time_Minute     =   "00"
       Time_Minute_Len =   0
-      Top             =   0
+      Top             =   10
       Transparent     =   True
       UseFocusRing    =   False
       Visible         =   True
@@ -125,6 +104,14 @@ End
 #tag EndWindow
 
 #tag WindowCode
+	#tag Event
+		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		  g.ForeColor = RGB(100,100,100)
+		  g.FillRoundRect(0,0,me.Width,me.Height, 8, 8)
+		End Sub
+	#tag EndEvent
+
+
 	#tag Method, Flags = &h21
 		Private Sub changeLocalizedWindowTitle()
 		  // ** MUST DETACH FROM DEMO WINDOW
@@ -250,23 +237,11 @@ End
 	#tag Method, Flags = &h21
 		Private Sub setupForBothPickers()
 		  if Window isa DateTimeWindow then
-		    window.Width = 394
-		    window.Height = 286
-		    
-		    #IF TargetMacOS OR TargetLinux Then
-		      DateTimeWindow(Window).Cancel_Button.Left = 126
-		      DateTimeWindow(Window).Finished_Button.Left = 200
-		    #ElseIf TargetWin32 Then
-		      DateTimeWindow(Window).Cancel_Button.Left = 200
-		      DateTimeWindow(Window).Finished_Button.Left = 126
-		    #endif
-		    
 		    TrueWindow.Title = Localized_ChooseBothTitle_Str
 		  end if
 		  
 		  Calendar_Container1.Enabled = True
 		  Calendar_Container1.Visible = True
-		  Time_Container1.Left = 235
 		  Time_Container1.Enabled = True
 		  Time_Container1.Visible = True
 		  
@@ -282,15 +257,6 @@ End
 		  if window isa DateTimeWindow then
 		    window.Width = 236
 		    window.Height = 286
-		    
-		    #IF TargetMacOS OR TargetLinux Then
-		      DateTimeWindow(Window).Cancel_Button.Left = 50
-		      DateTimeWindow(Window).Finished_Button.Left = 124
-		    #Elseif TargetWin32 Then
-		      DateTimeWindow(Window).Cancel_Button.Left = 124
-		      DateTimeWindow(Window).Finished_Button.Left = 50
-		    #endif
-		    
 		    TrueWindow.Title = Localized_CalendarOnlyTitle_Str
 		  end if
 		  
@@ -308,13 +274,6 @@ End
 		  if window isa DateTimeWindow then
 		    window.Width = 236
 		    window.Height = 286
-		    #IF TargetMacOS OR TargetLinux Then
-		      DateTimeWindow(Window).Cancel_Button.Left = 50
-		      DateTimeWindow(Window).Finished_Button.Left = 124
-		    #Elseif TargetWin32 Then
-		      DateTimeWindow(Window).Cancel_Button.Left = 124
-		      DateTimeWindow(Window).Finished_Button.Left = 50
-		    #endif
 		    TrueWindow.Title = Localized_TimeOnlyTitle_Str
 		  end if
 		  
@@ -551,10 +510,6 @@ End
 		#tag EndSetter
 		SelectedDate As Date
 	#tag EndComputedProperty
-
-	#tag Property, Flags = &h0
-		TEST As STRING
-	#tag EndProperty
 
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
@@ -918,12 +873,6 @@ End
 		InitialValue="True"
 		Type="Boolean"
 		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="TEST"
-		Group="Behavior"
-		Type="STRING"
-		EditorType="MultiLineEditor"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Top"
