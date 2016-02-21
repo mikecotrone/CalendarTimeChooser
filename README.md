@@ -111,7 +111,7 @@ Whats New in 1.5?
 How to Use this Project?
 
 Please read our full "How To" documentation located at:
-https://github.com/mikecotrone/CalendarTimeChooser/tree/master/Documentation
+https://github.com/IntelligentVisibility/CalendarTimeChooser/tree/master/Documentation
 
 
 How to Report Issues?
