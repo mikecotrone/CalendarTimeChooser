@@ -26,6 +26,18 @@ What is this Project?
   - Single or Multi Day calendar selection capability
 
   - Recurring calendar selection option
+
+
+How to Use this Project?
+
+Please read our full "How To" documentation located at:
+https://github.com/IntelligentVisibility/CalendarTimeChooser/tree/master/Documentation
+
+
+How to Report Issues?
+
+Please submit bug/issues at:
+https://github.com/IntelligentVisibility/CalendarTimeChooser/issues
   
 
 Whats New in 3.0.3?
@@ -106,16 +118,4 @@ Whats New in 1.5?
 - Many bug fixes
 
 ------------------------
-
-
-How to Use this Project?
-
-Please read our full "How To" documentation located at:
-https://github.com/IntelligentVisibility/CalendarTimeChooser/tree/master/Documentation
-
-
-How to Report Issues?
-
-Please submit bug/issues at:
-https://github.com/IntelligentVisibility/CalendarTimeChooser/issues
 
