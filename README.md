@@ -11,7 +11,7 @@ Author:         Mike Cotrone (mikec@intelligentvisibility.com)
 
 Version:        3.0.3
 
-Contributors:   Mike Cotrone, Jim McKay
+Contributors:   Mike Cotrone, Axel Schneider, Jim McKay
 
 
 What is this Project?
@@ -44,7 +44,7 @@ https://github.com/IntelligentVisibility/CalendarTimeChooser/issues
 
 Whats New in 3.0.3?
 ------------------
-- Fixed Issues #14 & #13
+- Fixed Issues #16, #15, #14 & #13
 - Added new aesthetic feature for optional calendar column separator lines
 
 Whats New in 3.0.2?
