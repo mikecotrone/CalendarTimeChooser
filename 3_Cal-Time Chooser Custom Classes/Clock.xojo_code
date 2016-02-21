@@ -30,7 +30,7 @@ Inherits Canvas
 		  g.AntiAlias = True
 		  // Control the use of the Gradient Fill or Normal Background color
 		  
-		  #IF TargetMacOS Then
+		  #IF TargetMacOS OR TargetLinux Then
 		    if UseGradientFill = False Then
 		      g.ForeColor=Date_Time_Container(Time_Container(window).Window).BackColor
 		      g.FillRect(0,0,g.Width,g.Height)
@@ -139,7 +139,7 @@ Inherits Canvas
 		  numeral.VerticalAlignment=StringShape.Alignment.Center
 		  numeral.HorizontalAlignment=StringShape.Alignment.Center
 		  dim face As new OvalShape
-		  #if TargetMacOS Then
+		  #IF TargetMacOS OR TargetLinux Then
 		    face.Width=buffer.Width-16
 		    face.Height=buffer.width-16
 		  #Elseif TargetWin32 Then

@@ -626,6 +626,27 @@ End
 	#tag EndHook
 
 
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return mdrawColSeperatorLines
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mdrawColSeperatorLines = value
+			  Calendar1.drawColumnLines = mdrawColSeperatorLines
+			  Calendar1.Invalidate(False)
+			End Set
+		#tag EndSetter
+		drawColSeperatorLines As Boolean
+	#tag EndComputedProperty
+
+	#tag Property, Flags = &h21
+		Private mdrawColSeperatorLines As Boolean
+	#tag EndProperty
+
+
 #tag EndWindowCode
 
 #tag Events MonthPopup
@@ -874,6 +895,11 @@ End
 		Group="Appearance"
 		Type="Picture"
 		EditorType="Picture"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="drawColSeperatorLines"
+		Group="Behavior"
+		Type="Boolean"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Enabled"

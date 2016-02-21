@@ -452,7 +452,13 @@ Inherits Canvas
 		Private Sub drawAMPM(g as Graphics, inTimeAMPMLen as Integer)
 		  g.Transparency = 40
 		  g.ForeColor = &c99ccff
-		  g.FillRect(Indent+Time_Container(window).Time_Hour_Len+Colon_Width+Time_Container(window).Time_Minute_Len+SpaceBetweenMinAndAMPM-1,1,inTimeAMPMLen+2,me.Height-2)
+		  
+		  Dim xPOS as Integer = Indent+Time_Container(window).Time_Hour_Len+Colon_Width+Time_Container(window).Time_Minute_Len+SpaceBetweenMinAndAMPM
+		  Dim yPOS as Integer = 1
+		  Dim thisWidth as Integer = inTimeAMPMLen + 4
+		  Dim thisHeight as Integer = me.Height-2
+		  
+		  g.FillRect(xPOS, yPOS, thisWidth, thisHeight)
 		End Sub
 	#tag EndMethod
 
@@ -483,7 +489,13 @@ Inherits Canvas
 		Private Sub drawSelectHour(g as Graphics, inTimeHourLen as Integer)
 		  g.Transparency = 40
 		  g.ForeColor = &c99ccff
-		  g.FillRect(Indent,1,inTimeHourLen,me.Height-2)
+		  
+		  Dim xPOS as Integer = Indent - 1
+		  Dim yPOS as Integer = 1
+		  Dim thisWidth as Integer = inTimeHourLen + 2
+		  Dim thisHeight as Integer = me.Height-2
+		  
+		  g.FillRect(xPOS, yPOS, thisWidth, thisHeight)
 		End Sub
 	#tag EndMethod
 
@@ -491,7 +503,13 @@ Inherits Canvas
 		Private Sub drawSelectMinute(g as Graphics, inTimeMinuteLen as Integer)
 		  g.Transparency = 40
 		  g.ForeColor = &c99ccff
-		  g.FillRect(Indent+Time_Container(window).Time_Hour_Len+Colon_Width,1,inTimeMinuteLen,me.Height-2)
+		  
+		  Dim xPOS as Integer = Indent+Time_Container(window).Time_Hour_Len+Colon_Width
+		  Dim yPOS as Integer = 1
+		  Dim thisWidth as Integer = inTimeMinuteLen + 3
+		  Dim thisHeight as Integer = me.Height-2
+		  
+		  g.FillRect(xPOS, yPOS, thisWidth, thisHeight)
 		End Sub
 	#tag EndMethod
 

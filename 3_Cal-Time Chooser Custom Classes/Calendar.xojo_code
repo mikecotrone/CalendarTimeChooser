@@ -98,8 +98,6 @@ Inherits Canvas
 		  // Set Initially the Selected Date for Today's Date
 		  Dim TodayIsTheDay as new Date
 		  SelectedDate = TodayIsTheDay
-		  
-		  
 		End Sub
 	#tag EndEvent
 
@@ -109,13 +107,32 @@ Inherits Canvas
 		  
 		  // Fill White Background
 		  g.ForeColor = RGB(255,255,255)
-		  g.FillRect (1,1,me.Width-2,me.Height-2)
+		  g.FillRoundRect (1,1,me.Width-2,me.Height-2,8,8)
 		  
 		  // Draw Outline for Canvas
-		  g.ForeColor = RGB(116,116,116)
+		  g.ForeColor = RGB(170,170,170)
 		  g.PenHeight = 2
 		  g.PenWidth = 2
 		  g.DrawroundRect(0,0,me.Width,me.Height,8,8)
+		  
+		  // Draw Column Separator if User Chosen
+		  If drawColumnLines = True Then
+		    Dim lineWidth as Integer = 1
+		    Dim colLineX1POS as Integer = 30
+		    Dim colLineY1POS as Integer = 8
+		    Dim colLineX2POS as Integer = 30
+		    Dim colLineY2POS as Integer = 160
+		    g.PenHeight = lineWidth
+		    g.PenWidth = lineWidth
+		    
+		    for i as integer = 1 to 6
+		      g.DrawLine(colLineX1POS, colLineY1POS, colLineX2POS, colLineY2POS)
+		      colLineX1POS = colLineX1POS + 30
+		      colLineX2POS = colLineX1POS
+		    next i
+		    
+		    
+		  End If
 		  
 		  // Parms for the Highlighting Below
 		  dim OffSet as Integer = 3
@@ -1527,6 +1544,10 @@ Inherits Canvas
 		Private DayOfWeek_MS() As String
 	#tag EndProperty
 
+	#tag Property, Flags = &h0
+		drawColumnLines As Boolean
+	#tag EndProperty
+
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
@@ -1781,6 +1802,11 @@ Inherits Canvas
 			Visible=true
 			Group="Behavior"
 			InitialValue="False"
+			Type="Boolean"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="drawColumnLines"
+			Group="Behavior"
 			Type="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty

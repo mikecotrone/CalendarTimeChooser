@@ -26,17 +26,13 @@ Begin ContainerControl Date_Time_Container
    Visible         =   True
    Width           =   394
    Begin Timer ClockSecondHandTimer
-      Height          =   32
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   0
       LockedInPosition=   False
       Mode            =   2
       Period          =   1000
       Scope           =   0
       TabPanelIndex   =   0
-      Top             =   0
-      Width           =   32
    End
    Begin Separator Separator1
       AutoDeactivate  =   True
@@ -257,7 +253,7 @@ End
 		    window.Width = 394
 		    window.Height = 286
 		    
-		    #If TargetMacOS Then
+		    #IF TargetMacOS OR TargetLinux Then
 		      DateTimeWindow(Window).Cancel_Button.Left = 126
 		      DateTimeWindow(Window).Finished_Button.Left = 200
 		    #ElseIf TargetWin32 Then
@@ -287,7 +283,7 @@ End
 		    window.Width = 236
 		    window.Height = 286
 		    
-		    #If TargetMacOS Then
+		    #IF TargetMacOS OR TargetLinux Then
 		      DateTimeWindow(Window).Cancel_Button.Left = 50
 		      DateTimeWindow(Window).Finished_Button.Left = 124
 		    #Elseif TargetWin32 Then
@@ -312,7 +308,7 @@ End
 		  if window isa DateTimeWindow then
 		    window.Width = 236
 		    window.Height = 286
-		    #If TargetMacOS Then
+		    #IF TargetMacOS OR TargetLinux Then
 		      DateTimeWindow(Window).Cancel_Button.Left = 50
 		      DateTimeWindow(Window).Finished_Button.Left = 124
 		    #Elseif TargetWin32 Then

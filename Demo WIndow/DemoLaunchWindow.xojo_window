@@ -9,7 +9,7 @@ Begin Window DemoLaunchWindow
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   556
+   Height          =   592
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
@@ -78,7 +78,7 @@ Begin Window DemoLaunchWindow
       Bold            =   False
       Caption         =   ""
       Enabled         =   True
-      Height          =   396
+      Height          =   433
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -125,7 +125,7 @@ Begin Window DemoLaunchWindow
          Text            =   "Select Chooser Type:"
          TextAlign       =   0
          TextColor       =   &c00000000
-         TextFont        =   "Helvetica"
+         TextFont        =   "System"
          TextSize        =   12.0
          TextUnit        =   0
          Top             =   158
@@ -190,7 +190,7 @@ Begin Window DemoLaunchWindow
          Text            =   "Change Window Back Color:"
          TextAlign       =   0
          TextColor       =   &c00000000
-         TextFont        =   "Helvetica"
+         TextFont        =   "System"
          TextSize        =   12.0
          TextUnit        =   0
          Top             =   237
@@ -255,7 +255,7 @@ Begin Window DemoLaunchWindow
          Text            =   "Change Clock Face:"
          TextAlign       =   0
          TextColor       =   &c00000000
-         TextFont        =   "Helvetica"
+         TextFont        =   "System"
          TextSize        =   12.0
          TextUnit        =   0
          Top             =   311
@@ -376,7 +376,7 @@ Begin Window DemoLaunchWindow
          Text            =   "Select Time Mode Format:"
          TextAlign       =   0
          TextColor       =   &c00000000
-         TextFont        =   "Helvetica"
+         TextFont        =   "System"
          TextSize        =   12.0
          TextUnit        =   0
          Top             =   311
@@ -441,7 +441,7 @@ Begin Window DemoLaunchWindow
          Text            =   "Select Clock Hand Type:"
          TextAlign       =   0
          TextColor       =   &c00000000
-         TextFont        =   "Helvetica"
+         TextFont        =   "System"
          TextSize        =   12.0
          TextUnit        =   0
          Top             =   366
@@ -506,7 +506,7 @@ Begin Window DemoLaunchWindow
          Text            =   "Week Start Type:"
          TextAlign       =   0
          TextColor       =   &c00000000
-         TextFont        =   "Helvetica"
+         TextFont        =   "System"
          TextSize        =   12.0
          TextUnit        =   0
          Top             =   427
@@ -568,7 +568,7 @@ Begin Window DemoLaunchWindow
          Text            =   "Calendar Localization:"
          TextAlign       =   0
          TextColor       =   &c00000000
-         TextFont        =   "Helvetica"
+         TextFont        =   "System"
          TextSize        =   12.0
          TextUnit        =   0
          Top             =   480
@@ -664,7 +664,7 @@ Begin Window DemoLaunchWindow
          Text            =   "h00000000"
          TextAlign       =   0
          TextColor       =   &c00000000
-         TextFont        =   "Helvetica"
+         TextFont        =   "System"
          TextSize        =   12.0
          TextUnit        =   0
          Top             =   390
@@ -791,7 +791,7 @@ Begin Window DemoLaunchWindow
          Text            =   "Use Gradient Fill:"
          TextAlign       =   0
          TextColor       =   &c00000000
-         TextFont        =   "Helvetica"
+         TextFont        =   "System"
          TextSize        =   12.0
          TextUnit        =   0
          Top             =   237
@@ -887,6 +887,72 @@ Begin Window DemoLaunchWindow
          Visible         =   True
          Width           =   159
       End
+      Begin CheckBox CheckBox1
+         AutoDeactivate  =   True
+         Bold            =   False
+         Caption         =   ""
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         Italic          =   False
+         Left            =   80
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Scope           =   0
+         State           =   0
+         TabIndex        =   53
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   0.0
+         TextUnit        =   0
+         Top             =   552
+         Underline       =   False
+         Value           =   False
+         Visible         =   True
+         Width           =   33
+      End
+      Begin Label DrawCalColLines_Label
+         AutoDeactivate  =   True
+         Bold            =   False
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox1"
+         Italic          =   False
+         Left            =   80
+         LockBottom      =   False
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   False
+         LockTop         =   True
+         Multiline       =   False
+         Scope           =   0
+         Selectable      =   False
+         TabIndex        =   54
+         TabPanelIndex   =   0
+         Text            =   "Column Separator Lines"
+         TextAlign       =   0
+         TextColor       =   &c00000000
+         TextFont        =   "System"
+         TextSize        =   12.0
+         TextUnit        =   0
+         Top             =   532
+         Transparent     =   True
+         Underline       =   False
+         Visible         =   True
+         Width           =   211
+      End
    End
    Begin Separator Separator2
       AutoDeactivate  =   True
@@ -955,14 +1021,14 @@ Begin Window DemoLaunchWindow
       Text            =   "Include Previous/Next Month Days:"
       TextAlign       =   0
       TextColor       =   &c00000000
-      TextFont        =   "Helvetica"
+      TextFont        =   "System"
       TextSize        =   12.0
       TextUnit        =   0
       Top             =   427
       Transparent     =   True
       Underline       =   False
       Visible         =   True
-      Width           =   207
+      Width           =   211
    End
    Begin Label GraphicalClockHandColorLabel
       AutoDeactivate  =   True
@@ -989,14 +1055,14 @@ Begin Window DemoLaunchWindow
       Text            =   "Choose Clock Hand Color:"
       TextAlign       =   0
       TextColor       =   &c00000000
-      TextFont        =   "Helvetica"
+      TextFont        =   "System"
       TextSize        =   12.0
       TextUnit        =   0
       Top             =   366
       Transparent     =   True
       Underline       =   False
       Visible         =   True
-      Width           =   207
+      Width           =   211
    End
    Begin Separator Separator3
       AutoDeactivate  =   True
@@ -1063,7 +1129,7 @@ End
 		  Me.Text = "Welcome to the ""Calendar and Time Chooser Project (Desktop Edition)"""+EndOfLine+EndOfLine
 		  
 		  Me.AppendText "This project has been tested with Xojo "+ XojoVersionString + EndOfLine+_
-		  "Please feel free to use this project in your commercial and/or open source software."+EndOfLine+EndOfLine+_
+		  "This project is licensed under the BSD3 Clause license."+EndOfLine+EndOfLine+_
 		  "If you have any questions please check the ""Quick Start App Note"" or "+_
 		  "email us at support@intelligentvisibility.com."+EndOfLine
 		  
@@ -1371,7 +1437,7 @@ End
 #tag Events UseGradientFillLabel
 	#tag Event
 		Sub Open()
-		  #IF TargetMacOS Then
+		  #IF TargetMacOS OR TargetLinux Then
 		    Me.Visible = true
 		    
 		  #ElseIf TargetWin32 Then
@@ -1384,7 +1450,7 @@ End
 #tag Events UseGradientFillPopupMenu
 	#tag Event
 		Sub Open()
-		  #If TargetMacOS Then
+		  #IF TargetMacOS OR TargetLinux Then
 		    // Load Popup Menu
 		    Me.AddRow("False")
 		    me.AddRow("True")
@@ -1446,6 +1512,14 @@ End
 		  
 		  p.Graphics.FillRoundRect 0,0,p.Width-6,p.Height-6,4,4
 		  g.DrawPicture(p,4,4)
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events CheckBox1
+	#tag Event
+		Sub Action()
+		  MyPicker.Date_Time_Container1.Calendar_Container1.drawColSeperatorLines = Me.Value
 		  
 		End Sub
 	#tag EndEvent
