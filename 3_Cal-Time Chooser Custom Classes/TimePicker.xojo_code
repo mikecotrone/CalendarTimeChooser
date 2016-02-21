@@ -4,7 +4,6 @@ Inherits Canvas
 	#tag Event
 		Function KeyDown(Key As String) As Boolean
 		  Select Case Time_Container(window).TimeMode
-		    
 		  Case 12
 		    
 		    if Key = Chr(9) Then 
@@ -43,6 +42,7 @@ Inherits Canvas
 		      
 		      Dim KeyBufferLen as Integer = KeyBuffer.Len
 		      if KeyBufferLen > 2 Then
+		        KeyBuffer = ""
 		        Return True
 		      end if
 		      
@@ -223,6 +223,7 @@ Inherits Canvas
 		  END Select
 		  
 		  Time_Container(Window).raiseEventSelectedTime()
+		  
 		  
 		  Return True
 		End Function
@@ -578,6 +579,7 @@ Inherits Canvas
 		    end if
 		    
 		  End if
+		  
 		End Sub
 	#tag EndMethod
 

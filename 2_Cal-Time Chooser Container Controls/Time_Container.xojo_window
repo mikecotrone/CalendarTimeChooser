@@ -62,11 +62,11 @@ Begin ContainerControl Time_Container
       AcceptFocus     =   False
       AutoDeactivate  =   True
       Enabled         =   True
-      Height          =   30
+      Height          =   34
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   120
+      Left            =   123
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -76,7 +76,7 @@ Begin ContainerControl Time_Container
       TabIndex        =   1
       TabPanelIndex   =   0
       TabStop         =   False
-      Top             =   10
+      Top             =   8
       Visible         =   True
       Width           =   16
    End
