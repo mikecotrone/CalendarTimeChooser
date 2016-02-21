@@ -131,7 +131,7 @@ Begin ContainerControl Time_Container
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   13
+      Left            =   2
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -152,7 +152,7 @@ Begin ContainerControl Time_Container
       Transparent     =   True
       Underline       =   False
       Visible         =   True
-      Width           =   130
+      Width           =   149
    End
 End
 #tag EndWindow
