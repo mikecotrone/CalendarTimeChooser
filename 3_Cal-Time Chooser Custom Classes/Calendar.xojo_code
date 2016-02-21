@@ -244,7 +244,7 @@ Inherits Canvas
 		        End if
 		        
 		      End if
-		    #ELSEIF TargetMacOS Then
+		    #ELSEIF TargetMacOS OR TargetLinux Then
 		      if CalendarButtonClassArray(i).Day = 0 Then
 		        g.DrawString("",CalendarButtonClassArray(i).LeftX+13,CalendarButtonClassArray(i).TopY+17)
 		      Else
@@ -952,19 +952,19 @@ Inherits Canvas
 	#tag Method, Flags = &h21
 		Private Function getDayOfWeekString(inDayOfWeekNum as Integer) As String
 		  Select Case inDayOfWeekNum
-		  Case 0
-		    Return Localized_Sunday
-		  Case 1
-		    Return Localized_Monday
-		  Case 2
-		    Return Localized_Tuesday
-		  Case 3
-		    Return Localized_Wednesday
-		  Case 4
-		    Return Localized_Thursday
-		  Case 5
-		    Return Localized_Friday
 		  Case 6
+		    Return Localized_Sunday
+		  Case 0
+		    Return Localized_Monday
+		  Case 1
+		    Return Localized_Tuesday
+		  Case 2
+		    Return Localized_Wednesday
+		  Case 3
+		    Return Localized_Thursday
+		  Case 4
+		    Return Localized_Friday
+		  Case 5
 		    Return Localized_Saturday
 		  End Select
 		End Function
