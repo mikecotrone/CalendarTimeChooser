@@ -20,10 +20,16 @@ Inherits Canvas
 		        Draw_AMPM_Selected = True
 		        me.Invalidate(False)
 		      Elseif Draw_AMPM_Selected = True Then
+		        Draw_Hour_Selected = False
+		        Draw_Minute_Selected = False
+		        Draw_AMPM_Selected = False
+		        me.Invalidate(False)
+		      Else
 		        Draw_Hour_Selected = True
 		        Draw_Minute_Selected = False
 		        Draw_AMPM_Selected = False
 		        me.Invalidate(False)
+		        
 		      end if
 		    End if
 		    
@@ -301,8 +307,8 @@ Inherits Canvas
 		  g.Transparency = 0
 		  g.ForeColor = RGB(0,0,0)
 		  g.TextSize = 14
-		  g.TextFont = "Helvetica"
-		  g.DrawString(DrawStringValue,10,16)
+		  g.TextFont = "System"
+		  g.DrawString(DrawStringValue,12,16)
 		  g.PenWidth=1
 		  g.PenHeight=1
 		  
@@ -454,12 +460,12 @@ Inherits Canvas
 		  g.Transparency = 40
 		  g.ForeColor = &c99ccff
 		  
-		  Dim xPOS as Integer = Indent+Time_Container(window).Time_Hour_Len+Colon_Width+Time_Container(window).Time_Minute_Len+SpaceBetweenMinAndAMPM
-		  Dim yPOS as Integer = 1
+		  Dim xPOS as Integer = Indent+Time_Container(window).Time_Hour_Len+Colon_Width+Time_Container(window).Time_Minute_Len+SpaceBetweenMinAndAMPM+3
+		  Dim yPOS as Integer = 3
 		  Dim thisWidth as Integer = inTimeAMPMLen + 4
-		  Dim thisHeight as Integer = me.Height-2
+		  Dim thisHeight as Integer = me.Height-6
 		  
-		  g.FillRect(xPOS, yPOS, thisWidth, thisHeight)
+		  g.FillRoundRect(xPOS, yPOS, thisWidth, thisHeight, 6, 6)
 		End Sub
 	#tag EndMethod
 
@@ -491,12 +497,12 @@ Inherits Canvas
 		  g.Transparency = 40
 		  g.ForeColor = &c99ccff
 		  
-		  Dim xPOS as Integer = Indent - 1
-		  Dim yPOS as Integer = 1
-		  Dim thisWidth as Integer = inTimeHourLen + 2
-		  Dim thisHeight as Integer = me.Height-2
+		  Dim xPOS as Integer = Indent 
+		  Dim yPOS as Integer = 3
+		  Dim thisWidth as Integer = inTimeHourLen + 3
+		  Dim thisHeight as Integer = me.Height-6
 		  
-		  g.FillRect(xPOS, yPOS, thisWidth, thisHeight)
+		  g.FillRoundRect(xPOS, yPOS, thisWidth, thisHeight,6,6)
 		End Sub
 	#tag EndMethod
 
@@ -505,12 +511,12 @@ Inherits Canvas
 		  g.Transparency = 40
 		  g.ForeColor = &c99ccff
 		  
-		  Dim xPOS as Integer = Indent+Time_Container(window).Time_Hour_Len+Colon_Width
-		  Dim yPOS as Integer = 1
-		  Dim thisWidth as Integer = inTimeMinuteLen + 2
-		  Dim thisHeight as Integer = me.Height-2
+		  Dim xPOS as Integer = Indent+Time_Container(window).Time_Hour_Len+Colon_Width + 4
+		  Dim yPOS as Integer = 3
+		  Dim thisWidth as Integer = inTimeMinuteLen 
+		  Dim thisHeight as Integer = me.Height-6
 		  
-		  g.FillRect(xPOS, yPOS, thisWidth, thisHeight)
+		  g.FillRoundRect(xPOS, yPOS, thisWidth, thisHeight,6,6)
 		End Sub
 	#tag EndMethod
 

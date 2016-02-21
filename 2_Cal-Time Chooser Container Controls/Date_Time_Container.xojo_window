@@ -40,6 +40,7 @@ Begin ContainerControl Date_Time_Container
       AutoDeactivate  =   True
       BackColor       =   &cFFFFFF00
       Backdrop        =   0
+      drawColSeperatorLines=   False
       Enabled         =   True
       EraseBackground =   False
       HasBackColor    =   False
