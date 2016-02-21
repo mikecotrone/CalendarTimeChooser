@@ -1,5 +1,5 @@
 Type=Desktop
-RBProjectVersion=2015.04
+RBProjectVersion=2015.041
 MinIDEVersion=20070100
 Class=App;App.xojo_code;&h4AFE05F5;&h0;false
 Folder=Demo WIndow;Demo WIndow;&h4F0F88F7;&h0;false
@@ -49,7 +49,7 @@ Picture=BlackDot16x16;5_Cal-Time Chooser Graphics/BlackDot16x16.png;&h556ECE61;&
 MajorVersion=3
 MinorVersion=0
 SubVersion=2
-NonRelease=1
+NonRelease=2
 Release=3
 InfoVersion=
 LongVersion=
