@@ -130,8 +130,6 @@ Inherits Canvas
 		      colLineX1POS = colLineX1POS + 30
 		      colLineX2POS = colLineX1POS
 		    next i
-		    
-		    
 		  End If
 		  
 		  // Parms for the Highlighting Below
@@ -763,18 +761,20 @@ Inherits Canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
-		Private Function calcMonthNumber(inMonth as String, inLeapYear as Boolean) As Integer
-		  If inMonth = Localized_February AND inLeapYear = True  OR inMonth = Localized_August Then
+		Private Function calcMonthNumber(inMonth as String) As Integer
+		  If inMonth = Localized_February AND LeapYearBool = True  OR inMonth = Localized_August Then
 		    Return 0
-		  Elseif inMonth = Localized_February AND inLeapYear = False OR inMonth = Localized_March or inMonth = Localized_November Then
+		  Elseif inMonth = Localized_February AND LeapYearBool = False Then
+		    Return 0
+		  Elseif inMonth = Localized_November OR inMonth = Localized_March Then
 		    Return 1
 		  Elseif inMonth = Localized_June Then
 		    Return 2
 		  ElseIf inMonth = Localized_September OR inMonth = Localized_December Then
 		    Return 3
-		  ElseIf inMonth = Localized_January AND inLeapYear = True OR inMonth = Localized_April OR inMonth = Localized_July Then
+		  ElseIf inMonth = Localized_January AND LeapYearBool = True OR inMonth = Localized_April OR inMonth = Localized_July Then
 		    Return 4
-		  Elseif inMonth = Localized_January AND inLeapYear = False OR inMonth = Localized_October Then
+		  Elseif inMonth = Localized_January AND LeapYearBool = False OR inMonth = Localized_October Then
 		    Return 5
 		  Elseif inMonth = Localized_May Then
 		    Return 6
@@ -789,9 +789,12 @@ Inherits Canvas
 	#tag Method, Flags = &h0
 		Function calculate1stDayOfMonth() As String
 		  // Need to Find out which Day of the Week this Month's 1st Day starts on
+		  Dim thisYear as Integer = Cdbl(SelectedYear)
+		  LeapYearBool = calcLeapYear(thisYear)
 		  
 		  // Calculate to get Weekday Number
-		  Dim WeekdayNum as Integer = (CenturyNumber + YearNumber + MonthNumber + 1)
+		  CenturyNumber = 1
+		  Dim WeekdayNum as integer = (CenturyNumber + YearNumber + MonthNumber)// + 1)
 		  
 		  DIM CalcWeekDayNum as Integer = WeekdayNum Mod 7
 		  
@@ -805,7 +808,7 @@ Inherits Canvas
 	#tag Method, Flags = &h0
 		Sub calculateMonth(inMonth as String)
 		  // Get Month Number
-		  MonthNumber = calcMonthNumber(inMonth,LeapYearBool)
+		  MonthNumber = calcMonthNumber(inMonth)
 		  
 		  
 		  
@@ -952,8 +955,6 @@ Inherits Canvas
 	#tag Method, Flags = &h21
 		Private Function getDayOfWeekString(inDayOfWeekNum as Integer) As String
 		  Select Case inDayOfWeekNum
-		  Case 6
-		    Return Localized_Sunday
 		  Case 0
 		    Return Localized_Monday
 		  Case 1
@@ -966,6 +967,8 @@ Inherits Canvas
 		    Return Localized_Friday
 		  Case 5
 		    Return Localized_Saturday
+		  Case 6
+		    Return Localized_Sunday
 		  End Select
 		End Function
 	#tag EndMethod
@@ -976,7 +979,7 @@ Inherits Canvas
 		    // Sunday is the First Day of the Week Calendar Labeling Wise
 		    Select Case FirstWeekDay
 		    Case Localized_Sunday
-		      Return 7 // 0 Based
+		      Return 7 
 		    Case Localized_Monday
 		      Return 8
 		    Case Localized_Tuesday
@@ -995,7 +998,7 @@ Inherits Canvas
 		    // Monday is the First Day of the Week Calendar Labeling Wise
 		    Select Case FirstWeekDay
 		    Case Localized_Monday
-		      Return 7 // 0 Based
+		      Return 7
 		    Case Localized_Tuesday
 		      Return 8
 		    Case Localized_Wednesday
@@ -1112,6 +1115,7 @@ Inherits Canvas
 		      CalendarButton = New CalendarButtonClass
 		      CalendarButton.ID = y
 		      CalendarButton.Row = row
+		      
 		    Case 8 to 14 // Row 2
 		      row =  2
 		      CalendarButton = New CalendarButtonClass
@@ -1127,6 +1131,7 @@ Inherits Canvas
 		      CalendarButton.RightX = (y-14) * 30
 		      CalendarButton.BottomY = row  * 24
 		      CalendarButton.Row = row
+		      
 		    Case 22 to 28 // Row 4
 		      row =  4
 		      CalendarButton = New CalendarButtonClass
@@ -1134,6 +1139,7 @@ Inherits Canvas
 		      CalendarButton.RightX = (y-21) * 30
 		      CalendarButton.BottomY = row  * 24
 		      CalendarButton.Row = row
+		      
 		    Case 29 to 35 // Row 5
 		      row =  5
 		      CalendarButton = New CalendarButtonClass
@@ -1141,6 +1147,7 @@ Inherits Canvas
 		      CalendarButton.RightX =  (y-28) * 30
 		      CalendarButton.BottomY = row  * 24
 		      CalendarButton.Row = row
+		      
 		    Case 36 to 42 // Row 6
 		      row =  6
 		      CalendarButton = New CalendarButtonClass
@@ -1160,8 +1167,6 @@ Inherits Canvas
 		    End Select
 		    CalendarButtonClassArray.Append CalendarButton
 		  Next y
-		  
-		  Dim a as string
 		  
 		End Sub
 	#tag EndMethod
@@ -1212,7 +1217,6 @@ Inherits Canvas
 		  end if
 		  
 		  // Load Curent Year if inSelectedYear = 0
-		  
 		  Dim TodaysYear as New Date
 		  
 		  if inSelectedYear = 0 Then
@@ -1250,6 +1254,10 @@ Inherits Canvas
 		  // Oct - 31
 		  // Nov - 30
 		  // Dec - 31
+		  
+		  //// NEED TO TAKE YEAR INTO CONSIDERATION AND CALCULATE IN THIS FUNCTION IF LEAP YEAR
+		  //Dim thisYear as Integer = Cdbl(SelectedYear)
+		  //LeapYearBool = calcLeapYear(thisYear)
 		  
 		  Select Case inMonth
 		  Case Localized_January
@@ -1421,18 +1429,20 @@ Inherits Canvas
 		  Dim FirstCalSlot as Integer
 		  
 		  // Calendar Slot Mappings for Selected Month
-		  FirstCalSlot = getFirstDayOfWeekCalSlotNumber(FirstWeekDay,CalMonFirstDayOfWeekBool)
+		  FirstCalSlot = getFirstDayOfWeekCalSlotNumber(FirstWeekDay,CalMonFirstDayOfWeekBool) 
 		  
 		  // Clear the Class' day values
 		  clearDays()
+		  
 		  // Map the Calendar Slots to Correct Month Days
 		  Dim DayCounter as Integer  = 1
 		  Dim i  as integer
 		  
-		  for i = FirstCalSlot to NumOfDaysInMonth+FirstCalSlot-1
+		  for i = FirstCalSlot to (NumOfDaysInMonth+FirstCalSlot)-1
 		    // Erase Other Marks
 		    CalendarButtonClassArray(i).PrevMonthMark = False
 		    CalendarButtonClassArray(i).NextMonthMark = False
+		    
 		    // Process Selected Month Day
 		    CalendarButtonClassArray(i).Day = DayCounter
 		    
@@ -1447,15 +1457,16 @@ Inherits Canvas
 		    Invalidate(False)
 		  Next i
 		  
-		  
 		  // Need to Calculate How many Available Spaces for the previous month's worth of Calendar Days
 		  Dim CalPrevMonthSpacesAvailable as Integer = calcHowManyCalSlotsAvailable(7,13,1)
+		  
 		  // Need to Calculate How many Available Spaces for the next month's worth of Calendar Days
 		  Dim CalNextMonthSpacesAvailable as Integer = calcHowManyCalSlotsAvailable(38,48,0)
 		  
 		  // Figure Out which Months are Previous and Next
 		  PreviousMonth = getPrevMonthString(SelectedMonth)
 		  NextMonth = getNextMonthString(SelectedMonth)
+		  
 		  // Figure Out How Many Days are in the Previous and Next Month
 		  Dim PrevMonthNumOfDays as Integer = numOfDaysInMonth(PreviousMonth)
 		  Dim NextMonthNumOfDays as Integer = numOfDaysInMonth(NextMonth)
@@ -1464,7 +1475,7 @@ Inherits Canvas
 		    // Now Map the Previous Available Slots with the appropriate Previous Month's Ending Calendar Days
 		    Dim PrevDayCounter as Integer  = PrevMonthNumOfDays
 		    Dim ii as integer
-		    for ii = FirstCalSlot-1 DownTo CalPrevMonthSpacesAvailable
+		    for ii = FirstCalSlot DownTo CalPrevMonthSpacesAvailable
 		      CalendarButtonClassArray(ii).Day = PrevDayCounter
 		      
 		      Dim TmpDate as New Date
@@ -1481,7 +1492,7 @@ Inherits Canvas
 		    // Now Map the Next Available Slots with the appropriate Next Month's Beginning Calendar Days
 		    Dim NextDayCounter as Integer  = 1
 		    Dim xx as integer
-		    Dim LastCalSlot as Integer = FirstCalSlot + NumOfDaysInMonth
+		    Dim LastCalSlot as Integer = (FirstCalSlot + NumOfDaysInMonth)
 		    for xx = LastCalSlot to 48 // 48 is the Last Calendar Slot
 		      CalendarButtonClassArray(xx).Day = NextDayCounter
 		      
