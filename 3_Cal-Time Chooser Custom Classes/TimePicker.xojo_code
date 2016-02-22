@@ -460,10 +460,19 @@ Inherits Canvas
 		  g.Transparency = 40
 		  g.ForeColor = &c99ccff
 		  
-		  Dim xPOS as Integer = Indent+Time_Container(window).Time_Hour_Len+Colon_Width+Time_Container(window).Time_Minute_Len+SpaceBetweenMinAndAMPM+3
+		  Dim xPOS as Integer
+		  #IF TargetWin32 Then
+		    xPOS  = Indent+Time_Container(window).Time_Hour_Len+Colon_Width+Time_Container(window).Time_Minute_Len+SpaceBetweenMinAndAMPM+1
+		    
+		  #ELSE
+		    xPOS  = Indent+Time_Container(window).Time_Hour_Len+Colon_Width+Time_Container(window).Time_Minute_Len+SpaceBetweenMinAndAMPM+3
+		    
+		  #ENDIF
+		  
 		  Dim yPOS as Integer = 3
 		  Dim thisWidth as Integer = inTimeAMPMLen + 4
 		  Dim thisHeight as Integer = me.Height-6
+		  
 		  
 		  g.FillRoundRect(xPOS, yPOS, thisWidth, thisHeight, 6, 6)
 		End Sub
@@ -511,7 +520,15 @@ Inherits Canvas
 		  g.Transparency = 40
 		  g.ForeColor = &c99ccff
 		  
-		  Dim xPOS as Integer = Indent+Time_Container(window).Time_Hour_Len+Colon_Width + 4
+		  Dim xPOS as Integer
+		  #IF TargetWin32 Then
+		    xPOS = Indent+Time_Container(window).Time_Hour_Len+Colon_Width + 2
+		    
+		  #ELSE
+		    xPOS = Indent+Time_Container(window).Time_Hour_Len+Colon_Width + 4
+		    
+		  #ENDIF
+		  
 		  Dim yPOS as Integer = 3
 		  Dim thisWidth as Integer = inTimeMinuteLen 
 		  Dim thisHeight as Integer = me.Height-6

@@ -264,9 +264,25 @@ End
 
 #tag WindowCode
 	#tag Event
+		Sub Open()
+		  #IF TargetWin32 Then
+		    Me.DoubleBuffer = True
+		    Me.Transparent = False
+		    Me.EraseBackground = False
+		  #ENDIF
+		End Sub
+	#tag EndEvent
+
+	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
 		  g.ForeColor = RGB(200,200,200)
-		  g.FillRoundRect(0,0,me.Width,me.Height, 8, 8)
+		  
+		  #IF TargetWin32 Then
+		    g.FillRect(0,0,me.Width,me.Height)
+		  #ELSE
+		    g.FillRoundRect(0,0,me.Width,me.Height, 8, 8)
+		  #ENDIF
+		  
 		End Sub
 	#tag EndEvent
 
@@ -451,7 +467,10 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub Open()
-		  
+		  #If TargetWin32 Then
+		    Me.Top = Me.Top - 7
+		    
+		  #endif
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -468,6 +487,10 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub Open()
+		  #IF TargetWin32 Then
+		    Me.Top = Me.Top - 4
+		  #ENDIF
+		  
 		  // Default to today's Year only on open
 		  Dim TodaysYear as New Date
 		  

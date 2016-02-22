@@ -27,6 +27,11 @@ Inherits Canvas
 
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		  #IF TargetWin32 Then
+		    g.ForeColor = RGB(200,200,200)
+		    g.FillRect(0,0, me.Width, me.Height)
+		  #ENDIF
+		  
 		  g.AntiAlias = True
 		  
 		  // Draw Clock Image

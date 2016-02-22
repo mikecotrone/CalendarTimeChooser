@@ -113,7 +113,11 @@ Inherits Canvas
 		  g.ForeColor = RGB(170,170,170)
 		  g.PenHeight = 2
 		  g.PenWidth = 2
-		  g.DrawroundRect(0,0,me.Width,me.Height,8,8)
+		  #IF TargetWin32 Then
+		    g.DrawRect(0,0,me.Width,me.Height)
+		  #ELSE
+		    g.DrawroundRect(0,0,me.Width,me.Height,8,8)
+		  #ENDIF
 		  
 		  // Draw Column Separator if User Chosen
 		  If drawColumnLines = True Then
@@ -472,7 +476,7 @@ Inherits Canvas
 		    DayOfWeek_MS.Append "Do" // Sunday
 		    
 		    
-		  Case 5 // Dutch
+		  Case 5 // Dutch  
 		    Redim DayOfWeekArray_SS(-1)
 		    DayOfWeekArray_SS.Append "Zon" // Sunday
 		    DayOfWeekArray_SS.Append "Maa"

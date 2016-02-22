@@ -108,7 +108,12 @@ End
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
 		  g.ForeColor = RGB(100,100,100)
-		  g.FillRoundRect(0,0,me.Width,me.Height, 8, 8)
+		  
+		  #IF TargetWin32 Then
+		    g.FillRect(0,0,me.Width,me.Height)
+		  #ELSE
+		    g.FillRoundRect(0,0,me.Width,me.Height, 8, 8)
+		  #ENDIF
 		End Sub
 	#tag EndEvent
 
