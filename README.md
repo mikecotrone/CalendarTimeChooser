@@ -44,7 +44,7 @@ https://github.com/IntelligentVisibility/CalendarTimeChooser/issues
 
 Whats New in 3.0.3?
 ------------------
-- Fixed Issues #16, #15, #14 & #13
+- Fixed many bugs (Check issues for detail)
 - Added new aesthetic feature for optional calendar column separator lines
 
 Whats New in 3.0.2?
