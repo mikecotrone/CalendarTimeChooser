@@ -793,8 +793,7 @@ Inherits Canvas
 		  LeapYearBool = calcLeapYear(thisYear)
 		  
 		  // Calculate to get Weekday Number
-		  CenturyNumber = 1
-		  Dim WeekdayNum as integer = (CenturyNumber + YearNumber + MonthNumber)// + 1)
+		  Dim WeekdayNum as integer = (CenturyNumber + YearNumber + MonthNumber)
 		  
 		  DIM CalcWeekDayNum as Integer = WeekdayNum Mod 7
 		  
@@ -955,6 +954,8 @@ Inherits Canvas
 	#tag Method, Flags = &h21
 		Private Function getDayOfWeekString(inDayOfWeekNum as Integer) As String
 		  Select Case inDayOfWeekNum
+		  Case 6
+		    Return Localized_Sunday
 		  Case 0
 		    Return Localized_Monday
 		  Case 1
@@ -967,8 +968,6 @@ Inherits Canvas
 		    Return Localized_Friday
 		  Case 5
 		    Return Localized_Saturday
-		  Case 6
-		    Return Localized_Sunday
 		  End Select
 		End Function
 	#tag EndMethod
@@ -1256,9 +1255,6 @@ Inherits Canvas
 		  // Dec - 31
 		  
 		  //// NEED TO TAKE YEAR INTO CONSIDERATION AND CALCULATE IN THIS FUNCTION IF LEAP YEAR
-		  //Dim thisYear as Integer = Cdbl(SelectedYear)
-		  //LeapYearBool = calcLeapYear(thisYear)
-		  
 		  Select Case inMonth
 		  Case Localized_January
 		    Return 31
@@ -1435,10 +1431,12 @@ Inherits Canvas
 		  clearDays()
 		  
 		  // Map the Calendar Slots to Correct Month Days
-		  Dim DayCounter as Integer  = 1
-		  Dim i  as integer
+		  Dim DayCounter as Integer  = 0
+		  Dim i  as Integer
 		  
-		  for i = FirstCalSlot to (NumOfDaysInMonth+FirstCalSlot)-1
+		  Dim theEndCalc as Integer = NumOfDaysInMonth+FirstCalSlot 
+		  
+		  for i = FirstCalSlot to theEndCalc
 		    // Erase Other Marks
 		    CalendarButtonClassArray(i).PrevMonthMark = False
 		    CalendarButtonClassArray(i).NextMonthMark = False
@@ -1492,10 +1490,9 @@ Inherits Canvas
 		    // Now Map the Next Available Slots with the appropriate Next Month's Beginning Calendar Days
 		    Dim NextDayCounter as Integer  = 1
 		    Dim xx as integer
-		    Dim LastCalSlot as Integer = (FirstCalSlot + NumOfDaysInMonth)
+		    Dim LastCalSlot as Integer = FirstCalSlot + NumOfDaysInMonth+1
 		    for xx = LastCalSlot to 48 // 48 is the Last Calendar Slot
 		      CalendarButtonClassArray(xx).Day = NextDayCounter
-		      
 		      Dim TmpDate as New Date
 		      TmpDate.Year = CDbl(SelectedYear)
 		      TmpDate.Month = convertMonthStringToMonthNumber(NextMonth)
