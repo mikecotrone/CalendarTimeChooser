@@ -766,11 +766,29 @@ Inherits Canvas
 
 	#tag Method, Flags = &h21
 		Private Function calcMonthNumber(inMonth as String) As Integer
+		  //If inMonth = Localized_February AND LeapYearBool = True  OR inMonth = Localized_August Then
+		  //Return 0
+		  //Elseif inMonth = Localized_February AND LeapYearBool = False Then
+		  //Return 0
+		  //Elseif inMonth = Localized_November OR inMonth = Localized_March Then
+		  //Return 1
+		  //Elseif inMonth = Localized_June Then
+		  //Return 2
+		  //ElseIf inMonth = Localized_September OR inMonth = Localized_December Then
+		  //Return 3
+		  //ElseIf inMonth = Localized_January AND LeapYearBool = True OR inMonth = Localized_April OR inMonth = Localized_July Then
+		  //Return 4
+		  //Elseif inMonth = Localized_January AND LeapYearBool = False OR inMonth = Localized_October Then
+		  //Return 5
+		  //Elseif inMonth = Localized_May Then
+		  //Return 6
+		  //End if
+		  //
+		  
+		  // FIX FROM JON OGEN
 		  If inMonth = Localized_February AND LeapYearBool = True  OR inMonth = Localized_August Then
 		    Return 0
-		  Elseif inMonth = Localized_February AND LeapYearBool = False Then
-		    Return 0
-		  Elseif inMonth = Localized_November OR inMonth = Localized_March Then
+		  Elseif (inMonth = Localized_February AND Not LeapYearBool) OR inMonth = Localized_November OR inMonth = Localized_March Then
 		    Return 1
 		  Elseif inMonth = Localized_June Then
 		    Return 2
@@ -783,9 +801,6 @@ Inherits Canvas
 		  Elseif inMonth = Localized_May Then
 		    Return 6
 		  End if
-		  
-		  
-		  
 		  
 		End Function
 	#tag EndMethod

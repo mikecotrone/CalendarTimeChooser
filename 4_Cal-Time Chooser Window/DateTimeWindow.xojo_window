@@ -13,14 +13,14 @@ Begin Window DateTimeWindow
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
-   MaxHeight       =   286
+   MaxHeight       =   272
    MaximizeButton  =   True
-   MaxWidth        =   500
+   MaxWidth        =   416
    MenuBar         =   0
    MenuBarVisible  =   True
-   MinHeight       =   286
+   MinHeight       =   272
    MinimizeButton  =   True
-   MinWidth        =   394
+   MinWidth        =   416
    Placement       =   0
    Resizeable      =   False
    Title           =   ""
@@ -272,8 +272,6 @@ End
 
 #tag EndWindowCode
 
-#tag Events Date_Time_Container1
-#tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
 		Name="AllowMultipleCalendarSelections"
@@ -361,7 +359,6 @@ End
 			"7 - Global Floating Window"
 			"8 - Sheet Window"
 			"9 - Metal Window"
-			"10 - Drawer Window"
 			"11 - Modeless Dialog"
 		#tag EndEnumValues
 	#tag EndViewProperty
@@ -535,16 +532,6 @@ End
 		Group="Appearance"
 		InitialValue="Untitled"
 		Type="String"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="UseGradientFillClock"
-		Group="Behavior"
-		Type="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="UseGradientFillWindow"
-		Group="Behavior"
-		Type="Boolean"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="UseGraphicalClockHands"
