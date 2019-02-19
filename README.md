@@ -3,15 +3,18 @@ CalendarTimeChooser
 
 Xojo Calendar and Time Chooser Project
 
-Date:           February, 2016
+Date:           February 2019
 
 Language:       Xojo all versions
 
 Author:         Mike Cotrone (mikec@intelligentvisibility.com)
 
-Version:        3.0.3
+Version:        3.0.4
 
 Contributors:   Mike Cotrone, Axel Schneider, Jim McKay
+
+
+
 
 
 What is this Project?
@@ -41,6 +44,13 @@ How to Report Issues?
 Please submit bug/issues at:
 https://github.com/IntelligentVisibility/CalendarTimeChooser/issues
   
+  
+Whats New in 3.0.3?
+------------------
+- Fixed many bugs (Check issues for detail)
+- Adjusted the selected calendar day fillroundrect
+- Added a mouseover drawroundrect effect
+- Improved some aesthetic issues
 
 Whats New in 3.0.3?
 ------------------
