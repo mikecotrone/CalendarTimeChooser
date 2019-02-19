@@ -89,7 +89,6 @@ Whats New in 2.0.1?
 - Added #IF Target statements to properly display Cancel/Submit button arrangement for Windows/Mac
 - Force a show DateTimeWindow after every demo option selection for a smoother demo experience
 
-
 Whats New in 1.9?
 -----------------
 - Added the ability to use a Gradient fill for the Date/Time Chooser Window
@@ -116,11 +115,9 @@ Whats New in 1.6?
 
 - 24 hour bug fixes
 
-
-
 Whats New in 1.5?
 -----------------
-- Added Localizations for: Enlish, Afrikaans, Dutch, French, German, Italian, Polish, Spanish, and Swedish
+- Added Localizations for: English, Afrikaans, Dutch, French, German, Italian, Polish, Spanish, and Swedish
 - Jim McKay spent alot of time restructuring the containers to clean up alot code flow
 - Jim McKay was able to render the Clock Hands flawlessly in v1.5
 - Jim McKay added the method to Sync the clock on startup with the Current Time
