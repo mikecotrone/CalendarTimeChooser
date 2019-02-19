@@ -45,7 +45,7 @@ Please submit bug/issues at:
 https://github.com/IntelligentVisibility/CalendarTimeChooser/issues
   
   
-Whats New in 3.0.3?
+Whats New in 3.0.4?
 ------------------
 - Fixed many bugs (Check issues for detail)
 - Adjusted the selected calendar day fillroundrect
