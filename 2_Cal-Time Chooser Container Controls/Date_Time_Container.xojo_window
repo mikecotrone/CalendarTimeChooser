@@ -6,6 +6,7 @@ Begin ContainerControl Date_Time_Container
    BackColor       =   &c9D9D9D00
    Backdrop        =   0
    Compatibility   =   ""
+   DoubleBuffer    =   False
    Enabled         =   True
    EraseBackground =   False
    HasBackColor    =   True
@@ -40,6 +41,7 @@ Begin ContainerControl Date_Time_Container
       AutoDeactivate  =   True
       BackColor       =   &cFFFFFF00
       Backdrop        =   0
+      DoubleBuffer    =   False
       drawColSeperatorLines=   False
       Enabled         =   True
       EraseBackground =   False
@@ -70,6 +72,7 @@ Begin ContainerControl Date_Time_Container
       BackColor       =   &cFFFFFF00
       Backdrop        =   0
       ClockSecondsCounter=   0
+      DoubleBuffer    =   False
       Enabled         =   True
       EraseBackground =   True
       HasBackColor    =   False
@@ -107,7 +110,7 @@ End
 #tag WindowCode
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
-		  g.ForeColor = RGB(100,100,100)
+		  g.ForeColor = &cECECEC
 		  
 		  #IF TargetWin32 Then
 		    g.FillRect(0,0,me.Width,me.Height)
@@ -681,6 +684,14 @@ End
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
+	#tag ViewProperty
+		Name="DoubleBuffer"
+		Visible=true
+		Group="Windows Behavior"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType="Boolean"
+	#tag EndViewProperty
 	#tag ViewProperty
 		Name="AcceptFocus"
 		Visible=true

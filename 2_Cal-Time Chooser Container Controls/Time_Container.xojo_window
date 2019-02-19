@@ -6,6 +6,7 @@ Begin ContainerControl Time_Container
    BackColor       =   &cFFFFFF00
    Backdrop        =   0
    Compatibility   =   ""
+   DoubleBuffer    =   False
    Enabled         =   True
    EraseBackground =   True
    HasBackColor    =   False
@@ -77,6 +78,7 @@ Begin ContainerControl Time_Container
       TabPanelIndex   =   0
       TabStop         =   False
       Top             =   8
+      Transparent     =   True
       Visible         =   True
       Width           =   16
    End
@@ -142,6 +144,7 @@ Begin ContainerControl Time_Container
       Selectable      =   False
       TabIndex        =   3
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   ""
       TextAlign       =   1
       TextColor       =   &c00000000
@@ -170,7 +173,7 @@ End
 
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
-		  g.ForeColor = RGB(200,200,200)
+		  g.ForeColor = &cECECEC
 		  #IF TargetWin32 Then
 		    g.FillRect(0,0,me.Width,me.Height)
 		  #ELSE
@@ -360,6 +363,14 @@ End
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
+	#tag ViewProperty
+		Name="DoubleBuffer"
+		Visible=true
+		Group="Windows Behavior"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType="Boolean"
+	#tag EndViewProperty
 	#tag ViewProperty
 		Name="AcceptFocus"
 		Visible=true

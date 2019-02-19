@@ -34,6 +34,10 @@ Protected Class CalendarButtonClass
 		Private mLeftX As Integer
 	#tag EndProperty
 
+	#tag Property, Flags = &h0
+		mouseOver As Boolean
+	#tag EndProperty
+
 	#tag Property, Flags = &h21
 		Private mTopY As Integer
 	#tag EndProperty
