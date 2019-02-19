@@ -30,7 +30,7 @@ What is this Project?
   
   
  ![image](https://github.com/IntelligentVisibility/CalendarTimeChooser/blob/master/Documentation/CalendarTimeChooser_SS1.png)
-  
+ ![image](https://github.com/IntelligentVisibility/CalendarTimeChooser/blob/master/Documentation/CalendarTimeChooser_SS2.png)
 
 
 How to Use this Project?
