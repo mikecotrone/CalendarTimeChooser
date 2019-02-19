@@ -15,8 +15,6 @@ Contributors:   Mike Cotrone, Axel Schneider, Jim McKay
 
 
 
-
-
 What is this Project?
 ------------------
 
@@ -29,6 +27,10 @@ What is this Project?
   - Single or Multi Day calendar selection capability
 
   - Recurring calendar selection option
+  
+  
+ ![image](https://github.com/IntelligentVisibility/CalendarTimeChooser/blob/master/Documentation/CalendarTimeChooser_SS1.png)
+  
 
 
 How to Use this Project?
