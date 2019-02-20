@@ -642,7 +642,7 @@ End
 		  
 		  // EXAMPLE RESULTS USAGE:
 		  //MsgBox "The selected date is: " + inSelectedDate.SQLDateTime
-		  //MsgBox "The selected date is: " + inSelectedDate.AbbreviatedDate
+		  MsgBox "The selected date is: " + inSelectedDate.AbbreviatedDate
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -650,7 +650,7 @@ End
 		  // USE THIS EVENT TO EXTRACT YOUR RECURRING SELECTION
 		  
 		  // EXAMPLE RESULTS USAGE:
-		  // MsgBox "Recurring Selection: " +EndOfLine + "  " + inSelectedRecurring
+		  MsgBox "Recurring Selection: " +EndOfLine + "  " + inSelectedRecurring
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -674,8 +674,8 @@ End
 		  //MsgBox "Selected 24 Hour Time: " + EndOfLine +"   " + TimeTwentyfour
 		  
 		  // 12 HOUR TIME:
-		  //Dim TimeTwelve as String  = SelectedDate.LongTime
-		  //MsgBox "Selected 12 Hour Time: " + EndOfLine +"   " + TimeTwelve
+		  Dim TimeTwelve as String  = SelectedDate.LongTime
+		  MsgBox "Selected 12 Hour Time: " + EndOfLine +"   " + TimeTwelve
 		  
 		  // CUSTOM TIME:
 		  // Dim CustomTime as String = "("+selectedHour+":"+selectedMinutes+"  " + selectedAMPM+")"
