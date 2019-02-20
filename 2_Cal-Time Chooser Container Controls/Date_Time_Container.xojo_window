@@ -675,11 +675,11 @@ End
 		  
 		  // 12 HOUR TIME:
 		  Dim TimeTwelve as String  = SelectedDate.LongTime
-		  MsgBox "Selected 12 Hour Time: " + EndOfLine +"   " + TimeTwelve
+		  MsgBox "Selected 12 Hour Time: " + EndOfLine +" " + TimeTwelve
 		  
 		  // CUSTOM TIME:
-		  // Dim CustomTime as String = "("+selectedHour+":"+selectedMinutes+"  " + selectedAMPM+")"
-		  //MsgBox "Selected Custom Time Format: " + EndOfLine +"   " +  CustomTime
+		  'Dim CustomTime as String = "("+selectedHour+":"+selectedMinutes+"  " + selectedAMPM+")"
+		  'MsgBox "Selected Custom Time Format: " + EndOfLine +" " +  CustomTime
 		End Sub
 	#tag EndEvent
 #tag EndEvents
