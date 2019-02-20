@@ -39,6 +39,7 @@ Begin Window DateTimeWindow
       ClockFaceTextFont=   ""
       ClockFaceType   =   0
       ClockHandColor  =   &c00000000
+      DoubleBuffer    =   False
       Enabled         =   True
       EraseBackground =   False
       HasBackColor    =   True

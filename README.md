@@ -3,15 +3,16 @@ CalendarTimeChooser
 
 Xojo Calendar and Time Chooser Project
 
-Date:           February, 2016
+Date:           February 2019
 
 Language:       Xojo all versions
 
 Author:         Mike Cotrone (mikec@intelligentvisibility.com)
 
-Version:        3.0.3
+Version:        3.0.4
 
 Contributors:   Mike Cotrone, Axel Schneider, Jim McKay
+
 
 
 What is this Project?
@@ -26,6 +27,10 @@ What is this Project?
   - Single or Multi Day calendar selection capability
 
   - Recurring calendar selection option
+  
+  
+ ![image](https://github.com/IntelligentVisibility/CalendarTimeChooser/blob/master/Documentation/CalendarTimeChooser_SS1.png)
+ ![image](https://github.com/IntelligentVisibility/CalendarTimeChooser/blob/master/Documentation/CalendarTimeChooser_SS2.png)
 
 
 How to Use this Project?
@@ -41,6 +46,13 @@ How to Report Issues?
 Please submit bug/issues at:
 https://github.com/IntelligentVisibility/CalendarTimeChooser/issues
   
+  
+Whats New in 3.0.4?
+------------------
+- Fixed many bugs (Check issues for detail)
+- Adjusted the selected calendar day fillroundrect
+- Added a mouseover drawroundrect effect
+- Improved some aesthetic issues
 
 Whats New in 3.0.3?
 ------------------
@@ -77,7 +89,6 @@ Whats New in 2.0.1?
 - Added #IF Target statements to properly display Cancel/Submit button arrangement for Windows/Mac
 - Force a show DateTimeWindow after every demo option selection for a smoother demo experience
 
-
 Whats New in 1.9?
 -----------------
 - Added the ability to use a Gradient fill for the Date/Time Chooser Window
@@ -104,11 +115,9 @@ Whats New in 1.6?
 
 - 24 hour bug fixes
 
-
-
 Whats New in 1.5?
 -----------------
-- Added Localizations for: Enlish, Afrikaans, Dutch, French, German, Italian, Polish, Spanish, and Swedish
+- Added Localizations for: English, Afrikaans, Dutch, French, German, Italian, Polish, Spanish, and Swedish
 - Jim McKay spent alot of time restructuring the containers to clean up alot code flow
 - Jim McKay was able to render the Clock Hands flawlessly in v1.5
 - Jim McKay added the method to Sync the clock on startup with the Current Time

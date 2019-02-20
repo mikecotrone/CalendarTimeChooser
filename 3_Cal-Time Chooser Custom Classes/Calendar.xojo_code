@@ -9,6 +9,62 @@ Inherits Canvas
 	#tag EndEvent
 
 	#tag Event
+		Sub MouseExit()
+		  Dim i as integer
+		  for i = 0 to UBound(CalendarButtonClassArray)
+		    
+		    CalendarButtonClassArray(i).mouseOver = False
+		    
+		  next
+		  
+		  
+		  
+		  
+		  Me.Invalidate(False)
+		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Sub MouseMove(X As Integer, Y As Integer)
+		  
+		  Dim i as integer
+		  for i = 0 to UBound(CalendarButtonClassArray)
+		    
+		    
+		    if i > 6  Then
+		      if  X >= CalendarButtonClassArray(i).LeftX AND X <= CalendarButtonClassArray(i).RightX AND Y >= CalendarButtonClassArray(i).TopY AND Y <= CalendarButtonClassArray(i).BottomY Then
+		        
+		        
+		        
+		        
+		        CalendarButtonClassArray(i).mouseOver = True
+		        
+		        
+		        
+		        
+		        
+		      Else
+		        
+		        
+		        
+		        
+		        CalendarButtonClassArray(i).mouseOver = False
+		        
+		        
+		        
+		        
+		        
+		      end if
+		    end if
+		    
+		    
+		    
+		    Me.Invalidate(False)
+		  next
+		End Sub
+	#tag EndEvent
+
+	#tag Event
 		Sub MouseUp(X As Integer, Y As Integer)
 		  Dim i as integer
 		  for i = 0 to UBound(CalendarButtonClassArray)
@@ -35,47 +91,54 @@ Inherits Canvas
 		      end if
 		      
 		    Elseif Keyboard.ShiftKey = False Then // Single Selection
-		      if X >= CalendarButtonClassArray(i).LeftX AND X <= CalendarButtonClassArray(i).RightX AND Y >= CalendarButtonClassArray(i).TopY AND Y <= CalendarButtonClassArray(i).BottomY Then
-		        deselectAll()
-		        CalendarButtonClassArray(i).Selected = True
-		        SelectedDate = New Date
-		        // Set the correct month
-		        Dim MonthToAdvance as String
-		        if CalendarButtonClassArray(i).NextMonthMark = True Then
-		          SelectedDate.Month = convertMonthStringToMonthNumber(NextMonth)
-		          MonthToAdvance = "Next"
-		        Elseif CalendarButtonClassArray(i).PrevMonthMark = True Then
-		          SelectedDate.Month = convertMonthStringToMonthNumber(PreviousMonth)
-		          MonthToAdvance = "Prev"
-		        end if
-		        SelectedDate.Year = CDbl(SelectedYear)
-		        CalendarButtonClassArray(i).SelectedDate = SelectedDate
-		        if MonthToAdvance = "Next" or MonthToAdvance = "Prev" Then
-		          // Converting here
-		          takeUsToMonth(MonthToAdvance, SelectedDate)
-		          Calendar_Container(window).raiseThisEvent(SelectedDate)
-		          //
-		          
-		          for ii as integer = 0 to UBound(CalendarButtonClassArray)
-		            if CalendarButtonClassArray(ii).Day = SelectedDate.Day Then
-		              CalendarButtonClassArray(ii).TransMark = True
-		              CalendarButtonClassArray(ii).SelectedDate = SelectedDate
-		            Else
-		              CalendarButtonClassArray(ii).TransMark = False
-		            End if
-		            
-		          next ii
+		      if i > 6 Then
+		        if X >= CalendarButtonClassArray(i).LeftX AND X <= CalendarButtonClassArray(i).RightX AND Y >= CalendarButtonClassArray(i).TopY AND Y <= CalendarButtonClassArray(i).BottomY Then
 		          deselectAll()
-		          remapSelectedToSlot()
-		        Else
-		          SelectedDate.Month = convertMonthStringToMonthNumber(SelectedMonth)
-		          SelectedDate.Day = CalendarButtonClassArray(i).Day
-		          Calendar_Container(window).raiseThisEvent(SelectedDate)
-		          
-		        End if
-		        Me.Invalidate(False)
+		          CalendarButtonClassArray(i).Selected = True
+		          SelectedDate = New Date
+		          // Set the correct month
+		          Dim MonthToAdvance as String
+		          if CalendarButtonClassArray(i).NextMonthMark = True Then
+		            SelectedDate.Month = convertMonthStringToMonthNumber(NextMonth)
+		            SelectedDate.Day = CalendarButtonClassArray(i).Day
+		            MonthToAdvance = "Next"
+		          Elseif CalendarButtonClassArray(i).PrevMonthMark = True Then
+		            SelectedDate.Month = convertMonthStringToMonthNumber(PreviousMonth)
+		            SelectedDate.Day = CalendarButtonClassArray(i).Day
+		            MonthToAdvance = "Prev"
+		          end if
+		          SelectedDate.Year = CDbl(SelectedYear)
+		          CalendarButtonClassArray(i).SelectedDate = SelectedDate
+		          if MonthToAdvance = "Next" or MonthToAdvance = "Prev" Then
+		            // Converting here
+		            deselectAll()
+		            takeUsToMonth(MonthToAdvance, SelectedDate)
+		            Calendar_Container(window).raiseThisEvent(SelectedDate)
+		            //
+		            
+		            for ii as integer = 0 to UBound(CalendarButtonClassArray)
+		              if CalendarButtonClassArray(ii).Day = SelectedDate.Day Then
+		                CalendarButtonClassArray(ii).TransMark = True
+		                CalendarButtonClassArray(ii).SelectedDate = SelectedDate
+		              Else
+		                CalendarButtonClassArray(ii).TransMark = False
+		              End if
+		              
+		            next ii
+		            deselectAll()
+		            remapSelectedToSlot()
+		          Else
+		            SelectedDate.Month = convertMonthStringToMonthNumber(SelectedMonth)
+		            SelectedDate.Day = CalendarButtonClassArray(i).Day
+		            Calendar_Container(window).raiseThisEvent(SelectedDate)
+		            
+		          End if
+		          Me.Invalidate(False)
+		        end if
+		        
+		        
+		        
 		      end if
-		      
 		    End if
 		  next i
 		  
@@ -105,21 +168,32 @@ Inherits Canvas
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
 		  g.AntiAlias = True
 		  
-		  // Fill White Background
+		  // FILL BACKGROUND COLOR
 		  g.ForeColor = RGB(255,255,255)
 		  g.FillRoundRect (1,1,me.Width-2,me.Height-2,8,8)
 		  
-		  // Draw Outline for Canvas
+		  // DRAW CANVAS BORDER OUTLINE 
 		  g.ForeColor = RGB(170,170,170)
 		  g.PenHeight = 2
 		  g.PenWidth = 2
 		  #IF TargetWin32 Then
 		    g.DrawRect(0,0,me.Width,me.Height)
 		  #ELSE
-		    g.DrawroundRect(0,0,me.Width,me.Height,8,8)
+		    g.DrawroundRect(1,0,me.Width,me.Height,0,0)
 		  #ENDIF
 		  
-		  // Draw Column Separator if User Chosen
+		  
+		  
+		  '// DRAW GRIDLINES FOR DEBUGGING
+		  'for q as integer = 0 to CalendarButtonClassArray.Ubound
+		  'g.ForeColor = &cff0000
+		  'g.DrawLine(CalendarButtonClassArray(q).LeftX, CalendarButtonClassArray(q).TopY,CalendarButtonClassArray(q).RightX, CalendarButtonClassArray(q).TopY)
+		  'g.DrawLine(CalendarButtonClassArray(q).LeftX, CalendarButtonClassArray(q).TopY, CalendarButtonClassArray(q).LeftX, CalendarButtonClassArray(q).BottomY)
+		  'next q
+		  
+		  
+		  
+		  // DRAW COLUMN LINE: USER OPTION
 		  If drawColumnLines = True Then
 		    Dim lineWidth as Integer = 1
 		    Dim colLineX1POS as Integer = 30
@@ -136,12 +210,10 @@ Inherits Canvas
 		    next i
 		  End If
 		  
-		  // Parms for the Highlighting Below
+		  // SET TODAYS DATE ON FIRST RUN
 		  dim OffSet as Integer = 3
 		  dim TwoOffset as Integer = (OffSet*2)
 		  dim CurveSize as Integer = 6
-		  
-		  // Set Today's Date for Selected Date (on first time run)
 		  if SelectTodayRunOnce = False Then
 		    for i as integer = 7 to UBound(CalendarButtonClassArray)
 		      if CalendarButtonClassArray(i).MyDate = CurrentDate Then
@@ -152,18 +224,19 @@ Inherits Canvas
 		    SelectTodayRunOnce = True
 		  end if
 		  
+		  
 		  // HIGHLIGHT CALENDAR DAY SLOT WHEN SELECTED
 		  for i as integer = 0 to UBound(CalendarButtonClassArray)
 		    if CalendarButtonClassArray(i).Selected = True Then
 		      if CalendarButtonClassArray(i).Day <> 0 Then
 		        // Capture Selected Date in Date format for Custom Event
-		        g.ForeColor = RGB(0,127,230)
+		        g.ForeColor = &c1261A0 
 		        #IF TargetMacOS OR TargetLinux Then
-		          Dim theLeft as Integer = CalendarButtonClassArray(i).LeftX+OffSet
-		          Dim theTop as Integer = CalendarButtonClassArray(i).TopY+OffSet
-		          Dim theWidth as Integer = CalendarButtonClassArray(i).Width-TwoOffset
-		          Dim theHeight as Integer = (CalendarButtonClassArray(i).Height-TwoOffset)+1
-		          g.FillRoundRect(theLeft, theTop,theWidth,theHeight,CurveSize,CurveSize)
+		          Dim theLeft as Integer = CalendarButtonClassArray(i).LeftX + 2
+		          Dim theTop as Integer = CalendarButtonClassArray(i).TopY
+		          Dim theWidth as Integer = CalendarButtonClassArray(i).Width
+		          Dim theHeight as Integer = (CalendarButtonClassArray(i).Height )
+		          g.FillroundRect(theLeft, theTop,theWidth,theHeight,4,4)
 		        #ELSEIF TargetWin32 Then
 		          Dim theLeft as Integer = CalendarButtonClassArray(i).LeftX+OffSet+1
 		          Dim theTop as Integer = CalendarButtonClassArray(i).TopY+OffSet
@@ -173,47 +246,88 @@ Inherits Canvas
 		        #ENDIF
 		      End if
 		    End if
-		    
 		  Next i
 		  
-		  // Draw the Day of Week Labels using the Boolean to know if we are Sat - Sun or Mon - Sun
-		  g.ForeColor = RGB(116,116,116)
+		  
+		  // MOUSE OVER HIGHLIGHT SLOT
+		  for i as integer = 0 to UBound(CalendarButtonClassArray)
+		    if CalendarButtonClassArray(i).mouseOver = True Then
+		      if CalendarButtonClassArray(i).Day <> 0 Then
+		        // Capture Selected Date in Date format for Custom Event
+		        g.ForeColor = &c1261A0 
+		        #IF TargetMacOS OR TargetLinux Then
+		          Dim theLeft as Integer = CalendarButtonClassArray(i).LeftX +2
+		          Dim theTop as Integer = CalendarButtonClassArray(i).TopY
+		          Dim theWidth as Integer = CalendarButtonClassArray(i).Width
+		          Dim theHeight as Integer = (CalendarButtonClassArray(i).Height )
+		          g.DrawroundRect(theLeft, theTop,theWidth,theHeight,4,4)
+		        #ELSEIF TargetWin32 Then
+		          Dim theLeft as Integer = CalendarButtonClassArray(i).LeftX+OffSet+1
+		          Dim theTop as Integer = CalendarButtonClassArray(i).TopY+OffSet
+		          Dim theWidth as Integer = CalendarButtonClassArray(i).Width-TwoOffset
+		          Dim theHeight as Integer = CalendarButtonClassArray(i).Height-TwoOffset
+		          g.DrawRect(theLeft, theTop,theWidth,theHeight,0,0)
+		        #ENDIF
+		      End if
+		    End if
+		  Next i
+		  
+		  
+		  
+		  
+		  
+		  // DRAW DAYS OF WEEK ABBREVIATION WORK
+		  g.ForeColor = &c595959
 		  g.TextFont = "System"
 		  g.Bold = false
 		  g.TextSize = 12
 		  
-		  // Measure the size of the Abbreviated Day Of Week so we may center it properly
-		  Dim xPos as Integer
-		  Dim DoWAbrvLen as Integer = DayOfWeekArray_SS(0).Len
-		  if DoWAbrvLen = 1 Then 
-		    // One Letter Abbreviation (Not Implemented yet)
-		    xPos = 2
-		  Elseif DoWAbrvLen = 2 Then 
-		    // Two Letter Abbreviation Spacing
-		    xPos = 11
-		  Elseif DoWAbrvLen = 3 Then 
-		    // Three Letter Abbreviation Spacing
-		    xPos = 8
-		  Else // Default to two letter abbreviations
-		    xPos = 11
-		  End if
-		  
-		  if CalMonFirstDayOfWeekBool = False Then
-		    for x as integer = 0 to UBound(DayOfWeekArray_SS)
-		      g.DrawString(DayOfWeekArray_SS(x),xPos-3,17)
-		      xpos = xPos + 30
-		    next x
+		  dim thisPosX, thisPosY as Integer
+		  Dim nextPosX as Integer
+		  for p as integer = 0 to 6
 		    
-		  Elseif CalMonFirstDayOfWeekBool = True Then
-		    for x as integer = 0 to UBound(DayOfWeek_MS)
-		      g.DrawString(DayOfWeek_MS(x),xPos-3,17)
-		      xpos = xPos + 30
-		    next x
+		    if CalMonFirstDayOfWeekBool = False Then
+		      // CALCULATE SPACING FOR VARIABLE ABBR NAMES --> SUN - SAT
+		      dim thisAbbrvStrW as Double = g.StringWidth(DayOfWeekArray_SS(p))
+		      dim thisAbbrvStrH as Double = g.StringHeight(DayOfWeekArray_SS(p), 500)
+		      dim thisSlotW as Double = CalendarButtonClassArray(p).Width
+		      dim thisSlotH as Double = CalendarButtonClassArray(p).Height
+		      dim thisSlotLeft as Double = CalendarButton.RightX
+		      dim thisSlotTop as Double = CalendarButtonClassArray(p).TopY
+		      
+		      thisPosX =  thisPosX + (thisSlotW/2) - (thisAbbrvStrW/2)
+		      thisPosY =  (thisSlotH/2) + (thisAbbrvStrH/2)-2
+		      g.DrawString(DayOfWeekArray_SS(p), thisPosX, thisPosY)
+		      // NEXT LEFT BORDER STARTING POINT
+		      nextPosX  = nextPosX + CalendarButtonClassArray(p).RightX
+		      thisPosX = nextPosX
+		      
+		    Elseif CalMonFirstDayOfWeekBool = True Then
+		      // CALCULATE SPACING FOR VARIABLE ABBR NAMES - MON - SUN
+		      dim thisAbbrvStrW as Double = g.StringWidth(DayOfWeek_MS(p))
+		      dim thisAbbrvStrH as Double = g.StringHeight(DayOfWeek_MS(p), 500)
+		      dim thisSlotW as Double = CalendarButtonClassArray(p).Width
+		      dim thisSlotH as Double = CalendarButtonClassArray(p).Height
+		      dim thisSlotLeft as Double = CalendarButton.RightX
+		      dim thisSlotTop as Double = CalendarButtonClassArray(p).TopY
+		      
+		      thisPosX =  thisPosX + (thisSlotW/2) - (thisAbbrvStrW/2)
+		      thisPosY =  (thisSlotH/2) + (thisAbbrvStrH/2)-2
+		      g.DrawString(DayOfWeek_MS(p), thisPosX, thisPosY)
+		      // NEXT LEFT BORDER STARTING POINT
+		      nextPosX  = nextPosX + CalendarButtonClassArray(p).RightX
+		      thisPosX = nextPosX
+		      
+		    end if
 		    
-		  End if
+		  next p
 		  
+		  
+		  
+		  
+		  
+		  // DRAW DAY NUMBER IN CALENDAR SLOT
 		  Dim SelectMonthInt as Integer = convertMonthStringToMonthNumber(SelectedMonth)
-		  // Draw Day Values in Calendar Spaces
 		  for i as integer = 7 to UBound(CalendarButtonClassArray)
 		    if CalendarButtonClassArray(i).Selected = True Then
 		      if CDbl(SelectedYear) = CurrentDate.Year AND SelectMonthInt = CurrentDate.Month AND CalendarButtonClassArray(i).Day = CurrentDate.Day Then
@@ -228,10 +342,10 @@ Inherits Canvas
 		      g.ForeColor= RGB(170,170,170)
 		    elseif CDbl(SelectedYear) = CurrentDate.Year AND SelectMonthInt = CurrentDate.Month AND CalendarButtonClassArray(i).Day = CurrentDate.Day Then
 		      g.bold = True
-		      g.ForeColor = &c0000ff
+		      g.ForeColor = &c1261A
 		    Else
 		      g.bold = false
-		      g.ForeColor = RGB(0,0,0)
+		      g.ForeColor = &c333333
 		    End if
 		    
 		    // Draw Days Centered -- Windows GDI+ Is different that MacOS for centering the Calendar Day Text FYI.
@@ -240,27 +354,40 @@ Inherits Canvas
 		        g.DrawString("",CalendarButtonClassArray(i).LeftX+13,CalendarButtonClassArray(i).TopY+17)
 		      Else
 		        if CalendarButtonClassArray(i).Day > 0 AND CalendarButtonClassArray(i).Day < 10 Then
-		          g.DrawString(Str(CalendarButtonClassArray(i).day),CalendarButtonClassArray(i).LeftX+13,CalendarButtonClassArray(i).TopY+17)
+		          g.DrawString(Str(CalendarButtonClassArray(i).day),CalendarButtonClassArray(i).LeftX+12.5,CalendarButtonClassArray(i).TopY+17)
 		        Else
 		          g.DrawString(Str(CalendarButtonClassArray(i).day),CalendarButtonClassArray(i).LeftX+10,CalendarButtonClassArray(i).TopY+17)
 		        End if
 		        
 		      End if
+		      
 		    #ELSEIF TargetMacOS OR TargetLinux Then
+		      
 		      if CalendarButtonClassArray(i).Day = 0 Then
-		        g.DrawString("",CalendarButtonClassArray(i).LeftX+13,CalendarButtonClassArray(i).TopY+17)
+		        g.DrawString("",CalendarButtonClassArray(i).LeftX+12.5,CalendarButtonClassArray(i).TopY+18)
+		        
+		        
 		      Else
+		        
 		        if CalendarButtonClassArray(i).Day > 0 AND CalendarButtonClassArray(i).Day < 10 Then
-		          g.DrawString(Str(CalendarButtonClassArray(i).day),CalendarButtonClassArray(i).LeftX+12,CalendarButtonClassArray(i).TopY+17)
+		          
+		          g.DrawString(Str(CalendarButtonClassArray(i).day),CalendarButtonClassArray(i).LeftX+12.5,CalendarButtonClassArray(i).TopY+17)
 		        Else
-		          g.DrawString(Str(CalendarButtonClassArray(i).day),CalendarButtonClassArray(i).LeftX+8,CalendarButtonClassArray(i).TopY+17)
+		          g.DrawString(Str(CalendarButtonClassArray(i).day),CalendarButtonClassArray(i).LeftX+8.5,CalendarButtonClassArray(i).TopY+17)
+		          
+		          
 		        End if
 		      End if
+		      
+		      
+		      
+		      
+		      
+		      
 		    #ENDIF
 		    
 		    
 		  next i
-		  
 		  
 		  
 		  
@@ -966,7 +1093,11 @@ Inherits Canvas
 		Sub deselectAll()
 		  for i as integer = 0 to UBound(CalendarButtonClassArray)
 		    CalendarButtonClassArray(i).Selected = False
+		    CalendarButtonClassArray(i).mouseOver = False
+		    
 		  next i
+		  
+		  Me.Invalidate(False)
 		End Sub
 	#tag EndMethod
 
@@ -1123,7 +1254,7 @@ Inherits Canvas
 
 	#tag Method, Flags = &h21
 		Private Sub initialAssignmentCalendarButtons(inNumOfSpaces as Integer)
-		  // Classes are 1 based
+		  // CREATE EACH CALENDAR TIME SLOT
 		  Dim row, col as integer
 		  
 		  for y as integer = 1 to 49
@@ -1133,6 +1264,8 @@ Inherits Canvas
 		      CalendarButton = New CalendarButtonClass
 		      CalendarButton.ID = y
 		      CalendarButton.Row = row
+		      CalendarButton.RightX = 30
+		      CalendarButton.BottomY = 24
 		      
 		    Case 8 to 14 // Row 2
 		      row =  2
@@ -1855,6 +1988,7 @@ Inherits Canvas
 			Group="Behavior"
 			InitialValue="True"
 			Type="Boolean"
+			EditorType="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="FirstWeekDay"

@@ -6,6 +6,7 @@ Begin ContainerControl Calendar_Container
    BackColor       =   &cFFFFFF00
    Backdrop        =   0
    Compatibility   =   ""
+   DoubleBuffer    =   False
    Enabled         =   True
    EraseBackground =   False
    HasBackColor    =   False
@@ -24,7 +25,7 @@ Begin ContainerControl Calendar_Container
    Transparent     =   True
    UseFocusRing    =   False
    Visible         =   True
-   Width           =   235
+   Width           =   230
    Begin PopupMenu MonthPopup
       AutoDeactivate  =   True
       Bold            =   False
@@ -37,7 +38,7 @@ Begin ContainerControl Calendar_Container
       InitialParent   =   ""
       InitialValue    =   ""
       Italic          =   False
-      Left            =   10
+      Left            =   9
       ListIndex       =   0
       LockBottom      =   False
       LockedInPosition=   False
@@ -52,6 +53,7 @@ Begin ContainerControl Calendar_Container
       TextSize        =   13.0
       TextUnit        =   0
       Top             =   20
+      Transparent     =   True
       Underline       =   False
       Visible         =   True
       Width           =   107
@@ -68,7 +70,7 @@ Begin ContainerControl Calendar_Container
       InitialParent   =   ""
       InitialValue    =   ""
       Italic          =   False
-      Left            =   128
+      Left            =   127
       ListIndex       =   0
       LockBottom      =   False
       LockedInPosition=   False
@@ -83,6 +85,7 @@ Begin ContainerControl Calendar_Container
       TextSize        =   13.0
       TextUnit        =   0
       Top             =   17
+      Transparent     =   True
       Underline       =   False
       Visible         =   True
       Width           =   65
@@ -105,7 +108,7 @@ Begin ContainerControl Calendar_Container
       IncludePrevNextMonthDaysBool=   True
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   10
+      Left            =   9
       Localized_April =   ""
       Localized_August=   ""
       Localized_December=   ""
@@ -152,7 +155,7 @@ Begin ContainerControl Calendar_Container
       UserSelectedEndYear=   0
       UserSelectedStartYear=   0
       Visible         =   True
-      Width           =   215
+      Width           =   212
       YearNumber      =   0
       Begin Separator Separator1
          AutoDeactivate  =   True
@@ -161,7 +164,7 @@ Begin ContainerControl Calendar_Container
          HelpTag         =   ""
          Index           =   -2147483648
          InitialParent   =   "Calendar1"
-         Left            =   14
+         Left            =   13
          LockBottom      =   False
          LockedInPosition=   False
          LockLeft        =   True
@@ -171,7 +174,8 @@ Begin ContainerControl Calendar_Container
          TabIndex        =   0
          TabPanelIndex   =   0
          TabStop         =   True
-         Top             =   66
+         Top             =   67
+         Transparent     =   True
          Visible         =   True
          Width           =   205
       End
@@ -198,6 +202,7 @@ Begin ContainerControl Calendar_Container
       Selectable      =   False
       TabIndex        =   57
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Recurrence"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -222,7 +227,7 @@ Begin ContainerControl Calendar_Container
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   205
+      Left            =   202
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -244,7 +249,7 @@ Begin ContainerControl Calendar_Container
       Height          =   24
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   66
+      Left            =   43
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -254,10 +259,12 @@ Begin ContainerControl Calendar_Container
       Scope           =   0
       Segments        =   "\n\nFalse\r\n\nFalse\r\n\nFalse\r\n\nFalse\r\n\nFalse"
       SelectionType   =   2
+      TabIndex        =   5
       TabPanelIndex   =   0
-      Top             =   220
+      Top             =   221
+      Transparent     =   True
       Visible         =   True
-      Width           =   104
+      Width           =   147
    End
 End
 #tag EndWindow
@@ -275,8 +282,7 @@ End
 
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
-		  g.ForeColor = RGB(200,200,200)
-		  
+		  g.ForeColor = &cECECEC 
 		  #IF TargetWin32 Then
 		    g.FillRect(0,0,me.Width,me.Height)
 		  #ELSE
@@ -539,6 +545,14 @@ End
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
+	#tag ViewProperty
+		Name="DoubleBuffer"
+		Visible=true
+		Group="Windows Behavior"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType="Boolean"
+	#tag EndViewProperty
 	#tag ViewProperty
 		Name="AcceptFocus"
 		Visible=true

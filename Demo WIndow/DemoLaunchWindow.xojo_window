@@ -68,6 +68,7 @@ Begin Window DemoLaunchWindow
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   0
+      Transparent     =   True
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
@@ -95,6 +96,7 @@ Begin Window DemoLaunchWindow
       Selectable      =   False
       TabIndex        =   17
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Include Previous/Next Month Days:"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -129,6 +131,7 @@ Begin Window DemoLaunchWindow
       Selectable      =   False
       TabIndex        =   18
       TabPanelIndex   =   0
+      TabStop         =   True
       Text            =   "Choose Clock Hand Color:"
       TextAlign       =   0
       TextColor       =   &c00000000
@@ -159,6 +162,7 @@ Begin Window DemoLaunchWindow
       TabPanelIndex   =   0
       TabStop         =   True
       Top             =   219
+      Transparent     =   True
       Visible         =   True
       Width           =   468
    End
@@ -186,6 +190,7 @@ Begin Window DemoLaunchWindow
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   149
+      Transparent     =   True
       Underline       =   False
       Visible         =   True
       Width           =   468
@@ -211,6 +216,7 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   5
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Select Chooser Type:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -250,6 +256,7 @@ Begin Window DemoLaunchWindow
          TextSize        =   0.0
          TextUnit        =   0
          Top             =   183
+         Transparent     =   True
          Underline       =   False
          Visible         =   True
          Width           =   188
@@ -281,6 +288,7 @@ Begin Window DemoLaunchWindow
          TextSize        =   0.0
          TextUnit        =   0
          Top             =   261
+         Transparent     =   True
          Underline       =   False
          Visible         =   True
          Width           =   188
@@ -307,6 +315,7 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   21
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Change Clock Face:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -402,6 +411,7 @@ Begin Window DemoLaunchWindow
          TextSize        =   0.0
          TextUnit        =   0
          Top             =   261
+         Transparent     =   True
          Underline       =   False
          Visible         =   True
          Width           =   188
@@ -428,6 +438,7 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   29
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Select Time Mode Format:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -467,6 +478,7 @@ Begin Window DemoLaunchWindow
          TextSize        =   0.0
          TextUnit        =   0
          Top             =   314
+         Transparent     =   True
          Underline       =   False
          Visible         =   True
          Width           =   188
@@ -493,6 +505,7 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   31
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Select Clock Hand Type:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -532,6 +545,7 @@ Begin Window DemoLaunchWindow
          TextSize        =   0.0
          TextUnit        =   0
          Top             =   382
+         Transparent     =   True
          Underline       =   False
          Visible         =   True
          Width           =   188
@@ -558,6 +572,7 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   35
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Week Start Type:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -620,6 +635,7 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   37
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Calendar Localization:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -659,6 +675,7 @@ Begin Window DemoLaunchWindow
          TextSize        =   0.0
          TextUnit        =   0
          Top             =   434
+         Transparent     =   True
          Underline       =   False
          Visible         =   True
          Width           =   191
@@ -690,6 +707,7 @@ Begin Window DemoLaunchWindow
          TextSize        =   0.0
          TextUnit        =   0
          Top             =   382
+         Transparent     =   True
          Underline       =   False
          Visible         =   True
          Width           =   188
@@ -716,6 +734,7 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   41
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "h00000000"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -778,6 +797,7 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   43
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Allow Multiple Date Selections:"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -817,6 +837,7 @@ Begin Window DemoLaunchWindow
          TextSize        =   0.0
          TextUnit        =   0
          Top             =   434
+         Transparent     =   True
          Underline       =   False
          Visible         =   True
          Width           =   191
@@ -848,6 +869,7 @@ Begin Window DemoLaunchWindow
          TextSize        =   0.0
          TextUnit        =   0
          Top             =   482
+         Transparent     =   True
          Underline       =   False
          Value           =   False
          Visible         =   True
@@ -875,6 +897,7 @@ Begin Window DemoLaunchWindow
          Selectable      =   False
          TabIndex        =   54
          TabPanelIndex   =   0
+         TabStop         =   True
          Text            =   "Column Separator Lines"
          TextAlign       =   0
          TextColor       =   &c00000000
@@ -905,6 +928,7 @@ Begin Window DemoLaunchWindow
          TabPanelIndex   =   0
          TabStop         =   True
          Top             =   350
+         Transparent     =   True
          Visible         =   True
          Width           =   468
       End
@@ -1315,7 +1339,6 @@ End
 			"7 - Global Floating Window"
 			"8 - Sheet Window"
 			"9 - Metal Window"
-			"10 - Drawer Window"
 			"11 - Modeless Dialog"
 		#tag EndEnumValues
 	#tag EndViewProperty

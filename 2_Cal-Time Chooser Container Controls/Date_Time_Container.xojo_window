@@ -6,6 +6,7 @@ Begin ContainerControl Date_Time_Container
    BackColor       =   &c9D9D9D00
    Backdrop        =   0
    Compatibility   =   ""
+   DoubleBuffer    =   False
    Enabled         =   True
    EraseBackground =   False
    HasBackColor    =   True
@@ -40,6 +41,7 @@ Begin ContainerControl Date_Time_Container
       AutoDeactivate  =   True
       BackColor       =   &cFFFFFF00
       Backdrop        =   0
+      DoubleBuffer    =   False
       drawColSeperatorLines=   False
       Enabled         =   True
       EraseBackground =   False
@@ -70,6 +72,7 @@ Begin ContainerControl Date_Time_Container
       BackColor       =   &cFFFFFF00
       Backdrop        =   0
       ClockSecondsCounter=   0
+      DoubleBuffer    =   False
       Enabled         =   True
       EraseBackground =   True
       HasBackColor    =   False
@@ -107,7 +110,7 @@ End
 #tag WindowCode
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
-		  g.ForeColor = RGB(100,100,100)
+		  g.ForeColor = &cECECEC
 		  
 		  #IF TargetWin32 Then
 		    g.FillRect(0,0,me.Width,me.Height)
@@ -639,7 +642,7 @@ End
 		  
 		  // EXAMPLE RESULTS USAGE:
 		  //MsgBox "The selected date is: " + inSelectedDate.SQLDateTime
-		  //MsgBox "The selected date is: " + inSelectedDate.AbbreviatedDate
+		  MsgBox "The selected date is: " + inSelectedDate.AbbreviatedDate
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -647,7 +650,7 @@ End
 		  // USE THIS EVENT TO EXTRACT YOUR RECURRING SELECTION
 		  
 		  // EXAMPLE RESULTS USAGE:
-		  // MsgBox "Recurring Selection: " +EndOfLine + "  " + inSelectedRecurring
+		  MsgBox "Recurring Selection: " +EndOfLine + "  " + inSelectedRecurring
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -671,16 +674,24 @@ End
 		  //MsgBox "Selected 24 Hour Time: " + EndOfLine +"   " + TimeTwentyfour
 		  
 		  // 12 HOUR TIME:
-		  //Dim TimeTwelve as String  = SelectedDate.LongTime
-		  //MsgBox "Selected 12 Hour Time: " + EndOfLine +"   " + TimeTwelve
+		  Dim TimeTwelve as String  = SelectedDate.LongTime
+		  MsgBox "Selected 12 Hour Time: " + EndOfLine +" " + TimeTwelve
 		  
 		  // CUSTOM TIME:
-		  // Dim CustomTime as String = "("+selectedHour+":"+selectedMinutes+"  " + selectedAMPM+")"
-		  //MsgBox "Selected Custom Time Format: " + EndOfLine +"   " +  CustomTime
+		  'Dim CustomTime as String = "("+selectedHour+":"+selectedMinutes+"  " + selectedAMPM+")"
+		  'MsgBox "Selected Custom Time Format: " + EndOfLine +" " +  CustomTime
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
+	#tag ViewProperty
+		Name="DoubleBuffer"
+		Visible=true
+		Group="Windows Behavior"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType="Boolean"
+	#tag EndViewProperty
 	#tag ViewProperty
 		Name="AcceptFocus"
 		Visible=true
