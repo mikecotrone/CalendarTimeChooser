@@ -241,21 +241,21 @@ Inherits Canvas
 		  Me.SetFocus()
 		  KeyBuffer = ""
 		  
-		  if x >= Indent AND x <=Indent+Time_Container(window).Time_Hour_Len Then
+		  if x >= Indent AND x <=Indent+Time_Container(window).Time_Hour_Len + 2 Then
 		    Draw_Hour_Selected = True
 		    Draw_Minute_Selected = False
 		    Draw_AMPM_Selected = False
 		    me.Invalidate(False)
 		  End if
 		  
-		  if x >= Indent+Time_Container(window).Time_Hour_Len+Colon_Width AND x <= Indent+Time_Container(window).Time_Hour_Len+Colon_Width+Time_Container(window).Time_Minute_Len Then
-		    Draw_Minute_Selected = True
+		  if x >= Indent+Time_Container(window).Time_Hour_Len + Colon_Width AND x <= Indent+Time_Container(window).Time_Hour_Len+ Colon_Width + Time_Container(window).Time_Minute_Len + 10 Then
+		    Draw_Minute_Selected = True 
 		    Draw_Hour_Selected = False
 		    Draw_AMPM_Selected = False
 		    me.Invalidate(False)
 		  End if
 		  
-		  if x >= Indent+Time_Container(window).Time_Hour_Len+Colon_Width+Time_Container(window).Time_Minute_Len+SpaceBetweenMinAndAMPM AND x <= Indent+Time_Container(window).Time_Hour_Len+Colon_Width+Time_Container(window).Time_Minute_Len+SpaceBetweenMinAndAMPM+Time_Container(window).Time_AMPM_Len Then
+		  if x >= Indent+Time_Container(window).Time_Hour_Len+Colon_Width+Time_Container(window).Time_Minute_Len+SpaceBetweenMinAndAMPM + 8 AND x <= Indent+Time_Container(window).Time_Hour_Len+Colon_Width+Time_Container(window).Time_Minute_Len+SpaceBetweenMinAndAMPM+Time_Container(window).Time_AMPM_Len  + 16 Then
 		    Draw_AMPM_Selected = True
 		    Draw_Minute_Selected = False
 		    Draw_Hour_Selected = False
@@ -288,9 +288,16 @@ Inherits Canvas
 		  // Draw Shape of Control
 		  g.ForeColor = RGB(255,255,255)
 		  g.FillRoundRect (0,0,me.Width,me.Height,6,6)
-		  Time_Container(window).Time_Hour_Len = Time_Container(window).Time_Hour.Len*9
-		  Time_Container(window).Time_Minute_Len =Time_Container(window). Time_Minute.Len*9
-		  Time_Container(window).Time_AMPM_Len = Time_Container(window).Time_AMPM.Len*11
+		  
+		  'Time_Container(window).Time_Hour_Len = Time_Container(window).Time_Hour.Len*9
+		  'Time_Container(window).Time_Minute_Len =Time_Container(window).Time_Minute.Len*9
+		  'Time_Container(window).Time_AMPM_Len = Time_Container(window).Time_AMPM.Len*11
+		  
+		  Time_Container(window).Time_Hour_Len = g.StringWidth(Time_Container(window).Time_Hour)
+		  Time_Container(window).Time_Minute_Len =  g.StringWidth(Time_Container(window).Time_Minute)
+		  Time_Container(window).Time_AMPM_Len =  g.StringWidth(Time_Container(window).Time_AMPM)
+		  
+		  
 		  
 		  if Draw_Hour_Selected = True Then
 		    drawSelectHour(g, Time_Container(window).Time_Hour_Len)
@@ -304,6 +311,7 @@ Inherits Canvas
 		  if Time_Container(window).TimeMode = 12 Then
 		    if Draw_AMPM_Selected = True Then
 		      drawAMPM(g, Time_Container(window).Time_AMPM_Len)
+		      
 		    End if
 		    DrawStringValue = Time_Container(window).Time_Hour+":"+Time_Container(window).Time_Minute+" "+Time_Container(window).Time_AMPM
 		  Elseif Time_Container(window).TimeMode = 24 Then
@@ -468,19 +476,19 @@ Inherits Canvas
 		  
 		  Dim xPOS as Integer
 		  #IF TargetWin32 Then
-		    xPOS  = Indent+Time_Container(window).Time_Hour_Len+Colon_Width+Time_Container(window).Time_Minute_Len+SpaceBetweenMinAndAMPM+1
+		    xPOS  = Indent+Time_Container(window).Time_Hour_Len+Colon_Width+Time_Container(window).Time_Minute_Len+SpaceBetweenMinAndAMPM+5
 		    
 		  #ELSE
-		    xPOS  = Indent+Time_Container(window).Time_Hour_Len+Colon_Width+Time_Container(window).Time_Minute_Len+SpaceBetweenMinAndAMPM+3
+		    xPOS  = Indent + Time_Container(window).Time_Hour_Len + Colon_Width + Time_Container(window).Time_Minute_Len+SpaceBetweenMinAndAMPM + 9
 		    
 		  #ENDIF
 		  
-		  Dim yPOS as Integer = 3
-		  Dim thisWidth as Integer = inTimeAMPMLen + 4
-		  Dim thisHeight as Integer = me.Height-6
+		  Dim yPOS as Integer = 1
+		  Dim thisWidth as Integer = inTimeAMPMLen + 8
+		  Dim thisHeight as Integer = me.Height-1
 		  
 		  
-		  g.FillRoundRect(xPOS, yPOS, thisWidth, thisHeight, 6, 6)
+		  g.FillRoundRect(xPOS, yPOS, thisWidth, thisHeight, 0,0)
 		End Sub
 	#tag EndMethod
 
@@ -512,12 +520,12 @@ Inherits Canvas
 		  g.Transparency = 40
 		  g.ForeColor = &c99ccff
 		  
-		  Dim xPOS as Integer = Indent 
-		  Dim yPOS as Integer = 3
-		  Dim thisWidth as Integer = inTimeHourLen + 3
-		  Dim thisHeight as Integer = me.Height-6
+		  Dim xPOS as Integer = 11
+		  Dim yPOS as Integer = 1
+		  Dim thisWidth as Integer = inTimeHourLen  + 4
+		  Dim thisHeight as Integer = me.Height-1
 		  
-		  g.FillRoundRect(xPOS, yPOS, thisWidth, thisHeight,6,6)
+		  g.FillRoundRect(xPOS, yPOS, thisWidth, thisHeight,0,0)
 		End Sub
 	#tag EndMethod
 
@@ -528,18 +536,18 @@ Inherits Canvas
 		  
 		  Dim xPOS as Integer
 		  #IF TargetWin32 Then
-		    xPOS = Indent+Time_Container(window).Time_Hour_Len+Colon_Width + 2
+		    xPOS = Indent + Time_Container(window).Time_Hour_Len +  5
 		    
 		  #ELSE
-		    xPOS = Indent+Time_Container(window).Time_Hour_Len+Colon_Width + 4
+		    xPOS = Indent+Time_Container(window).Time_Hour_Len + 9
 		    
 		  #ENDIF
 		  
-		  Dim yPOS as Integer = 3
-		  Dim thisWidth as Integer = inTimeMinuteLen 
-		  Dim thisHeight as Integer = me.Height-6
+		  Dim yPOS as Integer = 1
+		  Dim thisWidth as Integer = inTimeMinuteLen + 5
+		  Dim thisHeight as Integer = me.Height-1
 		  
-		  g.FillRoundRect(xPOS, yPOS, thisWidth, thisHeight,6,6)
+		  g.FillRoundRect(xPOS, yPOS, thisWidth, thisHeight,0,0)
 		End Sub
 	#tag EndMethod
 
@@ -940,7 +948,7 @@ Inherits Canvas
 
 
 	#tag Property, Flags = &h21
-		Private Colon_Width As Integer = 1
+		Private Colon_Width As Integer = 3
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
@@ -956,7 +964,7 @@ Inherits Canvas
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		Indent As Integer = 9
+		Indent As Integer = 11
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
