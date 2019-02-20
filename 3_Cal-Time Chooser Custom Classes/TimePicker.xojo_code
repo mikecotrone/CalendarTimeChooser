@@ -268,6 +268,12 @@ Inherits Canvas
 	#tag EndEvent
 
 	#tag Event
+		Sub MouseExit()
+		  Me.MouseCursor = System.Cursors.StandardPointer
+		End Sub
+	#tag EndEvent
+
+	#tag Event
 		Sub MouseMove(X As Integer, Y As Integer)
 		  Tooltip.Hide
 		  if x >= 0 AND x <= me.Width AND Y >= 0 AND y<=me.Height Then
@@ -1027,6 +1033,7 @@ Inherits Canvas
 			Group="Behavior"
 			InitialValue="True"
 			Type="Boolean"
+			EditorType="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Height"
