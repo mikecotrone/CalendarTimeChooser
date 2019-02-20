@@ -111,6 +111,7 @@ Inherits Canvas
 		          CalendarButtonClassArray(i).SelectedDate = SelectedDate
 		          if MonthToAdvance = "Next" or MonthToAdvance = "Prev" Then
 		            // Converting here
+		            deselectAll()
 		            takeUsToMonth(MonthToAdvance, SelectedDate)
 		            Calendar_Container(window).raiseThisEvent(SelectedDate)
 		            //
@@ -1092,7 +1093,11 @@ Inherits Canvas
 		Sub deselectAll()
 		  for i as integer = 0 to UBound(CalendarButtonClassArray)
 		    CalendarButtonClassArray(i).Selected = False
+		    CalendarButtonClassArray(i).mouseOver = False
+		    
 		  next i
+		  
+		  Me.Invalidate(False)
 		End Sub
 	#tag EndMethod
 
