@@ -241,14 +241,20 @@ Inherits Canvas
 		  Me.SetFocus()
 		  KeyBuffer = ""
 		  
-		  if x >= Indent AND x <=Indent+Time_Container(window).Time_Hour_Len + 2 Then
+		  Dim milTimeExtraSpacer as Integer
+		  If Time_Container(window).TimeMode = 24 Then
+		    milTimeExtraSpacer = 10
+		  End If
+		  
+		  
+		  if x >= Indent + milTimeExtraSpacer AND x <=Indent+Time_Container(window).Time_Hour_Len + 2 + milTimeSpacer Then
 		    Draw_Hour_Selected = True
 		    Draw_Minute_Selected = False
 		    Draw_AMPM_Selected = False
 		    me.Invalidate(False)
 		  End if
 		  
-		  if x >= Indent+Time_Container(window).Time_Hour_Len + Colon_Width AND x <= Indent+Time_Container(window).Time_Hour_Len+ Colon_Width + Time_Container(window).Time_Minute_Len + 10 Then
+		  if x >= Indent+Time_Container(window).Time_Hour_Len + Colon_Width AND x <= Indent+Time_Container(window).Time_Hour_Len+ Colon_Width + Time_Container(window).Time_Minute_Len + 10 + milTimeSpacer Then
 		    Draw_Minute_Selected = True 
 		    Draw_Hour_Selected = False
 		    Draw_AMPM_Selected = False
@@ -289,15 +295,9 @@ Inherits Canvas
 		  g.ForeColor = RGB(255,255,255)
 		  g.FillRoundRect (0,0,me.Width,me.Height,6,6)
 		  
-		  'Time_Container(window).Time_Hour_Len = Time_Container(window).Time_Hour.Len*9
-		  'Time_Container(window).Time_Minute_Len =Time_Container(window).Time_Minute.Len*9
-		  'Time_Container(window).Time_AMPM_Len = Time_Container(window).Time_AMPM.Len*11
-		  
 		  Time_Container(window).Time_Hour_Len = g.StringWidth(Time_Container(window).Time_Hour)
 		  Time_Container(window).Time_Minute_Len =  g.StringWidth(Time_Container(window).Time_Minute)
 		  Time_Container(window).Time_AMPM_Len =  g.StringWidth(Time_Container(window).Time_AMPM)
-		  
-		  
 		  
 		  if Draw_Hour_Selected = True Then
 		    drawSelectHour(g, Time_Container(window).Time_Hour_Len)
@@ -308,21 +308,30 @@ Inherits Canvas
 		  end if
 		  
 		  Dim DrawStringValue as String
+		  Dim timeXpos, timeYpos as Integer
 		  if Time_Container(window).TimeMode = 12 Then
+		    
 		    if Draw_AMPM_Selected = True Then
 		      drawAMPM(g, Time_Container(window).Time_AMPM_Len)
-		      
 		    End if
+		    timeXpos = 12
+		    timeYpos = 16
 		    DrawStringValue = Time_Container(window).Time_Hour+":"+Time_Container(window).Time_Minute+" "+Time_Container(window).Time_AMPM
+		    
 		  Elseif Time_Container(window).TimeMode = 24 Then
+		    
+		    timeXpos = 18
+		    timeYpos = 16
+		    
 		    DrawStringValue = Time_Container(window).Time_Hour+":"+Time_Container(window).Time_Minute
+		    
 		  End if
 		  
 		  g.Transparency = 0
 		  g.ForeColor = RGB(0,0,0)
 		  g.TextSize = 14
 		  g.TextFont = "System"
-		  g.DrawString(DrawStringValue,12,16)
+		  g.DrawString(DrawStringValue,timeXpos,timeYpos)
 		  g.PenWidth=1
 		  g.PenHeight=1
 		  
@@ -484,7 +493,7 @@ Inherits Canvas
 		  #ENDIF
 		  
 		  Dim yPOS as Integer = 1
-		  Dim thisWidth as Integer = inTimeAMPMLen + 8
+		  Dim thisWidth as Integer = inTimeAMPMLen + 6
 		  Dim thisHeight as Integer = me.Height-1
 		  
 		  
@@ -520,10 +529,15 @@ Inherits Canvas
 		  g.Transparency = 40
 		  g.ForeColor = &c99ccff
 		  
+		  
 		  Dim xPOS as Integer = 11
 		  Dim yPOS as Integer = 1
 		  Dim thisWidth as Integer = inTimeHourLen  + 4
 		  Dim thisHeight as Integer = me.Height-1
+		  
+		  If Time_Container(window).TimeMode = 24 Then
+		    xPOS = xPOS + 1 + milTimeSpacer
+		  End If
 		  
 		  g.FillRoundRect(xPOS, yPOS, thisWidth, thisHeight,0,0)
 		End Sub
@@ -539,13 +553,17 @@ Inherits Canvas
 		    xPOS = Indent + Time_Container(window).Time_Hour_Len +  5
 		    
 		  #ELSE
-		    xPOS = Indent+Time_Container(window).Time_Hour_Len + 9
+		    xPOS = Indent+Time_Container(window).Time_Hour_Len + 8
 		    
 		  #ENDIF
 		  
 		  Dim yPOS as Integer = 1
 		  Dim thisWidth as Integer = inTimeMinuteLen + 5
 		  Dim thisHeight as Integer = me.Height-1
+		  
+		  If Time_Container(window).TimeMode = 24 Then
+		    xPOS = xPOS + 1 + milTimeSpacer
+		  End If
 		  
 		  g.FillRoundRect(xPOS, yPOS, thisWidth, thisHeight,0,0)
 		End Sub
@@ -969,6 +987,10 @@ Inherits Canvas
 
 	#tag Property, Flags = &h0
 		KeyBuffer As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private milTimeSpacer As Integer = 6
 	#tag EndProperty
 
 	#tag Property, Flags = &h21

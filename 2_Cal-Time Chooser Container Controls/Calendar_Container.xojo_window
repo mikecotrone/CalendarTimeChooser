@@ -155,7 +155,7 @@ Begin ContainerControl Calendar_Container
       UserSelectedEndYear=   0
       UserSelectedStartYear=   0
       Visible         =   True
-      Width           =   212
+      Width           =   213
       YearNumber      =   0
       Begin Separator Separator1
          AutoDeactivate  =   True
@@ -238,7 +238,7 @@ Begin ContainerControl Calendar_Container
       TabIndex        =   58
       TabPanelIndex   =   0
       TabStop         =   True
-      Top             =   14
+      Top             =   13
       Transparent     =   True
       UseFocusRing    =   True
       Visible         =   True
@@ -249,7 +249,7 @@ Begin ContainerControl Calendar_Container
       Height          =   24
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   43
+      Left            =   39
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -261,7 +261,7 @@ Begin ContainerControl Calendar_Container
       SelectionType   =   2
       TabIndex        =   5
       TabPanelIndex   =   0
-      Top             =   221
+      Top             =   224
       Transparent     =   True
       Visible         =   True
       Width           =   147
