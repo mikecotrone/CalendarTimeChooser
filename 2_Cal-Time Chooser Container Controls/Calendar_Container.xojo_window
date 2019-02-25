@@ -31,14 +31,14 @@ Begin ContainerControl Calendar_Container
       Bold            =   False
       DataField       =   ""
       DataSource      =   ""
-      Enabled         =   True
-      Height          =   13
+      Enabled         =   False
+      Height          =   20
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       InitialValue    =   ""
       Italic          =   False
-      Left            =   9
+      Left            =   8
       ListIndex       =   0
       LockBottom      =   False
       LockedInPosition=   False
@@ -49,10 +49,10 @@ Begin ContainerControl Calendar_Container
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "Helvetica"
+      TextFont        =   "System"
       TextSize        =   13.0
       TextUnit        =   0
-      Top             =   20
+      Top             =   13
       Transparent     =   True
       Underline       =   False
       Visible         =   True
@@ -64,13 +64,13 @@ Begin ContainerControl Calendar_Container
       DataField       =   ""
       DataSource      =   ""
       Enabled         =   True
-      Height          =   16
+      Height          =   20
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       InitialValue    =   ""
       Italic          =   False
-      Left            =   127
+      Left            =   125
       ListIndex       =   0
       LockBottom      =   False
       LockedInPosition=   False
@@ -81,10 +81,10 @@ Begin ContainerControl Calendar_Container
       TabIndex        =   1
       TabPanelIndex   =   0
       TabStop         =   True
-      TextFont        =   "Helvetica"
+      TextFont        =   "System"
       TextSize        =   13.0
       TextUnit        =   0
-      Top             =   17
+      Top             =   13
       Transparent     =   True
       Underline       =   False
       Visible         =   True
@@ -103,7 +103,7 @@ Begin ContainerControl Calendar_Container
       EndYear         =   0
       EraseBackground =   False
       FirstWeekDay    =   ""
-      Height          =   169
+      Height          =   170
       HelpTag         =   ""
       IncludePrevNextMonthDaysBool=   True
       Index           =   -2147483648
@@ -174,7 +174,7 @@ Begin ContainerControl Calendar_Container
          TabIndex        =   0
          TabPanelIndex   =   0
          TabStop         =   True
-         Top             =   67
+         Top             =   66
          Transparent     =   True
          Visible         =   True
          Width           =   205
@@ -261,7 +261,7 @@ Begin ContainerControl Calendar_Container
       SelectionType   =   2
       TabIndex        =   5
       TabPanelIndex   =   0
-      Top             =   224
+      Top             =   226
       Transparent     =   True
       Visible         =   True
       Width           =   147
@@ -270,6 +270,18 @@ End
 #tag EndWindow
 
 #tag WindowCode
+	#tag Event
+		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		  Return True
+		End Function
+	#tag EndEvent
+
+	#tag Event
+		Sub MouseUp(X As Integer, Y As Integer)
+		  Calendar1.deselectAll()
+		End Sub
+	#tag EndEvent
+
 	#tag Event
 		Sub Open()
 		  #IF TargetWin32 Then
@@ -288,7 +300,6 @@ End
 		  #ELSE
 		    g.FillRoundRect(0,0,me.Width,me.Height, 8, 8)
 		  #ENDIF
-		  
 		End Sub
 	#tag EndEvent
 
@@ -403,6 +414,7 @@ End
 		    End if
 		  next i
 		  
+		  
 		  // Bring Us Back to Today's Year
 		  Dim CurrentDateYearString as String = Str(Calendar1.CurrentDate.Year)
 		  for i as integer = 0 to YearPopup.ListCount - 1
@@ -475,7 +487,6 @@ End
 		Sub Open()
 		  #If TargetWin32 Then
 		    Me.Top = Me.Top - 7
-		    
 		  #endif
 		End Sub
 	#tag EndEvent

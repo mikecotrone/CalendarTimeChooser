@@ -241,27 +241,27 @@ Inherits Canvas
 		  Me.SetFocus()
 		  KeyBuffer = ""
 		  
-		  Dim milTimeExtraSpacer as Integer
+		  Dim extra24space as Integer
 		  If Time_Container(window).TimeMode = 24 Then
-		    milTimeExtraSpacer = 10
+		    extra24space = 6
 		  End If
 		  
 		  
-		  if x >= Indent + milTimeExtraSpacer AND x <=Indent+Time_Container(window).Time_Hour_Len + 2 + milTimeSpacer Then
+		  if x >= Indent + extra24space  AND x <=Indent+Time_Container(window).Time_Hour_Len + 2 + milTimeSpacer Then
 		    Draw_Hour_Selected = True
 		    Draw_Minute_Selected = False
 		    Draw_AMPM_Selected = False
 		    me.Invalidate(False)
 		  End if
 		  
-		  if x >= Indent+Time_Container(window).Time_Hour_Len + Colon_Width AND x <= Indent+Time_Container(window).Time_Hour_Len+ Colon_Width + Time_Container(window).Time_Minute_Len + 10 + milTimeSpacer Then
+		  if x >= Indent + extra24space + Time_Container(window).Time_Hour_Len + Colon_Width AND x <= Indent+Time_Container(window).Time_Hour_Len+ Colon_Width + Time_Container(window).Time_Minute_Len + 10 + milTimeSpacer Then
 		    Draw_Minute_Selected = True 
 		    Draw_Hour_Selected = False
 		    Draw_AMPM_Selected = False
 		    me.Invalidate(False)
 		  End if
 		  
-		  if x >= Indent+Time_Container(window).Time_Hour_Len+Colon_Width+Time_Container(window).Time_Minute_Len+SpaceBetweenMinAndAMPM + 8 AND x <= Indent+Time_Container(window).Time_Hour_Len+Colon_Width+Time_Container(window).Time_Minute_Len+SpaceBetweenMinAndAMPM+Time_Container(window).Time_AMPM_Len  + 16 Then
+		  if x >= Indent + extra24space +Time_Container(window).Time_Hour_Len+Colon_Width+Time_Container(window).Time_Minute_Len+SpaceBetweenMinAndAMPM + 8 AND x <= Indent+Time_Container(window).Time_Hour_Len+Colon_Width+Time_Container(window).Time_Minute_Len+SpaceBetweenMinAndAMPM+Time_Container(window).Time_AMPM_Len  + 16 Then
 		    Draw_AMPM_Selected = True
 		    Draw_Minute_Selected = False
 		    Draw_Hour_Selected = False
@@ -335,7 +335,7 @@ Inherits Canvas
 		  g.PenWidth=1
 		  g.PenHeight=1
 		  
-		  g.Transparency = 50
+		  g.ForeColor = &cB0B0B0
 		  g.DrawRoundRect(0,0,me.Width,me.Height,6,6)
 		  
 		  
