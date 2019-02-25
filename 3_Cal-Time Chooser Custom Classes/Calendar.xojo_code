@@ -179,7 +179,7 @@ Inherits Canvas
 		  #IF TargetWin32 Then
 		    g.DrawRect(0,0,me.Width,me.Height)
 		  #ELSE
-		    g.DrawroundRect(1,0,me.Width,me.Height,0,0)
+		    g.DrawroundRect(0,0,me.Width,me.Height,0,0)
 		  #ENDIF
 		  
 		  
@@ -235,7 +235,7 @@ Inherits Canvas
 		          Dim theLeft as Integer = CalendarButtonClassArray(i).LeftX + 2
 		          Dim theTop as Integer = CalendarButtonClassArray(i).TopY
 		          Dim theWidth as Integer = CalendarButtonClassArray(i).Width
-		          Dim theHeight as Integer = (CalendarButtonClassArray(i).Height )
+		          Dim theHeight as Integer = (CalendarButtonClassArray(i).Height)+1
 		          g.FillroundRect(theLeft, theTop,theWidth,theHeight,4,4)
 		        #ELSEIF TargetWin32 Then
 		          Dim theLeft as Integer = CalendarButtonClassArray(i).LeftX+OffSet+1
@@ -256,10 +256,10 @@ Inherits Canvas
 		        // Capture Selected Date in Date format for Custom Event
 		        g.ForeColor = &c1261A0 
 		        #IF TargetMacOS OR TargetLinux Then
-		          Dim theLeft as Integer = CalendarButtonClassArray(i).LeftX +2
+		          Dim theLeft as Integer = CalendarButtonClassArray(i).LeftX + 2
 		          Dim theTop as Integer = CalendarButtonClassArray(i).TopY
 		          Dim theWidth as Integer = CalendarButtonClassArray(i).Width
-		          Dim theHeight as Integer = (CalendarButtonClassArray(i).Height )
+		          Dim theHeight as Integer = (CalendarButtonClassArray(i).Height) +1
 		          g.DrawroundRect(theLeft, theTop,theWidth,theHeight,4,4)
 		        #ELSEIF TargetWin32 Then
 		          Dim theLeft as Integer = CalendarButtonClassArray(i).LeftX+OffSet+1

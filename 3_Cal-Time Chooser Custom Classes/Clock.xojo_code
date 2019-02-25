@@ -73,16 +73,16 @@ Inherits Canvas
 		    dim AMPM As new StringShape
 		    AMPM.FillColor=TextColor
 		    AMPM.TextFont=Font
-		    AMPM.TextSize=24
+		    AMPM.TextSize= 26
 		    AMPM.VerticalAlignment=StringShape.Alignment.Bottom
 		    AMPM.HorizontalAlignment=StringShape.Alignment.Center
 		    AMPM.Text=Time_Container(window).Time_AMPM
 		    // Draw String AM/PM ONLY for 12 Hour Time Format
 		    if Time_Container(window).TimeMode = 12 Then
-		      buffer.Graphics.DrawObject AMPM,buffer.Width/2,buffer.Height/2+40
+		      buffer.Graphics.DrawObject AMPM,buffer.Width/2,buffer.Height/2+48
 		    End if
 		  End if
-		  g.drawpicture buffer,0,0,g.width,g.height,0,0,buffer.Width,buffer.Height
+		  g.drawpicture (buffer,0,0,g.width,g.height,0,0,buffer.Width,buffer.Height)
 		  
 		  
 		  
@@ -94,10 +94,10 @@ Inherits Canvas
 
 	#tag Method, Flags = &h21
 		Private Sub drawAMPM_OnClock(g as Graphics, inTextSize as Integer, inTextFont as String, inForecolor as color, inString as String)
-		  g.TextSize = inTextSize
-		  g.TextFont = inTextFont
-		  g.ForeColor = inForecolor
-		  g.DrawString(inString,Me.Width/2-8,Me.Height/2+16,me.Width)
+		  'g.TextSize = inTextSize
+		  'g.TextFont = inTextFont
+		  'g.ForeColor = inForecolor
+		  'g.DrawString(inString,Me.Width/2-8,Me.Height/2+18,me.Width)
 		End Sub
 	#tag EndMethod
 
@@ -517,12 +517,13 @@ Inherits Canvas
 			Group="Behavior"
 			InitialValue="True"
 			Type="Boolean"
+			EditorType="Boolean"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Font"
 			Visible=true
 			Group="Behavior"
-			InitialValue="""""Helvetica"""""
+			InitialValue="""Helvetica"""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty

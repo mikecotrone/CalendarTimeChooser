@@ -114,7 +114,7 @@ Begin ContainerControl Time_Container
       TabPanelIndex   =   0
       TabStop         =   True
       TextColor       =   &c08020200
-      Top             =   67
+      Top             =   62
       Transparent     =   True
       UseFocusRing    =   True
       UseGradientFill =   False
@@ -151,11 +151,11 @@ Begin ContainerControl Time_Container
       TextFont        =   "System"
       TextSize        =   12.0
       TextUnit        =   0
-      Top             =   221
+      Top             =   214
       Transparent     =   True
       Underline       =   False
       Visible         =   True
-      Width           =   149
+      Width           =   152
    End
 End
 #tag EndWindow
