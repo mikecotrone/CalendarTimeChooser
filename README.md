@@ -68,7 +68,7 @@ Whats New in 3.0.1?
 ------------------
 - New numbering train to indicate refactoring changes
 - Cleaned up code base removing all instance dependancy from MacOSlib
-- Converted all function names using camelback naming convention
+- Converted all function names using camelcase naming convention
 
 Whats New in 2.0.3?
 ------------------
