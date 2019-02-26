@@ -961,26 +961,37 @@ Inherits Canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub calculateYear(inYear as String)
-		  // Expect STring from PopUp Menu but needs to convert to Integer
+		Function calculateYear(inYear as String) As Integer
+		  // Expect String from PopUp Menu but needs to convert to Integer
 		  Dim InYearInt as Integer = CDbl(inYear)
 		  LeapYearBool = calcLeapYear(InYearInt)
 		  
 		  // Year Number
 		  YearNumber = calcYearNumber(inYear)
+		  If YearNumber = -1 Then
+		    // NOT A VALID YEAR
+		    Return -1
+		  End If
 		  
-		End Sub
+		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Function calcYearNumber(inYear as String) As Integer
+		  // PUT BOUNDS AROUND YEAR SELECTION
+		  Dim CalcYearFinal, theYear as integer
+		  
+		  theYear = CDbl(inYear)
+		  If theYear < StartYear OR theYear > EndYear Then
+		    Return -1
+		  End If
+		  
 		  Dim TrimFirstTwoDigits as String = inYear.Right(2)
 		  Dim Year as Integer = CDbl(TrimFirstTwoDigits)
-		  
 		  Dim CalcYearNum as Integer
 		  CalcYearNum  = Year + Year / 4
 		  
-		  Dim CalcYearFinal as integer
+		  
 		  CalcYearFinal = CalcYearNum mod 7
 		  
 		  Return CalcYearFinal
@@ -1355,12 +1366,15 @@ Inherits Canvas
 		Sub loadYearList(inStartYear as integer, inEndYear as Integer, optional inSelectedYear as Integer)
 		  // Load the Year Pop Up Menu on the Calendar Container
 		  
+		  
 		  if inStartYear = 0 OR inEndYear = 0 Then
+		    // IF NO RANGE IS USER SELECTED
 		    Calendar_Container(window).YearPopup.DeleteAllRows
 		    for i as integer = 1905 to 2060
 		      Calendar_Container(window).YearPopup.AddRow Str(i)
 		    next i
 		  Else
+		    // USER SELECTED YEAR RANGE
 		    Calendar_Container(window).YearPopup.DeleteAllRows
 		    for i as integer = inStartYear to inEndYear
 		      Calendar_Container(window).YearPopup.AddRow Str(i)
@@ -1718,7 +1732,7 @@ Inherits Canvas
 			Set
 			  inEndYear = value
 			  
-			  //mLoad_YearList(StartYear,inEndYear)
+			  loadYearList(inStartYear, inEndYear)
 			End Set
 		#tag EndSetter
 		EndYear As Integer
@@ -1892,7 +1906,6 @@ Inherits Canvas
 			Set
 			  inStartYear= value
 			  
-			  //mLoad_YearList(inStartYear,2020)
 			End Set
 		#tag EndSetter
 		StartYear As Integer
@@ -1907,6 +1920,9 @@ Inherits Canvas
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		#tag Note
+			c
+		#tag EndNote
 		UserSelectedEndYear As Integer
 	#tag EndProperty
 

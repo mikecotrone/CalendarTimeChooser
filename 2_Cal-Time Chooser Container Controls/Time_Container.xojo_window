@@ -37,7 +37,7 @@ Begin ContainerControl Time_Container
       Draw_Minute_Selected=   False
       Enabled         =   True
       EraseBackground =   False
-      Height          =   22
+      Height          =   20
       HelpTag         =   ""
       Indent          =   9
       Index           =   -2147483648
@@ -53,7 +53,7 @@ Begin ContainerControl Time_Container
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   False
-      Top             =   14
+      Top             =   13
       Transparent     =   True
       UseFocusRing    =   False
       Visible         =   True
@@ -77,7 +77,7 @@ Begin ContainerControl Time_Container
       TabIndex        =   1
       TabPanelIndex   =   0
       TabStop         =   False
-      Top             =   8
+      Top             =   6
       Transparent     =   True
       Visible         =   True
       Width           =   16
@@ -114,7 +114,7 @@ Begin ContainerControl Time_Container
       TabPanelIndex   =   0
       TabStop         =   True
       TextColor       =   &c08020200
-      Top             =   62
+      Top             =   60
       Transparent     =   True
       UseFocusRing    =   True
       UseGradientFill =   False
@@ -151,7 +151,7 @@ Begin ContainerControl Time_Container
       TextFont        =   "System"
       TextSize        =   12.0
       TextUnit        =   0
-      Top             =   214
+      Top             =   212
       Transparent     =   True
       Underline       =   False
       Visible         =   True
