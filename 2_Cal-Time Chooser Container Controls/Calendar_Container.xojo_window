@@ -31,14 +31,14 @@ Begin ContainerControl Calendar_Container
       Bold            =   False
       DataField       =   ""
       DataSource      =   ""
-      Enabled         =   False
+      Enabled         =   True
       Height          =   20
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       InitialValue    =   ""
       Italic          =   False
-      Left            =   8
+      Left            =   9
       ListIndex       =   0
       LockBottom      =   False
       LockedInPosition=   False
@@ -52,13 +52,14 @@ Begin ContainerControl Calendar_Container
       TextFont        =   "System"
       TextSize        =   13.0
       TextUnit        =   0
-      Top             =   13
+      Top             =   12
       Transparent     =   True
       Underline       =   False
       Visible         =   True
       Width           =   107
    End
-   Begin PopupMenu YearPopup
+   Begin Combobox YearPopup
+      AutoComplete    =   False
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
@@ -70,7 +71,7 @@ Begin ContainerControl Calendar_Container
       InitialParent   =   ""
       InitialValue    =   ""
       Italic          =   False
-      Left            =   125
+      Left            =   123
       ListIndex       =   0
       LockBottom      =   False
       LockedInPosition=   False
@@ -84,11 +85,12 @@ Begin ContainerControl Calendar_Container
       TextFont        =   "System"
       TextSize        =   13.0
       TextUnit        =   0
-      Top             =   13
+      Top             =   12
       Transparent     =   True
       Underline       =   False
+      UseFocusRing    =   False
       Visible         =   True
-      Width           =   65
+      Width           =   70
    End
    Begin Calendar Calendar1
       AcceptFocus     =   False
@@ -238,7 +240,7 @@ Begin ContainerControl Calendar_Container
       TabIndex        =   58
       TabPanelIndex   =   0
       TabStop         =   True
-      Top             =   13
+      Top             =   12
       Transparent     =   True
       UseFocusRing    =   True
       Visible         =   True
@@ -266,6 +268,38 @@ Begin ContainerControl Calendar_Container
       Visible         =   True
       Width           =   147
    End
+   Begin PopupMenu YearPopup1
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   False
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      InitialValue    =   ""
+      Italic          =   False
+      Left            =   -83
+      ListIndex       =   0
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   False
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   59
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   14.0
+      TextUnit        =   0
+      Top             =   0
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   False
+      Width           =   70
+   End
 End
 #tag EndWindow
 
@@ -278,6 +312,7 @@ End
 
 	#tag Event
 		Sub MouseUp(X As Integer, Y As Integer)
+		  // DE-SELECT ALL CALENDAR DAYS SELECTED WHEN CLICK ON THE CONTAINER
 		  Calendar1.deselectAll()
 		End Sub
 	#tag EndEvent
@@ -495,7 +530,13 @@ End
 	#tag Event
 		Sub Change()
 		  Calendar1.SelectedYear = Me.Text
-		  Calendar1.calculateYear(Me.Text)
+		  Dim validYearCode as Integer = Calendar1.calculateYear(Me.Text)
+		  If validYearCode = -1 Then
+		    // INVALID YEAR USE THIS YEARS
+		    DIm todayDate as New date
+		    Calendar1.YearNumber = todayDate.Year
+		    Me.Text = Str( todayDate.Year)
+		  End If
 		  Calendar1.UPDATE_MonthDays()
 		  Calendar1.UPDATE_MapDaysToCalSlots()
 		  Calendar1.deselectAll()
@@ -552,6 +593,38 @@ End
 		  me.Items( 2 ).icon = BlackDot16x16
 		  me.Items( 3 ).Title = ">"
 		  me.Items( 4 ).Title = ">>"
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events YearPopup1
+	#tag Event
+		Sub Change()
+		  'Calendar1.SelectedYear = Me.Text
+		  'Dim validYearCode as Integer = Calendar1.calculateYear(Me.Text)
+		  'If validYearCode = -1 Then
+		  'MsgBox "Please enter a valid year"
+		  'return
+		  'End If
+		  'Calendar1.UPDATE_MonthDays()
+		  'Calendar1.UPDATE_MapDaysToCalSlots()
+		  'Calendar1.deselectAll()
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Open()
+		  #IF TargetWin32 Then
+		    Me.Top = Me.Top - 4
+		  #ENDIF
+		  
+		  // Default to today's Year only on open
+		  Dim TodaysYear as New Date
+		  
+		  for i as integer = 0 to Me.ListCount-1
+		    if Str(TodaysYear.Year) = Me.List(i) Then
+		      Me.ListIndex = i
+		    End if
+		  next i
 		End Sub
 	#tag EndEvent
 #tag EndEvents

@@ -480,7 +480,6 @@ Inherits Canvas
 
 	#tag Method, Flags = &h21
 		Private Sub drawAMPM(g as Graphics, inTimeAMPMLen as Integer)
-		  g.Transparency = 40
 		  g.ForeColor = &c99ccff
 		  
 		  Dim xPOS as Integer
@@ -526,7 +525,6 @@ Inherits Canvas
 
 	#tag Method, Flags = &h21
 		Private Sub drawSelectHour(g as Graphics, inTimeHourLen as Integer)
-		  g.Transparency = 40
 		  g.ForeColor = &c99ccff
 		  
 		  
@@ -545,7 +543,6 @@ Inherits Canvas
 
 	#tag Method, Flags = &h21
 		Private Sub drawSelectMinute(g as Graphics, inTimeMinuteLen as Integer)
-		  g.Transparency = 40
 		  g.ForeColor = &c99ccff
 		  
 		  Dim xPOS as Integer
