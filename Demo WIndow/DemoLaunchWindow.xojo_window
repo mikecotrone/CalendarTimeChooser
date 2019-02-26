@@ -943,6 +943,14 @@ End
 		End Sub
 	#tag EndEvent
 
+	#tag Event
+		Sub Open()
+		  MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.StartYear = 2010
+		  MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.EndYear = 2020
+		  
+		End Sub
+	#tag EndEvent
+
 
 	#tag Property, Flags = &h21
 		Private mMyPicker As DateTimeWindow
