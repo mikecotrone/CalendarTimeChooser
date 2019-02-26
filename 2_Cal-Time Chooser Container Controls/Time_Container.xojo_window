@@ -31,6 +31,7 @@ Begin ContainerControl Time_Container
       AcceptTabs      =   True
       AutoDeactivate  =   True
       Backdrop        =   0
+      colonVar        =   ":"
       DoubleBuffer    =   False
       Draw_AMPM_Selected=   False
       Draw_Hour_Selected=   False
@@ -114,7 +115,7 @@ Begin ContainerControl Time_Container
       TabPanelIndex   =   0
       TabStop         =   True
       TextColor       =   &c08020200
-      Top             =   60
+      Top             =   56
       Transparent     =   True
       UseFocusRing    =   True
       UseGradientFill =   False
@@ -156,6 +157,14 @@ Begin ContainerControl Time_Container
       Underline       =   False
       Visible         =   True
       Width           =   152
+   End
+   Begin Timer clockColonFlashTimer
+      Index           =   -2147483648
+      LockedInPosition=   False
+      Mode            =   0
+      Period          =   1000
+      Scope           =   0
+      TabPanelIndex   =   0
    End
 End
 #tag EndWindow
@@ -200,8 +209,40 @@ End
 		ClockSecondsCounter As Integer
 	#tag EndProperty
 
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return mflashSeparator
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mflashSeparator = value
+			  
+			  Select Case mflashSeparator
+			  Case True
+			    Self.clockColonFlashTimer.Mode = timer.ModeMultiple
+			    Self.clockColonFlashTimer.Period = 1000
+			    
+			  Case False
+			    Self.clockColonFlashTimer.Mode = timer.ModeOff
+			    
+			    // MAKE SURE DEMO LANDS BACK ON ":"
+			    TimePicker1.colonVar = ":"
+			    TimePicker1.Refresh(False)
+			    
+			  End Select
+			End Set
+		#tag EndSetter
+		flashSeparator As Boolean
+	#tag EndComputedProperty
+
 	#tag Property, Flags = &h0
 		HideAMPM As Boolean
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private mflashSeparator As boolean
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -358,6 +399,19 @@ End
 		  Dim thisText as Text = tz.Abbreviation
 		  
 		  Me.Text = thisText
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events clockColonFlashTimer
+	#tag Event
+		Sub Action()
+		  If TimePicker1.colonVar = " " Then
+		    TimePicker1.colonVar = ":" 
+		  Else
+		    TimePicker1.colonVar = " "
+		  End If
+		  TimePicker1.Refresh(False)
 		  
 		End Sub
 	#tag EndEvent
@@ -608,5 +662,10 @@ End
 		Group="Position"
 		InitialValue="300"
 		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="flashSeparator"
+		Group="Behavior"
+		Type="Boolean"
 	#tag EndViewProperty
 #tag EndViewBehavior
