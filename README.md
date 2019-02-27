@@ -49,6 +49,7 @@ https://github.com/IntelligentVisibility/CalendarTimeChooser/issues
   
 Whats New in 3.0.4?
 ------------------
+- New Feature: Time separator flashing option
 - Fixed many bugs (Check issues for detail)
 - Adjusted the selected calendar day fillroundrect
 - Added a mouseover drawroundrect effect
