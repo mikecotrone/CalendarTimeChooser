@@ -266,7 +266,7 @@ Inherits Canvas
 		          Dim theTop as Integer = CalendarButtonClassArray(i).TopY+OffSet
 		          Dim theWidth as Integer = CalendarButtonClassArray(i).Width-TwoOffset
 		          Dim theHeight as Integer = CalendarButtonClassArray(i).Height-TwoOffset
-		          g.DrawRect(theLeft, theTop,theWidth,theHeight,0,0)
+		          g.DrawRect(theLeft, theTop,theWidth,theHeight)
 		        #ENDIF
 		      End if
 		    End if
