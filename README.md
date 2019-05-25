@@ -3,7 +3,7 @@ CalendarTimeChooser
 
 Xojo Calendar and Time Chooser Project
 
-Date:           February 2019
+Date:           May 2019
 
 Language:       Xojo all versions
 
