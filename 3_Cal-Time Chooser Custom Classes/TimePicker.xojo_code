@@ -290,10 +290,28 @@ Inherits Canvas
 	#tag EndEvent
 
 	#tag Event
+		Sub Open()
+		  #If TargetWin32 Then
+		    me.Height = me.Height + 6
+		    me.top = me.top - 5
+		    
+		  #endif
+		End Sub
+	#tag EndEvent
+
+	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
 		  // Draw Shape of Control
 		  g.ForeColor = RGB(255,255,255)
-		  g.FillRoundRect (0,0,me.Width,me.Height,6,6)
+		  
+		  #If TargetWin32 Then
+		    g.FillRect (0,0,me.Width,me.Height)
+		    
+		  #ELSE
+		    g.FillRoundRect (0,0,me.Width,me.Height,6,6)
+		    
+		  #endif
+		  
 		  
 		  Time_Container(window).Time_Hour_Len = g.StringWidth(Time_Container(window).Time_Hour)
 		  Time_Container(window).Time_Minute_Len =  g.StringWidth(Time_Container(window).Time_Minute)
@@ -316,27 +334,38 @@ Inherits Canvas
 		    End if
 		    timeXpos = 12
 		    timeYpos = 16
-		    DrawStringValue = Time_Container(window).Time_Hour+":"+Time_Container(window).Time_Minute+" "+Time_Container(window).Time_AMPM
 		    
 		  Elseif Time_Container(window).TimeMode = 24 Then
-		    
 		    timeXpos = 18
 		    timeYpos = 16
 		    
-		    DrawStringValue = Time_Container(window).Time_Hour+":"+Time_Container(window).Time_Minute
-		    
 		  End if
 		  
+		  DrawStringValue = createTimeString()
 		  g.Transparency = 0
 		  g.ForeColor = RGB(0,0,0)
 		  g.TextSize = 14
 		  g.TextFont = "System"
-		  g.DrawString(DrawStringValue,timeXpos,timeYpos)
+		  
+		  #If TargetWin32 Then
+		    Dim winTopAdj as Integer = 2 + timeYpos
+		    g.DrawString(DrawStringValue,timeXpos,winTopAdj)
+		  #ELSE
+		    g.DrawString(DrawStringValue,timeXpos,timeYpos)
+		  #endif
+		  
 		  g.PenWidth=1
 		  g.PenHeight=1
-		  
 		  g.ForeColor = &cB0B0B0
-		  g.DrawRoundRect(0,0,me.Width,me.Height,6,6)
+		  
+		  #If TargetWin32 Then
+		    g.DrawRect(0,0,me.Width,me.Height)
+		    
+		  #ELSE
+		    g.DrawRoundRect(0,0,me.Width,me.Height,6,6)
+		    
+		  #endif
+		  
 		  
 		  
 		  
@@ -479,6 +508,28 @@ Inherits Canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
+		Private Function createTimeString() As string
+		  Dim ret as string
+		  
+		  dim thisHour as String = Time_Container(window).Time_Hour
+		  dim thisMin as String = Time_Container(window).Time_Minute
+		  dim spacer as String =  " "
+		  dim thisAMPM as String = Time_Container(window).Time_AMPM
+		  dim thisTimeMode as Integer = Time_Container(window).TimeMode
+		  
+		  If thisTimeMode = 12 Then
+		    ret = thisHour + colonVar + thisMin + spacer + thisAMPM
+		    
+		  Elseif thisTimeMode = 24 Then
+		    ret = thisHour + colonVar + thisMin
+		  End If
+		  
+		  
+		  Return ret
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
 		Private Sub drawAMPM(g as Graphics, inTimeAMPMLen as Integer)
 		  g.ForeColor = &c99ccff
 		  
@@ -496,7 +547,7 @@ Inherits Canvas
 		  Dim thisHeight as Integer = me.Height-1
 		  
 		  
-		  g.FillRoundRect(xPOS, yPOS, thisWidth, thisHeight, 0,0)
+		  g.FillRect(xPOS, yPOS, thisWidth, thisHeight)
 		End Sub
 	#tag EndMethod
 
@@ -537,7 +588,7 @@ Inherits Canvas
 		    xPOS = xPOS + 1 + milTimeSpacer
 		  End If
 		  
-		  g.FillRoundRect(xPOS, yPOS, thisWidth, thisHeight,0,0)
+		  g.FillRect(xPOS, yPOS, thisWidth, thisHeight)
 		End Sub
 	#tag EndMethod
 
@@ -562,7 +613,7 @@ Inherits Canvas
 		    xPOS = xPOS + 1 + milTimeSpacer
 		  End If
 		  
-		  g.FillRoundRect(xPOS, yPOS, thisWidth, thisHeight,0,0)
+		  g.FillRect(xPOS, yPOS, thisWidth, thisHeight)
 		End Sub
 	#tag EndMethod
 
@@ -962,6 +1013,10 @@ Inherits Canvas
 	#tag EndMethod
 
 
+	#tag Property, Flags = &h0
+		colonVar As String = ":"
+	#tag EndProperty
+
 	#tag Property, Flags = &h21
 		Private Colon_Width As Integer = 3
 	#tag EndProperty
@@ -1198,6 +1253,13 @@ Inherits Canvas
 			Group="Position"
 			InitialValue="100"
 			Type="Integer"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="colonVar"
+			Group="Behavior"
+			InitialValue=":"
+			Type="String"
+			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

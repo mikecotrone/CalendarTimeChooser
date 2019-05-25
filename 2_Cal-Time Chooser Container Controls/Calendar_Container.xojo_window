@@ -26,38 +26,6 @@ Begin ContainerControl Calendar_Container
    UseFocusRing    =   False
    Visible         =   True
    Width           =   230
-   Begin PopupMenu MonthPopup
-      AutoDeactivate  =   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      InitialValue    =   ""
-      Italic          =   False
-      Left            =   9
-      ListIndex       =   0
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   False
-      LockTop         =   False
-      Scope           =   0
-      TabIndex        =   0
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   13.0
-      TextUnit        =   0
-      Top             =   12
-      Transparent     =   True
-      Underline       =   False
-      Visible         =   True
-      Width           =   107
-   End
    Begin Combobox YearPopup
       AutoComplete    =   False
       AutoDeactivate  =   True
@@ -268,6 +236,38 @@ Begin ContainerControl Calendar_Container
       Visible         =   True
       Width           =   147
    End
+   Begin PopupMenu MonthPopup
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      InitialValue    =   ""
+      Italic          =   False
+      Left            =   9
+      ListIndex       =   0
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   False
+      LockRight       =   False
+      LockTop         =   False
+      Scope           =   0
+      TabIndex        =   0
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   13.0
+      TextUnit        =   0
+      Top             =   12
+      Transparent     =   True
+      Underline       =   False
+      Visible         =   True
+      Width           =   107
+   End
 End
 #tag EndWindow
 
@@ -475,25 +475,6 @@ End
 
 #tag EndWindowCode
 
-#tag Events MonthPopup
-	#tag Event
-		Sub Change()
-		  Calendar1.SelectedMonth = Me.Text
-		  Calendar1.calculateMonth(Me.Text)
-		  Calendar1.UPDATE_MonthDays()
-		  Calendar1.UPDATE_MapDaysToCalSlots()
-		  Calendar1.deselectAll()
-		  
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub Open()
-		  #If TargetWin32 Then
-		    Me.Top = Me.Top - 7
-		  #endif
-		End Sub
-	#tag EndEvent
-#tag EndEvents
 #tag Events YearPopup
 	#tag Event
 		Sub Change()
@@ -561,6 +542,29 @@ End
 		  me.Items( 2 ).icon = BlackDot16x16
 		  me.Items( 3 ).Title = ">"
 		  me.Items( 4 ).Title = ">>"
+		  
+		  #If TargetWin32 Then
+		    Me.Left = Me.Left - 6
+		  #endif
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events MonthPopup
+	#tag Event
+		Sub Change()
+		  Calendar1.SelectedMonth = Me.Text
+		  Calendar1.calculateMonth(Me.Text)
+		  Calendar1.UPDATE_MonthDays()
+		  Calendar1.UPDATE_MapDaysToCalSlots()
+		  Calendar1.deselectAll()
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Open()
+		  #If TargetWin32 Then
+		    Me.Top = Me.Top - 4
+		  #endif
 		End Sub
 	#tag EndEvent
 #tag EndEvents

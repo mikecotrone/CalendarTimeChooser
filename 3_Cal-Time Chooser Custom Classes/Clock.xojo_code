@@ -3,12 +3,6 @@ Protected Class Clock
 Inherits Canvas
 	#tag Event
 		Sub Open()
-		  #IF TargetWin32 Then
-		    DoubleBuffer = true
-		    Transparent = true
-		    EraseBackground = true
-		  #ENDIF
-		  
 		  // ------- SET THESE VALUES IF YOU WOULD LIKE A CUSTOM TIME ON START
 		  // ------- 24 HOUR OR 12 HOUR SUPPORTED
 		  
@@ -27,11 +21,6 @@ Inherits Canvas
 
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
-		  #IF TargetWin32 Then
-		    g.ForeColor = RGB(200,200,200)
-		    g.FillRect(0,0, me.Width, me.Height)
-		  #ENDIF
-		  
 		  g.AntiAlias = True
 		  
 		  // Draw Clock Image
@@ -523,7 +512,7 @@ Inherits Canvas
 			Name="Font"
 			Visible=true
 			Group="Behavior"
-			InitialValue="""Helvetica"""
+			InitialValue="Helvetica"
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
