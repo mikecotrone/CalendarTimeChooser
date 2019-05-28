@@ -54,7 +54,7 @@ Begin Window DateTimeWindow
       LockLeft        =   True
       LockRight       =   True
       LockTop         =   True
-      Scope           =   0
+      Scope           =   2
       TabIndex        =   0
       TabPanelIndex   =   0
       TabStop         =   True
@@ -81,6 +81,34 @@ End
 		  //end
 		End Function
 	#tag EndEvent
+
+
+	#tag Method, Flags = &h0
+		Sub Constructor()
+		  // Calling the overridden superclass constructor.
+		  Super.Constructor
+		  
+		  Dim d As New date
+		  StartYear = d.year
+		  endyear = d.year
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub Invalidate(eraseBackground As Boolean = True)
+		  // Calling the overridden superclass method.
+		  // Note that this may need modifications if there are multiple  choices.
+		  // Possible calls:
+		  // Invalidate(eraseBackground As Boolean = True) -- From Window
+		  // Invalidate(x As Integer, y As Integer, width As Integer, height As Integer, eraseBackground As Boolean = True) -- From Window
+		  Super.Invalidate(eraseBackground)
+		  
+		  Date_Time_Container1.Time_Container1.Clock1.Invalidate(False)
+		  Date_Time_Container1.Time_Container1.TimePicker1.Invalidate(False)
+		  
+		End Sub
+	#tag EndMethod
 
 
 	#tag ComputedProperty, Flags = &h0
@@ -171,7 +199,8 @@ End
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  return Date_Time_Container1.ClockHandColor
+			  Return Date_Time_Container1.ClockHandColor
+			  
 			End Get
 		#tag EndGetter
 		#tag Setter
@@ -180,6 +209,64 @@ End
 			End Set
 		#tag EndSetter
 		ClockHandColor As Color
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return Date_Time_Container1.Calendar_Container1.drawColSeperatorLines
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Date_Time_Container1.Calendar_Container1.drawColSeperatorLines = Value
+			End Set
+		#tag EndSetter
+		DrawColSeperatorLines As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return Date_Time_Container1.Calendar_Container1.Calendar1.EndYear
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Date_Time_Container1.Calendar_Container1.Calendar1.EndYear = Value
+			End Set
+		#tag EndSetter
+		EndYear As Integer
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return Date_Time_Container1.Time_Container1.flashSeparator
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Date_Time_Container1.Time_Container1.flashSeparator = Value
+			End Set
+		#tag EndSetter
+		flashSeparator As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return Date_Time_Container1.Time_Container1.HideAMPM 
+			  
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Date_Time_Container1.Time_Container1.HideAMPM = value
+			  
+			End Set
+		#tag EndSetter
+		HideAMPM As Boolean
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -224,6 +311,42 @@ End
 			End Set
 		#tag EndSetter
 		SelectedDate As Date
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Note
+			MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.StartYear = 2010
+			MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.EndYear = 2020
+		#tag EndNote
+		#tag Getter
+			Get
+			  return Date_Time_Container1.Calendar_Container1.Calendar1.StartYear
+			  
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Date_Time_Container1.Calendar_Container1.Calendar1.StartYear = Value
+			  
+			End Set
+		#tag EndSetter
+		StartYear As Integer
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  return Date_Time_Container1.Time_Container1.TimeMode
+			  
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  Date_Time_Container1.Time_Container1.TimeMode = value
+			  
+			End Set
+		#tag EndSetter
+		TimeMode As Integer
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
@@ -563,5 +686,10 @@ End
 		Group="Position"
 		InitialValue="600"
 		Type="Integer"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="DrawColSeperatorLines"
+		Group="Behavior"
+		Type="Boolean"
 	#tag EndViewProperty
 #tag EndViewBehavior
