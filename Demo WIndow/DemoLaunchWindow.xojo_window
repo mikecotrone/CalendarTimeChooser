@@ -900,8 +900,8 @@ End
 
 	#tag Event
 		Sub Open()
-		  MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.StartYear = 2010
-		  MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.EndYear = 2020
+		  MyPicker.StartYear = 2010
+		  MyPicker.EndYear = 2020
 		  
 		End Sub
 	#tag EndEvent
@@ -952,7 +952,8 @@ End
 #tag Events CheckBox1
 	#tag Event
 		Sub Action()
-		  MyPicker.Date_Time_Container1.Calendar_Container1.drawColSeperatorLines = Me.Value
+		  // MyPicker.Date_Time_Container1.Calendar_Container1.drawColSeperatorLines = Me.Value
+		  MyPicker.drawColSeperatorLines = Me.Value
 		  
 		End Sub
 	#tag EndEvent
@@ -987,7 +988,7 @@ End
 		  dim p As new Picture(me.Width,me.Height)
 		  static handColor as color=MyPicker.ClockHandColor
 		  if SelectColor(handColor, "Select a color for the clock hands") then
-		    MyPicker.Date_Time_Container1.ClockHandColor = handColor
+		    MyPicker.ClockHandColor = handColor
 		    Invalidate(False)
 		    dim v As Variant=handColor
 		    SelectedHandColorLabel.Text=v.StringValue
@@ -1147,13 +1148,13 @@ End
 		Sub Change()
 		  Select Case Me.Text
 		  Case "12 Hour Format"
-		    MyPicker.Date_Time_Container1.Time_Container1.TimeMode = 12
+		    MyPicker.TimeMode = 12
 		  Case "24 Hour Format"
-		    MyPicker.Date_Time_Container1.Time_Container1.TimeMode = 24
+		    MyPicker.TimeMode = 24
 		  End Select
 		  
-		  MyPicker.Date_Time_Container1.Time_Container1.Clock1.Invalidate(False)
-		  MyPicker.Date_Time_Container1.Time_Container1.TimePicker1.Invalidate(False)
+		  MyPicker.Invalidate(False)
+		  
 		  MyPicker.Show
 		End Sub
 	#tag EndEvent
@@ -1179,25 +1180,25 @@ End
 		  Case "Chrome"
 		    // Default Clock Face
 		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType_Chrome
-		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = False
+		    MyPicker.HideAMPM = False
 		  Case "Roman"
 		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType_Roman
-		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = False
+		    MyPicker.HideAMPM = False
 		  Case "Standard"
 		    MyPicker.ClockFaceType =Date_Time_Container.ClockFaceType_Standard
-		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = False
+		    MyPicker.HideAMPM = False
 		  Case "Google Style"
 		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType_GoogleStyle
-		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = False
+		    MyPicker.HideAMPM = False
 		  Case "Modern"
 		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType_Modern
-		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = False
+		    MyPicker.HideAMPM = False
 		  Case "Jim's Clock"
 		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType_Dynamic_12hr
-		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM= False
+		    MyPicker.HideAMPM= False
 		  Case "Antique"
 		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType_Antique
-		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = True
+		    MyPicker.HideAMPM = True
 		  End Select
 		  MyPicker.Show
 		  
@@ -1236,7 +1237,7 @@ End
 #tag Events flashTimeColonCheckbox
 	#tag Event
 		Sub Action()
-		  MyPicker.Date_Time_Container1.Time_Container1.flashSeparator = me.Value
+		  MyPicker.flashSeparator = me.Value
 		End Sub
 	#tag EndEvent
 #tag EndEvents

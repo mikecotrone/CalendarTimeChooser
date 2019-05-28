@@ -75,6 +75,7 @@ Begin ContainerControl Date_Time_Container
       DoubleBuffer    =   False
       Enabled         =   True
       EraseBackground =   True
+      flashSeparator  =   False
       HasBackColor    =   False
       Height          =   252
       HelpTag         =   ""
