@@ -7,7 +7,7 @@ Date:           May 2019
 
 Language:       Xojo all versions
 
-Author:         Mike Cotrone (mikec@intelligentvisibility.com)
+Author:         Mike Cotrone (mikec@intelligentvis.com)
 
 Version:        3.0.4
 
