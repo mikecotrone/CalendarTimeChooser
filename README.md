@@ -48,11 +48,11 @@ https://github.com/IntelligentVisibility/CalendarTimeChooser/issues
   
 Whats New in 3.0.5?
 ------------------
-- Code Refectoring by Norman Palardy: Simplified the use of this project by removing the need to type two and three name spaces deep to set settings.
+- Code Refactoring by Norman Palardy: Simplified the use of this project by removing the need to type two and three name spaces deep to set settings.
 
-Old: MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.StartYear = 2010
+- Old: MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.StartYear = 2010
 
-New: MyPicker.StartYear = 2010
+- New: MyPicker.StartYear = 2010
 
 Whats New in 3.0.4?
 ------------------
