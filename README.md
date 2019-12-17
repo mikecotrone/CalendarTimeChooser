@@ -5,7 +5,7 @@ Xojo Calendar and Time Chooser Project
 
 Date:           July 2019
 
-Language:       Xojo all versions
+Language:       Xojo 2019 R1.1 and below (API 1.0)
 
 Author:         Mike Cotrone (mikec@intelligentvis.com)
 
