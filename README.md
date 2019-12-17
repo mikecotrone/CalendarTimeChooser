@@ -9,7 +9,7 @@ Language:       Xojo all versions
 
 Author:         Mike Cotrone (mikec@intelligentvis.com)
 
-Version:        3.0.4
+Version:        3.0.5
 
 Contributors:   Mike Cotrone, Norman Palardy, Axel Schneider, Jim McKay
 
@@ -46,7 +46,14 @@ How to Report Issues?
 Please submit bug/issues at:
 https://github.com/IntelligentVisibility/CalendarTimeChooser/issues
   
-  
+Whats New in 3.0.5?
+------------------
+- Code Refectoring by Norman Palardy: Simplified the use of this project by removing the need to type two and three name spaces deep to set settings.
+
+Old: MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.StartYear = 2010
+
+New: MyPicker.StartYear = 2010
+
 Whats New in 3.0.4?
 ------------------
 - New Feature: Time separator flashing option
