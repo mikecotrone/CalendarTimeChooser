@@ -3,7 +3,7 @@ CalendarTimeChooser
 
 Xojo Calendar and Time Chooser Project
 
-Date:           May 2019
+Date:           July 2019
 
 Language:       Xojo all versions
 
@@ -11,7 +11,7 @@ Author:         Mike Cotrone (mikec@intelligentvis.com)
 
 Version:        3.0.4
 
-Contributors:   Mike Cotrone, Axel Schneider, Jim McKay
+Contributors:   Mike Cotrone, Norman Palardy, Axel Schneider, Jim McKay
 
 
 
