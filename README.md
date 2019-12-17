@@ -29,8 +29,8 @@ What is this Project?
   - Recurring calendar selection option
   
   
- ![image](https://github.com/IntelligentVisibility/CalendarTimeChooser/blob/master/Documentation/CalendarTimeChooser_SS1.png)
- ![image](https://github.com/IntelligentVisibility/CalendarTimeChooser/blob/master/Documentation/CalendarTimeChooser_SS2.png)
+ ![image](https://github.com/IntelligentVisibility/CalendarTimeChooser/blob/master/Documentation/Screenshots/CalendarTimeChooser_SS1.png)
+ ![image](https://github.com/IntelligentVisibility/CalendarTimeChooser/blob/master/Documentation/Screenshots/CalendarTimeChooser_SS2.png)
 
 
 How to Use this Project?
