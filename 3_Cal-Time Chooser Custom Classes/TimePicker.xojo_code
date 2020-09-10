@@ -281,14 +281,11 @@ Inherits Canvas
 
 	#tag Event
 		Sub MouseMove(X As Integer, Y As Integer)
-<<<<<<< Updated upstream
-          #If XojoVersion < 2019.02
+		  #If XojoVersion < 2019.02
 		    Tooltip.Hide
 		  #Else
 		    App.HideTooltip
 		  #EndIf
-=======
->>>>>>> Stashed changes
 		  if x >= 0 AND x <= me.Width AND Y >= 0 AND y<=me.Height Then
 		    Me.MouseCursor = System.Cursors.FingerPointer
 		  end if
