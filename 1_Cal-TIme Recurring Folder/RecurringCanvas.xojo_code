@@ -23,7 +23,7 @@ Inherits Canvas
 		Sub MouseUp(X As Integer, Y As Integer)
 		  addMenuItems()
 		  
-		  dim result As MenuItem = myMenu.PopUp
+		  Var result As MenuItem = myMenu.PopUp
 		  
 		  if result<>nil then
 		    
@@ -31,7 +31,7 @@ Inherits Canvas
 		    RecurringMode = RecurringMode + 1
 		    
 		    // Raise User Defined Event
-		    Dim thisSelectedRecurringStr as String = result.Text
+		    Var thisSelectedRecurringStr as String = result.Text
 		    Calendar_Container(window).raiseRecurringEvent(thisSelectedRecurringStr)
 		  end if
 		  
@@ -55,15 +55,15 @@ Inherits Canvas
 		Private Sub addMenuItems()
 		  myMenu=new MenuItem
 		  // Get Realtime User Selected Month
-		  dim OTF_DayOfMonth_String as string = Calendar_Container(window).Calendar1.SelectedMonth
+		  Var OTF_DayOfMonth_String as string = Calendar_Container(window).Calendar1.SelectedMonth
 		  // Get Realtime User Selected Day of the Week
-		  Dim DayofWeekString as String = convertDayOfWeek_Int_to_Str(Calendar_Container(window).Calendar1.SelectedDate.DayOfWeek)
-		  dim OTF_DayOfWeek_String as string =DayofWeekString
+		  Var DayofWeekString as String = convertDayOfWeek_Int_to_Str(Calendar_Container(window).Calendar1.SelectedDate.DayOfWeek)
+		  Var OTF_DayOfWeek_String as string =DayofWeekString
 		  
 		  // Get User Selected Day
-		  dim OTF_Day_String as string = Str(Calendar_Container(window).Calendar1.SelectedDate.Day)
-		  Dim DayEnding as String
-		  if CDbl(OTF_Day_String) > 1 Then
+		  Var OTF_Day_String as string = Calendar_Container(window).Calendar1.SelectedDate.Day.ToString
+		  Var DayEnding as String
+		  if OTF_Day_String.ToDouble > 1 Then
 		    DayEnding = "th"
 		  Else
 		    DayEnding = "st"

@@ -36,7 +36,6 @@ Begin ContainerControl Time_Container
       Draw_Hour_Selected=   False
       Draw_Minute_Selected=   False
       Enabled         =   True
-      EraseBackground =   "False"
       Height          =   20
       HelpTag         =   ""
       Indent          =   9
@@ -96,7 +95,6 @@ Begin ContainerControl Time_Container
       ClockSecondValue=   0.0
       DoubleBuffer    =   True
       Enabled         =   True
-      EraseBackground =   "True"
       Font            =   "Helvetica"
       Height          =   130
       HelpTag         =   ""
@@ -393,10 +391,10 @@ End
 	#tag Event
 		Sub Open()
 		  Using Xojo.Core
-		  Dim thisDate as Xojo.Core.Date
-		  Dim tz as TimeZone = TimeZone.Current
+		  Var thisDate as Xojo.Core.Date
+		  Var tz as TimeZone = TimeZone.Current
 		  
-		  Dim thisText as Text = tz.Abbreviation
+		  Var thisText as Text = tz.Abbreviation
 		  
 		  Me.Text = thisText
 		  

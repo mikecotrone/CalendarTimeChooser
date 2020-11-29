@@ -88,7 +88,7 @@ End
 		  // Calling the overridden superclass constructor.
 		  Super.Constructor
 		  
-		  Dim d As New date
+		  Var d As New date
 		  StartYear = d.year
 		  endyear = d.year
 		  
