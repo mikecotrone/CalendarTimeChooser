@@ -43,7 +43,7 @@ Inherits Canvas
 		    g.DrawPicture(Antique130x130,0,0)
 		  End Select
 		  
-		  dim buffer As new Picture(g.Width*2,g.Height*2)
+		  Var buffer As new Picture(g.Width*2,g.Height*2)
 		  // Minute Hand
 		  drawClockMinuteHand (buffer.Graphics)
 		  // Hour Hand
@@ -59,7 +59,7 @@ Inherits Canvas
 		  end if
 		  
 		  if Time_Container(window).HideAMPM = False Then
-		    dim AMPM As new StringShape
+		    Var AMPM As new StringShape
 		    AMPM.FillColor=TextColor
 		    AMPM.TextFont=Font
 		    AMPM.TextSize= 26
@@ -94,16 +94,16 @@ Inherits Canvas
 		Private Sub drawClockFace(g As Graphics)
 		  static buffer As picture= new Picture(g.Width*4,g.Height*4)
 		  buffer.Graphics.ClearRect(0,0,buffer.Width,buffer.Height)
-		  dim hr,sec,x,y,radius,tickInset As integer
-		  dim angle As Double
-		  dim hourTick As new CurveShape
+		  Var hr,sec,x,y,radius,tickInset As integer
+		  Var angle As Double
+		  Var hourTick As new CurveShape
 		  hourTick.x=0
 		  hourTick.x2=-20
 		  hourTick.y=0
 		  hourTick.y2=0
 		  hourTick.BorderColor=TextColor
 		  hourTick.BorderWidth=4
-		  dim secondTick as new CurveShape
+		  Var secondTick as new CurveShape
 		  secondTick.x=0
 		  secondTick.y=0
 		  secondTick.x2=-10
@@ -111,7 +111,7 @@ Inherits Canvas
 		  secondTick.BorderColor=TextColor
 		  secondTick.BorderWidth=4
 		  radius=buffer.Width/2
-		  dim numeral As new StringShape //for drawing the numbers
+		  Var numeral As new StringShape //for drawing the numbers
 		  if HourCount=12 then
 		    numeral.TextSize=52
 		  else
@@ -121,7 +121,7 @@ Inherits Canvas
 		  numeral.FillColor=TextColor
 		  numeral.VerticalAlignment=StringShape.Alignment.Center
 		  numeral.HorizontalAlignment=StringShape.Alignment.Center
-		  dim face As new OvalShape
+		  Var face As new OvalShape
 		  #IF TargetMacOS OR TargetLinux Then
 		    face.Width=buffer.Width-16
 		    face.Height=buffer.width-16
@@ -139,7 +139,7 @@ Inherits Canvas
 		  buffer.Graphics.ForeColor=TextColor
 		  
 		  for hr=1 to HourCount
-		    numeral.Text=str(hr)
+		    numeral.Text = hr.ToString
 		    angle=pi*2*(hr/HourCount)-pi/2 //hour angle as radians
 		    //calc the hour hashmark
 		    if HourCount=12 then
@@ -152,7 +152,8 @@ Inherits Canvas
 		        y= Sin(angle)*(radius-46)
 		        buffer.Graphics.DrawObject numeral,x+radius+1,y+radius+2 //draw numeral
 		        
-		        numeral.Text=str(hr+12)
+		        Var hr12Int as Integer = hr + 12
+		        numeral.Text = hr12Int.ToString
 		        numeral.TextSize=36
 		        x = Cos(angle)*(radius-130)
 		        y= Sin(angle)*(radius-130)
@@ -198,9 +199,9 @@ Inherits Canvas
 
 	#tag Method, Flags = &h21
 		Private Sub drawClockHourHand(g as Graphics)
-		  Dim HourHand as Object2D
+		  Var HourHand as Object2D
 		  
-		  Dim CurrentHour as integer=val(Time_Container(window).Time_Hour)
+		  Var CurrentHour as integer=val(Time_Container(window).Time_Hour)
 		  
 		  // Only Allow the 12 Hour Control for 12 Hour Mode
 		  if Time_Container(window).TimeMode = 12 Then
@@ -212,10 +213,10 @@ Inherits Canvas
 		  End if
 		  
 		  if UseGraphicalClockHands = True then
-		    dim handPic As new Picture(HourHandImg.Width,HourHandImg.Height,32)
+		    Var handPic As new Picture(HourHanVarg.Width,HourHanVarg.Height,32)
 		    handPic.Graphics.ForeColor=ClockHandColor
 		    handPic.Graphics.FillRect 0,0,handPic.Width,handPic.Height
-		    handPic.ApplyMask HourHandImg
+		    handPic.ApplyMask HourHanVarg
 		    HourHand=New PixmapShape(handPic)
 		    
 		    
@@ -238,13 +239,13 @@ Inherits Canvas
 
 	#tag Method, Flags = &h21
 		Private Sub drawClockMinuteHand(g as Graphics)
-		  Dim MinHand as Object2D
+		  Var MinHand as Object2D
 		  
 		  if UseGraphicalClockHands = True then
-		    dim handPic As new Picture(MinuteHandImg.Width,MinuteHandImg.Height,32)
+		    Var handPic As new Picture(MinuteHanVarg.Width,MinuteHanVarg.Height,32)
 		    handPic.Graphics.ForeColor=ClockHandColor
 		    handPic.Graphics.FillRect 0,0,handPic.Width,handPic.Height
-		    handPic.ApplyMask MinuteHandImg
+		    handPic.ApplyMask MinuteHanVarg
 		    MinHand=New PixmapShape(handPic)
 		    
 		  elseif UseGraphicalClockHands = False Then
@@ -266,10 +267,10 @@ Inherits Canvas
 
 	#tag Method, Flags = &h21
 		Private Sub drawClockSecondHand(g as Graphics)
-		  Dim SecondHand as Object2D
+		  Var SecondHand as Object2D
 		  
 		  if UseGraphicalClockHands then  //use graphical version
-		    SecondHand=New PixmapShape(SecondHandImg)
+		    SecondHand=New PixmapShape(SecondHanVarg)
 		  else //build a curveshape
 		    SecondHand = New CurveShape
 		    CurveShape(SecondHand).Border = 100
@@ -292,19 +293,20 @@ Inherits Canvas
 		  // ------- SET THESE VALUES IF YOU WOULD LIKE A CUSTOM TIME ON START
 		  If inHour = 0 Or inMinute = 0  Then
 		    // DEFAULT USE CURRENT TIME
-		    Dim d As New date
+		    Var d As New date
 		    Time_Container(Window).Time_Minute=Format(d.Minute,"00")
 		    If d.Hour<12 Then
 		      Time_Container(Window).Time_AMPM="AM"
 		      If d.Hour=0 Then
 		        Time_Container(Window).Time_Hour="12"
 		      Else
-		        Time_Container(Window).Time_Hour=Str(d.Hour)
+		        Time_Container(Window).Time_Hour = d.Hour.ToString
 		      End If
 		    Else
 		      Time_Container(Window).Time_AMPM="PM"
 		      If d.Hour>12 Then
-		        Time_Container(Window).Time_Hour=Str(d.Hour-12)
+		        Var dM12Int as Integer = d.Hour - 12
+		        Time_Container(Window).Time_Hour = dM12Int.ToString
 		      Else
 		        Time_Container(Window).Time_Hour="12"
 		      End If
@@ -316,7 +318,7 @@ Inherits Canvas
 		    Time_Container(Window).TimeMode = 12
 		    Self.Invalidate(False)
 		    
-		    Dim thisAMPM as String = Uppercase(inAMPM)
+		    Var thisAMPM as String = Uppercase(inAMPM)
 		    Time_Container(Window).Time_Minute=Format(inMinute,"00")
 		    
 		    If inHour < 12 Then
@@ -324,13 +326,14 @@ Inherits Canvas
 		      If inHour =0 Then
 		        Time_Container(Window).Time_Hour = "12"
 		      Else
-		        Time_Container(Window).Time_Hour=Str(inHour)
+		        Time_Container(Window).Time_Hour = inHour.ToString
 		      End If
 		      
 		    Else
 		      Time_Container(Window).Time_AMPM = "PM"
 		      If inHour >12 Then
-		        Time_Container(Window).Time_Hour=Str(inHour-12)
+		        Var hrM12Int as Integer = inHour - 12
+		        Time_Container(Window).Time_Hour = hrM12Int.ToString
 		      Else
 		        Time_Container(Window).Time_Hour="12"
 		      End If
@@ -342,7 +345,7 @@ Inherits Canvas
 		      Time_Container(Window).TimeMode = 24
 		    Else
 		      // 12 HOUR
-		      Dim formattedAMPM as String = Uppercase(inAMPM)
+		      Var formattedAMPM as String = Uppercase(inAMPM)
 		      Time_Container(Window).TimeMode = 12
 		      Time_Container(Window).Time_AMPM = formattedAMPM
 		    End If

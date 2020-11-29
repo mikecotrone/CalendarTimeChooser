@@ -69,6 +69,7 @@ Begin Window DemoLaunchWindow
       Top             =   0
       Transparent     =   True
       Underline       =   False
+      UnicodeMode     =   0
       UseFocusRing    =   True
       Visible         =   True
       Width           =   489
@@ -329,7 +330,6 @@ Begin Window DemoLaunchWindow
       Backdrop        =   0
       DoubleBuffer    =   True
       Enabled         =   True
-      EraseBackground =   "False"
       Height          =   20
       HelpTag         =   ""
       Index           =   -2147483648
@@ -984,12 +984,12 @@ End
 #tag Events ClockHandColorPickerCanvas
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  dim p As new Picture(me.Width,me.Height)
+		  Var p As new Picture(me.Width,me.Height)
 		  static handColor as color=MyPicker.ClockHandColor
 		  if SelectColor(handColor, "Select a color for the clock hands") then
 		    MyPicker.ClockHandColor = handColor
 		    Invalidate(False)
-		    dim v As Variant=handColor
+		    Var v As Variant=handColor
 		    SelectedHandColorLabel.Text=v.StringValue
 		    MyPicker.Show
 		  end if
@@ -1003,7 +1003,7 @@ End
 		  g.PenWidth=2
 		  g.DrawRoundRect(2,2,me.Width-2,me.Height-2,6,6)
 		  
-		  dim p As new Picture(me.Width,me.Height)
+		  Var p As new Picture(me.Width,me.Height)
 		  p.Graphics.ForeColor=MyPicker.ClockHandColor
 		  //p.Graphics.FillRoundRect 0,0,41,12,6,6
 		  //g.DrawPicture(p,5,5)
@@ -1012,7 +1012,7 @@ End
 		  g.DrawPicture(p,4,4)
 		  
 		  
-		  dim v As Variant=MyPicker.ClockHandColor
+		  Var v As Variant=MyPicker.ClockHandColor
 		  SelectedHandColorLabel.Text=v.StringValue
 		End Sub
 	#tag EndEvent

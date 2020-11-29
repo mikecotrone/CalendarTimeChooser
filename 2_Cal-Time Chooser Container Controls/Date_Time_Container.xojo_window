@@ -48,7 +48,6 @@ Begin ContainerControl Date_Time_Container
       HasBackColor    =   False
       Height          =   252
       HelpTag         =   ""
-      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   10
       LockBottom      =   False
@@ -81,7 +80,6 @@ Begin ContainerControl Date_Time_Container
       Height          =   252
       HelpTag         =   ""
       HideAMPM        =   False
-      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   250
       LockBottom      =   False
@@ -485,7 +483,7 @@ End
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  dim d as new date(Calendar_Container1.Calendar1.SelectedDate)
+			  Var d as new date(Calendar_Container1.Calendar1.SelectedDate)
 			  
 			  if Time_Container1.Time_AMPM="AM" then
 			    if Time_Container1.Time_Hour="12" then
@@ -518,9 +516,10 @@ End
 			  if value.Hour=0 then
 			    Time_Container1.Time_Hour="12"
 			  elseif value.Hour>12 then
-			    Time_Container1.Time_Hour=str(value.Hour-12)
+			    Var thisHrInt as Integer = value.Hour-12
+			    Time_Container1.Time_Hour = thisHrInt.ToString
 			  else
-			    Time_Container1.Time_Hour=str(value.Hour)
+			    Time_Container1.Time_Hour = value.Hour.ToString
 			  end if
 			End Set
 		#tag EndSetter
@@ -661,27 +660,27 @@ End
 	#tag Event
 		Sub SelectedTime(inHours as String, inMinutes as String, optional inAMPM as String)
 		  // ASSIGN TIME BACK TO SELECTEDDATE  DATE PROPERTY
-		  SelectedDate.Hour = CDbl(inHours)
-		  SelectedDate.Minute = CDbl(inMinutes)
+		  SelectedDate.Hour = inHours.ToDouble
+		  SelectedDate.Minute = inMinutes.ToDouble
 		  
 		  // ALSO PASSING TIME AS A STRING INTO THIS EVENT FOR MAXIMUM FLEXIBILITY
-		  Dim selectedHour as String  = inHours
-		  Dim selectedMinutes as string = inMinutes
-		  Dim selectedAMPM as string = inAMPM
+		  Var selectedHour as String  = inHours
+		  Var selectedMinutes as string = inMinutes
+		  Var selectedAMPM as string = inAMPM
 		  
 		  
 		  // EXAMPLE RESULTS USAGE:
 		  
 		  // 24 HOUR TIME:
-		  //Dim TimeTwentyfour as String = SelectedDate.SQLDateTime
+		  //Var TimeTwentyfour as String = SelectedDate.SQLDateTime
 		  //MsgBox "Selected 24 Hour Time: " + EndOfLine +"   " + TimeTwentyfour
 		  
 		  // 12 HOUR TIME:
-		  'Dim TimeTwelve as String  = SelectedDate.LongTime
+		  'Var TimeTwelve as String  = SelectedDate.LongTime
 		  'MsgBox "Selected 12 Hour Time: " + EndOfLine +" " + TimeTwelve
 		  
 		  // CUSTOM TIME:
-		  'Dim CustomTime as String = "("+selectedHour+":"+selectedMinutes+"  " + selectedAMPM+")"
+		  'Var CustomTime as String = "("+selectedHour+":"+selectedMinutes+"  " + selectedAMPM+")"
 		  'MsgBox "Selected Custom Time Format: " + EndOfLine +" " +  CustomTime
 		End Sub
 	#tag EndEvent
