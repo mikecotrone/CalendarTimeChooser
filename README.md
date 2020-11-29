@@ -3,15 +3,15 @@ CalendarTimeChooser
 
 Xojo Calendar and Time Chooser Project
 
-Date:           February 2019
+Date:           November 2020
 
-Language:       Xojo all versions
+Language:       Xojo 2020 R2 and below (API 1.0)
 
-Author:         Mike Cotrone (mikec@intelligentvisibility.com)
+Author:         Mike Cotrone (mikec@2tab.io)
 
-Version:        3.0.4
+Version:        3.0.5
 
-Contributors:   Mike Cotrone, Axel Schneider, Jim McKay
+Contributors:   Mike Cotrone, Norman Palardy, Axel Schneider, Jim McKay
 
 
 
@@ -29,8 +29,8 @@ What is this Project?
   - Recurring calendar selection option
   
   
- ![image](https://github.com/IntelligentVisibility/CalendarTimeChooser/blob/master/Documentation/CalendarTimeChooser_SS1.png)
- ![image](https://github.com/IntelligentVisibility/CalendarTimeChooser/blob/master/Documentation/CalendarTimeChooser_SS2.png)
+ ![image](https://github.com/IntelligentVisibility/CalendarTimeChooser/blob/master/Documentation/Screenshots/CalendarTimeChooser_SS1.png)
+ ![image](https://github.com/IntelligentVisibility/CalendarTimeChooser/blob/master/Documentation/Screenshots/CalendarTimeChooser_SS2.png)
 
 
 How to Use this Project?
@@ -46,7 +46,14 @@ How to Report Issues?
 Please submit bug/issues at:
 https://github.com/IntelligentVisibility/CalendarTimeChooser/issues
   
-  
+Whats New in 3.0.5?
+------------------
+- Code Refactoring by Norman Palardy: Simplified the use of this project by removing the need to type two and three name spaces deep to set settings.
+
+- Old: MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.StartYear = 2010
+
+- New: MyPicker.StartYear = 2010
+
 Whats New in 3.0.4?
 ------------------
 - New Feature: Time separator flashing option

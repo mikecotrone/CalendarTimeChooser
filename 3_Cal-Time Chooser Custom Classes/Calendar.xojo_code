@@ -10,15 +10,11 @@ Inherits Canvas
 
 	#tag Event
 		Sub MouseExit()
-		  Dim i as integer
-		  for i = 0 to UBound(CalendarButtonClassArray)
-		    
+		  Var lr as Integer = CalendarButtonClassArray.LastIndex
+		  Var i as integer
+		  for i = 0 to lr
 		    CalendarButtonClassArray(i).mouseOver = False
-		    
 		  next
-		  
-		  
-		  
 		  
 		  Me.Invalidate(False)
 		End Sub
@@ -26,38 +22,18 @@ Inherits Canvas
 
 	#tag Event
 		Sub MouseMove(X As Integer, Y As Integer)
-		  
-		  Dim i as integer
-		  for i = 0 to UBound(CalendarButtonClassArray)
-		    
-		    
+		  Var lr as Integer = CalendarButtonClassArray.LastIndex
+		  Var i as integer
+		  for i = 0 to lr
 		    if i > 6  Then
 		      if  X >= CalendarButtonClassArray(i).LeftX AND X <= CalendarButtonClassArray(i).RightX AND Y >= CalendarButtonClassArray(i).TopY AND Y <= CalendarButtonClassArray(i).BottomY Then
-		        
-		        
-		        
-		        
 		        CalendarButtonClassArray(i).mouseOver = True
 		        
-		        
-		        
-		        
-		        
 		      Else
-		        
-		        
-		        
-		        
 		        CalendarButtonClassArray(i).mouseOver = False
-		        
-		        
-		        
-		        
 		        
 		      end if
 		    end if
-		    
-		    
 		    
 		    Me.Invalidate(False)
 		  next
@@ -66,9 +42,9 @@ Inherits Canvas
 
 	#tag Event
 		Sub MouseUp(X As Integer, Y As Integer)
-		  Dim i as integer
-		  for i = 0 to UBound(CalendarButtonClassArray)
-		    
+		  Var lr as Integer = CalendarButtonClassArray.LastIndex
+		  Var i as integer
+		  for i = 0 to lr
 		    
 		    if Keyboard.ShiftKey = True Then // Multi Selection
 		      if AllowMultipleSelections = True Then
@@ -82,7 +58,7 @@ Inherits Canvas
 		            SelectedDate.Month = convertMonthStringToMonthNumber(PreviousMonth)
 		          end if
 		          SelectedDate.Month = convertMonthStringToMonthNumber(SelectedMonth)
-		          SelectedDate.Year = CDbl(SelectedYear)
+		          SelectedDate.Year = SelectedYear.ToDouble
 		          SelectedDate.Day = CalendarButtonClassArray(i).Day
 		          CalendarButtonClassArray(i).SelectedDate = SelectedDate
 		          Calendar_Container(window).raiseThisEvent(CalendarButtonClassArray(i).SelectedDate)
@@ -97,7 +73,7 @@ Inherits Canvas
 		          CalendarButtonClassArray(i).Selected = True
 		          SelectedDate = New Date
 		          // Set the correct month
-		          Dim MonthToAdvance as String
+		          Var MonthToAdvance as String
 		          if CalendarButtonClassArray(i).NextMonthMark = True Then
 		            SelectedDate.Month = convertMonthStringToMonthNumber(NextMonth)
 		            SelectedDate.Day = CalendarButtonClassArray(i).Day
@@ -107,7 +83,7 @@ Inherits Canvas
 		            SelectedDate.Day = CalendarButtonClassArray(i).Day
 		            MonthToAdvance = "Prev"
 		          end if
-		          SelectedDate.Year = CDbl(SelectedYear)
+		          SelectedDate.Year = SelectedYear.ToDouble
 		          CalendarButtonClassArray(i).SelectedDate = SelectedDate
 		          if MonthToAdvance = "Next" or MonthToAdvance = "Prev" Then
 		            // Converting here
@@ -116,7 +92,8 @@ Inherits Canvas
 		            Calendar_Container(window).raiseThisEvent(SelectedDate)
 		            //
 		            
-		            for ii as integer = 0 to UBound(CalendarButtonClassArray)
+		            Var lr2 as Integer = CalendarButtonClassArray.LastIndex
+		            for ii as integer = 0 to lr2
 		              if CalendarButtonClassArray(ii).Day = SelectedDate.Day Then
 		                CalendarButtonClassArray(ii).TransMark = True
 		                CalendarButtonClassArray(ii).SelectedDate = SelectedDate
@@ -159,7 +136,7 @@ Inherits Canvas
 		  
 		  
 		  // Set Initially the Selected Date for Today's Date
-		  Dim TodayIsTheDay as new Date
+		  Var TodayIsTheDay as new Date
 		  SelectedDate = TodayIsTheDay
 		End Sub
 	#tag EndEvent
@@ -174,15 +151,13 @@ Inherits Canvas
 		  
 		  // DRAW CANVAS BORDER OUTLINE 
 		  g.ForeColor = RGB(170,170,170)
-		  g.PenHeight = 2
-		  g.PenWidth = 2
+		  g.PenHeight = .5
+		  g.PenWidth = .5
 		  #IF TargetWin32 Then
-		    g.DrawRect(0,0,me.Width,me.Height)
+		    g.DrawRect(0,0,g.Width,g.Height)
 		  #ELSE
-		    g.DrawroundRect(0,0,me.Width,me.Height,0,0)
+		    g.DrawroundRect(0,0,g.Width,g.Height,0,0)
 		  #ENDIF
-		  
-		  
 		  
 		  '// DRAW GRIDLINES FOR DEBUGGING
 		  'for q as integer = 0 to CalendarButtonClassArray.Ubound
@@ -191,15 +166,16 @@ Inherits Canvas
 		  'g.DrawLine(CalendarButtonClassArray(q).LeftX, CalendarButtonClassArray(q).TopY, CalendarButtonClassArray(q).LeftX, CalendarButtonClassArray(q).BottomY)
 		  'next q
 		  
-		  
+		  g.PenHeight = 1
+		  g.PenWidth = 1
 		  
 		  // DRAW COLUMN LINE: USER OPTION
 		  If drawColumnLines = True Then
-		    Dim lineWidth as Integer = 1
-		    Dim colLineX1POS as Integer = 30
-		    Dim colLineY1POS as Integer = 8
-		    Dim colLineX2POS as Integer = 30
-		    Dim colLineY2POS as Integer = 160
+		    Var lineWidth as Integer = 1
+		    Var colLineX1POS as Integer = 30
+		    Var colLineY1POS as Integer = 8
+		    Var colLineX2POS as Integer = 30
+		    Var colLineY2POS as Integer = 160
 		    g.PenHeight = lineWidth
 		    g.PenWidth = lineWidth
 		    
@@ -211,11 +187,12 @@ Inherits Canvas
 		  End If
 		  
 		  // SET TODAYS DATE ON FIRST RUN
-		  dim OffSet as Integer = 3
-		  dim TwoOffset as Integer = (OffSet*2)
-		  dim CurveSize as Integer = 6
+		  Var OffSet as Integer = 3
+		  Var TwoOffset as Integer = (OffSet*2)
+		  Var CurveSize as Integer = 6
+		  Var lr as Integer = CalendarButtonClassArray.LastIndex
 		  if SelectTodayRunOnce = False Then
-		    for i as integer = 7 to UBound(CalendarButtonClassArray)
+		    for i as integer = 7 to lr
 		      if CalendarButtonClassArray(i).MyDate = CurrentDate Then
 		        CalendarButtonClassArray(i).Selected = True
 		        CalendarButtonClassArray(i).SelectedDate = CurrentDate
@@ -226,22 +203,25 @@ Inherits Canvas
 		  
 		  
 		  // HIGHLIGHT CALENDAR DAY SLOT WHEN SELECTED
-		  for i as integer = 0 to UBound(CalendarButtonClassArray)
+		  Var lr2 as Integer = CalendarButtonClassArray.LastIndex
+		  for i as integer = 0 to lr2
 		    if CalendarButtonClassArray(i).Selected = True Then
 		      if CalendarButtonClassArray(i).Day <> 0 Then
 		        // Capture Selected Date in Date format for Custom Event
 		        g.ForeColor = &c1261A0 
 		        #IF TargetMacOS OR TargetLinux Then
-		          Dim theLeft as Integer = CalendarButtonClassArray(i).LeftX + 2
-		          Dim theTop as Integer = CalendarButtonClassArray(i).TopY
-		          Dim theWidth as Integer = CalendarButtonClassArray(i).Width
-		          Dim theHeight as Integer = (CalendarButtonClassArray(i).Height)+1
+		          
+		          Var theLeft as Integer = CalendarButtonClassArray(i).LeftX
+		          Var theTop as Integer = CalendarButtonClassArray(i).TopY
+		          Var theWidth as Integer = CalendarButtonClassArray(i).Width + 1
+		          Var theHeight as Integer = (CalendarButtonClassArray(i).Height)+1
 		          g.FillroundRect(theLeft, theTop,theWidth,theHeight,4,4)
+		          
 		        #ELSEIF TargetWin32 Then
-		          Dim theLeft as Integer = CalendarButtonClassArray(i).LeftX+OffSet+1
-		          Dim theTop as Integer = CalendarButtonClassArray(i).TopY+OffSet
-		          Dim theWidth as Integer = CalendarButtonClassArray(i).Width-TwoOffset
-		          Dim theHeight as Integer = CalendarButtonClassArray(i).Height-TwoOffset
+		          Var theLeft as Integer = CalendarButtonClassArray(i).LeftX+OffSet+1
+		          Var theTop as Integer = CalendarButtonClassArray(i).TopY+OffSet
+		          Var theWidth as Integer = CalendarButtonClassArray(i).Width-TwoOffset
+		          Var theHeight as Integer = CalendarButtonClassArray(i).Height-TwoOffset
 		          g.FillRoundRect(theLeft, theTop,theWidth,theHeight,0,0)
 		        #ENDIF
 		      End if
@@ -250,22 +230,25 @@ Inherits Canvas
 		  
 		  
 		  // MOUSE OVER HIGHLIGHT SLOT
-		  for i as integer = 0 to UBound(CalendarButtonClassArray)
+		  Var lr3 as Integer = CalendarButtonClassArray.LastIndex
+		  for i as integer = 0 to lr3
 		    if CalendarButtonClassArray(i).mouseOver = True Then
 		      if CalendarButtonClassArray(i).Day <> 0 Then
 		        // Capture Selected Date in Date format for Custom Event
 		        g.ForeColor = &c1261A0 
 		        #IF TargetMacOS OR TargetLinux Then
-		          Dim theLeft as Integer = CalendarButtonClassArray(i).LeftX + 2
-		          Dim theTop as Integer = CalendarButtonClassArray(i).TopY
-		          Dim theWidth as Integer = CalendarButtonClassArray(i).Width
-		          Dim theHeight as Integer = (CalendarButtonClassArray(i).Height) +1
+		          
+		          Var theLeft as Integer = CalendarButtonClassArray(i).LeftX
+		          Var theTop as Integer = CalendarButtonClassArray(i).TopY
+		          Var theWidth as Integer = CalendarButtonClassArray(i).Width + 1
+		          Var theHeight as Integer = (CalendarButtonClassArray(i).Height) +1
 		          g.DrawroundRect(theLeft, theTop,theWidth,theHeight,4,4)
+		          
 		        #ELSEIF TargetWin32 Then
-		          Dim theLeft as Integer = CalendarButtonClassArray(i).LeftX+OffSet+1
-		          Dim theTop as Integer = CalendarButtonClassArray(i).TopY+OffSet
-		          Dim theWidth as Integer = CalendarButtonClassArray(i).Width-TwoOffset
-		          Dim theHeight as Integer = CalendarButtonClassArray(i).Height-TwoOffset
+		          Var theLeft as Integer = CalendarButtonClassArray(i).LeftX+OffSet+1
+		          Var theTop as Integer = CalendarButtonClassArray(i).TopY+OffSet
+		          Var theWidth as Integer = CalendarButtonClassArray(i).Width-TwoOffset
+		          Var theHeight as Integer = CalendarButtonClassArray(i).Height-TwoOffset
 		          g.DrawRect(theLeft, theTop,theWidth,theHeight)
 		        #ENDIF
 		      End if
@@ -282,18 +265,18 @@ Inherits Canvas
 		  g.Bold = false
 		  g.TextSize = 12
 		  
-		  dim thisPosX, thisPosY as Integer
-		  Dim nextPosX as Integer
+		  Var thisPosX, thisPosY as Integer
+		  Var nextPosX as Integer
 		  for p as integer = 0 to 6
 		    
 		    if CalMonFirstDayOfWeekBool = False Then
 		      // CALCULATE SPACING FOR VARIABLE ABBR NAMES --> SUN - SAT
-		      dim thisAbbrvStrW as Double = g.StringWidth(DayOfWeekArray_SS(p))
-		      dim thisAbbrvStrH as Double = g.StringHeight(DayOfWeekArray_SS(p), 500)
-		      dim thisSlotW as Double = CalendarButtonClassArray(p).Width
-		      dim thisSlotH as Double = CalendarButtonClassArray(p).Height
-		      dim thisSlotLeft as Double = CalendarButton.RightX
-		      dim thisSlotTop as Double = CalendarButtonClassArray(p).TopY
+		      Var thisAbbrvStrW as Double = g.StringWidth(DayOfWeekArray_SS(p))
+		      Var thisAbbrvStrH as Double = g.StringHeight(DayOfWeekArray_SS(p), 500)
+		      Var thisSlotW as Double = CalendarButtonClassArray(p).Width
+		      Var thisSlotH as Double = CalendarButtonClassArray(p).Height
+		      Var thisSlotLeft as Double = CalendarButton.RightX
+		      Var thisSlotTop as Double = CalendarButtonClassArray(p).TopY
 		      
 		      thisPosX =  thisPosX + (thisSlotW/2) - (thisAbbrvStrW/2)
 		      thisPosY =  (thisSlotH/2) + (thisAbbrvStrH/2)-2
@@ -304,12 +287,12 @@ Inherits Canvas
 		      
 		    Elseif CalMonFirstDayOfWeekBool = True Then
 		      // CALCULATE SPACING FOR VARIABLE ABBR NAMES - MON - SUN
-		      dim thisAbbrvStrW as Double = g.StringWidth(DayOfWeek_MS(p))
-		      dim thisAbbrvStrH as Double = g.StringHeight(DayOfWeek_MS(p), 500)
-		      dim thisSlotW as Double = CalendarButtonClassArray(p).Width
-		      dim thisSlotH as Double = CalendarButtonClassArray(p).Height
-		      dim thisSlotLeft as Double = CalendarButton.RightX
-		      dim thisSlotTop as Double = CalendarButtonClassArray(p).TopY
+		      Var thisAbbrvStrW as Double = g.StringWidth(DayOfWeek_MS(p))
+		      Var thisAbbrvStrH as Double = g.StringHeight(DayOfWeek_MS(p), 500)
+		      Var thisSlotW as Double = CalendarButtonClassArray(p).Width
+		      Var thisSlotH as Double = CalendarButtonClassArray(p).Height
+		      Var thisSlotLeft as Double = CalendarButton.RightX
+		      Var thisSlotTop as Double = CalendarButtonClassArray(p).TopY
 		      
 		      thisPosX =  thisPosX + (thisSlotW/2) - (thisAbbrvStrW/2)
 		      thisPosY =  (thisSlotH/2) + (thisAbbrvStrH/2)-2
@@ -323,14 +306,12 @@ Inherits Canvas
 		  next p
 		  
 		  
-		  
-		  
-		  
 		  // DRAW DAY NUMBER IN CALENDAR SLOT
-		  Dim SelectMonthInt as Integer = convertMonthStringToMonthNumber(SelectedMonth)
-		  for i as integer = 7 to UBound(CalendarButtonClassArray)
+		  Var SelectMonthInt as Integer = convertMonthStringToMonthNumber(SelectedMonth)
+		  Var lr4 as Integer = CalendarButtonClassArray.LastIndex
+		  for i as integer = 7 to lr4
 		    if CalendarButtonClassArray(i).Selected = True Then
-		      if CDbl(SelectedYear) = CurrentDate.Year AND SelectMonthInt = CurrentDate.Month AND CalendarButtonClassArray(i).Day = CurrentDate.Day Then
+		      if SelectedYear.ToDouble = CurrentDate.Year AND SelectMonthInt = CurrentDate.Month AND CalendarButtonClassArray(i).Day = CurrentDate.Day Then
 		        g.bold = false
 		        g.ForeColor = RGB(255,255,255)
 		      Else
@@ -340,7 +321,7 @@ Inherits Canvas
 		    elseif CalendarButtonClassArray(i).NextMonthMark = True OR  CalendarButtonClassArray(i).PrevMonthMark = True Then
 		      g.bold = false
 		      g.ForeColor= RGB(170,170,170)
-		    elseif CDbl(SelectedYear) = CurrentDate.Year AND SelectMonthInt = CurrentDate.Month AND CalendarButtonClassArray(i).Day = CurrentDate.Day Then
+		    elseif SelectedYear.ToDouble = CurrentDate.Year AND SelectMonthInt = CurrentDate.Month AND CalendarButtonClassArray(i).Day = CurrentDate.Day Then
 		      g.bold = True
 		      g.ForeColor = &c1261A
 		    Else
@@ -354,9 +335,9 @@ Inherits Canvas
 		        g.DrawString("",CalendarButtonClassArray(i).LeftX+13,CalendarButtonClassArray(i).TopY+17)
 		      Else
 		        if CalendarButtonClassArray(i).Day > 0 AND CalendarButtonClassArray(i).Day < 10 Then
-		          g.DrawString(Str(CalendarButtonClassArray(i).day),CalendarButtonClassArray(i).LeftX+12.5,CalendarButtonClassArray(i).TopY+17)
+		          g.DrawString(CalendarButtonClassArray(i).day.ToString,CalendarButtonClassArray(i).LeftX+12.5,CalendarButtonClassArray(i).TopY+17)
 		        Else
-		          g.DrawString(Str(CalendarButtonClassArray(i).day),CalendarButtonClassArray(i).LeftX+10,CalendarButtonClassArray(i).TopY+17)
+		          g.DrawString(CalendarButtonClassArray(i).day.ToString,CalendarButtonClassArray(i).LeftX+10,CalendarButtonClassArray(i).TopY+17)
 		        End if
 		        
 		      End if
@@ -364,6 +345,7 @@ Inherits Canvas
 		    #ELSEIF TargetMacOS OR TargetLinux Then
 		      
 		      if CalendarButtonClassArray(i).Day = 0 Then
+		        
 		        g.DrawString("",CalendarButtonClassArray(i).LeftX+12.5,CalendarButtonClassArray(i).TopY+18)
 		        
 		        
@@ -371,9 +353,20 @@ Inherits Canvas
 		        
 		        if CalendarButtonClassArray(i).Day > 0 AND CalendarButtonClassArray(i).Day < 10 Then
 		          
-		          g.DrawString(Str(CalendarButtonClassArray(i).day),CalendarButtonClassArray(i).LeftX+12.5,CalendarButtonClassArray(i).TopY+17)
+		          Var calDayStr as String = CalendarButtonClassArray(i).day.ToString
+		          Var calDayStrW as Double = g.TextWidth(calDayStr)
+		          Var calDayStrH as Double = g.TextHeight(calDayStr, 80)
+		          
+		          Var leftX as Double = CalendarButtonClassArray(i).LeftX
+		          Var calDayXpos as Double = CalendarButtonClassArray(i).LeftX + calDayStrW
+		          
+		          Var calDayYpos as Double = 24/2 - CalendarButtonClassArray(i).TopY/2
+		          g.DrawString(calDayStr, calDayXpos, calDayYpos, calDayStrW)
+		          
+		          g.DrawString(CalendarButtonClassArray(i).day.ToString,CalendarButtonClassArray(i).LeftX+12.5,CalendarButtonClassArray(i).TopY+17)
+		          
 		        Else
-		          g.DrawString(Str(CalendarButtonClassArray(i).day),CalendarButtonClassArray(i).LeftX+8.5,CalendarButtonClassArray(i).TopY+17)
+		          g.DrawString(CalendarButtonClassArray(i).day.ToString,CalendarButtonClassArray(i).LeftX+8.5,CalendarButtonClassArray(i).TopY+17)
 		          
 		          
 		        End if
@@ -505,7 +498,7 @@ Inherits Canvas
 		    /////// English ///////
 		    ///////////////////////////
 		    //Sat - Sun
-		    Redim DayOfWeekArray_SS(-1)
+		    DayOfWeekArray_SS.ResizeTo(-1)
 		    DayOfWeekArray_SS.Append "Su"
 		    DayOfWeekArray_SS.Append "Mo"
 		    DayOfWeekArray_SS.Append "Tu"
@@ -514,7 +507,7 @@ Inherits Canvas
 		    DayOfWeekArray_SS.Append "Fr"
 		    DayOfWeekArray_SS.Append "Sa"
 		    // Mon - Sun
-		    Redim DayOfWeek_MS(-1)
+		    DayOfWeek_MS.ResizeTo(-1)
 		    DayOfWeek_MS.Append "Mo"
 		    DayOfWeek_MS.Append "Tu"
 		    DayOfWeek_MS.Append "We"
@@ -525,7 +518,7 @@ Inherits Canvas
 		    
 		  Case 1 // French
 		    //Sat - Sun
-		    Redim DayOfWeekArray_SS(-1)
+		    DayOfWeekArray_SS.ResizeTo(-1)
 		    DayOfWeekArray_SS.Append "Dim"
 		    DayOfWeekArray_SS.Append "Lun"
 		    DayOfWeekArray_SS.Append "Mar"
@@ -534,7 +527,7 @@ Inherits Canvas
 		    DayOfWeekArray_SS.Append "Ven"
 		    DayOfWeekArray_SS.Append "Sam"
 		    // Mon - Sun
-		    Redim DayOfWeek_MS(-1)
+		    DayOfWeek_MS.ResizeTo(-1)
 		    DayOfWeek_MS.Append "Lun"
 		    DayOfWeek_MS.Append "Mar"
 		    DayOfWeek_MS.Append "Mer"
@@ -545,7 +538,7 @@ Inherits Canvas
 		    
 		  Case 2 // Swedish
 		    //Sat - Sun
-		    Redim DayOfWeekArray_SS(-1)
+		    DayOfWeekArray_SS.ResizeTo(-1)
 		    DayOfWeekArray_SS.Append "Sön"
 		    DayOfWeekArray_SS.Append "Mån"
 		    DayOfWeekArray_SS.Append "Tis"
@@ -554,7 +547,7 @@ Inherits Canvas
 		    DayOfWeekArray_SS.Append "Fre"
 		    DayOfWeekArray_SS.Append "Lör"
 		    // Mon - Sun
-		    Redim DayOfWeek_MS(-1)
+		    DayOfWeek_MS.ResizeTo(-1)
 		    DayOfWeek_MS.Append "Mån"
 		    DayOfWeek_MS.Append "Tis"
 		    DayOfWeek_MS.Append "Ons"
@@ -564,7 +557,7 @@ Inherits Canvas
 		    DayOfWeek_MS.Append "Sön"
 		    
 		  Case 3 // Italian
-		    Redim DayOfWeekArray_SS(-1)
+		    DayOfWeekArray_SS.ResizeTo(-1)
 		    DayOfWeekArray_SS.Append "Dom"
 		    DayOfWeekArray_SS.Append "Mar"
 		    DayOfWeekArray_SS.Append "Mer"
@@ -573,7 +566,7 @@ Inherits Canvas
 		    DayOfWeekArray_SS.Append "Sab"
 		    DayOfWeekArray_SS.Append "Lör"
 		    // Mon - Sun
-		    Redim DayOfWeek_MS(-1)
+		    DayOfWeek_MS.ResizeTo(-1)
 		    DayOfWeek_MS.Append "Lun"
 		    DayOfWeek_MS.Append "Mar"
 		    DayOfWeek_MS.Append "Mer"
@@ -584,7 +577,7 @@ Inherits Canvas
 		    
 		    
 		  Case 4 // Spanish
-		    Redim DayOfWeekArray_SS(-1)
+		    DayOfWeekArray_SS.ResizeTo(-1)
 		    DayOfWeekArray_SS.Append "Do" // Sunday
 		    DayOfWeekArray_SS.Append "Lu"
 		    DayOfWeekArray_SS.Append "Ma"
@@ -593,7 +586,7 @@ Inherits Canvas
 		    DayOfWeekArray_SS.Append "Vi"
 		    DayOfWeekArray_SS.Append "Sá" // Saturday
 		    // Mon - Sun
-		    Redim DayOfWeek_MS(-1)
+		    DayOfWeek_MS.ResizeTo(-1)
 		    DayOfWeek_MS.Append "Lu" // Monday
 		    DayOfWeek_MS.Append "Ma"
 		    DayOfWeek_MS.Append "Mi"
@@ -604,7 +597,7 @@ Inherits Canvas
 		    
 		    
 		  Case 5 // Dutch  
-		    Redim DayOfWeekArray_SS(-1)
+		    DayOfWeekArray_SS.ResizeTo(-1)
 		    DayOfWeekArray_SS.Append "Zon" // Sunday
 		    DayOfWeekArray_SS.Append "Maa"
 		    DayOfWeekArray_SS.Append "Din"
@@ -613,7 +606,7 @@ Inherits Canvas
 		    DayOfWeekArray_SS.Append "Vry"
 		    DayOfWeekArray_SS.Append "Zat" // Saturday
 		    // Mon - Sun
-		    Redim DayOfWeek_MS(-1)
+		    DayOfWeek_MS.ResizeTo(-1)
 		    DayOfWeek_MS.Append "Maa" // Monday
 		    DayOfWeek_MS.Append "Din"
 		    DayOfWeek_MS.Append "Woe"
@@ -623,7 +616,7 @@ Inherits Canvas
 		    DayOfWeek_MS.Append "Zon" // Sunday
 		    
 		  Case 6 // German
-		    Redim DayOfWeekArray_SS(-1)
+		    DayOfWeekArray_SS.ResizeTo(-1)
 		    DayOfWeekArray_SS.Append "So" // Sunday
 		    DayOfWeekArray_SS.Append "Mo"
 		    DayOfWeekArray_SS.Append "Di"
@@ -632,7 +625,7 @@ Inherits Canvas
 		    DayOfWeekArray_SS.Append "Fr"
 		    DayOfWeekArray_SS.Append "Sa" // Saturday
 		    // Mon - Sun
-		    Redim DayOfWeek_MS(-1)
+		    DayOfWeek_MS.ResizeTo(-1)
 		    DayOfWeek_MS.Append "Mo" // Monday
 		    DayOfWeek_MS.Append "Di"
 		    DayOfWeek_MS.Append "Mi"
@@ -642,7 +635,7 @@ Inherits Canvas
 		    DayOfWeek_MS.Append "So" // Sunday
 		    
 		  Case 7 // Africaans
-		    Redim DayOfWeekArray_SS(-1)
+		    DayOfWeekArray_SS.ResizeTo(-1)
 		    DayOfWeekArray_SS.Append "Son" // Sunday
 		    DayOfWeekArray_SS.Append "Maa"
 		    DayOfWeekArray_SS.Append "Din"
@@ -651,7 +644,7 @@ Inherits Canvas
 		    DayOfWeekArray_SS.Append "Vry"
 		    DayOfWeekArray_SS.Append "Sat" // Saturday
 		    // Mon - Sun
-		    Redim DayOfWeek_MS(-1)
+		    DayOfWeek_MS.ResizeTo(-1)
 		    DayOfWeek_MS.Append "Maa" // Monday
 		    DayOfWeek_MS.Append "Din"
 		    DayOfWeek_MS.Append "Woe"
@@ -661,7 +654,7 @@ Inherits Canvas
 		    DayOfWeek_MS.Append "Son" // Sunday
 		    
 		  Case 8 // Polish
-		    Redim DayOfWeekArray_SS(-1)
+		    DayOfWeekArray_SS.ResizeTo(-1)
 		    DayOfWeekArray_SS.Append "Ni" // Sunday
 		    DayOfWeekArray_SS.Append "Pn"
 		    DayOfWeekArray_SS.Append "Wt"
@@ -670,7 +663,7 @@ Inherits Canvas
 		    DayOfWeekArray_SS.Append "Pt"
 		    DayOfWeekArray_SS.Append "Sob" // Saturday
 		    // Mon - Sun
-		    Redim DayOfWeek_MS(-1)
+		    DayOfWeek_MS.ResizeTo(-1)
 		    DayOfWeek_MS.Append "Pn" // Monday
 		    DayOfWeek_MS.Append "Wt"
 		    DayOfWeek_MS.Append "Śr"
@@ -680,7 +673,7 @@ Inherits Canvas
 		    DayOfWeek_MS.Append "Ni" // Sunday
 		    
 		  Case 9 // Portuguese
-		    Redim DayOfWeekArray_SS(-1)
+		    DayOfWeekArray_SS.ResizeTo(-1)
 		    DayOfWeekArray_SS.Append "Dom" // Sunday
 		    DayOfWeekArray_SS.Append "Seg"
 		    DayOfWeekArray_SS.Append "Ter"
@@ -689,7 +682,7 @@ Inherits Canvas
 		    DayOfWeekArray_SS.Append "Sex"
 		    DayOfWeekArray_SS.Append "Sab" // Saturday
 		    // Mon - Sun
-		    Redim DayOfWeek_MS(-1)
+		    DayOfWeek_MS.ResizeTo(-1)
 		    DayOfWeek_MS.Append "Seg" // Monday
 		    DayOfWeek_MS.Append "Ter"
 		    DayOfWeek_MS.Append "Qua"
@@ -893,25 +886,6 @@ Inherits Canvas
 
 	#tag Method, Flags = &h21
 		Private Function calcMonthNumber(inMonth as String) As Integer
-		  //If inMonth = Localized_February AND LeapYearBool = True  OR inMonth = Localized_August Then
-		  //Return 0
-		  //Elseif inMonth = Localized_February AND LeapYearBool = False Then
-		  //Return 0
-		  //Elseif inMonth = Localized_November OR inMonth = Localized_March Then
-		  //Return 1
-		  //Elseif inMonth = Localized_June Then
-		  //Return 2
-		  //ElseIf inMonth = Localized_September OR inMonth = Localized_December Then
-		  //Return 3
-		  //ElseIf inMonth = Localized_January AND LeapYearBool = True OR inMonth = Localized_April OR inMonth = Localized_July Then
-		  //Return 4
-		  //Elseif inMonth = Localized_January AND LeapYearBool = False OR inMonth = Localized_October Then
-		  //Return 5
-		  //Elseif inMonth = Localized_May Then
-		  //Return 6
-		  //End if
-		  //
-		  
 		  // FIX FROM JON OGEN
 		  If inMonth = Localized_February AND LeapYearBool = True  OR inMonth = Localized_August Then
 		    Return 0
@@ -935,13 +909,13 @@ Inherits Canvas
 	#tag Method, Flags = &h0
 		Function calculate1stDayOfMonth() As String
 		  // Need to Find out which Day of the Week this Month's 1st Day starts on
-		  Dim thisYear as Integer = Cdbl(SelectedYear)
+		  Var thisYear as Integer = SelectedYear.ToDouble
 		  LeapYearBool = calcLeapYear(thisYear)
 		  
 		  // Calculate to get Weekday Number
-		  Dim WeekdayNum as integer = (CenturyNumber + YearNumber + MonthNumber)
+		  Var WeekdayNum as integer = (CenturyNumber + YearNumber + MonthNumber)
 		  
-		  DIM CalcWeekDayNum as Integer = WeekdayNum Mod 7
+		  Var CalcWeekDayNum as Integer = WeekdayNum Mod 7
 		  
 		  // Map Weekday Number to Weekday String
 		  FirstWeekday = getDayOfWeekString(CalcWeekDayNum)
@@ -963,7 +937,7 @@ Inherits Canvas
 	#tag Method, Flags = &h0
 		Function calculateYear(inYear as String) As Integer
 		  // Expect String from PopUp Menu but needs to convert to Integer
-		  Dim InYearInt as Integer = CDbl(inYear)
+		  Var InYearInt as Integer = inYear.ToDouble
 		  LeapYearBool = calcLeapYear(InYearInt)
 		  
 		  // Year Number
@@ -979,16 +953,16 @@ Inherits Canvas
 	#tag Method, Flags = &h21
 		Private Function calcYearNumber(inYear as String) As Integer
 		  // PUT BOUNDS AROUND YEAR SELECTION
-		  Dim CalcYearFinal, theYear as integer
+		  Var CalcYearFinal, theYear as integer
 		  
-		  theYear = CDbl(inYear)
+		  theYear = inYear.ToDouble
 		  If theYear < StartYear OR theYear > EndYear Then
 		    Return -1
 		  End If
 		  
-		  Dim TrimFirstTwoDigits as String = inYear.Right(2)
-		  Dim Year as Integer = CDbl(TrimFirstTwoDigits)
-		  Dim CalcYearNum as Integer
+		  Var TrimFirstTwoDigits as String = inYear.Right(2)
+		  Var Year as Integer = TrimFirstTwoDigits.ToDouble
+		  Var CalcYearNum as Integer
 		  CalcYearNum  = Year + Year / 4
 		  
 		  
@@ -1000,7 +974,8 @@ Inherits Canvas
 
 	#tag Method, Flags = &h21
 		Private Sub clearDays()
-		  for i as integer = 0 to UBound(CalendarButtonClassArray)
+		  Var lr as Integer = CalendarButtonClassArray.LastIndex
+		  for i as integer = 0 to lr
 		    CalendarButtonClassArray(i).Day = 0
 		  next i
 		End Sub
@@ -1102,10 +1077,10 @@ Inherits Canvas
 
 	#tag Method, Flags = &h0
 		Sub deselectAll()
-		  for i as integer = 0 to UBound(CalendarButtonClassArray)
+		  Var lr as Integer = CalendarButtonClassArray.LastIndex
+		  for i as integer = 0 to lr
 		    CalendarButtonClassArray(i).Selected = False
 		    CalendarButtonClassArray(i).mouseOver = False
-		    
 		  next i
 		  
 		  Me.Invalidate(False)
@@ -1266,7 +1241,7 @@ Inherits Canvas
 	#tag Method, Flags = &h21
 		Private Sub initialAssignmentCalendarButtons(inNumOfSpaces as Integer)
 		  // CREATE EACH CALENDAR TIME SLOT
-		  Dim row, col as integer
+		  Var row, col as integer
 		  
 		  for y as integer = 1 to 49
 		    Select Case y
@@ -1327,7 +1302,7 @@ Inherits Canvas
 		      CalendarButton.Row = row
 		      
 		    End Select
-		    CalendarButtonClassArray.Append CalendarButton
+		    CalendarButtonClassArray.Add (CalendarButton)
 		  Next y
 		  
 		End Sub
@@ -1349,8 +1324,8 @@ Inherits Canvas
 		  Calendar_Container(window).MonthPopup.AddRow Localized_November
 		  Calendar_Container(window).MonthPopup.AddRow Localized_December
 		  
-		  Dim TodaysMonth as New Date
-		  Dim TodaysMonthString as String
+		  Var TodaysMonth as New Date
+		  Var TodaysMonthString as String
 		  
 		  TodaysMonthString  = convertMonthIntToMonthString(TodaysMonth.Month)
 		  
@@ -1371,22 +1346,22 @@ Inherits Canvas
 		    // IF NO RANGE IS USER SELECTED
 		    Calendar_Container(window).YearPopup.DeleteAllRows
 		    for i as integer = 1905 to 2060
-		      Calendar_Container(window).YearPopup.AddRow Str(i)
+		      Calendar_Container(window).YearPopup.AddRow (i.ToString)
 		    next i
 		  Else
 		    // USER SELECTED YEAR RANGE
 		    Calendar_Container(window).YearPopup.DeleteAllRows
 		    for i as integer = inStartYear to inEndYear
-		      Calendar_Container(window).YearPopup.AddRow Str(i)
+		      Calendar_Container(window).YearPopup.AddRow (i.ToString)
 		    next i
 		  end if
 		  
 		  // Load Curent Year if inSelectedYear = 0
-		  Dim TodaysYear as New Date
+		  Var TodaysYear as New Date
 		  
 		  if inSelectedYear = 0 Then
 		    for i as integer = 0 to Calendar_Container(window).YearPopup.ListCount-1
-		      if Str(TodaysYear.Year) = Calendar_Container(window).YearPopup.List(i) Then
+		      if TodaysYear.Year.ToString = Calendar_Container(window).YearPopup.List(i) Then
 		        Calendar_Container(window).YearPopup.ListIndex = i
 		      End if
 		    next i
@@ -1394,7 +1369,7 @@ Inherits Canvas
 		  Elseif inSelectedYear <> 0 Then
 		    
 		    for j as integer = 0 to Calendar_Container(window).YearPopup.ListCount-1
-		      if Str(inSelectedYear) = Calendar_Container(window).YearPopup.List(j) Then
+		      if inSelectedYear.ToString = Calendar_Container(window).YearPopup.List(j) Then
 		        Calendar_Container(window).YearPopup.ListIndex = j
 		      End if
 		    next j
@@ -1474,8 +1449,8 @@ Inherits Canvas
 
 	#tag Method, Flags = &h21
 		Private Sub remapSelectedToSlot()
-		  for i as integer = 0 to UBound(CalendarButtonClassArray)
-		    
+		  Var lr as Integer = CalendarButtonClassArray.LastIndex
+		  for i as integer = 0 to lr
 		    if CalendarButtonClassArray(i).SelectedDate= CalendarButtonClassArray(i).MyDate Then
 		      if CalendarButtonClassArray(i).Day = SelectedDate.Day Then
 		        CalendarButtonClassArray(i).Selected = True
@@ -1488,8 +1463,8 @@ Inherits Canvas
 
 	#tag Method, Flags = &h0
 		Sub selectDayToHighlight(inDate as Date)
-		  for i as integer = 0 to UBound(CalendarButtonClassArray)
-		    
+		  Var lr as Integer = CalendarButtonClassArray.LastIndex
+		  for i as integer = 0 to lr
 		    SelectedDate = New Date
 		    // Set the correct month
 		    SelectedDate = CurrentDate
@@ -1498,8 +1473,6 @@ Inherits Canvas
 		      CalendarButtonClassArray(i).Selected = True
 		    End if
 		    Me.Invalidate(False)
-		    
-		    
 		  next
 		End Sub
 	#tag EndMethod
@@ -1538,9 +1511,10 @@ Inherits Canvas
 		    // Need a Check to See about Incrementing Year or not
 		    if NextMonth = Localized_January then
 		      // Need to increment Year
-		      NextYear = CDbl(Calendar_Container(Window).YearPopup.Text)+1
+		      Var nextYearDbl as Double = Calendar_Container(Window).YearPopup.Text.ToDouble + 1
+		      NextYear = nextYearDbl
 		      for i as integer = 0 to Calendar_Container(Window).YearPopup.ListCount-1
-		        if Str(NextYear) = Calendar_Container(Window).YearPopup.List(i) Then
+		        if NextYear.ToString = Calendar_Container(Window).YearPopup.List(i) Then
 		          Calendar_Container(Window).YearPopup.ListIndex = i
 		          exit
 		        End if
@@ -1557,9 +1531,10 @@ Inherits Canvas
 		    
 		    if PreviousMonth = Calendar_Container(Window).Calendar1.Localized_December then
 		      // Need to increment Year
-		      PrevYear = CDbl(Calendar_Container(Window).YearPopup.Text)-1
+		      Var nextYearDbl as Double = Calendar_Container(Window).YearPopup.Text.ToDouble -1 
+		      PrevYear = nextYearDbl
 		      for i as integer = 0 to Calendar_Container(Window).YearPopup.ListCount-1
-		        if Str(PrevYear) = Calendar_Container(Window).YearPopup.List(i) Then
+		        if PrevYear.ToString = Calendar_Container(Window).YearPopup.List(i) Then
 		          Calendar_Container(Window).YearPopup.ListIndex = i
 		          exit
 		        End if
@@ -1587,8 +1562,8 @@ Inherits Canvas
 
 	#tag Method, Flags = &h0
 		Sub UPDATE_MapDaysToCalSlots()
-		  Dim NumOfDaysInMonth as Integer  = numOfDaysInMonth(SelectedMonth)
-		  Dim FirstCalSlot as Integer
+		  Var NumOfDaysInMonth as Integer  = numOfDaysInMonth(SelectedMonth)
+		  Var FirstCalSlot as Integer
 		  
 		  // Calendar Slot Mappings for Selected Month
 		  FirstCalSlot = getFirstDayOfWeekCalSlotNumber(FirstWeekDay,CalMonFirstDayOfWeekBool) 
@@ -1597,10 +1572,10 @@ Inherits Canvas
 		  clearDays()
 		  
 		  // Map the Calendar Slots to Correct Month Days
-		  Dim DayCounter as Integer  = 0
-		  Dim i  as Integer
+		  Var DayCounter as Integer  = 0
+		  Var i  as Integer
 		  
-		  Dim theEndCalc as Integer = NumOfDaysInMonth+FirstCalSlot 
+		  Var theEndCalc as Integer = NumOfDaysInMonth+FirstCalSlot 
 		  
 		  for i = FirstCalSlot to theEndCalc
 		    // Erase Other Marks
@@ -1611,10 +1586,10 @@ Inherits Canvas
 		    CalendarButtonClassArray(i).Day = DayCounter
 		    
 		    // Set MYDate for Current Month
-		    Dim TmpDate as New Date
+		    Var TmpDate as New Date
 		    TmpDate.Month = convertMonthStringToMonthNumber(SelectedMonth)
 		    TmpDate.Day = DayCounter
-		    TmpDate.Year = CDbl(SelectedYear)
+		    TmpDate.Year = SelectedYear.ToDouble
 		    CalendarButtonClassArray(i).MyDate = TmpDate
 		    
 		    DayCounter = DayCounter + 1
@@ -1622,28 +1597,28 @@ Inherits Canvas
 		  Next i
 		  
 		  // Need to Calculate How many Available Spaces for the previous month's worth of Calendar Days
-		  Dim CalPrevMonthSpacesAvailable as Integer = calcHowManyCalSlotsAvailable(7,13,1)
+		  Var CalPrevMonthSpacesAvailable as Integer = calcHowManyCalSlotsAvailable(7,13,1)
 		  
 		  // Need to Calculate How many Available Spaces for the next month's worth of Calendar Days
-		  Dim CalNextMonthSpacesAvailable as Integer = calcHowManyCalSlotsAvailable(38,48,0)
+		  Var CalNextMonthSpacesAvailable as Integer = calcHowManyCalSlotsAvailable(38,48,0)
 		  
 		  // Figure Out which Months are Previous and Next
 		  PreviousMonth = getPrevMonthString(SelectedMonth)
 		  NextMonth = getNextMonthString(SelectedMonth)
 		  
 		  // Figure Out How Many Days are in the Previous and Next Month
-		  Dim PrevMonthNumOfDays as Integer = numOfDaysInMonth(PreviousMonth)
-		  Dim NextMonthNumOfDays as Integer = numOfDaysInMonth(NextMonth)
+		  Var PrevMonthNumOfDays as Integer = numOfDaysInMonth(PreviousMonth)
+		  Var NextMonthNumOfDays as Integer = numOfDaysInMonth(NextMonth)
 		  
 		  if Calendar_Container(window).Calendar1.IncludePrevNextMonthDaysBool = True Then
 		    // Now Map the Previous Available Slots with the appropriate Previous Month's Ending Calendar Days
-		    Dim PrevDayCounter as Integer  = PrevMonthNumOfDays
-		    Dim ii as integer
+		    Var PrevDayCounter as Integer  = PrevMonthNumOfDays
+		    Var ii as integer
 		    for ii = FirstCalSlot DownTo CalPrevMonthSpacesAvailable
 		      CalendarButtonClassArray(ii).Day = PrevDayCounter
 		      
-		      Dim TmpDate as New Date
-		      TmpDate.Year = CDbl(SelectedYear)
+		      Var TmpDate as New Date
+		      TmpDate.Year = SelectedYear.ToDouble
 		      TmpDate.Month = convertMonthStringToMonthNumber(PreviousMonth)
 		      TmpDate.Day = PrevDayCounter
 		      CalendarButtonClassArray(ii).MyDate = TmpDate
@@ -1654,13 +1629,13 @@ Inherits Canvas
 		    Next ii
 		    
 		    // Now Map the Next Available Slots with the appropriate Next Month's Beginning Calendar Days
-		    Dim NextDayCounter as Integer  = 1
-		    Dim xx as integer
-		    Dim LastCalSlot as Integer = FirstCalSlot + NumOfDaysInMonth+1
+		    Var NextDayCounter as Integer  = 1
+		    Var xx as integer
+		    Var LastCalSlot as Integer = FirstCalSlot + NumOfDaysInMonth+1
 		    for xx = LastCalSlot to 48 // 48 is the Last Calendar Slot
 		      CalendarButtonClassArray(xx).Day = NextDayCounter
-		      Dim TmpDate as New Date
-		      TmpDate.Year = CDbl(SelectedYear)
+		      Var TmpDate as New Date
+		      TmpDate.Year = SelectedYear.ToDouble
 		      TmpDate.Month = convertMonthStringToMonthNumber(NextMonth)
 		      TmpDate.Day = NextDayCounter
 		      CalendarButtonClassArray(xx).MyDate = TmpDate
@@ -1677,7 +1652,7 @@ Inherits Canvas
 	#tag Method, Flags = &h0
 		Sub UPDATE_MonthDays()
 		  // This is the Day of Week the 1st day of the Selected Month is
-		  Dim DayOfWeekFor1stDayOfMonth as String = calculate1stDayOfMonth
+		  Var DayOfWeekFor1stDayOfMonth as String = calculate1stDayOfMonth
 		End Sub
 	#tag EndMethod
 
@@ -1937,41 +1912,68 @@ Inherits Canvas
 
 	#tag ViewBehavior
 		#tag ViewProperty
-			Name="AcceptFocus"
-			Visible=true
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="AcceptTabs"
-			Visible=true
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="AllowMultipleSelections"
-			Group="Behavior"
-			Type="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="AutoDeactivate"
+			Name="AllowAutoDeactivate"
 			Visible=true
 			Group="Appearance"
 			InitialValue="True"
 			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Tooltip"
+			Visible=true
+			Group="Appearance"
+			InitialValue=""
+			Type="String"
+			EditorType="MultiLineEditor"
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AllowFocusRing"
+			Visible=true
+			Group="Appearance"
+			InitialValue="True"
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AllowFocus"
+			Visible=true
+			Group="Behavior"
+			InitialValue="False"
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AllowTabs"
+			Visible=true
+			Group="Behavior"
+			InitialValue="False"
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AllowMultipleSelections"
+			Visible=false
+			Group="Behavior"
+			InitialValue=""
+			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Backdrop"
 			Visible=true
 			Group="Appearance"
+			InitialValue=""
 			Type="Picture"
-			EditorType="Picture"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="CalMonFirstDayOfWeekBool"
+			Visible=false
 			Group="Behavior"
 			InitialValue="False"
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="DoubleBuffer"
@@ -1979,11 +1981,15 @@ Inherits Canvas
 			Group="Behavior"
 			InitialValue="False"
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="drawColumnLines"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Enabled"
@@ -1991,24 +1997,21 @@ Inherits Canvas
 			Group="Appearance"
 			InitialValue="True"
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="EndYear"
+			Visible=false
 			Group="Behavior"
 			InitialValue="2050"
 			Type="Integer"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="EraseBackground"
-			Visible=true
-			Group="Behavior"
-			InitialValue="True"
-			Type="Boolean"
-			EditorType="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="FirstWeekDay"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
@@ -2018,148 +2021,189 @@ Inherits Canvas
 			Group="Position"
 			InitialValue="100"
 			Type="Integer"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="HelpTag"
-			Visible=true
-			Group="Appearance"
-			Type="String"
-			EditorType="MultiLineEditor"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="IncludePrevNextMonthDaysBool"
+			Visible=false
 			Group="Behavior"
 			InitialValue="True"
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Index"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="Integer"
-			EditorType="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="InitialParent"
+			Visible=false
+			Group=""
+			InitialValue=""
 			Type="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Left"
 			Visible=true
 			Group="Position"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Localized_April"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Localized_August"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Localized_December"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Localized_February"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Localized_Friday"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Localized_January"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Localized_July"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Localized_June"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Localized_March"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Localized_May"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Localized_Monday"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Localized_November"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Localized_October"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Localized_Saturday"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Localized_September"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Localized_Sunday"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Localized_Thursday"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Localized_Tuesday"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Localized_Wednesday"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
@@ -2167,94 +2211,129 @@ Inherits Canvas
 			Name="LockBottom"
 			Visible=true
 			Group="Position"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="LockLeft"
 			Visible=true
 			Group="Position"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="LockRight"
 			Visible=true
 			Group="Position"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="LockTop"
 			Visible=true
 			Group="Position"
+			InitialValue=""
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="MonthNumber"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Name"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
-			EditorType="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="NextMonth"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="NextYear"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="PreviousMonth"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="PrevYear"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="SelectedMonth"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="SelectedX"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="SelectedY"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="SelectedYear"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="String"
 			EditorType="MultiLineEditor"
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="StartYear"
+			Visible=false
 			Group="Behavior"
 			InitialValue="1904"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Super"
 			Visible=true
 			Group="ID"
+			InitialValue=""
 			Type="String"
-			EditorType="String"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="TabIndex"
@@ -2262,12 +2341,15 @@ Inherits Canvas
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="TabPanelIndex"
+			Visible=false
 			Group="Position"
 			InitialValue="0"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="TabStop"
@@ -2275,24 +2357,31 @@ Inherits Canvas
 			Group="Position"
 			InitialValue="True"
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="TodaysDate_NotSelected"
+			Visible=false
 			Group="Behavior"
 			InitialValue="&c0000FF"
 			Type="Color"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="TodaysDate_Selected"
+			Visible=false
 			Group="Behavior"
 			InitialValue="&cFFFF00"
 			Type="Color"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Top"
 			Visible=true
 			Group="Position"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Transparent"
@@ -2300,24 +2389,23 @@ Inherits Canvas
 			Group="Behavior"
 			InitialValue="True"
 			Type="Boolean"
-			EditorType="Boolean"
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="UseFocusRing"
-			Visible=true
-			Group="Appearance"
-			InitialValue="True"
-			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="UserSelectedEndYear"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="UserSelectedStartYear"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Visible"
@@ -2325,6 +2413,7 @@ Inherits Canvas
 			Group="Appearance"
 			InitialValue="True"
 			Type="Boolean"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="Width"
@@ -2332,11 +2421,15 @@ Inherits Canvas
 			Group="Position"
 			InitialValue="100"
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="YearNumber"
+			Visible=false
 			Group="Behavior"
+			InitialValue=""
 			Type="Integer"
+			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior
 End Class

@@ -5,7 +5,6 @@ Begin ContainerControl Calendar_Container
    AutoDeactivate  =   True
    BackColor       =   &cFFFFFF00
    Backdrop        =   0
-   Compatibility   =   ""
    DoubleBuffer    =   False
    Enabled         =   True
    EraseBackground =   False
@@ -35,6 +34,7 @@ Begin ContainerControl Calendar_Container
       Enabled         =   True
       Height          =   20
       HelpTag         =   ""
+      Hint            =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       InitialValue    =   ""
@@ -71,7 +71,6 @@ Begin ContainerControl Calendar_Container
       drawColumnLines =   False
       Enabled         =   True
       EndYear         =   0
-      EraseBackground =   False
       FirstWeekDay    =   ""
       Height          =   170
       HelpTag         =   ""
@@ -125,7 +124,7 @@ Begin ContainerControl Calendar_Container
       UserSelectedEndYear=   0
       UserSelectedStartYear=   0
       Visible         =   True
-      Width           =   213
+      Width           =   212
       YearNumber      =   0
       Begin Separator Separator1
          AutoDeactivate  =   True
@@ -192,7 +191,6 @@ Begin ContainerControl Calendar_Container
       Backdrop        =   0
       DoubleBuffer    =   False
       Enabled         =   True
-      EraseBackground =   True
       Height          =   20
       HelpTag         =   ""
       Index           =   -2147483648
@@ -313,9 +311,10 @@ End
 		  Calendar1.deselectAll()
 		  if Calendar1.NextMonth = Calendar1.Localized_January then
 		    // Need to increment Year
-		    Calendar1.NextYear = CDbl(YearPopup.Text)+1
+		    Var nextYearDbl as Double = YearPopup.Text.ToDouble+1
+		    Calendar1.NextYear = nextYearDbl
 		    for i as integer = 0 to YearPopup.ListCount-1
-		      if Str(Calendar1.NextYear) = YearPopup.List(i) Then
+		      if Calendar1.NextYear.ToString = YearPopup.List(i) Then
 		        YearPopup.ListIndex = i
 		        exit
 		      End if
@@ -336,10 +335,10 @@ End
 	#tag Method, Flags = &h21
 		Private Sub goNextYear()
 		  Calendar1.deselectAll()
-		  
-		  Calendar1.NextYear = CDbl(YearPopup.Text)+1
+		  Var nextYearDbl as Double = YearPopup.Text.ToDouble + 1
+		  Calendar1.NextYear = nextYearDbl
 		  for i as integer = 0 to YearPopup.ListCount-1
-		    if Str(Calendar1.NextYear) = YearPopup.List(i) Then
+		    if Calendar1.NextYear.ToString = YearPopup.List(i) Then
 		      YearPopup.ListIndex = i
 		      exit
 		    End if
@@ -356,9 +355,10 @@ End
 		  Calendar1.deselectAll()
 		  if Calendar1.PreviousMonth = Calendar1.Localized_December then
 		    // Need to increment Year
-		    Calendar1.PrevYear = CDbl(YearPopup.Text)-1
+		    Var prevYearDbl as Double = YearPopup.Text.ToDouble -1
+		    Calendar1.PrevYear = prevYearDbl
 		    for i as integer = 0 to YearPopup.ListCount-1
-		      if Str(Calendar1.PrevYear) = YearPopup.List(i) Then
+		      if Calendar1.PrevYear.ToString = YearPopup.List(i) Then
 		        YearPopup.ListIndex = i
 		        exit
 		      End if
@@ -378,10 +378,10 @@ End
 	#tag Method, Flags = &h21
 		Private Sub goPrevYear()
 		  Calendar1.deselectAll()
-		  
-		  Calendar1.NextYear = CDbl(YearPopup.Text)-1
+		  Var prevYearDbl as Double = YearPopup.Text.ToDouble -1
+		  Calendar1.NextYear = prevYearDbl
 		  for i as integer = 0 to YearPopup.ListCount-1
-		    if Str(Calendar1.NextYear) = YearPopup.List(i) Then
+		    if Calendar1.NextYear.ToString = YearPopup.List(i) Then
 		      YearPopup.ListIndex = i
 		      exit
 		    End if
@@ -410,7 +410,7 @@ End
 		Sub takeMeToTodaysDate()
 		  
 		  // Bring Us Back to Today's Month
-		  Dim CurrentDateMonthString as String = Calendar1.convertMonthIntToMonthString(Calendar1.CurrentDate.Month)
+		  Var CurrentDateMonthString as String = Calendar1.convertMonthIntToMonthString(Calendar1.CurrentDate.Month)
 		  for i as integer = 0 to MonthPopup.ListCount-1
 		    if CurrentDateMonthString = MonthPopup.List(i) Then
 		      MonthPopup.ListIndex = i
@@ -419,7 +419,7 @@ End
 		  
 		  
 		  // Bring Us Back to Today's Year
-		  Dim CurrentDateYearString as String = Str(Calendar1.CurrentDate.Year)
+		  Var CurrentDateYearString as String = Calendar1.CurrentDate.Year.ToString
 		  for i as integer = 0 to YearPopup.ListCount - 1
 		    if CurrentDateYearString = YearPopup.List(i) Then
 		      YearPopup.ListIndex = i
@@ -428,7 +428,9 @@ End
 		  
 		  //Select Todays Date
 		  Calendar1.deselectAll()
-		  for i as integer = 7 to UBound(Calendar1.CalendarButtonClassArray) // Only begin at 7 Since 0-6 Are reserved for Day Of Week Titles
+		  Var lr as Integer = Calendar1.CalendarButtonClassArray.LastIndex
+		  for i as integer = 7 to lr
+		    // Only begin at 7 Since 0-6 Are reserved for Day Of Week Titles
 		    if Calendar1.CalendarButtonClassArray(i).MyDate <> Nil Then
 		      if Calendar1.CalendarButtonClassArray(i).MyDate.Month = Calendar1.CurrentDate.Month AND  Calendar1.CalendarButtonClassArray(i).MyDate.Day = Calendar1.CurrentDate.Day Then
 		        Calendar1.CalendarButtonClassArray(i).Selected = True
@@ -479,12 +481,12 @@ End
 	#tag Event
 		Sub Change()
 		  Calendar1.SelectedYear = Me.Text
-		  Dim validYearCode as Integer = Calendar1.calculateYear(Me.Text)
+		  Var validYearCode as Integer = Calendar1.calculateYear(Me.Text)
 		  If validYearCode = -1 Then
 		    // INVALID YEAR USE THIS YEARS
-		    DIm todayDate as New date
+		    Var todayDate as New date
 		    Calendar1.YearNumber = todayDate.Year
-		    Me.Text = Str( todayDate.Year)
+		    Me.Text = todayDate.Year.ToString
 		  End If
 		  Calendar1.UPDATE_MonthDays()
 		  Calendar1.UPDATE_MapDaysToCalSlots()
@@ -499,10 +501,10 @@ End
 		  #ENDIF
 		  
 		  // Default to today's Year only on open
-		  Dim TodaysYear as New Date
+		  Var TodaysYear as New Date
 		  
 		  for i as integer = 0 to Me.ListCount-1
-		    if Str(TodaysYear.Year) = Me.List(i) Then
+		    if TodaysYear.Year.ToString = Me.List(i) Then
 		      Me.ListIndex = i
 		    End if
 		  next i
@@ -570,54 +572,84 @@ End
 #tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
+		Name="AllowAutoDeactivate"
+		Visible=true
+		Group="Appearance"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Tooltip"
+		Visible=true
+		Group="Appearance"
+		InitialValue=""
+		Type="String"
+		EditorType="MultiLineEditor"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="AllowFocusRing"
+		Visible=true
+		Group="Appearance"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="BackgroundColor"
+		Visible=true
+		Group="Background"
+		InitialValue="&hFFFFFF"
+		Type="Color"
+		EditorType="Color"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="HasBackgroundColor"
+		Visible=true
+		Group="Background"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="AllowFocus"
+		Visible=true
+		Group="Behavior"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="AllowTabs"
+		Visible=true
+		Group="Behavior"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
 		Name="DoubleBuffer"
 		Visible=true
 		Group="Windows Behavior"
 		InitialValue="False"
 		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="AcceptFocus"
-		Visible=true
-		Group="Behavior"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="AcceptTabs"
-		Visible=true
-		Group="Behavior"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="AutoDeactivate"
-		Visible=true
-		Group="Appearance"
-		InitialValue="True"
-		Type="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="BackColor"
-		Visible=true
-		Group="Appearance"
-		InitialValue="&hFFFFFF"
-		Type="Color"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Backdrop"
 		Visible=true
 		Group="Appearance"
+		InitialValue=""
 		Type="Picture"
-		EditorType="Picture"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="drawColSeperatorLines"
+		Visible=false
 		Group="Behavior"
+		InitialValue=""
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Enabled"
@@ -625,7 +657,7 @@ End
 		Group="Appearance"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="EraseBackground"
@@ -633,14 +665,7 @@ End
 		Group="Behavior"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="HasBackColor"
-		Visible=true
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Height"
@@ -648,61 +673,71 @@ End
 		Group="Position"
 		InitialValue="300"
 		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="HelpTag"
-		Visible=true
-		Group="Appearance"
-		Type="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="InitialParent"
+		Visible=false
 		Group="Position"
+		InitialValue=""
 		Type="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Left"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LockBottom"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LockLeft"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LockRight"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="LockTop"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Name"
 		Visible=true
 		Group="ID"
+		InitialValue=""
 		Type="String"
-		EditorType="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Super"
 		Visible=true
 		Group="ID"
+		InitialValue=""
 		Type="String"
-		EditorType="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="TabIndex"
@@ -710,12 +745,15 @@ End
 		Group="Position"
 		InitialValue="0"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="TabPanelIndex"
+		Visible=false
 		Group="Position"
 		InitialValue="0"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="TabStop"
@@ -723,13 +761,15 @@ End
 		Group="Position"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Top"
 		Visible=true
 		Group="Position"
+		InitialValue=""
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Transparent"
@@ -737,15 +777,7 @@ End
 		Group="Behavior"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="UseFocusRing"
-		Visible=true
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Visible"
@@ -753,7 +785,7 @@ End
 		Group="Appearance"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Width"
@@ -761,5 +793,6 @@ End
 		Group="Position"
 		InitialValue="300"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 #tag EndViewBehavior

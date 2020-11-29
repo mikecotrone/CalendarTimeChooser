@@ -3,7 +3,6 @@ Begin Window DemoLaunchWindow
    BackColor       =   &cFFFFFF00
    Backdrop        =   0
    CloseButton     =   True
-   Compatibility   =   ""
    Composite       =   False
    Frame           =   0
    FullScreen      =   False
@@ -11,7 +10,7 @@ Begin Window DemoLaunchWindow
    HasBackColor    =   False
    Height          =   595
    ImplicitInstance=   True
-   LiveResize      =   True
+   LiveResize      =   "True"
    MacProcID       =   0
    MaxHeight       =   900
    MaximizeButton  =   False
@@ -70,6 +69,7 @@ Begin Window DemoLaunchWindow
       Top             =   0
       Transparent     =   True
       Underline       =   False
+      UnicodeMode     =   0
       UseFocusRing    =   True
       Visible         =   True
       Width           =   489
@@ -330,7 +330,6 @@ Begin Window DemoLaunchWindow
       Backdrop        =   0
       DoubleBuffer    =   True
       Enabled         =   True
-      EraseBackground =   False
       Height          =   20
       HelpTag         =   ""
       Index           =   -2147483648
@@ -900,8 +899,8 @@ End
 
 	#tag Event
 		Sub Open()
-		  MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.StartYear = 2010
-		  MyPicker.Date_Time_Container1.Calendar_Container1.Calendar1.EndYear = 2020
+		  MyPicker.StartYear = 2010
+		  MyPicker.EndYear = 2020
 		  
 		End Sub
 	#tag EndEvent
@@ -952,7 +951,8 @@ End
 #tag Events CheckBox1
 	#tag Event
 		Sub Action()
-		  MyPicker.Date_Time_Container1.Calendar_Container1.drawColSeperatorLines = Me.Value
+		  // MyPicker.Date_Time_Container1.Calendar_Container1.drawColSeperatorLines = Me.Value
+		  MyPicker.drawColSeperatorLines = Me.Value
 		  
 		End Sub
 	#tag EndEvent
@@ -984,12 +984,12 @@ End
 #tag Events ClockHandColorPickerCanvas
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  dim p As new Picture(me.Width,me.Height)
+		  Var p As new Picture(me.Width,me.Height)
 		  static handColor as color=MyPicker.ClockHandColor
 		  if SelectColor(handColor, "Select a color for the clock hands") then
-		    MyPicker.Date_Time_Container1.ClockHandColor = handColor
+		    MyPicker.ClockHandColor = handColor
 		    Invalidate(False)
-		    dim v As Variant=handColor
+		    Var v As Variant=handColor
 		    SelectedHandColorLabel.Text=v.StringValue
 		    MyPicker.Show
 		  end if
@@ -1003,7 +1003,7 @@ End
 		  g.PenWidth=2
 		  g.DrawRoundRect(2,2,me.Width-2,me.Height-2,6,6)
 		  
-		  dim p As new Picture(me.Width,me.Height)
+		  Var p As new Picture(me.Width,me.Height)
 		  p.Graphics.ForeColor=MyPicker.ClockHandColor
 		  //p.Graphics.FillRoundRect 0,0,41,12,6,6
 		  //g.DrawPicture(p,5,5)
@@ -1012,7 +1012,7 @@ End
 		  g.DrawPicture(p,4,4)
 		  
 		  
-		  dim v As Variant=MyPicker.ClockHandColor
+		  Var v As Variant=MyPicker.ClockHandColor
 		  SelectedHandColorLabel.Text=v.StringValue
 		End Sub
 	#tag EndEvent
@@ -1147,13 +1147,13 @@ End
 		Sub Change()
 		  Select Case Me.Text
 		  Case "12 Hour Format"
-		    MyPicker.Date_Time_Container1.Time_Container1.TimeMode = 12
+		    MyPicker.TimeMode = 12
 		  Case "24 Hour Format"
-		    MyPicker.Date_Time_Container1.Time_Container1.TimeMode = 24
+		    MyPicker.TimeMode = 24
 		  End Select
 		  
-		  MyPicker.Date_Time_Container1.Time_Container1.Clock1.Invalidate(False)
-		  MyPicker.Date_Time_Container1.Time_Container1.TimePicker1.Invalidate(False)
+		  MyPicker.Invalidate(False)
+		  
 		  MyPicker.Show
 		End Sub
 	#tag EndEvent
@@ -1179,25 +1179,25 @@ End
 		  Case "Chrome"
 		    // Default Clock Face
 		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType_Chrome
-		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = False
+		    MyPicker.HideAMPM = False
 		  Case "Roman"
 		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType_Roman
-		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = False
+		    MyPicker.HideAMPM = False
 		  Case "Standard"
 		    MyPicker.ClockFaceType =Date_Time_Container.ClockFaceType_Standard
-		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = False
+		    MyPicker.HideAMPM = False
 		  Case "Google Style"
 		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType_GoogleStyle
-		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = False
+		    MyPicker.HideAMPM = False
 		  Case "Modern"
 		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType_Modern
-		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = False
+		    MyPicker.HideAMPM = False
 		  Case "Jim's Clock"
 		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType_Dynamic_12hr
-		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM= False
+		    MyPicker.HideAMPM= False
 		  Case "Antique"
 		    MyPicker.ClockFaceType = Date_Time_Container.ClockFaceType_Antique
-		    MyPicker.Date_Time_Container1.Time_Container1.HideAMPM = True
+		    MyPicker.HideAMPM = True
 		  End Select
 		  MyPicker.Show
 		  
@@ -1236,46 +1236,49 @@ End
 #tag Events flashTimeColonCheckbox
 	#tag Event
 		Sub Action()
-		  MyPicker.Date_Time_Container1.Time_Container1.flashSeparator = me.Value
+		  MyPicker.flashSeparator = me.Value
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
 	#tag ViewProperty
-		Name="BackColor"
+		Name="MinimumWidth"
 		Visible=true
-		Group="Appearance"
-		InitialValue="&hFFFFFF"
-		Type="Color"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Backdrop"
-		Visible=true
-		Group="Appearance"
-		Type="Picture"
-		EditorType="Picture"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="CloseButton"
-		Visible=true
-		Group="Appearance"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Composite"
-		Visible=true
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Frame"
-		Visible=true
-		Group="Appearance"
-		InitialValue="0"
+		Group="Size"
+		InitialValue="64"
 		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MinimumHeight"
+		Visible=true
+		Group="Size"
+		InitialValue="64"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MaximumWidth"
+		Visible=true
+		Group="Size"
+		InitialValue="32000"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MaximumHeight"
+		Visible=true
+		Group="Size"
+		InitialValue="32000"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Type"
+		Visible=true
+		Group="Frame"
+		InitialValue="0"
+		Type="Types"
 		EditorType="Enum"
 		#tag EnumValues
 			"0 - Document"
@@ -1292,135 +1295,43 @@ End
 		#tag EndEnumValues
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="FullScreen"
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="FullScreenButton"
+		Name="HasCloseButton"
 		Visible=true
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="HasBackColor"
-		Visible=true
-		Group="Appearance"
-		InitialValue="False"
-		Type="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Height"
-		Visible=true
-		Group="Position"
-		InitialValue="400"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="ImplicitInstance"
-		Visible=true
-		Group="Appearance"
+		Group="Frame"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="Interfaces"
+		Name="HasMaximizeButton"
 		Visible=true
-		Group="ID"
-		Type="String"
-		EditorType="String"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="LiveResize"
-		Visible=true
-		Group="Appearance"
+		Group="Frame"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
-		Name="MacProcID"
+		Name="HasMinimizeButton"
 		Visible=true
-		Group="Appearance"
+		Group="Frame"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="HasFullScreenButton"
+		Visible=true
+		Group="Frame"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="DefaultLocation"
+		Visible=true
+		Group="Behavior"
 		InitialValue="0"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MaxHeight"
-		Visible=true
-		Group="Position"
-		InitialValue="32000"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MaximizeButton"
-		Visible=true
-		Group="Appearance"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MaxWidth"
-		Visible=true
-		Group="Position"
-		InitialValue="32000"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MenuBar"
-		Visible=true
-		Group="Appearance"
-		Type="MenuBar"
-		EditorType="MenuBar"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MenuBarVisible"
-		Group="Appearance"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MinHeight"
-		Visible=true
-		Group="Position"
-		InitialValue="64"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MinimizeButton"
-		Visible=true
-		Group="Appearance"
-		InitialValue="True"
-		Type="Boolean"
-		EditorType="Boolean"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="MinWidth"
-		Visible=true
-		Group="Position"
-		InitialValue="64"
-		Type="Integer"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Name"
-		Visible=true
-		Group="ID"
-		Type="String"
-		EditorType="String"
-	#tag EndViewProperty
-	#tag ViewProperty
-		Name="Placement"
-		Visible=true
-		Group="Position"
-		InitialValue="0"
-		Type="Integer"
+		Type="Locations"
 		EditorType="Enum"
 		#tag EnumValues
 			"0 - Default"
@@ -1431,19 +1342,116 @@ End
 		#tag EndEnumValues
 	#tag EndViewProperty
 	#tag ViewProperty
+		Name="HasBackgroundColor"
+		Visible=true
+		Group="Background"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="BackgroundColor"
+		Visible=true
+		Group="Background"
+		InitialValue="&hFFFFFF"
+		Type="Color"
+		EditorType="Color"
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Backdrop"
+		Visible=true
+		Group="Appearance"
+		InitialValue=""
+		Type="Picture"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Composite"
+		Visible=true
+		Group="Appearance"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="FullScreen"
+		Visible=false
+		Group="Appearance"
+		InitialValue="False"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Height"
+		Visible=true
+		Group="Position"
+		InitialValue="400"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="ImplicitInstance"
+		Visible=true
+		Group="Appearance"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Interfaces"
+		Visible=true
+		Group="ID"
+		InitialValue=""
+		Type="String"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MacProcID"
+		Visible=true
+		Group="Appearance"
+		InitialValue="0"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MenuBar"
+		Visible=true
+		Group="Appearance"
+		InitialValue=""
+		Type="MenuBar"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="MenuBarVisible"
+		Visible=false
+		Group="Appearance"
+		InitialValue="True"
+		Type="Boolean"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
+		Name="Name"
+		Visible=true
+		Group="ID"
+		InitialValue=""
+		Type="String"
+		EditorType=""
+	#tag EndViewProperty
+	#tag ViewProperty
 		Name="Resizeable"
 		Visible=true
 		Group="Appearance"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Super"
 		Visible=true
 		Group="ID"
+		InitialValue=""
 		Type="String"
-		EditorType="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Title"
@@ -1451,6 +1459,7 @@ End
 		Group="Appearance"
 		InitialValue="Untitled"
 		Type="String"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Visible"
@@ -1458,7 +1467,7 @@ End
 		Group="Appearance"
 		InitialValue="True"
 		Type="Boolean"
-		EditorType="Boolean"
+		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="Width"
@@ -1466,5 +1475,6 @@ End
 		Group="Position"
 		InitialValue="600"
 		Type="Integer"
+		EditorType=""
 	#tag EndViewProperty
 #tag EndViewBehavior
