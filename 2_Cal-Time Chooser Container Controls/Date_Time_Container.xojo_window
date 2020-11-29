@@ -48,6 +48,7 @@ Begin ContainerControl Date_Time_Container
       HasBackColor    =   False
       Height          =   252
       HelpTag         =   ""
+      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   10
       LockBottom      =   False
@@ -80,6 +81,7 @@ Begin ContainerControl Date_Time_Container
       Height          =   252
       HelpTag         =   ""
       HideAMPM        =   False
+      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   250
       LockBottom      =   False
@@ -111,6 +113,8 @@ End
 #tag WindowCode
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		  #Pragma Unused areas
+		  
 		  g.ForeColor = &cECECEC
 		  
 		  #IF TargetWin32 Then
@@ -640,6 +644,8 @@ End
 #tag Events Calendar_Container1
 	#tag Event
 		Sub SelectedDate(inSelectedDate as Date)
+		  #Pragma Unused inSelectedDate
+		  
 		  // THIS EVENT IS PASSED THE SELECTED DATE AS A DATE OBJECT
 		  
 		  // EXAMPLE RESULTS USAGE:
@@ -659,14 +665,16 @@ End
 #tag Events Time_Container1
 	#tag Event
 		Sub SelectedTime(inHours as String, inMinutes as String, optional inAMPM as String)
+		  #Pragma Unused inAMPM
+		  
 		  // ASSIGN TIME BACK TO SELECTEDDATE  DATE PROPERTY
 		  SelectedDate.Hour = inHours.ToDouble
 		  SelectedDate.Minute = inMinutes.ToDouble
 		  
 		  // ALSO PASSING TIME AS A STRING INTO THIS EVENT FOR MAXIMUM FLEXIBILITY
-		  Var selectedHour as String  = inHours
-		  Var selectedMinutes as string = inMinutes
-		  Var selectedAMPM as string = inAMPM
+		  'Var selectedHour as String  = inHours
+		  'Var selectedMinutes as string = inMinutes
+		  'Var selectedAMPM as string = inAMPM
 		  
 		  
 		  // EXAMPLE RESULTS USAGE:

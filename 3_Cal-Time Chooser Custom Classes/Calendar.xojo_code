@@ -3,6 +3,8 @@ Protected Class Calendar
 Inherits Canvas
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		  #Pragma Unused x
+		  #Pragma Unused y
 		  Return True
 		  
 		End Function
@@ -143,6 +145,8 @@ Inherits Canvas
 
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		  #Pragma Unused areas
+		  
 		  g.AntiAlias = True
 		  
 		  // FILL BACKGROUND COLOR
@@ -187,13 +191,13 @@ Inherits Canvas
 		  End If
 		  
 		  // SET TODAYS DATE ON FIRST RUN
-		  Var OffSet as Integer = 3
-		  Var TwoOffset as Integer = (OffSet*2)
-		  Var CurveSize as Integer = 6
-		  Var lr as Integer = CalendarButtonClassArray.LastIndex
-		  if SelectTodayRunOnce = False Then
-		    for i as integer = 7 to lr
-		      if CalendarButtonClassArray(i).MyDate = CurrentDate Then
+		  'Var OffSet as Integer = 3
+		  'Var TwoOffset as Integer = (OffSet*2)
+		  'Var CurveSize as Integer = 6
+		  Var lr As Integer = CalendarButtonClassArray.LastIndex
+		  If SelectTodayRunOnce = False Then
+		    For i As Integer = 7 To lr
+		      If CalendarButtonClassArray(i).MyDate = CurrentDate Then
 		        CalendarButtonClassArray(i).Selected = True
 		        CalendarButtonClassArray(i).SelectedDate = CurrentDate
 		      end if
@@ -275,8 +279,8 @@ Inherits Canvas
 		      Var thisAbbrvStrH as Double = g.StringHeight(DayOfWeekArray_SS(p), 500)
 		      Var thisSlotW as Double = CalendarButtonClassArray(p).Width
 		      Var thisSlotH as Double = CalendarButtonClassArray(p).Height
-		      Var thisSlotLeft as Double = CalendarButton.RightX
-		      Var thisSlotTop as Double = CalendarButtonClassArray(p).TopY
+		      'Var thisSlotLeft as Double = CalendarButton.RightX
+		      'Var thisSlotTop as Double = CalendarButtonClassArray(p).TopY
 		      
 		      thisPosX =  thisPosX + (thisSlotW/2) - (thisAbbrvStrW/2)
 		      thisPosY =  (thisSlotH/2) + (thisAbbrvStrH/2)-2
@@ -291,8 +295,8 @@ Inherits Canvas
 		      Var thisAbbrvStrH as Double = g.StringHeight(DayOfWeek_MS(p), 500)
 		      Var thisSlotW as Double = CalendarButtonClassArray(p).Width
 		      Var thisSlotH as Double = CalendarButtonClassArray(p).Height
-		      Var thisSlotLeft as Double = CalendarButton.RightX
-		      Var thisSlotTop as Double = CalendarButtonClassArray(p).TopY
+		      'Var thisSlotLeft as Double = CalendarButton.RightX
+		      'Var thisSlotTop as Double = CalendarButtonClassArray(p).TopY
 		      
 		      thisPosX =  thisPosX + (thisSlotW/2) - (thisAbbrvStrW/2)
 		      thisPosY =  (thisSlotH/2) + (thisAbbrvStrH/2)-2
@@ -355,10 +359,10 @@ Inherits Canvas
 		          
 		          Var calDayStr as String = CalendarButtonClassArray(i).day.ToString
 		          Var calDayStrW as Double = g.TextWidth(calDayStr)
-		          Var calDayStrH as Double = g.TextHeight(calDayStr, 80)
+		          'Var calDayStrH as Double = g.TextHeight(calDayStr, 80)
 		          
-		          Var leftX as Double = CalendarButtonClassArray(i).LeftX
-		          Var calDayXpos as Double = CalendarButtonClassArray(i).LeftX + calDayStrW
+		          'Var leftX as Double = CalendarButtonClassArray(i).LeftX
+		          Var calDayXpos As Double = CalendarButtonClassArray(i).LeftX + calDayStrW
 		          
 		          Var calDayYpos as Double = 24/2 - CalendarButtonClassArray(i).TopY/2
 		          g.DrawString(calDayStr, calDayXpos, calDayYpos, calDayStrW)
@@ -1110,7 +1114,9 @@ Inherits Canvas
 
 	#tag Method, Flags = &h21
 		Private Function getFirstDayOfWeekCalSlotNumber(inDayofWeekString as String, inCalMonFirstDayOfWeekBool as Boolean) As Integer
-		  if inCalMonFirstDayOfWeekBool = False Then
+		  #Pragma Unused inDayofWeekString
+		  
+		  If inCalMonFirstDayOfWeekBool = False Then
 		    // Sunday is the First Day of the Week Calendar Labeling Wise
 		    Select Case FirstWeekDay
 		    Case Localized_Sunday
@@ -1240,8 +1246,11 @@ Inherits Canvas
 
 	#tag Method, Flags = &h21
 		Private Sub initialAssignmentCalendarButtons(inNumOfSpaces as Integer)
+		  #Pragma Unused inNumOfSpaces
+		  
 		  // CREATE EACH CALENDAR TIME SLOT
-		  Var row, col as integer
+		  Var row As Integer
+		  'Var col As Integer
 		  
 		  for y as integer = 1 to 49
 		    Select Case y
@@ -1506,6 +1515,8 @@ Inherits Canvas
 
 	#tag Method, Flags = &h21
 		Private Sub takeUsToMonth(inMonth as String, inSelectedDate as Date)
+		  #Pragma Unused inSelectedDate
+		  
 		  Select Case inMonth
 		  Case "Next"
 		    // Need a Check to See about Incrementing Year or not
@@ -1600,7 +1611,7 @@ Inherits Canvas
 		  Var CalPrevMonthSpacesAvailable as Integer = calcHowManyCalSlotsAvailable(7,13,1)
 		  
 		  // Need to Calculate How many Available Spaces for the next month's worth of Calendar Days
-		  Var CalNextMonthSpacesAvailable as Integer = calcHowManyCalSlotsAvailable(38,48,0)
+		  'Var CalNextMonthSpacesAvailable as Integer = calcHowManyCalSlotsAvailable(38,48,0)
 		  
 		  // Figure Out which Months are Previous and Next
 		  PreviousMonth = getPrevMonthString(SelectedMonth)
@@ -1608,7 +1619,7 @@ Inherits Canvas
 		  
 		  // Figure Out How Many Days are in the Previous and Next Month
 		  Var PrevMonthNumOfDays as Integer = numOfDaysInMonth(PreviousMonth)
-		  Var NextMonthNumOfDays as Integer = numOfDaysInMonth(NextMonth)
+		  'Var NextMonthNumOfDays as Integer = numOfDaysInMonth(NextMonth)
 		  
 		  if Calendar_Container(window).Calendar1.IncludePrevNextMonthDaysBool = True Then
 		    // Now Map the Previous Available Slots with the appropriate Previous Month's Ending Calendar Days
@@ -1652,7 +1663,7 @@ Inherits Canvas
 	#tag Method, Flags = &h0
 		Sub UPDATE_MonthDays()
 		  // This is the Day of Week the 1st day of the Selected Month is
-		  Var DayOfWeekFor1stDayOfMonth as String = calculate1stDayOfMonth
+		  'Var DayOfWeekFor1stDayOfMonth as String = calculate1stDayOfMonth
 		End Sub
 	#tag EndMethod
 

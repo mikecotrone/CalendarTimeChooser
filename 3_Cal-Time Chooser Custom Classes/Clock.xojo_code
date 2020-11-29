@@ -21,6 +21,8 @@ Inherits Canvas
 
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		  #Pragma Unused areas
+		  
 		  g.AntiAlias = True
 		  
 		  // Draw Clock Image
@@ -83,6 +85,12 @@ Inherits Canvas
 
 	#tag Method, Flags = &h21
 		Private Sub drawAMPM_OnClock(g as Graphics, inTextSize as Integer, inTextFont as String, inForecolor as color, inString as String)
+		  #Pragma Unused g
+		  #Pragma Unused inTextSize
+		  #Pragma Unused inTextFont
+		  #Pragma Unused inForecolor
+		  #Pragma Unused inString
+		  
 		  'g.TextSize = inTextSize
 		  'g.TextFont = inTextFont
 		  'g.ForeColor = inForecolor
@@ -318,7 +326,7 @@ Inherits Canvas
 		    Time_Container(Window).TimeMode = 12
 		    Self.Invalidate(False)
 		    
-		    Var thisAMPM as String = Uppercase(inAMPM)
+		    'Var thisAMPM as String = Uppercase(inAMPM)
 		    Time_Container(Window).Time_Minute=Format(inMinute,"00")
 		    
 		    If inHour < 12 Then
