@@ -3,11 +3,11 @@ CalendarTimeChooser
 
 Xojo Calendar and Time Chooser Project
 
-Date:           July 2019
+Date:           November 2020
 
-Language:       Xojo 2019 R1.1 and below (API 1.0)
+Language:       Xojo 2020 R2 and below (API 1.0)
 
-Author:         Mike Cotrone (mikec@intelligentvis.com)
+Author:         Mike Cotrone (mikec@2tab.io)
 
 Version:        3.0.5
 
