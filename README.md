@@ -51,8 +51,9 @@ Whats New in 3.0.6?
 Fixes!
 - Fixed the aesthetic issues on the calendar slots did not align well with the calendar numbers including when you clicked or mouse over (Mac / Win)
 - Fixed the same aesthetic type click highlight issue on the Time Chooser
-- Changed over to API2.0 for: array.ubound/ubound(), Str(), CDbl()
-
+- Changed over to API2.0 for: array.ubound/ubound(), Str(), CDbl(), Array.Redim(), Dim
+- Making all loops more efficient by setting the Array.LastIndex to a local variable and defining the counter var prior to the loop
+- Using #PRAGMA UNUSED AREAS on paint events (Thanks Norman!)
 
 Whats New in 3.0.5?
 ------------------
