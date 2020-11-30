@@ -237,6 +237,9 @@ Inherits Canvas
 
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		  #Pragma Unused x
+		  #Pragma Unused y
+		  
 		  // Set the tab ability within the Canvas simulated fields
 		  Me.SetFocus()
 		  KeyBuffer = ""
@@ -305,9 +308,7 @@ Inherits Canvas
 
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
-		  g.AntiAliasMode = Global.Graphics.AntiAliasModes.HighQuality
-		  g.AntiAlias = True
-		  
+		  #Pragma Unused areas
 		  // Draw Shape of Control
 		  g.ForeColor = &cFFFFFF
 		  

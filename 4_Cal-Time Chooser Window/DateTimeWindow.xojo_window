@@ -73,6 +73,8 @@ End
 #tag WindowCode
 	#tag Event
 		Function KeyDown(Key As String) As Boolean
+		  #Pragma Unused key
+		  
 		  // Uncomment if you would like to allow a user to hit the escape key to close this window
 		  
 		  //if asc(key)=27 then

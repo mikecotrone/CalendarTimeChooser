@@ -3,6 +3,9 @@ Protected Class RecurringCanvas
 Inherits Canvas
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		  #Pragma Unused x
+		  #Pragma Unused y
+		  
 		  Return True
 		End Function
 	#tag EndEvent
@@ -21,6 +24,9 @@ Inherits Canvas
 
 	#tag Event
 		Sub MouseUp(X As Integer, Y As Integer)
+		  #Pragma Unused x
+		  #Pragma Unused y
+		  
 		  addMenuItems()
 		  
 		  Var result As MenuItem = myMenu.PopUp
@@ -52,20 +58,7 @@ Inherits Canvas
 
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
-		  g.AntiAliasMode = Global.Graphics.AntiAliasModes.HighQuality
-		  g.AntiAlias = True
-		  
-		  Var imagePicture as Picture = RecurringPicture
-		  Var imageXPos as Double = 0
-		  Var imageYPos as Double =  0
-		  Var imageW1  as Double = g.Width
-		  Var imageH1 as Double = g.Height
-		  Var imageSx as Double = 0
-		  Var imageSy as Double = 0
-		  Var imageW2 as Double = imagePicture.Width
-		  Var imageH2 as Double = imagePicture.Height
-		  g.DrawPicture(imagePicture, imageXPos, imageYPos, imageW1, imageH1, imageSx, imageSy, imageW2, imageH2)
-		  
+		  #Pragma Unused areas
 		End Sub
 	#tag EndEvent
 
@@ -77,7 +70,7 @@ Inherits Canvas
 		  Var OTF_DayOfMonth_String as string = Calendar_Container(window).Calendar1.SelectedMonth
 		  // Get Realtime User Selected Day of the Week
 		  Var DayofWeekString as String = convertDayOfWeek_Int_to_Str(Calendar_Container(window).Calendar1.SelectedDate.DayOfWeek)
-		  Var OTF_DayOfWeek_String as string =DayofWeekString
+		  'Var OTF_DayOfWeek_String as string =DayofWeekString
 		  
 		  // Get User Selected Day
 		  Var OTF_Day_String as string = Calendar_Container(window).Calendar1.SelectedDate.Day.ToString

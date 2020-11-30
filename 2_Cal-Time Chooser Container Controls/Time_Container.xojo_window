@@ -180,9 +180,7 @@ End
 
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
-		  g.AntiAliasMode = Global.Graphics.AntiAliasModes.HighQuality
-		  g.AntiAlias = True
-		  
+		  #Pragma Unused areas
 		  g.ForeColor = &cECECEC
 		  g.FillRoundRect(0,0,me.Width,me.Height, 8, 8)
 		End Sub
@@ -388,11 +386,11 @@ End
 #tag Events TimeZoneLabel
 	#tag Event
 		Sub Open()
-		  Using Xojo.Core
-		  Var thisDate as Xojo.Core.Date
-		  Var tz as TimeZone = TimeZone.Current
+		  'Using Xojo.Core
+		  'Var thisDate as Xojo.Core.Date
+		  Var tz As TimeZone = TimeZone.Current
 		  
-		  Var thisText as Text = tz.Abbreviation
+		  Var thisText As String = tz.Abbreviation
 		  
 		  Me.Text = thisText
 		  

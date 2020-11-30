@@ -229,6 +229,7 @@ Begin ContainerControl Calendar_Container
       SelectionType   =   2
       TabIndex        =   5
       TabPanelIndex   =   0
+      TabStop         =   True
       Top             =   226
       Transparent     =   True
       Visible         =   True
@@ -272,12 +273,18 @@ End
 #tag WindowCode
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		  #Pragma Unused x
+		  #Pragma Unused y
+		  
 		  Return True
 		End Function
 	#tag EndEvent
 
 	#tag Event
 		Sub MouseUp(X As Integer, Y As Integer)
+		  #Pragma Unused x
+		  #Pragma Unused y
+		  
 		  // DE-SELECT ALL CALENDAR DAYS SELECTED WHEN CLICK ON THE CONTAINER
 		  Calendar1.deselectAll()
 		End Sub
@@ -295,9 +302,7 @@ End
 
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
-		  g.AntiAliasMode = Global.Graphics.AntiAliasModes.HighQuality
-		  g.AntiAlias = True
-		  
+		  #Pragma Unused areas
 		  g.ForeColor = &cECECEC 
 		  g.FillRoundRect(0,0,me.Width,me.Height, 8, 8)
 		End Sub
