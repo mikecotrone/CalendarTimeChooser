@@ -51,7 +51,7 @@ Begin ContainerControl Calendar_Container
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
-      TextSize        =   13.0
+      TextSize        =   0.0
       TextUnit        =   0
       Top             =   12
       Transparent     =   True
@@ -195,7 +195,7 @@ Begin ContainerControl Calendar_Container
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   202
+      Left            =   201
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -258,7 +258,7 @@ Begin ContainerControl Calendar_Container
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
-      TextSize        =   13.0
+      TextSize        =   0.0
       TextUnit        =   0
       Top             =   12
       Transparent     =   True
@@ -285,7 +285,7 @@ End
 
 	#tag Event
 		Sub Open()
-		  #IF TargetWin32 Then
+		  #IF TargetWindows Then
 		    Me.DoubleBuffer = True
 		    Me.Transparent = False
 		    Me.EraseBackground = False
@@ -295,12 +295,11 @@ End
 
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		  g.AntiAliasMode = Global.Graphics.AntiAliasModes.HighQuality
+		  g.AntiAlias = True
+		  
 		  g.ForeColor = &cECECEC 
-		  #IF TargetWin32 Then
-		    g.FillRect(0,0,me.Width,me.Height)
-		  #ELSE
-		    g.FillRoundRect(0,0,me.Width,me.Height, 8, 8)
-		  #ENDIF
+		  g.FillRoundRect(0,0,me.Width,me.Height, 8, 8)
 		End Sub
 	#tag EndEvent
 
@@ -496,7 +495,7 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub Open()
-		  #IF TargetWin32 Then
+		  #IF TargetWindows Then
 		    Me.Top = Me.Top - 4
 		  #ENDIF
 		  
@@ -541,11 +540,11 @@ End
 		Sub Open()
 		  me.Items( 0 ).Title = "<<"
 		  me.Items( 1 ).Title = "<"
-		  me.Items( 2 ).icon = BlackDot16x16
+		  me.Items( 2 ).icon = BlackDotPicture
 		  me.Items( 3 ).Title = ">"
 		  me.Items( 4 ).Title = ">>"
 		  
-		  #If TargetWin32 Then
+		  #If TargetWindows Then
 		    Me.Left = Me.Left - 6
 		  #endif
 		End Sub
@@ -564,7 +563,7 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub Open()
-		  #If TargetWin32 Then
+		  #If TargetWindows Then
 		    Me.Top = Me.Top - 4
 		  #endif
 		End Sub

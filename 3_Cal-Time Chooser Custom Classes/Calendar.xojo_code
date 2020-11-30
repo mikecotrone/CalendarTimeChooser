@@ -128,7 +128,7 @@ Inherits Canvas
 
 	#tag Event
 		Sub Open()
-		  #If TargetWin32 Then
+		  #If TargetWindows Then
 		    DoubleBuffer = True
 		    Transparent = True
 		    EraseBackground = False
@@ -143,7 +143,9 @@ Inherits Canvas
 
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		  g.AntiAliasMode = Global.Graphics.AntiAliasModes.HighQuality
 		  g.AntiAlias = True
+		  
 		  
 		  // FILL BACKGROUND COLOR
 		  g.ForeColor = RGB(255,255,255)
@@ -153,11 +155,7 @@ Inherits Canvas
 		  g.ForeColor = RGB(170,170,170)
 		  g.PenHeight = .5
 		  g.PenWidth = .5
-		  #IF TargetWin32 Then
-		    g.DrawRect(0,0,g.Width,g.Height)
-		  #ELSE
-		    g.DrawroundRect(0,0,g.Width,g.Height,0,0)
-		  #ENDIF
+		  g.DrawroundRect(0,0,g.Width,g.Height,0,0)
 		  
 		  '// DRAW GRIDLINES FOR DEBUGGING
 		  'for q as integer = 0 to CalendarButtonClassArray.Ubound
@@ -166,11 +164,10 @@ Inherits Canvas
 		  'g.DrawLine(CalendarButtonClassArray(q).LeftX, CalendarButtonClassArray(q).TopY, CalendarButtonClassArray(q).LeftX, CalendarButtonClassArray(q).BottomY)
 		  'next q
 		  
-		  g.PenHeight = 1
-		  g.PenWidth = 1
-		  
 		  // DRAW COLUMN LINE: USER OPTION
 		  If drawColumnLines = True Then
+		    g.PenHeight = .5
+		    g.PenWidth = .5
 		    Var lineWidth as Integer = 1
 		    Var colLineX1POS as Integer = 30
 		    Var colLineY1POS as Integer = 8
@@ -209,21 +206,12 @@ Inherits Canvas
 		      if CalendarButtonClassArray(i).Day <> 0 Then
 		        // Capture Selected Date in Date format for Custom Event
 		        g.ForeColor = &c1261A0 
-		        #IF TargetMacOS OR TargetLinux Then
-		          
-		          Var theLeft as Integer = CalendarButtonClassArray(i).LeftX
-		          Var theTop as Integer = CalendarButtonClassArray(i).TopY
-		          Var theWidth as Integer = CalendarButtonClassArray(i).Width + 1
-		          Var theHeight as Integer = (CalendarButtonClassArray(i).Height)+1
-		          g.FillroundRect(theLeft, theTop,theWidth,theHeight,4,4)
-		          
-		        #ELSEIF TargetWin32 Then
-		          Var theLeft as Integer = CalendarButtonClassArray(i).LeftX+OffSet+1
-		          Var theTop as Integer = CalendarButtonClassArray(i).TopY+OffSet
-		          Var theWidth as Integer = CalendarButtonClassArray(i).Width-TwoOffset
-		          Var theHeight as Integer = CalendarButtonClassArray(i).Height-TwoOffset
-		          g.FillRoundRect(theLeft, theTop,theWidth,theHeight,0,0)
-		        #ENDIF
+		        Var theLeft as Integer = CalendarButtonClassArray(i).LeftX
+		        Var theTop as Integer = CalendarButtonClassArray(i).TopY
+		        Var theWidth as Integer = CalendarButtonClassArray(i).Width + 1
+		        Var theHeight as Integer = (CalendarButtonClassArray(i).Height)+1
+		        g.FillroundRect(theLeft, theTop,theWidth,theHeight,4,4)
+		        
 		      End if
 		    End if
 		  Next i
@@ -236,27 +224,14 @@ Inherits Canvas
 		      if CalendarButtonClassArray(i).Day <> 0 Then
 		        // Capture Selected Date in Date format for Custom Event
 		        g.ForeColor = &c1261A0 
-		        #IF TargetMacOS OR TargetLinux Then
-		          
-		          Var theLeft as Integer = CalendarButtonClassArray(i).LeftX
-		          Var theTop as Integer = CalendarButtonClassArray(i).TopY
-		          Var theWidth as Integer = CalendarButtonClassArray(i).Width + 1
-		          Var theHeight as Integer = (CalendarButtonClassArray(i).Height) +1
-		          g.DrawroundRect(theLeft, theTop,theWidth,theHeight,4,4)
-		          
-		        #ELSEIF TargetWin32 Then
-		          Var theLeft as Integer = CalendarButtonClassArray(i).LeftX+OffSet+1
-		          Var theTop as Integer = CalendarButtonClassArray(i).TopY+OffSet
-		          Var theWidth as Integer = CalendarButtonClassArray(i).Width-TwoOffset
-		          Var theHeight as Integer = CalendarButtonClassArray(i).Height-TwoOffset
-		          g.DrawRect(theLeft, theTop,theWidth,theHeight)
-		        #ENDIF
+		        Var theLeft as Integer = CalendarButtonClassArray(i).LeftX
+		        Var theTop as Integer = CalendarButtonClassArray(i).TopY
+		        Var theWidth as Integer = CalendarButtonClassArray(i).Width + 1
+		        Var theHeight as Integer = (CalendarButtonClassArray(i).Height) +1
+		        g.DrawroundRect(theLeft, theTop,theWidth,theHeight,4,4)
 		      End if
 		    End if
 		  Next i
-		  
-		  
-		  
 		  
 		  
 		  // DRAW DAYS OF WEEK ABBREVIATION WORK
@@ -329,56 +304,29 @@ Inherits Canvas
 		      g.ForeColor = &c333333
 		    End if
 		    
-		    // Draw Days Centered -- Windows GDI+ Is different that MacOS for centering the Calendar Day Text FYI.
-		    #IF TargetWin32 Then
-		      if CalendarButtonClassArray(i).Day = 0 Then
-		        g.DrawString("",CalendarButtonClassArray(i).LeftX+13,CalendarButtonClassArray(i).TopY+17)
-		      Else
-		        if CalendarButtonClassArray(i).Day > 0 AND CalendarButtonClassArray(i).Day < 10 Then
-		          g.DrawString(CalendarButtonClassArray(i).day.ToString,CalendarButtonClassArray(i).LeftX+12.5,CalendarButtonClassArray(i).TopY+17)
-		        Else
-		          g.DrawString(CalendarButtonClassArray(i).day.ToString,CalendarButtonClassArray(i).LeftX+10,CalendarButtonClassArray(i).TopY+17)
-		        End if
-		        
-		      End if
+		    // DRAW CALENDAR DAYS
+		    if CalendarButtonClassArray(i).Day = 0 Then
+		      g.DrawString("",CalendarButtonClassArray(i).LeftX+12.5,CalendarButtonClassArray(i).TopY+18)
 		      
-		    #ELSEIF TargetMacOS OR TargetLinux Then
-		      
-		      if CalendarButtonClassArray(i).Day = 0 Then
+		    Else
+		      if CalendarButtonClassArray(i).Day > 0 AND CalendarButtonClassArray(i).Day < 10 Then
 		        
-		        g.DrawString("",CalendarButtonClassArray(i).LeftX+12.5,CalendarButtonClassArray(i).TopY+18)
+		        Var calDayStr as String = CalendarButtonClassArray(i).day.ToString
+		        Var calDayStrW as Double = g.TextWidth(calDayStr)
+		        Var calDayStrH as Double = g.TextHeight(calDayStr, 80)
 		        
+		        Var leftX as Double = CalendarButtonClassArray(i).LeftX
+		        Var calDayXpos as Double = CalendarButtonClassArray(i).LeftX + calDayStrW
+		        
+		        Var calDayYpos as Double = 24/2 - CalendarButtonClassArray(i).TopY/2
+		        g.DrawString(calDayStr, calDayXpos, calDayYpos, calDayStrW)
+		        g.DrawString(CalendarButtonClassArray(i).day.ToString,CalendarButtonClassArray(i).LeftX+12.5,CalendarButtonClassArray(i).TopY+17)
 		        
 		      Else
+		        g.DrawString(CalendarButtonClassArray(i).day.ToString,CalendarButtonClassArray(i).LeftX+8.5,CalendarButtonClassArray(i).TopY+17)
 		        
-		        if CalendarButtonClassArray(i).Day > 0 AND CalendarButtonClassArray(i).Day < 10 Then
-		          
-		          Var calDayStr as String = CalendarButtonClassArray(i).day.ToString
-		          Var calDayStrW as Double = g.TextWidth(calDayStr)
-		          Var calDayStrH as Double = g.TextHeight(calDayStr, 80)
-		          
-		          Var leftX as Double = CalendarButtonClassArray(i).LeftX
-		          Var calDayXpos as Double = CalendarButtonClassArray(i).LeftX + calDayStrW
-		          
-		          Var calDayYpos as Double = 24/2 - CalendarButtonClassArray(i).TopY/2
-		          g.DrawString(calDayStr, calDayXpos, calDayYpos, calDayStrW)
-		          
-		          g.DrawString(CalendarButtonClassArray(i).day.ToString,CalendarButtonClassArray(i).LeftX+12.5,CalendarButtonClassArray(i).TopY+17)
-		          
-		        Else
-		          g.DrawString(CalendarButtonClassArray(i).day.ToString,CalendarButtonClassArray(i).LeftX+8.5,CalendarButtonClassArray(i).TopY+17)
-		          
-		          
-		        End if
 		      End if
-		      
-		      
-		      
-		      
-		      
-		      
-		    #ENDIF
-		    
+		    End if
 		    
 		  next i
 		  

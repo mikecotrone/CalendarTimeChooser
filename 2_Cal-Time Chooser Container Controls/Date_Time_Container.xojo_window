@@ -111,13 +111,12 @@ End
 #tag WindowCode
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
-		  g.ForeColor = &cECECEC
+		  g.AntiAliasMode = Global.Graphics.AntiAliasModes.HighQuality
+		  g.AntiAlias = True
 		  
-		  #IF TargetWin32 Then
-		    g.FillRect(0,0,me.Width,me.Height)
-		  #ELSE
-		    g.FillRoundRect(0,0,me.Width,me.Height, 8, 8)
-		  #ENDIF
+		  g.ForeColor = &cECECEC
+		  g.FillRoundRect(0,0,me.Width,me.Height, 8, 8)
+		  
 		End Sub
 	#tag EndEvent
 

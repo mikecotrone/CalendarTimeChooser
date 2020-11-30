@@ -41,12 +41,31 @@ Inherits Canvas
 	#tag Event
 		Sub Open()
 		  myMenu=new MenuItem
+		  
+		  
+		  // WINDOWS OFFSET ADJUSTMENTS
+		  #IF TargetWindows Then
+		    Me.Top = Me.Top - 2
+		  #ENDIF
 		End Sub
 	#tag EndEvent
 
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
-		  g.DrawPicture(Reoccur20x20,0,0)
+		  g.AntiAliasMode = Global.Graphics.AntiAliasModes.HighQuality
+		  g.AntiAlias = True
+		  
+		  Var imagePicture as Picture = RecurringPicture
+		  Var imageXPos as Double = 0
+		  Var imageYPos as Double =  0
+		  Var imageW1  as Double = g.Width
+		  Var imageH1 as Double = g.Height
+		  Var imageSx as Double = 0
+		  Var imageSy as Double = 0
+		  Var imageW2 as Double = imagePicture.Width
+		  Var imageH2 as Double = imagePicture.Height
+		  g.DrawPicture(imagePicture, imageXPos, imageYPos, imageW1, imageH1, imageSx, imageSy, imageW2, imageH2)
+		  
 		End Sub
 	#tag EndEvent
 

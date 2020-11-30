@@ -125,7 +125,7 @@ Inherits Canvas
 		  #IF TargetMacOS OR TargetLinux Then
 		    face.Width=buffer.Width-16
 		    face.Height=buffer.width-16
-		  #Elseif TargetWin32 Then
+		  #Elseif TargetWindows Then
 		    face.Width=buffer.Width-32
 		    face.Height=buffer.width-32
 		  #endif
