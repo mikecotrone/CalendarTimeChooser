@@ -46,6 +46,22 @@ How to Report Issues?
 Please submit bug/issues at:
 https://github.com/IntelligentVisibility/CalendarTimeChooser/issues
   
+  
+Whats New in 3.0.8?
+------------------
+Fixes and Windows received alot of love!
+
+- Fix #32: https://github.com/mikecotrone/CalendarTimeChooser/issues/32
+
+- Fix #31: https://github.com/mikecotrone/CalendarTimeChooser/issues/31
+
+- Fix #30: https://github.com/mikecotrone/CalendarTimeChooser/issues/30
+
+- Fix #27: https://github.com/mikecotrone/CalendarTimeChooser/issues/27
+
+- Fix #26: https://github.com/mikecotrone/CalendarTimeChooser/issues/26
+
+
 Whats New in 3.0.6?
 ------------------
 Fixes!
