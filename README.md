@@ -1,15 +1,15 @@
 Date and Time Chooser
 =====================
 
-Xojo Calendar and Time Chooser Project
+Xojo Date and Time Chooser Project
 
 Date:           November 2020
 
-Language:       Xojo 2020 R2 and below Using a mix of API 2.0 and 1.0
+Language:       Using a mix of API 2.0 and 1.0
 
 Author:         Mike Cotrone (mikec@2tab.io)
 
-Version:        3.0.6
+Version:        3.0.7
 
 Contributors:   Mike Cotrone, Norman Palardy, Axel Schneider, Jim McKay
 
