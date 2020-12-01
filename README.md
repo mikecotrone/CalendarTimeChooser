@@ -51,6 +51,8 @@ Whats New in 3.0.8?
 ------------------
 Fixes and Windows received alot of love!
 
+- Fix #33: https://github.com/mikecotrone/CalendarTimeChooser/issues/33
+
 - Fix #32: https://github.com/mikecotrone/CalendarTimeChooser/issues/32
 
 - Fix #31: https://github.com/mikecotrone/CalendarTimeChooser/issues/31
