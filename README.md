@@ -1,5 +1,5 @@
-CalendarTimeChooser
-===================
+Date and Time Chooser
+=====================
 
 Xojo Calendar and Time Chooser Project
 
