@@ -356,7 +356,6 @@ End
 		  // Need a Check to See about Decrementing Year or not
 		  Calendar1.deselectAll()
 		  If Calendar1.PreviousMonth = Calendar1.Localized_December Then
-		    // Need to increment Year
 		    Var prevYearDbl As Double = YearPopup.Text.ToDouble -1
 		    Calendar1.PrevYear = prevYearDbl
 		    For i As Integer = 0 To YearPopup.ListCount-1

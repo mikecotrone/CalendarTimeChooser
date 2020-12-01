@@ -22,7 +22,7 @@ Inherits Canvas
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
 		  #Pragma Unused areas
-		  
+		  g.AntiAliasMode = Global.Graphics.AntiAliasModes.HighQuality
 		  g.AntiAlias = True
 		  
 		  // Draw Clock Image

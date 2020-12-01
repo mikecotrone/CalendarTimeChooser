@@ -48,6 +48,7 @@ Begin ContainerControl Date_Time_Container
       HasBackColor    =   False
       Height          =   252
       HelpTag         =   ""
+      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   10
       LockBottom      =   False
@@ -80,6 +81,7 @@ Begin ContainerControl Date_Time_Container
       Height          =   252
       HelpTag         =   ""
       HideAMPM        =   False
+      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   250
       LockBottom      =   False
