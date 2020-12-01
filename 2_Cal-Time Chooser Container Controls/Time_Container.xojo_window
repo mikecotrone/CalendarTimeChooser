@@ -182,7 +182,8 @@ End
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
 		  #Pragma Unused areas
 		  g.ForeColor = &cECECEC
-		  g.FillRoundRect(0,0,me.Width,me.Height, 8, 8)
+		  g.FillRect(0,0,me.Width,me.Height)
+		  
 		End Sub
 	#tag EndEvent
 

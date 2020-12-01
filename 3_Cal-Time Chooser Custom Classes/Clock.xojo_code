@@ -100,6 +100,9 @@ Inherits Canvas
 
 	#tag Method, Flags = &h21
 		Private Sub drawClockFace(g As Graphics)
+		  g.AntiAliasMode = Global.Graphics.AntiAliasModes.HighQuality
+		  g.AntiAlias = True
+		  
 		  static buffer As picture= new Picture(g.Width*4,g.Height*4)
 		  buffer.Graphics.ClearRect(0,0,buffer.Width,buffer.Height)
 		  Var hr,sec,x,y,radius,tickInset As integer

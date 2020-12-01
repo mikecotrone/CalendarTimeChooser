@@ -48,7 +48,6 @@ Begin ContainerControl Date_Time_Container
       HasBackColor    =   False
       Height          =   252
       HelpTag         =   ""
-      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   10
       LockBottom      =   False
@@ -81,7 +80,6 @@ Begin ContainerControl Date_Time_Container
       Height          =   252
       HelpTag         =   ""
       HideAMPM        =   False
-      Index           =   -2147483648
       InitialParent   =   ""
       Left            =   250
       LockBottom      =   False
@@ -115,7 +113,7 @@ End
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
 		  #Pragma Unused areas
 		  g.ForeColor = &cECECEC
-		  g.FillRoundRect(0,0,me.Width,me.Height, 8, 8)
+		  g.FillRect(0,0,me.Width,me.Height)
 		  
 		End Sub
 	#tag EndEvent
@@ -645,7 +643,10 @@ End
 		  
 		  // EXAMPLE RESULTS USAGE:
 		  //MsgBox "The selected date is: " + inSelectedDate.SQLDateTime
-		  //MsgBox "The selected date is: " + inSelectedDate.AbbreviatedDate
+		  'MsgBox "The selected date is: " + inSelectedDate.AbbreviatedDate + " (" +  inSelectedDate.SQLDateTime + ")"
+		  
+		  
+		  
 		End Sub
 	#tag EndEvent
 	#tag Event

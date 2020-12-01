@@ -3,6 +3,12 @@ Protected Class TimePicker
 Inherits Canvas
 	#tag Event
 		Function KeyDown(Key As String) As Boolean
+		  // BLOCK DELETE KEY
+		  If Asc(Key) = 8 Then
+		    Return False
+		  End If
+		  
+		  
 		  Select Case Time_Container(window).TimeMode
 		  Case 12
 		    
@@ -240,15 +246,20 @@ Inherits Canvas
 		  #Pragma Unused x
 		  #Pragma Unused y
 		  
-		  // Set the tab ability within the Canvas simulated fields
 		  Me.SetFocus()
 		  KeyBuffer = ""
+		  
+		  Var osPadInt as Integer
+		  #If TargetMacos Then
+		    osPadInt = 4
+		  #Elseif TargetWindows Then
+		    osPadInt = -2
+		  #endif
 		  
 		  Var extra24space as Integer
 		  If Time_Container(window).TimeMode = 24 Then
 		    extra24space = 6
 		  End If
-		  
 		  
 		  if x >= Indent + extra24space  AND x <=Indent+Time_Container(window).Time_Hour_Len + 2 + milTimeSpacer Then
 		    Draw_Hour_Selected = True
@@ -257,14 +268,14 @@ Inherits Canvas
 		    me.Invalidate(False)
 		  End if
 		  
-		  if x >= Indent + extra24space + Time_Container(window).Time_Hour_Len + Colon_Width AND x <= Indent+Time_Container(window).Time_Hour_Len+ Colon_Width + Time_Container(window).Time_Minute_Len + 10 + milTimeSpacer Then
+		  if x >= Indent + extra24space + Time_Container(window).Time_Hour_Len + Colon_Width AND x <= Indent+Time_Container(window).Time_Hour_Len+ Colon_Width + Time_Container(window).Time_Minute_Len + 8 + milTimeSpacer Then
 		    Draw_Minute_Selected = True 
 		    Draw_Hour_Selected = False
 		    Draw_AMPM_Selected = False
 		    me.Invalidate(False)
 		  End if
 		  
-		  if x >= Indent + extra24space +Time_Container(window).Time_Hour_Len+Colon_Width+Time_Container(window).Time_Minute_Len+SpaceBetweenMinAndAMPM + 8 AND x <= Indent+Time_Container(window).Time_Hour_Len+Colon_Width+Time_Container(window).Time_Minute_Len+SpaceBetweenMinAndAMPM+Time_Container(window).Time_AMPM_Len  + 16 Then
+		  if x >= Indent + extra24space +Time_Container(window).Time_Hour_Len+Colon_Width+Time_Container(window).Time_Minute_Len+SpaceBetweenMinAndAMPM + osPadInt AND x <= Indent+Time_Container(window).Time_Hour_Len+Colon_Width+Time_Container(window).Time_Minute_Len+SpaceBetweenMinAndAMPM+Time_Container(window).Time_AMPM_Len  + 16 Then
 		    Draw_AMPM_Selected = True
 		    Draw_Minute_Selected = False
 		    Draw_Hour_Selected = False
@@ -284,14 +295,14 @@ Inherits Canvas
 
 	#tag Event
 		Sub MouseMove(X As Integer, Y As Integer)
-		  #If XojoVersion < 2019.02
-		    Tooltip.Hide
-		  #Else
-		    App.HideTooltip
-		  #EndIf
 		  if x >= 0 AND x <= me.Width AND Y >= 0 AND y<=me.Height Then
 		    Me.MouseCursor = System.Cursors.FingerPointer
 		  end if
+		  
+		  
+		  
+		  
+		  
 		  
 		End Sub
 	#tag EndEvent
@@ -309,56 +320,56 @@ Inherits Canvas
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
 		  #Pragma Unused areas
+		  g.AntiAliasMode = Global.Graphics.AntiAliasModes.HighQuality
+		  g.AntiAlias = True
+		  
 		  // Draw Shape of Control
 		  g.ForeColor = &cFFFFFF
+		  g.FillRect (0,0,me.Width,me.Height)
 		  
-		  #If TargetWindows Then
-		    g.FillRect (0,0,me.Width,me.Height)
-		    
-		  #ELSE
-		    g.FillRoundRect (0,0,me.Width,me.Height,6,6)
-		    
-		  #endif
 		  
-		  // GET STRING WIDTH OF TIME PARTS
+		  g.TextSize = 14
+		  g.TextFont = "System"
+		  
+		  // SET POS FOR DIGIT POSITIONING
+		  Var timeXpos, timeYpos as Integer
+		  if Time_Container(window).TimeMode = 12 Then
+		    timeXpos = 10
+		    Indent = timeXpos
+		    timeYpos = 16
+		  Elseif Time_Container(window).TimeMode = 24 Then
+		    timeXpos = 18
+		    timeYpos = 16
+		  end if
+		  
+		  // DRAW HOUR AND HIGHLIGHT
 		  Var hourStr as String = Time_Container(window).Time_Hour
 		  Time_Container(window).Time_Hour_Len = g.TextWidth(hourStr)
-		  Var minuteStr as String = Time_Container(window).Time_Minute
-		  Time_Container(window).Time_Minute_Len =  g.TextWidth(minuteStr)
-		  Var AmPmStr as String = Time_Container(window).Time_AMPM
-		  Time_Container(window).Time_AMPM_Len =  g.TextWidth(AmPmStr)
-		  
-		  
-		  // DRAW
 		  if Draw_Hour_Selected = True Then
 		    drawSelectHour(g, Time_Container(window).Time_Hour_Len)
 		  end if
 		  
+		  // DRAW MINUTE AND HIGHLIGHT
+		  Var minuteStr as String = Time_Container(window).Time_Minute
+		  Time_Container(window).Time_Minute_Len =  g.TextWidth(minuteStr)
 		  if Draw_Minute_Selected = True Then
 		    drawSelectMinute(g, Time_Container(window).Time_Minute_Len)
 		  end if
 		  
+		  // DRAW AM/PM ONLY 12 HOUR TIME MODE
+		  Var AmPmStr as String = Time_Container(window).Time_AMPM
+		  Time_Container(window).Time_AMPM_Len =  g.TextWidth(AmPmStr)
 		  Var DrawStringValue as String
-		  Var timeXpos, timeYpos as Integer
 		  if Time_Container(window).TimeMode = 12 Then
-		    
 		    if Draw_AMPM_Selected = True Then
 		      drawAMPM(g, Time_Container(window).Time_AMPM_Len)
 		    End if
-		    timeXpos = 12
-		    timeYpos = 16
-		    
-		  Elseif Time_Container(window).TimeMode = 24 Then
-		    timeXpos = 18
-		    timeYpos = 16
-		    
 		  End if
 		  
+		  // DRAW THE TIME
 		  DrawStringValue = createTimeString()
 		  g.Transparency = 0
 		  g.ForeColor = RGB(0,0,0)
-		  g.TextSize = 14
-		  g.TextFont = "System"
 		  
 		  #If TargetWindows Then
 		    Var winTopAdj as Integer = 2 + timeYpos
@@ -367,17 +378,12 @@ Inherits Canvas
 		    g.DrawString(DrawStringValue,timeXpos,timeYpos)
 		  #endif
 		  
+		  
 		  g.PenWidth=1
 		  g.PenHeight=1
 		  g.ForeColor = &cB0B0B0
+		  g.DrawRect(0,0,me.Width,me.Height)
 		  
-		  #If TargetWindows Then
-		    g.DrawRect(0,0,me.Width,me.Height)
-		    
-		  #ELSE
-		    g.DrawRoundRect(0,0,me.Width,me.Height,6,6)
-		    
-		  #endif
 		  
 		  
 		  
@@ -549,18 +555,18 @@ Inherits Canvas
 		  Var xPOS as Integer
 		  Var yPOS as Integer = 1
 		  Var osPaddingInt as Integer
-		  Var twentyFourHrPadInt as Integer
+		  Var winPadInt as Integer
 		  Var thisWidth as Integer
 		  #If TargetMacOS Then
 		    osPaddingInt = 4
-		    xPOS  = Indent + Time_Container(window).Time_Hour_Len + Colon_Width + Time_Container(window).Time_Minute_Len+SpaceBetweenMinAndAMPM + 9
+		    xPOS  = Indent + Time_Container(window).Time_Hour_Len + Colon_Width + Time_Container(window).Time_Minute_Len+SpaceBetweenMinAndAMPM + 2
 		    thisWidth = inTimeAMPMLen + 6
 		    
 		  #ElseIf TargetWindows Then
 		    osPaddingInt = 5
-		    twentyFourHrPadInt = 1
-		    xPOS  = Indent+Time_Container(window).Time_Hour_Len+Colon_Width+Time_Container(window).Time_Minute_Len+SpaceBetweenMinAndAMPM + 10
-		    thisWidth = inTimeAMPMLen + 10
+		    winPadInt = 1
+		    xPOS  = Indent+Time_Container(window).Time_Hour_Len+Colon_Width+Time_Container(window).Time_Minute_Len+SpaceBetweenMinAndAMPM
+		    thisWidth = inTimeAMPMLen + 5
 		  #endif
 		  
 		  Var thisHeight as Integer = me.Height-1
@@ -597,22 +603,21 @@ Inherits Canvas
 		Private Sub drawSelectHour(g as Graphics, inTimeHourLen as Integer)
 		  g.ForeColor = &c99ccff
 		  
+		  Var xPOS as Integer = 9
+		  Var yPOS as Integer = 1
 		  Var osPaddingInt as Integer
-		  Var twentyFourHrPadInt as Integer
 		  #If TargetMacOS Then
-		    osPaddingInt = 4
-		  #Else
-		    osPaddingInt = 5
-		    twentyFourHrPadInt = 1
+		    osPaddingInt = 3 
+		    
+		  #ElseIf TargetWindows Then
+		    osPaddingInt = 2
 		  #endif
 		  
-		  Var xPOS as Integer = 11
-		  Var yPOS as Integer = 1
 		  Var thisWidth as Integer = inTimeHourLen  + osPaddingInt
 		  Var thisHeight as Integer = me.Height-1
 		  
 		  If Time_Container(window).TimeMode = 24 Then
-		    xPOS = xPOS + 1 + milTimeSpacer - twentyFourHrPadInt
+		    xPOS = xPOS + 2 + milTimeSpacer
 		  End If
 		  
 		  g.FillRect(xPOS, yPOS, thisWidth, thisHeight)
@@ -624,25 +629,27 @@ Inherits Canvas
 		  g.ForeColor = &c99ccff
 		  
 		  
-		  Var xPOS as Integer
+		  Var xPOS as Integer = 0
 		  Var yPOS as Integer = 1
 		  Var osPaddingInt as Integer
-		  Var twentyFourHrPadInt as Integer
+		  Var winPadInt as Integer
 		  
 		  #If TargetMacOS Then
 		    osPaddingInt = 4
-		    xPOS = Indent+Time_Container(window).Time_Hour_Len + 8
+		    xPOS = Indent+Time_Container(window).Time_Hour_Len + 4
+		    
 		  #ElseIf TargetWindows Then
 		    osPaddingInt = 5
-		    twentyFourHrPadInt = 1
-		    xPOS = Indent + Time_Container(window).Time_Hour_Len +  10
+		    winPadInt = 1
+		    xPOS = Indent + Time_Container(window).Time_Hour_Len +  3
 		  #endif
 		  
-		  Var thisWidth as Integer = inTimeMinuteLen + 5
+		  Var thisWidth as Integer = inTimeMinuteLen + 2 - (winPadInt*3)
 		  Var thisHeight as Integer = me.Height-1
 		  
 		  If Time_Container(window).TimeMode = 24 Then
-		    xPOS = xPOS + 1 + milTimeSpacer - twentyFourHrPadInt
+		    thisWidth = thisWidth + 2
+		    xPOS = xPOS + 1 + milTimeSpacer + winPadInt
 		  End If
 		  
 		  g.FillRect(xPOS, yPOS, thisWidth, thisHeight)
@@ -1061,7 +1068,7 @@ Inherits Canvas
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
-		Indent As Integer = 11
+		Indent As Integer
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
