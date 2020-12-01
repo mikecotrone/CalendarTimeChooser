@@ -984,7 +984,10 @@ End
 #tag Events ClockHandColorPickerCanvas
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
-		  Var p As new Picture(me.Width,me.Height)
+		  #Pragma Unused x
+		  #Pragma Unused y
+		  
+		  'Var p As New Picture(Me.Width,Me.Height)
 		  static handColor as color=MyPicker.ClockHandColor
 		  if SelectColor(handColor, "Select a color for the clock hands") then
 		    MyPicker.ClockHandColor = handColor
@@ -998,6 +1001,8 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		  #Pragma Unused areas
+		  
 		  g.ForeColor = RGB(100,100,100)
 		  g.PenHeight=2
 		  g.PenWidth=2

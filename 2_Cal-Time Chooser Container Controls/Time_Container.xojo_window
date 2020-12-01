@@ -170,7 +170,7 @@ End
 #tag WindowCode
 	#tag Event
 		Sub Open()
-		  #IF TargetWin32 Then
+		  #IF TargetWindows Then
 		    Me.DoubleBuffer = True
 		    Me.Transparent = False
 		    Me.EraseBackground = False
@@ -180,12 +180,10 @@ End
 
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		  #Pragma Unused areas
 		  g.ForeColor = &cECECEC
-		  #IF TargetWin32 Then
-		    g.FillRect(0,0,me.Width,me.Height)
-		  #ELSE
-		    g.FillRoundRect(0,0,me.Width,me.Height, 8, 8)
-		  #ENDIF
+		  g.FillRect(0,0,me.Width,me.Height)
+		  
 		End Sub
 	#tag EndEvent
 
@@ -378,10 +376,9 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub Open()
-		  // For some reason this control doesn't look right as set in the IDE for Left/Top
-		  #IF TargetWin32 Then
-		    Me.Left = 125
-		    Me.Top =  13
+		  // WINDOWS ADJUSTMENTS
+		  #IF TargetWindows Then
+		    Me.Top = Me.Top + 4
 		  #ENDIF
 		  
 		End Sub
@@ -390,11 +387,11 @@ End
 #tag Events TimeZoneLabel
 	#tag Event
 		Sub Open()
-		  Using Xojo.Core
-		  Var thisDate as Xojo.Core.Date
-		  Var tz as TimeZone = TimeZone.Current
+		  'Using Xojo.Core
+		  'Var thisDate as Xojo.Core.Date
+		  Var tz As TimeZone = TimeZone.Current
 		  
-		  Var thisText as Text = tz.Abbreviation
+		  Var thisText As String = tz.Abbreviation
 		  
 		  Me.Text = thisText
 		  

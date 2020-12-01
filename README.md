@@ -5,11 +5,11 @@ Xojo Calendar and Time Chooser Project
 
 Date:           November 2020
 
-Language:       Xojo 2020 R2 and below (API 1.0)
+Language:       Xojo 2020 R2 and below Using a mix of API 2.0 and 1.0
 
 Author:         Mike Cotrone (mikec@2tab.io)
 
-Version:        3.0.5
+Version:        3.0.6
 
 Contributors:   Mike Cotrone, Norman Palardy, Axel Schneider, Jim McKay
 
@@ -46,6 +46,15 @@ How to Report Issues?
 Please submit bug/issues at:
 https://github.com/IntelligentVisibility/CalendarTimeChooser/issues
   
+Whats New in 3.0.6?
+------------------
+Fixes!
+- Fixed the aesthetic issues on the calendar slots did not align well with the calendar numbers including when you clicked or mouse over (Mac / Win)
+- Fixed the same aesthetic type click highlight issue on the Time Chooser
+- Changed over to API2.0 for: array.ubound/ubound(), Str(), CDbl(), Array.Redim(), Dim
+- Making all loops more efficient by setting the Array.LastIndex to a local variable and defining the counter var prior to the loop
+- Using #PRAGMA UNUSED AREAS on paint events (Thanks Norman!)
+
 Whats New in 3.0.5?
 ------------------
 - Code Refactoring by Norman Palardy: Simplified the use of this project by removing the need to type two and three name spaces deep to set settings.

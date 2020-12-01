@@ -3,7 +3,7 @@ Protected Class App
 Inherits Application
 	#tag Event
 		Sub Open()
-		  #If TargetWin32 = True Then
+		  #If TargetWindows = True Then
 		    app.UseGDIPlus=true
 		  #endif
 		  

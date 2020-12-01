@@ -111,13 +111,10 @@ End
 #tag WindowCode
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		  #Pragma Unused areas
 		  g.ForeColor = &cECECEC
+		  g.FillRect(0,0,me.Width,me.Height)
 		  
-		  #IF TargetWin32 Then
-		    g.FillRect(0,0,me.Width,me.Height)
-		  #ELSE
-		    g.FillRoundRect(0,0,me.Width,me.Height, 8, 8)
-		  #ENDIF
 		End Sub
 	#tag EndEvent
 
@@ -640,11 +637,16 @@ End
 #tag Events Calendar_Container1
 	#tag Event
 		Sub SelectedDate(inSelectedDate as Date)
+		  #Pragma Unused inSelectedDate
+		  
 		  // THIS EVENT IS PASSED THE SELECTED DATE AS A DATE OBJECT
 		  
 		  // EXAMPLE RESULTS USAGE:
 		  //MsgBox "The selected date is: " + inSelectedDate.SQLDateTime
-		  //MsgBox "The selected date is: " + inSelectedDate.AbbreviatedDate
+		  'MsgBox "The selected date is: " + inSelectedDate.AbbreviatedDate + " (" +  inSelectedDate.SQLDateTime + ")"
+		  
+		  
+		  
 		End Sub
 	#tag EndEvent
 	#tag Event
@@ -659,14 +661,16 @@ End
 #tag Events Time_Container1
 	#tag Event
 		Sub SelectedTime(inHours as String, inMinutes as String, optional inAMPM as String)
+		  #Pragma Unused inAMPM
+		  
 		  // ASSIGN TIME BACK TO SELECTEDDATE  DATE PROPERTY
 		  SelectedDate.Hour = inHours.ToDouble
 		  SelectedDate.Minute = inMinutes.ToDouble
 		  
 		  // ALSO PASSING TIME AS A STRING INTO THIS EVENT FOR MAXIMUM FLEXIBILITY
-		  Var selectedHour as String  = inHours
-		  Var selectedMinutes as string = inMinutes
-		  Var selectedAMPM as string = inAMPM
+		  'Var selectedHour as String  = inHours
+		  'Var selectedMinutes as string = inMinutes
+		  'Var selectedAMPM as string = inAMPM
 		  
 		  
 		  // EXAMPLE RESULTS USAGE:

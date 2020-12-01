@@ -25,8 +25,7 @@ Begin ContainerControl Calendar_Container
    UseFocusRing    =   False
    Visible         =   True
    Width           =   230
-   Begin Combobox YearPopup
-      AutoComplete    =   False
+   Begin PopUpMenu YearPopup
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
@@ -34,7 +33,6 @@ Begin ContainerControl Calendar_Container
       Enabled         =   True
       Height          =   20
       HelpTag         =   ""
-      Hint            =   ""
       Index           =   -2147483648
       InitialParent   =   ""
       InitialValue    =   ""
@@ -51,12 +49,11 @@ Begin ContainerControl Calendar_Container
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
-      TextSize        =   13.0
+      TextSize        =   0.0
       TextUnit        =   0
       Top             =   12
       Transparent     =   True
       Underline       =   False
-      UseFocusRing    =   False
       Visible         =   True
       Width           =   70
    End
@@ -195,7 +192,7 @@ Begin ContainerControl Calendar_Container
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   202
+      Left            =   201
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -217,7 +214,7 @@ Begin ContainerControl Calendar_Container
       Height          =   24
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   39
+      Left            =   40
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -232,7 +229,7 @@ Begin ContainerControl Calendar_Container
       Top             =   226
       Transparent     =   True
       Visible         =   True
-      Width           =   147
+      Width           =   150
    End
    Begin PopupMenu MonthPopup
       AutoDeactivate  =   True
@@ -258,7 +255,7 @@ Begin ContainerControl Calendar_Container
       TabPanelIndex   =   0
       TabStop         =   True
       TextFont        =   "System"
-      TextSize        =   13.0
+      TextSize        =   0.0
       TextUnit        =   0
       Top             =   12
       Transparent     =   True
@@ -272,12 +269,18 @@ End
 #tag WindowCode
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
+		  #Pragma Unused x
+		  #Pragma Unused y
+		  
 		  Return True
 		End Function
 	#tag EndEvent
 
 	#tag Event
 		Sub MouseUp(X As Integer, Y As Integer)
+		  #Pragma Unused x
+		  #Pragma Unused y
+		  
 		  // DE-SELECT ALL CALENDAR DAYS SELECTED WHEN CLICK ON THE CONTAINER
 		  Calendar1.deselectAll()
 		End Sub
@@ -285,22 +288,22 @@ End
 
 	#tag Event
 		Sub Open()
-		  #IF TargetWin32 Then
+		  #IF TargetWindows Then
 		    Me.DoubleBuffer = True
 		    Me.Transparent = False
 		    Me.EraseBackground = False
 		  #ENDIF
+		  
+		  
 		End Sub
 	#tag EndEvent
 
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		  #Pragma Unused areas
 		  g.ForeColor = &cECECEC 
-		  #IF TargetWin32 Then
-		    g.FillRect(0,0,me.Width,me.Height)
-		  #ELSE
-		    g.FillRoundRect(0,0,me.Width,me.Height, 8, 8)
-		  #ENDIF
+		  g.FillRect(0,0,me.Width,me.Height)
+		  
 		End Sub
 	#tag EndEvent
 
@@ -309,24 +312,23 @@ End
 		Private Sub goNextMonth()
 		  // Need a Check to See about Incrementing Year or not
 		  Calendar1.deselectAll()
-		  if Calendar1.NextMonth = Calendar1.Localized_January then
-		    // Need to increment Year
-		    Var nextYearDbl as Double = YearPopup.Text.ToDouble+1
+		  If Calendar1.NextMonth = Calendar1.Localized_January Then
+		    Var nextYearDbl As Double = YearPopup.Text.ToDouble+1
 		    Calendar1.NextYear = nextYearDbl
-		    for i as integer = 0 to YearPopup.ListCount-1
-		      if Calendar1.NextYear.ToString = YearPopup.List(i) Then
+		    For i As Integer = 0 To YearPopup.ListCount-1
+		      If Calendar1.NextYear.ToString = YearPopup.List(i) Then
 		        YearPopup.ListIndex = i
-		        exit
-		      End if
-		    next i
-		  End if
+		        Exit
+		      End If
+		    Next i
+		  End If
 		  
-		  for i as integer = 0 to MonthPopup.ListCount-1
-		    if Calendar1.NextMonth = MonthPopup.List(i) Then
+		  For i As Integer = 0 To MonthPopup.ListCount-1
+		    If Calendar1.NextMonth = MonthPopup.List(i) Then
 		      MonthPopup.ListIndex = i
-		      exit
-		    End if
-		  next i
+		      Exit
+		    End If
+		  Next i
 		  
 		  
 		End Sub
@@ -335,14 +337,14 @@ End
 	#tag Method, Flags = &h21
 		Private Sub goNextYear()
 		  Calendar1.deselectAll()
-		  Var nextYearDbl as Double = YearPopup.Text.ToDouble + 1
+		  Var nextYearDbl As Double = YearPopup.Text.ToDouble + 1
 		  Calendar1.NextYear = nextYearDbl
-		  for i as integer = 0 to YearPopup.ListCount-1
-		    if Calendar1.NextYear.ToString = YearPopup.List(i) Then
+		  For i As Integer = 0 To YearPopup.ListCount-1
+		    If Calendar1.NextYear.ToString = YearPopup.List(i) Then
 		      YearPopup.ListIndex = i
-		      exit
-		    End if
-		  next i
+		      Exit
+		    End If
+		  Next i
 		  
 		  
 		  
@@ -353,24 +355,24 @@ End
 		Private Sub goPrevMonth()
 		  // Need a Check to See about Decrementing Year or not
 		  Calendar1.deselectAll()
-		  if Calendar1.PreviousMonth = Calendar1.Localized_December then
+		  If Calendar1.PreviousMonth = Calendar1.Localized_December Then
 		    // Need to increment Year
-		    Var prevYearDbl as Double = YearPopup.Text.ToDouble -1
+		    Var prevYearDbl As Double = YearPopup.Text.ToDouble -1
 		    Calendar1.PrevYear = prevYearDbl
-		    for i as integer = 0 to YearPopup.ListCount-1
-		      if Calendar1.PrevYear.ToString = YearPopup.List(i) Then
+		    For i As Integer = 0 To YearPopup.ListCount-1
+		      If Calendar1.PrevYear.ToString = YearPopup.List(i) Then
 		        YearPopup.ListIndex = i
-		        exit
-		      End if
-		    next i
-		  End if
+		        Exit
+		      End If
+		    Next i
+		  End If
 		  
-		  for i as integer = 0 to MonthPopup.ListCount-1
-		    if Calendar1.PreviousMonth = MonthPopup.List(i) Then
+		  For i As Integer = 0 To MonthPopup.ListCount-1
+		    If Calendar1.PreviousMonth = MonthPopup.List(i) Then
 		      MonthPopup.ListIndex = i
-		      exit
-		    End if
-		  next i
+		      Exit
+		    End If
+		  Next i
 		  
 		End Sub
 	#tag EndMethod
@@ -378,14 +380,14 @@ End
 	#tag Method, Flags = &h21
 		Private Sub goPrevYear()
 		  Calendar1.deselectAll()
-		  Var prevYearDbl as Double = YearPopup.Text.ToDouble -1
+		  Var prevYearDbl As Double = YearPopup.Text.ToDouble -1
 		  Calendar1.NextYear = prevYearDbl
-		  for i as integer = 0 to YearPopup.ListCount-1
-		    if Calendar1.NextYear.ToString = YearPopup.List(i) Then
+		  For i As Integer = 0 To YearPopup.ListCount-1
+		    If Calendar1.NextYear.ToString = YearPopup.List(i) Then
 		      YearPopup.ListIndex = i
-		      exit
-		    End if
-		  next i
+		      Exit
+		    End If
+		  Next i
 		  
 		  
 		  
@@ -408,39 +410,35 @@ End
 
 	#tag Method, Flags = &h0
 		Sub takeMeToTodaysDate()
-		  
-		  // Bring Us Back to Today's Month
-		  Var CurrentDateMonthString as String = Calendar1.convertMonthIntToMonthString(Calendar1.CurrentDate.Month)
-		  for i as integer = 0 to MonthPopup.ListCount-1
-		    if CurrentDateMonthString = MonthPopup.List(i) Then
+		  Var CurrentDateMonthString As String = Calendar1.convertMonthIntToMonthString(Calendar1.CurrentDate.Month)
+		  For i As Integer = 0 To MonthPopup.ListCount-1
+		    If CurrentDateMonthString = MonthPopup.List(i) Then
 		      MonthPopup.ListIndex = i
-		    End if
-		  next i
+		    End If
+		  Next i
 		  
-		  
-		  // Bring Us Back to Today's Year
-		  Var CurrentDateYearString as String = Calendar1.CurrentDate.Year.ToString
-		  for i as integer = 0 to YearPopup.ListCount - 1
-		    if CurrentDateYearString = YearPopup.List(i) Then
+		  Var CurrentDateYearString As String = Calendar1.CurrentDate.Year.ToString
+		  For i As Integer = 0 To YearPopup.ListCount - 1
+		    If CurrentDateYearString = YearPopup.List(i) Then
 		      YearPopup.ListIndex = i
-		    End if
-		  next i
+		    End If
+		  Next i
 		  
-		  //Select Todays Date
+		  // SELECT TODAYS DATE
 		  Calendar1.deselectAll()
-		  Var lr as Integer = Calendar1.CalendarButtonClassArray.LastIndex
-		  for i as integer = 7 to lr
+		  Var lr As Integer = Calendar1.CalendarButtonClassArray.LastIndex
+		  For i As Integer = 6 To lr
 		    // Only begin at 7 Since 0-6 Are reserved for Day Of Week Titles
-		    if Calendar1.CalendarButtonClassArray(i).MyDate <> Nil Then
-		      if Calendar1.CalendarButtonClassArray(i).MyDate.Month = Calendar1.CurrentDate.Month AND  Calendar1.CalendarButtonClassArray(i).MyDate.Day = Calendar1.CurrentDate.Day Then
+		    If Calendar1.CalendarButtonClassArray(i).MyDate <> Nil Then
+		      If Calendar1.CalendarButtonClassArray(i).MyDate.Month = Calendar1.CurrentDate.Month And  Calendar1.CalendarButtonClassArray(i).MyDate.Day = Calendar1.CurrentDate.Day Then
 		        Calendar1.CalendarButtonClassArray(i).Selected = True
-		        Calendar1.SelectedDate = Calendar1.CalendarButtonClassArray(i).MyDate
-		        Calendar1.Invalidate(False)
-		      End if
-		    end if
-		    
-		    
-		  next i
+		        Var selectedDate As Date = Calendar1.CalendarButtonClassArray(i).MyDate
+		        Calendar1.SelectedDate = selectedDate
+		      End If
+		    End If
+		  Next i
+		  
+		  Calendar1.Invalidate(False)
 		End Sub
 	#tag EndMethod
 
@@ -482,21 +480,22 @@ End
 		Sub Change()
 		  Calendar1.SelectedYear = Me.Text
 		  Var validYearCode as Integer = Calendar1.calculateYear(Me.Text)
-		  If validYearCode = -1 Then
-		    // INVALID YEAR USE THIS YEARS
-		    Var todayDate as New date
-		    Calendar1.YearNumber = todayDate.Year
-		    Me.Text = todayDate.Year.ToString
-		  End If
+		  'If validYearCode = -1 Then
+		  '// INVALID YEAR USE THIS YEARS
+		  'Var todayDate as New date
+		  'Calendar1.YearNumber = todayDate.Year
+		  'Me.SelectedRow = todayDate.Year.ToString
+		  'End If
 		  Calendar1.UPDATE_MonthDays()
 		  Calendar1.UPDATE_MapDaysToCalSlots()
 		  Calendar1.deselectAll()
+		  
 		  
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub Open()
-		  #IF TargetWin32 Then
+		  #IF TargetWindows Then
 		    Me.Top = Me.Top - 4
 		  #ENDIF
 		  
@@ -541,11 +540,11 @@ End
 		Sub Open()
 		  me.Items( 0 ).Title = "<<"
 		  me.Items( 1 ).Title = "<"
-		  me.Items( 2 ).icon = BlackDot16x16
+		  me.Items( 2 ).icon = BlackDotPicture
 		  me.Items( 3 ).Title = ">"
 		  me.Items( 4 ).Title = ">>"
 		  
-		  #If TargetWin32 Then
+		  #If TargetWindows Then
 		    Me.Left = Me.Left - 6
 		  #endif
 		End Sub
@@ -564,7 +563,7 @@ End
 	#tag EndEvent
 	#tag Event
 		Sub Open()
-		  #If TargetWin32 Then
+		  #If TargetWindows Then
 		    Me.Top = Me.Top - 4
 		  #endif
 		End Sub
