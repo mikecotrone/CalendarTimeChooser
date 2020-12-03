@@ -430,6 +430,7 @@ End
 		    // Only begin at 7 Since 0-6 Are reserved for Day Of Week Titles
 		    If Calendar1.CalendarButtonClassArray(i).MyDate <> Nil Then
 		      If Calendar1.CalendarButtonClassArray(i).MyDate.Month = Calendar1.CurrentDate.Month And  Calendar1.CalendarButtonClassArray(i).MyDate.Day = Calendar1.CurrentDate.Day Then
+		        Calendar1.deselectAll()  
 		        Calendar1.CalendarButtonClassArray(i).Selected = True
 		        Var selectedDate As Date = Calendar1.CalendarButtonClassArray(i).MyDate
 		        Calendar1.SelectedDate = selectedDate
@@ -487,7 +488,7 @@ End
 		  'End If
 		  Calendar1.UPDATE_MonthDays()
 		  Calendar1.UPDATE_MapDaysToCalSlots()
-		  Calendar1.deselectAll()
+		  'Calendar1.deselectAll()
 		  
 		  
 		End Sub
@@ -556,7 +557,7 @@ End
 		  Calendar1.calculateMonth(Me.Text)
 		  Calendar1.UPDATE_MonthDays()
 		  Calendar1.UPDATE_MapDaysToCalSlots()
-		  Calendar1.deselectAll()
+		  'Calendar1.deselectAll()
 		  
 		End Sub
 	#tag EndEvent

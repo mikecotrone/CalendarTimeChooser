@@ -645,8 +645,7 @@ End
 		  
 		  // EXAMPLE RESULTS USAGE:
 		  //MsgBox "The selected date is: " + inSelectedDate.SQLDateTime
-		  'MsgBox "The selected date is: " + inSelectedDate.AbbreviatedDate + " (" +  inSelectedDate.SQLDateTime + ")"
-		  
+		  MsgBox "The selected date is: " + inSelectedDate.AbbreviatedDate 
 		  
 		  
 		End Sub

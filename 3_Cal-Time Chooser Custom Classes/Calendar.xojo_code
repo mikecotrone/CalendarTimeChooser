@@ -51,6 +51,7 @@ Inherits Canvas
 		    If Keyboard.ShiftKey = True Then // Multi Selection
 		      If AllowMultipleSelections = True Then
 		        If X > CalendarButtonClassArray(i).LeftX And X < CalendarButtonClassArray(i).RightX And Y > CalendarButtonClassArray(i).TopY And Y < CalendarButtonClassArray(i).BottomY Then
+		          deselectAll()  
 		          CalendarButtonClassArray(i).Selected = True
 		          SelectedDate = New Date
 		          // Set the correct month
@@ -128,6 +129,7 @@ Inherits Canvas
 		              End If
 		              
 		            Next ii
+		            'deselectAll()
 		            remapSelectedToSlot()
 		            
 		          Else
@@ -211,6 +213,7 @@ Inherits Canvas
 		    For i As Integer = 7 To lr
 		      Var calBtnClsMyDate as Date = CalendarButtonClassArray(i).MyDate
 		      If calBtnClsMyDate.Month = CurrentDate.Month AND calBtnClsMyDate.Day = CurrentDate.Day AND calBtnClsMyDate.Year = CurrentDate.Year Then
+		        deselectAll()  
 		        CalendarButtonClassArray(i).Selected = True
 		        CalendarButtonClassArray(i).SelectedDate = CurrentDate
 		      End If
@@ -1426,6 +1429,7 @@ Inherits Canvas
 		    if calBtnClsSelectedDate <> Nil Then
 		      Var calBtnClsMyDate as Date = CalendarButtonClassArray(i).MyDate
 		      If calBtnClsSelectedDate.Month = calBtnClsMyDate.Month AND calBtnClsSelectedDate.Day = calBtnClsMyDate.Day AND calBtnClsSelectedDate.Year = calBtnClsMyDate.Year Then
+		        deselectAll()  
 		        CalendarButtonClassArray(i).Selected = True
 		      End if
 		    End If
@@ -1444,6 +1448,7 @@ Inherits Canvas
 		    SelectedDate = CurrentDate
 		    CalendarButtonClassArray(i).SelectedDate = inDate
 		    if CalendarButtonClassArray(i).MyDate = inDate Then
+		      deselectAll()  
 		      CalendarButtonClassArray(i).Selected = True
 		    End if
 		    Me.Invalidate(False)
@@ -1540,7 +1545,6 @@ Inherits Canvas
 		  FirstCalSlot = getFirstDayOfWeekCalSlotNumber(FirstWeekDay,CalMonFirstDayOfWeekBool) 
 		  
 		  clearDays()
-		  
 		  Var DayCounter as Integer  = 0
 		  Var i  as Integer
 		  Var theEndCalc as Integer = NumOfDaysInMonth + FirstCalSlot 
