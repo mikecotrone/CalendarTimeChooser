@@ -7,7 +7,7 @@ Date:           November 2020
 
 Language:       Using a mix of API 2.0 and 1.0
 
-Author:         Mike Cotrone (mikec@2tab.io)
+Author:         Mike Cotrone (mikec@vistatechgso.com)
 
 Version:        3.0.7
 
@@ -37,14 +37,14 @@ How to Use this Project?
 ------------------
 
 Please read our full "How To" documentation located at:
-https://github.com/IntelligentVisibility/CalendarTimeChooser/tree/master/Documentation
+https://github.com/mikecotrone/CalendarTimeChooser/tree/master/Documentation
 
 
 How to Report Issues?
 ------------------
 
 Please submit bug/issues at:
-https://github.com/IntelligentVisibility/CalendarTimeChooser/issues
+https://github.com/mikecotrone/CalendarTimeChooser/issues
   
   
 Whats New in 3.0.8?
