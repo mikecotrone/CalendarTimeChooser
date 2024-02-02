@@ -7,7 +7,7 @@ Date:           November 2020
 
 Language:       Using a mix of API 2.0 and 1.0
 
-Author:         Mike Cotrone (mikec@2tab.io)
+Author:         Mike Cotrone (mikec@vistatechgso.com)
 
 Version:        3.0.7
 
