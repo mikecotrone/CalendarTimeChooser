@@ -942,7 +942,7 @@ End
 		  Me.AppendText "This project has been tested with Xojo "+ XojoVersionString + EndOfLine+_
 		  "This project is licensed under the BSD3 license."+EndOfLine+EndOfLine+_
 		  "If you have any questions please check the ""Quick Start App Note"" or "+_
-		  "email us at support@intelligentvis.com."+EndOfLine
+		  "email us at mikec@vistatechgso.com."+EndOfLine
 		  
 		  
 		End Sub

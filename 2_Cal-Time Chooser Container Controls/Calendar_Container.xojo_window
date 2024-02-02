@@ -11,6 +11,7 @@ Begin ContainerControl Calendar_Container
    HasBackColor    =   False
    Height          =   252
    HelpTag         =   ""
+   Index           =   -2147483648
    InitialParent   =   ""
    Left            =   0
    LockBottom      =   False
@@ -74,6 +75,7 @@ Begin ContainerControl Calendar_Container
       IncludePrevNextMonthDaysBool=   True
       Index           =   -2147483648
       InitialParent   =   ""
+      isPrevMonthBool =   False
       Left            =   9
       Localized_April =   ""
       Localized_August=   ""
@@ -226,6 +228,7 @@ Begin ContainerControl Calendar_Container
       SelectionType   =   2
       TabIndex        =   5
       TabPanelIndex   =   0
+      TabStop         =   True
       Top             =   226
       Transparent     =   True
       Visible         =   True
@@ -570,6 +573,14 @@ End
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
+	#tag ViewProperty
+		Name="Index"
+		Visible=true
+		Group="ID"
+		InitialValue="-2147483648"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
 	#tag ViewProperty
 		Name="AllowAutoDeactivate"
 		Visible=true
