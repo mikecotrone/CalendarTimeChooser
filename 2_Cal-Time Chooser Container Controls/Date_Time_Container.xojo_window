@@ -3,7 +3,7 @@ Begin ContainerControl Date_Time_Container
    AcceptFocus     =   False
    AcceptTabs      =   True
    AutoDeactivate  =   True
-   BackColor       =   &c9D9D9D00
+   BackColor       =   &cFFFFFF00
    Backdrop        =   0
    DoubleBuffer    =   False
    Enabled         =   True
@@ -11,6 +11,7 @@ Begin ContainerControl Date_Time_Container
    HasBackColor    =   True
    Height          =   272
    HelpTag         =   ""
+   Index           =   -2147483648
    InitialParent   =   ""
    Left            =   0
    LockBottom      =   False
@@ -112,14 +113,27 @@ End
 
 #tag WindowCode
 	#tag Event
-		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
-		  #Pragma Unused areas
-		  g.ForeColor = &cECECEC
-		  g.FillRect(0,0,me.Width,me.Height)
-		  
+		Sub Close()
+		  // 2026r2 Windows regression: destroying a Container that still owns a running Timer
+		  // throws an uncaught NilObjectException on Windows. Xojo reworked Container teardown
+		  // (#58514) and fixed the resulting NOE for macOS only (#81461); Windows is still broken.
+		  // Stop our timers BEFORE the framework tears this container down.
+		  StopChooserTimers
 		End Sub
 	#tag EndEvent
 
+	#tag Method, Flags = &h0
+		Sub StopChooserTimers()
+		  // See the Close event. Safe to call from any close/selection path.
+		  ClockSecondHandTimer.Mode = Timer.ModeOff
+		  ClockSecondHandTimer.Enabled = False
+
+		  If Time_Container1 <> Nil Then
+		    Time_Container1.clockColonFlashTimer.Mode = Timer.ModeOff
+		    Time_Container1.clockColonFlashTimer.Enabled = False
+		  End If
+		End Sub
+	#tag EndMethod
 
 	#tag Method, Flags = &h21
 		Private Sub changeLocalizedWindowTitle()
@@ -128,13 +142,13 @@ End
 		  If Window IsA DateTimeWindow Then
 		    
 		    If DateTimeWindow(Window).VisiblePickers = Date_Time_Container.PickerElements_CalendarAndClock Then
-		      TrueWindow.Title = Localized_ChooseBothTitle_Str
+		      Window.Title = Localized_ChooseBothTitle_Str
 		      
-		    Elseif DateTimeWindow(Window).VisiblePickers = Date_Time_Container.PickerElements_CalendarOnly Then
-		      TrueWindow.Title = Localized_CalendarOnlyTitle_Str
+		    ElseIf DateTimeWindow(Window).VisiblePickers = Date_Time_Container.PickerElements_CalendarOnly Then
+		      Window.Title = Localized_CalendarOnlyTitle_Str
 		      
 		    Elseif DateTimeWindow(Window).VisiblePickers =Date_Time_Container.PickerElements_ClockOnly Then
-		      TrueWindow.Title = Localized_TimeOnlyTitle_Str
+		      Window.Title = Localized_TimeOnlyTitle_Str
 		      
 		    End If
 		    
@@ -248,7 +262,7 @@ End
 		  if Window isa DateTimeWindow then
 		    window.Width = 416
 		    window.Height = 272
-		    TrueWindow.Title = Localized_ChooseBothTitle_Str
+		    Window.Title = Localized_ChooseBothTitle_Str
 		  end if
 		  
 		  Calendar_Container1.Enabled = True
@@ -269,7 +283,7 @@ End
 		Private Sub setupForCalendarPickerOnly()
 		  if window isa DateTimeWindow then
 		    window.Width = 250
-		    TrueWindow.Title = Localized_CalendarOnlyTitle_Str
+		    Window.Title = Localized_CalendarOnlyTitle_Str
 		  end if
 		  
 		  Calendar_Container1.Enabled = True
@@ -286,7 +300,7 @@ End
 		  if window isa DateTimeWindow then
 		    window.Width = 176
 		    window.Height = 272
-		    TrueWindow.Title = Localized_TimeOnlyTitle_Str
+		    Window.Title = Localized_TimeOnlyTitle_Str
 		  end if
 		  
 		  Time_Container1.Enabled = True
@@ -643,9 +657,13 @@ End
 		  
 		  // THIS EVENT IS PASSED THE SELECTED DATE AS A DATE OBJECT
 		  
+		  // Stop timers BEFORE the MsgBox below steals focus and auto-closes this popover.
+		  // (2026r2 Windows Container-teardown regression -- see the Close event / StopChooserTimers.)
+		  StopChooserTimers
+
 		  // EXAMPLE RESULTS USAGE:
 		  //MsgBox "The selected date is: " + inSelectedDate.SQLDateTime
-		  MsgBox "The selected date is: " + inSelectedDate.AbbreviatedDate 
+		  MsgBox "The selected date is: " + inSelectedDate.AbbreviatedDate
 		  
 		  
 		End Sub
@@ -691,6 +709,14 @@ End
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
+	#tag ViewProperty
+		Name="Index"
+		Visible=true
+		Group="ID"
+		InitialValue="-2147483648"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
 	#tag ViewProperty
 		Name="AllowAutoDeactivate"
 		Visible=true

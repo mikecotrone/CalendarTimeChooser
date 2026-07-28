@@ -8,7 +8,7 @@ Begin Window DemoLaunchWindow
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   595
+   Height          =   645
    ImplicitInstance=   True
    LiveResize      =   "True"
    MacProcID       =   0
@@ -887,6 +887,60 @@ Begin Window DemoLaunchWindow
       Visible         =   True
       Width           =   33
    End
+   Begin DesktopButton pbPopOverImplementation
+      AllowAutoDeactivate=   True
+      Bold            =   False
+      Cancel          =   False
+      Caption         =   "Simple Popover Example"
+      Default         =   False
+      Enabled         =   True
+      FontName        =   "System"
+      FontSize        =   0.0
+      FontUnit        =   0
+      Height          =   20
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   159
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      MacButtonStyle  =   0
+      Scope           =   2
+      TabIndex        =   43
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   594
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   171
+   End
+   Begin Separator Separator4
+      AutoDeactivate  =   True
+      Enabled         =   True
+      Height          =   4
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   -8
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   44
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   569
+      Transparent     =   True
+      Visible         =   True
+      Width           =   468
+   End
 End
 #tag EndWindow
 
@@ -1242,6 +1296,60 @@ End
 	#tag Event
 		Sub Action()
 		  MyPicker.flashSeparator = me.Value
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events pbPopOverImplementation
+	#tag Event
+		Sub Pressed()
+		  // Below shows how to set settings and open as a popover
+		  // This shows a simple implemenation that is independent from the other example window
+		  // To use this in other projects, copy folders 1-5 to your project and copy the below code to a button or other control.
+		  
+		  
+		  Var CalTimeChooser As New DateTimeWindow
+		  
+		  // Chooser Type:
+		  CalTimeChooser.VisiblePickers = Date_Time_Container.PickerElements_CalendarAndClock
+		  
+		  // Chooser Time Format
+		  CalTimeChooser.TimeMode = 12
+		  
+		  // Chooser Clock Face Type
+		  CalTimeChooser.ClockFaceType = Date_Time_Container.ClockFaceType_Chrome
+		  
+		  // Chooser Clock Hands Type
+		  CalTimeChooser.UseGraphicalClockHands= True
+		  
+		  // Chooser Calendar Column Lines
+		  CalTimeChooser.drawColSeperatorLines = True
+		  
+		  // Chooser Week Start
+		  CalTimeChooser.WeekStartsOnMonday = False
+		  
+		  // Chooser Calendar to include previous/next days on calendar
+		  CalTimeChooser.IncludePrevNextMonthDays = True
+		  
+		  // Calendar Localization
+		  CalTimeChooser.LocalizationInt = 0 // 0-English (See page 12 for definitions)
+		  
+		  // Allow User to Select Multiple Calendar Days
+		  CalTimeChooser.AllowMultipleCalendarSelections = False
+		  
+		  // Calendar Start Year:: This date integer is your calendar's start date
+		  CalTimeChooser.StartYear = 1975
+		  CalTimeChooser.EndYear = 2052
+		  
+		  // Set starting selection to a date other than today
+		  'Dim d As New date // Currently using old API 1 dates.
+		  'd.year = 2022 // For example
+		  'CalTimeChooser.SetCalendarStartDate(d)
+		  
+		  // Show as Popover
+		  CalTimeChooser.ShowPopover(Me)
+		  
+		  // Show as regular Window
+		  'CalTimeChooser.show // use this if you don't want a popover
 		End Sub
 	#tag EndEvent
 #tag EndEvents

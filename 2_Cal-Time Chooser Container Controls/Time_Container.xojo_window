@@ -11,6 +11,7 @@ Begin ContainerControl Time_Container
    HasBackColor    =   False
    Height          =   252
    HelpTag         =   ""
+   Index           =   -2147483648
    InitialParent   =   ""
    Left            =   0
    LockBottom      =   False
@@ -175,15 +176,6 @@ End
 		    Me.Transparent = False
 		    Me.EraseBackground = False
 		  #ENDIF
-		End Sub
-	#tag EndEvent
-
-	#tag Event
-		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
-		  #Pragma Unused areas
-		  g.ForeColor = &cECECEC
-		  g.FillRect(0,0,me.Width,me.Height)
-		  
 		End Sub
 	#tag EndEvent
 
@@ -412,6 +404,14 @@ End
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
+	#tag ViewProperty
+		Name="Index"
+		Visible=true
+		Group="ID"
+		InitialValue="-2147483648"
+		Type="Integer"
+		EditorType=""
+	#tag EndViewProperty
 	#tag ViewProperty
 		Name="AllowAutoDeactivate"
 		Visible=true

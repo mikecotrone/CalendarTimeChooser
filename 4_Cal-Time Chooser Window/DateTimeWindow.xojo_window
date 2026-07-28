@@ -1,28 +1,27 @@
-#tag Window
-Begin Window DateTimeWindow
-   BackColor       =   &cFFFFFF00
+#tag DesktopWindow
+Begin DesktopWindow DateTimeWindow
    Backdrop        =   0
-   CloseButton     =   True
+   BackgroundColor =   &cFFFFFF00
    Composite       =   False
-   Frame           =   0
+   DefaultLocation =   0
    FullScreen      =   False
-   FullScreenButton=   False
-   HasBackColor    =   False
+   HasBackgroundColor=   False
+   HasCloseButton  =   True
+   HasFullScreenButton=   False
+   HasMaximizeButton=   True
+   HasMinimizeButton=   True
    Height          =   272
    ImplicitInstance=   True
-   LiveResize      =   "True"
    MacProcID       =   0
-   MaxHeight       =   272
-   MaximizeButton  =   True
-   MaxWidth        =   416
+   MaximumHeight   =   272
+   MaximumWidth    =   416
    MenuBar         =   0
    MenuBarVisible  =   True
-   MinHeight       =   272
-   MinimizeButton  =   True
-   MinWidth        =   416
-   Placement       =   0
+   MinimumHeight   =   272
+   MinimumWidth    =   416
    Resizeable      =   False
    Title           =   ""
+   Type            =   0
    Visible         =   True
    Width           =   416
    Begin Date_Time_Container Date_Time_Container1
@@ -30,7 +29,7 @@ Begin Window DateTimeWindow
       AcceptTabs      =   True
       AllowMultipleCalendarSelections=   False
       AutoDeactivate  =   True
-      BackColor       =   &c9D9D9D00
+      BackColor       =   &cFFFFFF00
       Backdrop        =   0
       ClockFaceBorderColor=   &c00000000
       ClockFaceHourCount=   0
@@ -40,8 +39,8 @@ Begin Window DateTimeWindow
       ClockHandColor  =   &c00000000
       DoubleBuffer    =   False
       Enabled         =   True
-      EraseBackground =   False
-      HasBackColor    =   True
+      EraseBackground =   True
+      HasBackColor    =   False
       Height          =   272
       HelpTag         =   ""
       IncludePrevNextMonthDays=   False
@@ -68,11 +67,11 @@ Begin Window DateTimeWindow
       Width           =   416
    End
 End
-#tag EndWindow
+#tag EndDesktopWindow
 
 #tag WindowCode
 	#tag Event
-		Function KeyDown(Key As String) As Boolean
+		Function KeyDown(key As String) As Boolean
 		  #Pragma Unused key
 		  
 		  // Uncomment if you would like to allow a user to hit the escape key to close this window
@@ -104,10 +103,18 @@ End
 		  // Possible calls:
 		  // Invalidate(eraseBackground As Boolean = True) -- From Window
 		  // Invalidate(x As Integer, y As Integer, width As Integer, height As Integer, eraseBackground As Boolean = True) -- From Window
-		  Super.Invalidate(eraseBackground)
+		  'Super.Invalidate(eraseBackground)
 		  
 		  Date_Time_Container1.Time_Container1.Clock1.Invalidate(False)
 		  Date_Time_Container1.Time_Container1.TimePicker1.Invalidate(False)
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
+		Sub SetCalendarStartDate(theDate as Date)
+		  // Prefills the selected date shown
+		  Date_Time_Container1.Calendar_Container1.Calendar1.SetCustomCalendarStartDate(theDate)
 		  
 		End Sub
 	#tag EndMethod
@@ -448,8 +455,7 @@ End
 			"6 - Rounded Window"
 			"7 - Global Floating Window"
 			"8 - Sheet Window"
-			"9 - Metal Window"
-			"11 - Modeless Dialog"
+			"9 - Modeless Dialog"
 		#tag EndEnumValues
 	#tag EndViewProperty
 	#tag ViewProperty
@@ -512,8 +518,8 @@ End
 		Visible=true
 		Group="Background"
 		InitialValue="&hFFFFFF"
-		Type="Color"
-		EditorType="Color"
+		Type="ColorGroup"
+		EditorType="ColorGroup"
 	#tag EndViewProperty
 	#tag ViewProperty
 		Name="AllowMultipleCalendarSelections"
@@ -648,7 +654,7 @@ End
 		Visible=true
 		Group="Appearance"
 		InitialValue=""
-		Type="MenuBar"
+		Type="DesktopMenuBar"
 		EditorType=""
 	#tag EndViewProperty
 	#tag ViewProperty

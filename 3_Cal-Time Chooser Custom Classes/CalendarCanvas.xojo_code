@@ -1,5 +1,5 @@
 #tag Class
-Protected Class Calendar
+Protected Class CalendarCanvas
 Inherits Canvas
 	#tag Event
 		Function MouseDown(X As Integer, Y As Integer) As Boolean
@@ -109,7 +109,16 @@ Inherits Canvas
 		            MonthToAdvance = "Prev"
 		            
 		          End If
-		          SelectedDate.Year = SelectedYear.ToDouble
+		          
+		          // Set year correctly for prev / next month clicks
+		          If MonthToAdvance = "Prev" And SelectedMonth = "January" Then
+		            SelectedDate.Year = SelectedYear.ToDouble - 1
+		          ElseIf MonthToAdvance = "Next" And SelectedMonth = "December" Then
+		            SelectedDate.Year = SelectedYear.ToDouble + 1
+		          Else
+		            SelectedDate.Year = SelectedYear.ToDouble
+		          End If
+		          
 		          CalendarButtonClassArray(i).SelectedDate = SelectedDate
 		          
 		          If MonthToAdvance = "Next" Or MonthToAdvance = "Prev" Then
@@ -173,7 +182,12 @@ Inherits Canvas
 		  g.AntiAlias = True
 		  
 		  // FILL BACKGROUND COLOR
-		  g.ForeColor =  &cFFFFFF
+		  If Color.IsDarkMode Then
+		    g.ForeColor =  Color.FillColor
+		  Else
+		    g.ForeColor = Color.White
+		  End If
+		  
 		  g.FillRect (1,1,Me.Width-2,Me.Height-2)
 		  
 		  // DRAW CANVAS BORDER OUTLINE 
@@ -287,23 +301,23 @@ Inherits Canvas
 		    If CalendarButtonClassArray(i).Selected = True Then
 		      If SelectedYear.ToDouble = CurrentDate.Year And SelectMonthInt = CurrentDate.Month And CalendarButtonClassArray(i).Day = CurrentDate.Day Then
 		        g.bold = False
-		        g.ForeColor = &cFFFFFF
+		        g.ForeColor = Color.White
 		      Else
 		        g.bold = False
-		        g.ForeColor = &cFFFFFF
+		        g.ForeColor = Color.White
 		      End If
 		      
 		    Elseif CalendarButtonClassArray(i).NextMonthMark = True Or  CalendarButtonClassArray(i).PrevMonthMark = True Then
 		      g.bold = False
-		      g.ForeColor= RGB(170,170,170)
+		      g.ForeColor= Color.LightGray
 		      
-		    Elseif SelectedYear.ToDouble = CurrentDate.Year And SelectMonthInt = CurrentDate.Month And CalendarButtonClassArray(i).Day = CurrentDate.Day Then
+		    ElseIf SelectedYear.ToDouble = CurrentDate.Year And SelectMonthInt = CurrentDate.Month And CalendarButtonClassArray(i).Day = CurrentDate.Day Then
 		      g.bold = True
 		      g.ForeColor = &c1261A
 		      
 		    Else
 		      g.bold = False
-		      g.ForeColor = &c333333
+		      g.ForeColor = Color.TextColor
 		    End If
 		    
 		    // DRAW CALENDAR DAY DIGIT STRING
